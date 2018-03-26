@@ -168,7 +168,7 @@
 	<aop:config>
 		<!-- com.alibaba.NetCTOSS.*mag.service*.impl.*ServiceImpl.*(..) -->
 		<aop:pointcut id="pointExpression"
-			expression="execution(* com.alibaba.NetCTOSS.*mag.service*.impl.*ServiceImpl.*(..).*(..))" />
+			expression="execution(* com.alibaba.NetCTOSS.*mag.service*.impl.*ServiceImpl.*(..))" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="pointExpression" />
 	</aop:config>
 
