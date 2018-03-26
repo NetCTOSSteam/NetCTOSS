@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa" xmlns:cache="http://www.springframework.org/schema/cache"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+						http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context-3.0.xsd 
+						http://www.springframework.org/schema/aop
+						http://www.springframework.org/schema/aop/spring-aop-3.0.xsd 
+						http://www.springframework.org/schema/tx
+						http://www.springframework.org/schema/tx/spring-tx-3.0.xsd 
+						http://www.springframework.org/schema/mvc
+						http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+						http://www.springframework.org/schema/cache
+       					http://www.springframework.org/schema/cache/spring-cache.xsd
+       					http://www.springframework.org/schema/data/jpa
+						http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+	<!-- 1、开启自动扫描 -->
+	<context:component-scan base-package="com.alibaba.NetCTOSS">
+		<!-- 管理除开web表现层(controller层)的组件 -->
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Service" />
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Repository" />
+		<context:exclude-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+
+	<!-- 2、引入数据库相关配置文件 -->
+	<context:property-placeholder location="classpath:mysql.properties"
+		ignore-unresolvable="true" ignore-resource-not-found="true" />
+
+	<!-- 3、引入数据库连接池 -->
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+		init-method="init" destroy-method="close">
+		<!-- 基本属性 url、user、password -->
+		<!-- jdbc.driver=com.mysql.jdbc.Driver -->
+		<!--在Druid中可以根据URL自动锁定数据库驱动 <property name="driverClassName" value="${jdbc.driver}"></property> -->
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.userName}" />
+		<property name="password" value="${jdbc.password}" />
+
+		<!-- 配置初始化大小、最小、最大 -->
+		<property name="initialSize" value="15" />
+		<property name="minIdle" value="0" />
+		<property name="maxActive" value="50" />
+
+		<!-- 配置获取连接等待超时的时间 单位是毫秒 -->
+		<property name="maxWait" value="60000" />
+
+		<!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+		<property name="timeBetweenEvictionRunsMillis" value="60000" />
+
+		<!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+		<property name="minEvictableIdleTimeMillis" value="300000" />
+		<!-- 用于设置校验连接是否正常的查询语句 -->
+		<property name="validationQuery" value="select now() from dual" />
+
+		<!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->
+		<property name="poolPreparedStatements" value="true" />
+		<property name="maxPoolPreparedStatementPerConnectionSize"
+			value="200" />
+		<!-- 配置监控统计拦截的filters -->
+		<property name="filters" value="stat" />
+	</bean>
+	<!-- 4、配置mybatis的SessionFactory -->
+	<bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<!-- 引入pagehelper到mybatis中 -->
+		<property name="plugins">
+			<array>
+				<bean class="com.github.pagehelper.PageInterceptor">
+					<property name="properties">
+						<value>
+							helperDialect=mysql
+						</value>
+					</property>
+				</bean>
+			</array>
+		</property>
+		<!-- mybatis采用逗号或者是分号来完成写多个包 ，这些包下面的类都以类名代表类的全路径 -->
+		<property name="typeAliasesPackage"
+			value="com.alibaba.NetCTOSS.beans.admAndRoleBean;
+			com.alibaba.NetCTOSS.beans.billBean;
+			com.alibaba.NetCTOSS.beans.logBean;
+			com.alibaba.NetCTOSS.beans.userAndBusBean">
+		</property>
+		
+	</bean>
+
+	<!-- 5、配置Mapper映射扫描组件 -->
+	<!-- 扫描mapper映射文件 -->
+	<bean id="mapperScanner" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<!-- basePackage 自动扫描SQLMapper映射文件的基准包，如果有多个包同时需要扫描，包和包之间采用“，”或者“；”间隔开 -->
+		<property name="basePackage"
+			value="com.alibaba.NetCTOSS.billmag.mapper_demand;
+			com.alibaba.NetCTOSS.logmag.mapper_demand;
+			com.alibaba.NetCTOSS.usermag.mapper_demand"></property>
+		<!-- 将session与程序中的sqlmapper配置文件进行关联，为SQLMapper接口在spring容器中，产生对应的动态代理实例 -->
+		<property name="sqlSessionFactoryBeanName" value="sessionFactory"></property>
+	</bean>
+
+
+	<!-- 4、配置localEntityManagerFactoryBean 在sessionFactory的基础上，并且完成了对Dao接口的实现 -->
+	<bean id="localEntityManagerFactoryBean"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<!-- 需要数据源连接中，提供连接 -->
+		<property name="dataSource" ref="dataSource"></property>
+		<!-- 配置Jpa底层操作时，依旧需要转换成Hibernate的操作方式 -->
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"></bean>
+		</property>
+
+		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+			</props>
+		</property>
+		<property name="packagesToScan">
+			<list>
+				<value>com.alibaba.NetCTOSS.beans.admAndRoleBean</value>
+				<value>com.alibaba.NetCTOSS.beans.billBean</value>
+				<value>com.alibaba.NetCTOSS.beans.logBean</value>
+				<value>com.alibaba.NetCTOSS.beans.userAndBusBean</value>
+			</list>
+		</property>
+	</bean>
+
+
+
+	<!-- 5、配置事务管理器 -->
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="localEntityManagerFactoryBean"></property>
+	</bean>
+	<!-- spring容器提供了2种事务管理手段，1种：编程式事务管理方法，2种：声明式事务管理方法（常用） -->
+	<!-- 声明式事务管理方案1: 注解控制事务 <tx:annotation-driven transaction-manager="transactionManager"/> -->
+
+	<!-- 声明式事务管理方案2：切面控制事务 常用 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="*" read-only="false" isolation="DEFAULT"
+				propagation="SUPPORTS" rollback-for="java.lang.Expression" />
+			<!-- 定义新增方法 -->
+			<tx:method name="add*" read-only="false" isolation="DEFAULT"
+				propagation="REQUIRED" rollback-for="java.lang.Expression" />
+			<tx:method name="save*" read-only="false" isolation="DEFAULT"
+				propagation="REQUIRED" rollback-for="java.lang.Expression" />
+			<tx:method name="insert*" read-only="false" isolation="DEFAULT"
+				propagation="REQUIRED" rollback-for="java.lang.Expression" />
+			<!-- 定义修改方法 -->
+			<tx:method name="update*" read-only="false" isolation="DEFAULT"
+				propagation="REQUIRED" rollback-for="java.lang.Expression" />
+			<tx:method name="change*" read-only="false" isolation="DEFAULT"
+				propagation="REQUIRED" rollback-for="java.lang.Expression" />
+			<!-- 定义删除方法 -->
+			<tx:method name="delete*" read-only="false" isolation="DEFAULT"
+				propagation="REQUIRED" rollback-for="java.lang.Exception" />
+			<tx:method name="remove*" read-only="false" isolation="DEFAULT"
+				propagation="REQUIRED" rollback-for="java.lang.Exception" />
+		</tx:attributes>
+	</tx:advice>
+
+	<aop:config>
+		<!-- com.alibaba.NetCTOSS.*mag.service*.impl.*ServiceImpl.*(..) -->
+		<aop:pointcut id="pointExpression"
+			expression="execution(* com.alibaba.NetCTOSS.*mag.service*.impl.*ServiceImpl.*(..).*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="pointExpression" />
+	</aop:config>
+
+	<!-- 开启切面的动态代理支持 -->
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+
+	<!-- 开启缓存注解驱动支持 -->
+	<cache:annotation-driven cache-manager="cacheManager" />
+
+	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager"
+		p:cache-manager-ref="ehcache" />
+
+	<bean id="ehcache"
+		class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+		<property name="configLocation">
+			<value>classpath:ehcache.xml</value>
+		</property>
+		<property name="shared">
+			<value>true</value>
+		</property>
+	</bean>
+
+	<!-- base-package 主要完成自动扫描，扫描满足JPA规范的DAO接口 -->
+	<!-- entity-manager-factory-ref 再使用这个标签所对应的localEntityManagerFactoryBean，完成对上述接口实例化，并且注入Session -->
+	<jpa:repositories base-package="com.alibaba.NetCTOSS"
+		entity-manager-factory-ref="localEntityManagerFactoryBean"></jpa:repositories>
+</beans>

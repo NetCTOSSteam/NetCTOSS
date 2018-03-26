@@ -1,0 +1,216 @@
+com.alibaba.druid.pool.DruidDataSource 2018-03-26 09:54:09 INFO {dataSource-1} inited
+org.hibernate.jpa.internal.util.LogHelper 2018-03-26 09:54:09 INFO HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+org.hibernate.Version 2018-03-26 09:54:09 INFO HHH000412: Hibernate Core {4.3.11.Final}
+org.hibernate.cfg.Environment 2018-03-26 09:54:09 INFO HHH000206: hibernate.properties not found
+org.hibernate.cfg.Environment 2018-03-26 09:54:09 INFO HHH000021: Bytecode provider name : javassist
+org.hibernate.annotations.common.Version 2018-03-26 09:54:09 INFO HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+org.hibernate.dialect.Dialect 2018-03-26 09:54:10 INFO HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory 2018-03-26 09:54:10 INFO HHH000397: Using ASTQueryTranslatorFactory
+org.hibernate.validator.internal.util.Version 2018-03-26 09:54:10 INFO HV000001: Hibernate Validator 5.4.0.Final
+com.alibaba.druid.pool.DruidDataSource 2018-03-26 09:54:11 INFO {dataSource-1} closed
+com.alibaba.druid.pool.DruidDataSource 2018-03-26 10:01:56 INFO {dataSource-1} inited
+org.hibernate.jpa.internal.util.LogHelper 2018-03-26 10:01:56 INFO HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+org.hibernate.Version 2018-03-26 10:01:57 INFO HHH000412: Hibernate Core {4.3.11.Final}
+org.hibernate.cfg.Environment 2018-03-26 10:01:57 INFO HHH000206: hibernate.properties not found
+org.hibernate.cfg.Environment 2018-03-26 10:01:57 INFO HHH000021: Bytecode provider name : javassist
+org.hibernate.annotations.common.Version 2018-03-26 10:01:57 INFO HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+org.hibernate.dialect.Dialect 2018-03-26 10:01:57 INFO HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory 2018-03-26 10:01:57 INFO HHH000397: Using ASTQueryTranslatorFactory
+org.hibernate.validator.internal.util.Version 2018-03-26 10:01:57 INFO HV000001: Hibernate Validator 5.4.0.Final
+com.alibaba.druid.pool.DruidDataSource 2018-03-26 10:01:58 INFO {dataSource-1} closed
+com.alibaba.druid.pool.DruidDataSource 2018-03-26 10:05:39 INFO {dataSource-1} inited
+org.hibernate.jpa.internal.util.LogHelper 2018-03-26 10:05:39 INFO HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+org.hibernate.Version 2018-03-26 10:05:40 INFO HHH000412: Hibernate Core {4.3.11.Final}
+org.hibernate.cfg.Environment 2018-03-26 10:05:40 INFO HHH000206: hibernate.properties not found
+org.hibernate.cfg.Environment 2018-03-26 10:05:40 INFO HHH000021: Bytecode provider name : javassist
+org.hibernate.annotations.common.Version 2018-03-26 10:05:40 INFO HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+org.hibernate.dialect.Dialect 2018-03-26 10:05:40 INFO HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory 2018-03-26 10:05:40 INFO HHH000397: Using ASTQueryTranslatorFactory
+org.hibernate.validator.internal.util.Version 2018-03-26 10:05:40 INFO HV000001: Hibernate Validator 5.4.0.Final
+com.alibaba.druid.pool.DruidDataSource 2018-03-26 10:05:41 INFO {dataSource-1} closed
+com.alibaba.druid.pool.DruidDataSource 2018-03-26 10:08:24 INFO {dataSource-1} inited
+org.hibernate.jpa.internal.util.LogHelper 2018-03-26 10:08:24 INFO HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+org.hibernate.Version 2018-03-26 10:08:24 INFO HHH000412: Hibernate Core {4.3.11.Final}
+org.hibernate.cfg.Environment 2018-03-26 10:08:24 INFO HHH000206: hibernate.properties not found
+org.hibernate.cfg.Environment 2018-03-26 10:08:24 INFO HHH000021: Bytecode provider name : javassist
+org.hibernate.annotations.common.Version 2018-03-26 10:08:24 INFO HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+org.hibernate.dialect.Dialect 2018-03-26 10:08:24 INFO HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory 2018-03-26 10:08:24 INFO HHH000397: Using ASTQueryTranslatorFactory
+org.hibernate.validator.internal.util.Version 2018-03-26 10:08:24 INFO HV000001: Hibernate Validator 5.4.0.Final
+com.alibaba.druid.pool.DruidDataSource 2018-03-26 10:08:25 INFO {dataSource-1} closed
+com.alibaba.druid.pool.DruidDataSource 2018-03-26 10:09:09 INFO {dataSource-1} inited
+org.hibernate.jpa.internal.util.LogHelper 2018-03-26 10:09:09 INFO HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+org.hibernate.Version 2018-03-26 10:09:09 INFO HHH000412: Hibernate Core {4.3.11.Final}
+org.hibernate.cfg.Environment 2018-03-26 10:09:09 INFO HHH000206: hibernate.properties not found
+org.hibernate.cfg.Environment 2018-03-26 10:09:09 INFO HHH000021: Bytecode provider name : javassist
+org.hibernate.annotations.common.Version 2018-03-26 10:09:09 INFO HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+org.hibernate.dialect.Dialect 2018-03-26 10:09:09 INFO HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory 2018-03-26 10:09:09 INFO HHH000397: Using ASTQueryTranslatorFactory
+org.hibernate.validator.internal.util.Version 2018-03-26 10:09:09 INFO HV000001: Hibernate Validator 5.4.0.Final
+com.alibaba.druid.pool.DruidDataSource 2018-03-26 10:09:10 INFO {dataSource-1} closed
+com.alibaba.druid.pool.DruidDataSource 2018-03-26 10:10:30 INFO {dataSource-1} inited
+org.hibernate.jpa.internal.util.LogHelper 2018-03-26 10:10:30 INFO HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+org.hibernate.Version 2018-03-26 10:10:30 INFO HHH000412: Hibernate Core {4.3.11.Final}
+org.hibernate.cfg.Environment 2018-03-26 10:10:30 INFO HHH000206: hibernate.properties not found
+org.hibernate.cfg.Environment 2018-03-26 10:10:30 INFO HHH000021: Bytecode provider name : javassist
+org.hibernate.annotations.common.Version 2018-03-26 10:10:30 INFO HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+org.hibernate.dialect.Dialect 2018-03-26 10:10:30 INFO HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory 2018-03-26 10:10:31 INFO HHH000397: Using ASTQueryTranslatorFactory
+org.hibernate.validator.internal.util.Version 2018-03-26 10:10:31 INFO HV000001: Hibernate Validator 5.4.0.Final
+com.alibaba.druid.pool.DruidDataSource 2018-03-26 10:10:33 INFO {dataSource-1} closed
+com.alibaba.druid.pool.DruidDataSource 2018-03-26 10:18:47 INFO {dataSource-1} inited
+org.hibernate.jpa.internal.util.LogHelper 2018-03-26 10:18:47 INFO HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+org.hibernate.Version 2018-03-26 10:18:47 INFO HHH000412: Hibernate Core {4.3.11.Final}
+org.hibernate.cfg.Environment 2018-03-26 10:18:47 INFO HHH000206: hibernate.properties not found
+org.hibernate.cfg.Environment 2018-03-26 10:18:47 INFO HHH000021: Bytecode provider name : javassist
+org.hibernate.annotations.common.Version 2018-03-26 10:18:47 INFO HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+org.hibernate.dialect.Dialect 2018-03-26 10:18:47 INFO HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory 2018-03-26 10:18:47 INFO HHH000397: Using ASTQueryTranslatorFactory
+org.hibernate.validator.internal.util.Version 2018-03-26 10:18:47 INFO HV000001: Hibernate Validator 5.4.0.Final
+com.alibaba.druid.pool.DruidDataSource 2018-03-26 10:18:48 INFO {dataSource-1} closed
+com.alibaba.druid.pool.DruidDataSource 2018-03-26 10:20:02 INFO {dataSource-1} inited
+org.hibernate.jpa.internal.util.LogHelper 2018-03-26 10:20:02 INFO HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+org.hibernate.Version 2018-03-26 10:20:02 INFO HHH000412: Hibernate Core {4.3.11.Final}
+org.hibernate.cfg.Environment 2018-03-26 10:20:02 INFO HHH000206: hibernate.properties not found
+org.hibernate.cfg.Environment 2018-03-26 10:20:02 INFO HHH000021: Bytecode provider name : javassist
+org.hibernate.annotations.common.Version 2018-03-26 10:20:03 INFO HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+org.hibernate.dialect.Dialect 2018-03-26 10:20:03 INFO HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory 2018-03-26 10:20:03 INFO HHH000397: Using ASTQueryTranslatorFactory
+org.hibernate.validator.internal.util.Version 2018-03-26 10:20:03 INFO HV000001: Hibernate Validator 5.4.0.Final
+com.alibaba.druid.pool.DruidDataSource 2018-03-26 10:20:06 INFO {dataSource-1} closed
+com.alibaba.druid.pool.DruidDataSource 2018-03-26 01:30:29 INFO {dataSource-1} inited
+org.hibernate.jpa.internal.util.LogHelper 2018-03-26 01:30:30 INFO HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+org.hibernate.Version 2018-03-26 01:30:30 INFO HHH000412: Hibernate Core {4.3.11.Final}
+org.hibernate.cfg.Environment 2018-03-26 01:30:30 INFO HHH000206: hibernate.properties not found
+org.hibernate.cfg.Environment 2018-03-26 01:30:30 INFO HHH000021: Bytecode provider name : javassist
+org.hibernate.annotations.common.Version 2018-03-26 01:30:30 INFO HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+org.hibernate.dialect.Dialect 2018-03-26 01:30:30 INFO HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory 2018-03-26 01:30:30 INFO HHH000397: Using ASTQueryTranslatorFactory
+org.hibernate.validator.internal.util.Version 2018-03-26 01:30:30 INFO HV000001: Hibernate Validator 5.4.0.Final
+com.alibaba.druid.pool.DruidDataSource 2018-03-26 01:30:33 INFO {dataSource-1} closed
+com.alibaba.druid.pool.DruidDataSource 2018-03-26 01:33:00 INFO {dataSource-1} inited
+org.hibernate.jpa.internal.util.LogHelper 2018-03-26 01:33:00 INFO HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+org.hibernate.Version 2018-03-26 01:33:01 INFO HHH000412: Hibernate Core {4.3.11.Final}
+org.hibernate.cfg.Environment 2018-03-26 01:33:01 INFO HHH000206: hibernate.properties not found
+org.hibernate.cfg.Environment 2018-03-26 01:33:01 INFO HHH000021: Bytecode provider name : javassist
+org.hibernate.annotations.common.Version 2018-03-26 01:33:01 INFO HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+org.hibernate.dialect.Dialect 2018-03-26 01:33:01 INFO HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory 2018-03-26 01:33:01 INFO HHH000397: Using ASTQueryTranslatorFactory
+org.hibernate.validator.internal.util.Version 2018-03-26 01:33:01 INFO HV000001: Hibernate Validator 5.4.0.Final
+com.alibaba.druid.pool.DruidDataSource 2018-03-26 01:33:04 INFO {dataSource-1} closed
+com.alibaba.druid.pool.DruidDataSource 2018-03-26 01:33:56 INFO {dataSource-1} inited
+org.hibernate.jpa.internal.util.LogHelper 2018-03-26 01:33:57 INFO HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+org.hibernate.Version 2018-03-26 01:33:57 INFO HHH000412: Hibernate Core {4.3.11.Final}
+org.hibernate.cfg.Environment 2018-03-26 01:33:57 INFO HHH000206: hibernate.properties not found
+org.hibernate.cfg.Environment 2018-03-26 01:33:57 INFO HHH000021: Bytecode provider name : javassist
+org.hibernate.annotations.common.Version 2018-03-26 01:33:57 INFO HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+org.hibernate.dialect.Dialect 2018-03-26 01:33:57 INFO HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory 2018-03-26 01:33:57 INFO HHH000397: Using ASTQueryTranslatorFactory
+org.hibernate.validator.internal.util.Version 2018-03-26 01:33:58 INFO HV000001: Hibernate Validator 5.4.0.Final
+com.alibaba.druid.pool.DruidDataSource 2018-03-26 01:34:00 INFO {dataSource-1} closed
+com.alibaba.druid.pool.DruidDataSource 2018-03-26 01:35:15 INFO {dataSource-1} inited
+org.hibernate.jpa.internal.util.LogHelper 2018-03-26 01:35:15 INFO HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+org.hibernate.Version 2018-03-26 01:35:15 INFO HHH000412: Hibernate Core {4.3.11.Final}
+org.hibernate.cfg.Environment 2018-03-26 01:35:15 INFO HHH000206: hibernate.properties not found
+org.hibernate.cfg.Environment 2018-03-26 01:35:15 INFO HHH000021: Bytecode provider name : javassist
+org.hibernate.annotations.common.Version 2018-03-26 01:35:16 INFO HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+org.hibernate.dialect.Dialect 2018-03-26 01:35:16 INFO HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory 2018-03-26 01:35:16 INFO HHH000397: Using ASTQueryTranslatorFactory
+org.hibernate.validator.internal.util.Version 2018-03-26 01:35:16 INFO HV000001: Hibernate Validator 5.4.0.Final
+com.alibaba.druid.pool.DruidDataSource 2018-03-26 01:35:18 INFO {dataSource-1} closed
+com.alibaba.druid.pool.DruidDataSource 2018-03-26 01:39:10 INFO {dataSource-1} inited
+org.hibernate.jpa.internal.util.LogHelper 2018-03-26 01:39:10 INFO HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+org.hibernate.Version 2018-03-26 01:39:10 INFO HHH000412: Hibernate Core {4.3.11.Final}
+org.hibernate.cfg.Environment 2018-03-26 01:39:10 INFO HHH000206: hibernate.properties not found
+org.hibernate.cfg.Environment 2018-03-26 01:39:10 INFO HHH000021: Bytecode provider name : javassist
+org.hibernate.annotations.common.Version 2018-03-26 01:39:10 INFO HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+org.hibernate.dialect.Dialect 2018-03-26 01:39:10 INFO HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory 2018-03-26 01:39:10 INFO HHH000397: Using ASTQueryTranslatorFactory
+org.hibernate.validator.internal.util.Version 2018-03-26 01:39:11 INFO HV000001: Hibernate Validator 5.4.0.Final
+com.alibaba.druid.pool.DruidDataSource 2018-03-26 01:39:13 INFO {dataSource-1} closed
+com.alibaba.druid.pool.DruidDataSource 2018-03-26 01:39:49 INFO {dataSource-1} inited
+org.hibernate.jpa.internal.util.LogHelper 2018-03-26 01:39:49 INFO HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+org.hibernate.Version 2018-03-26 01:39:49 INFO HHH000412: Hibernate Core {4.3.11.Final}
+org.hibernate.cfg.Environment 2018-03-26 01:39:49 INFO HHH000206: hibernate.properties not found
+org.hibernate.cfg.Environment 2018-03-26 01:39:49 INFO HHH000021: Bytecode provider name : javassist
+org.hibernate.annotations.common.Version 2018-03-26 01:39:49 INFO HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+org.hibernate.dialect.Dialect 2018-03-26 01:39:50 INFO HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory 2018-03-26 01:39:50 INFO HHH000397: Using ASTQueryTranslatorFactory
+org.hibernate.validator.internal.util.Version 2018-03-26 01:39:50 INFO HV000001: Hibernate Validator 5.4.0.Final
+com.alibaba.druid.pool.DruidDataSource 2018-03-26 01:39:52 INFO {dataSource-1} closed
+com.alibaba.druid.pool.DruidDataSource 2018-03-26 01:40:45 INFO {dataSource-1} inited
+org.hibernate.jpa.internal.util.LogHelper 2018-03-26 01:40:45 INFO HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+org.hibernate.Version 2018-03-26 01:40:45 INFO HHH000412: Hibernate Core {4.3.11.Final}
+org.hibernate.cfg.Environment 2018-03-26 01:40:45 INFO HHH000206: hibernate.properties not found
+org.hibernate.cfg.Environment 2018-03-26 01:40:45 INFO HHH000021: Bytecode provider name : javassist
+org.hibernate.annotations.common.Version 2018-03-26 01:40:45 INFO HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+org.hibernate.dialect.Dialect 2018-03-26 01:40:46 INFO HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory 2018-03-26 01:40:46 INFO HHH000397: Using ASTQueryTranslatorFactory
+org.hibernate.validator.internal.util.Version 2018-03-26 01:40:46 INFO HV000001: Hibernate Validator 5.4.0.Final
+com.alibaba.druid.pool.DruidDataSource 2018-03-26 01:40:49 INFO {dataSource-1} closed
+com.alibaba.druid.pool.DruidDataSource 2018-03-26 01:41:21 INFO {dataSource-1} inited
+org.hibernate.jpa.internal.util.LogHelper 2018-03-26 01:41:21 INFO HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+org.hibernate.Version 2018-03-26 01:41:22 INFO HHH000412: Hibernate Core {4.3.11.Final}
+org.hibernate.cfg.Environment 2018-03-26 01:41:22 INFO HHH000206: hibernate.properties not found
+org.hibernate.cfg.Environment 2018-03-26 01:41:22 INFO HHH000021: Bytecode provider name : javassist
+org.hibernate.annotations.common.Version 2018-03-26 01:41:22 INFO HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+org.hibernate.dialect.Dialect 2018-03-26 01:41:22 INFO HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory 2018-03-26 01:41:22 INFO HHH000397: Using ASTQueryTranslatorFactory
+org.hibernate.validator.internal.util.Version 2018-03-26 01:41:22 INFO HV000001: Hibernate Validator 5.4.0.Final
+com.alibaba.druid.pool.DruidDataSource 2018-03-26 01:41:25 INFO {dataSource-1} closed
+com.alibaba.druid.pool.DruidDataSource 2018-03-26 01:46:28 INFO {dataSource-1} inited
+org.hibernate.jpa.internal.util.LogHelper 2018-03-26 01:46:28 INFO HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+org.hibernate.Version 2018-03-26 01:46:28 INFO HHH000412: Hibernate Core {4.3.11.Final}
+org.hibernate.cfg.Environment 2018-03-26 01:46:28 INFO HHH000206: hibernate.properties not found
+org.hibernate.cfg.Environment 2018-03-26 01:46:28 INFO HHH000021: Bytecode provider name : javassist
+org.hibernate.annotations.common.Version 2018-03-26 01:46:28 INFO HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+org.hibernate.dialect.Dialect 2018-03-26 01:46:29 INFO HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory 2018-03-26 01:46:29 INFO HHH000397: Using ASTQueryTranslatorFactory
+org.hibernate.validator.internal.util.Version 2018-03-26 01:46:29 INFO HV000001: Hibernate Validator 5.4.0.Final
+com.alibaba.druid.pool.DruidDataSource 2018-03-26 01:46:32 INFO {dataSource-1} closed
+com.alibaba.druid.pool.DruidDataSource 2018-03-26 01:47:13 INFO {dataSource-1} inited
+org.hibernate.jpa.internal.util.LogHelper 2018-03-26 01:47:13 INFO HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+org.hibernate.Version 2018-03-26 01:47:13 INFO HHH000412: Hibernate Core {4.3.11.Final}
+org.hibernate.cfg.Environment 2018-03-26 01:47:13 INFO HHH000206: hibernate.properties not found
+org.hibernate.cfg.Environment 2018-03-26 01:47:13 INFO HHH000021: Bytecode provider name : javassist
+org.hibernate.annotations.common.Version 2018-03-26 01:47:13 INFO HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+org.hibernate.dialect.Dialect 2018-03-26 01:47:13 INFO HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory 2018-03-26 01:47:14 INFO HHH000397: Using ASTQueryTranslatorFactory
+org.hibernate.validator.internal.util.Version 2018-03-26 01:47:14 INFO HV000001: Hibernate Validator 5.4.0.Final
+com.alibaba.druid.pool.DruidDataSource 2018-03-26 01:47:17 INFO {dataSource-1} closed

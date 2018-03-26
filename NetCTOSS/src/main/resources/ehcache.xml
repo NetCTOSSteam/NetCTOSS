@@ -1,0 +1,32 @@
+<ehcache>
+	<!-- diskStore 缓存数据，存放的位置，java.io.tmpdir代表：内存中，生成一个临时目录，用于存放缓存数据 -->
+	<!-- 当然我们也可以修改该位置，比如：d:/cache -->
+	<diskStore path="java.io.tmpdir" />
+
+	<!-- maxElementsInMemory="10000" 缓存中，允许存放对象的最大容量为：10000 -->
+	<!-- eternal="false" 代表缓存中的数据，是否为常量，true为常量，false为变量 -->
+	<!-- timeToIdleSeconds="120" 空闲时间，代表缓存中的数据，如果没有被使用的情况下，可以在缓存存活的时间为：120秒 -->
+	<!-- timeToLiveSeconds 钝化时间，代表缓存中的数据，如果在被使用的情况下，可以在缓存中存活的时间为：120秒 -->
+	<!-- overflowToDisk="true" 当缓存容量不足时，是否需要向硬盘中写入数据， 写的位置由程序员自己通过<diskStore 
+		path="java.io.tmpdir"/>去修改 -->
+
+	<!-- FIFO first in first out 先进先出 -->
+	<!-- LRU 最近最少使用，在1分钟的单位时间内，判断哪个数据最少被调用，那么就清理它 -->
+	<!-- LFU 最少使用 从缓存空间创建开始，哪个数据最少被调用，那么就清理它 -->
+
+	<defaultCache name="default" maxElementsInMemory="10000" eternal="false"
+		timeToIdleSeconds="120" timeToLiveSeconds="120" overflowToDisk="true"
+		memoryStoreEvictionPolicy="LFU" />
+
+	<cache name="dept" maxElementsInMemory="10000" eternal="false"
+		timeToIdleSeconds="120" timeToLiveSeconds="120" overflowToDisk="true"
+		memoryStoreEvictionPolicy="LFU" />
+	
+	<cache name="employee" maxElementsInMemory="10000" eternal="false"
+		timeToIdleSeconds="120" timeToLiveSeconds="120" overflowToDisk="true"
+		memoryStoreEvictionPolicy="LFU" />
+	
+	<cache name="tree" maxElementsInMemory="10000" eternal="false"
+		timeToIdleSeconds="120" timeToLiveSeconds="120" overflowToDisk="true"
+		memoryStoreEvictionPolicy="LFU" />
+</ehcache>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd" >
+<log4j:configuration>
+
+	<appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<!-- %c代表哪个类，%d代表哪一天，%p代表日志级别，%m代表日志信息，%n代表换行 -->
+			<param name="conversionPattern" value="%c %d{yyyy-MM-dd hh:mm:ss} %p %m%n" />
+		</layout>
+
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="levelMin" value="STDOUT" />
+			<param name="levelMax" value="STDOUT" />
+		</filter>
+	</appender>
+
+	<appender name="DEBUG" class="org.apache.log4j.RollingFileAppender">
+		<param name="file" value="${NetCTOSS.root}logs/debug.log"/>
+		
+		<!-- maxFileSize:可以配置数值 + "单位"的方式，来完成对文件大小控制，单位，例如：KB，MB -->
+		<param name="maxFileSize" value="20MB"/>
+		<param name="maxBackupIndex" value="10"/>
+		<param name="append" value="true"/>
+
+		<layout class="org.apache.log4j.PatternLayout">
+			<!-- %c代表哪个类，%d代表哪一天，%p代表日志级别，%m代表日志信息，%n代表换行 -->
+			<param name="conversionPattern" value="%c %d{yyyy-MM-dd hh:mm:ss} %p %m%n" />
+		</layout>
+
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="levelMin" value="DUBUG" />
+			<param name="levelMax" value="DUBUG" />
+		</filter>
+	</appender>
+	
+	<appender name="INFO" class="org.apache.log4j.RollingFileAppender">
+		<param name="file" value="${NetCTOSS.root}logs/info.log"/>
+		<param name="maxFileSize" value="20MB"/>
+		<param name="maxBackupIndex" value="10"/>
+		<param name="append" value="true"/>
+
+		<layout class="org.apache.log4j.PatternLayout">
+			<!-- %c代表哪个类，%d代表哪一天，%p代表日志级别，%m代表日志信息，%n代表换行 -->
+			<param name="conversionPattern" value="%c %d{yyyy-MM-dd hh:mm:ss} %p %m%n" />
+		</layout>
+
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="levelMin" value="INFO" />
+			<param name="levelMax" value="INFO" />
+		</filter>
+	</appender>
+	
+	<appender name="WARN" class="org.apache.log4j.RollingFileAppender">
+		<param name="file" value="${NetCTOSS.root}logs/warn.log"/>
+		<param name="maxFileSize" value="20MB"/>
+		<param name="maxBackupIndex" value="10"/>
+		<param name="append" value="true"/>
+
+		<layout class="org.apache.log4j.PatternLayout">
+			<!-- %c代表哪个类，%d代表哪一天，%p代表日志级别，%m代表日志信息，%n代表换行 -->
+			<param name="conversionPattern" value="%c %d{yyyy-MM-dd hh:mm:ss} %p %m%n" />
+		</layout>
+
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="levelMin" value="WARN" />
+			<param name="levelMax" value="WARN" />
+		</filter>
+	</appender>
+	<appender name="ERROR" class="org.apache.log4j.RollingFileAppender">
+		<param name="file" value="${NetCTOSS.root}logs/error.log"/>
+		<param name="maxFileSize" value="20MB"/>
+		<param name="maxBackupIndex" value="10"/>
+		<param name="append" value="true"/>
+
+		<layout class="org.apache.log4j.PatternLayout">
+			<!-- %c代表哪个类，%d代表哪一天，%p代表日志级别，%m代表日志信息，%n代表换行 -->
+			<param name="conversionPattern" value="%c %d{yyyy-MM-dd hh:mm:ss} %p %m%n" />
+		</layout>
+
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="levelMin" value="ERROR" />
+			<param name="levelMax" value="ERROR" />
+		</filter>
+	</appender>
+	<root>
+		<!-- 开发或调试阶段，使用DEBUG，上线阶段，需要修改成INFO -->
+		<priority value="INFO"></priority>
+		<appender-ref ref="STDOUT"/>
+		<appender-ref ref="DEBUG"/>
+		<appender-ref ref="INFO"/>
+		<appender-ref ref="WARN"/>
+		<appender-ref ref="ERROR"/>
+	</root>
+</log4j:configuration>

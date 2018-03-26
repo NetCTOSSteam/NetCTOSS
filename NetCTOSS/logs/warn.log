@@ -1,0 +1,2 @@
+org.hibernate.engine.jdbc.spi.SqlExceptionHelper 2018-03-26 10:10:33 WARN SQL Warning Code: 1265, SQLState: 01000
+org.hibernate.engine.jdbc.spi.SqlExceptionHelper 2018-03-26 10:10:33 WARN Data truncated for column 'birthday' at row 1
