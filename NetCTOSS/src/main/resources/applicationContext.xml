@@ -164,7 +164,7 @@
 				propagation="REQUIRED" rollback-for="java.lang.Exception" />
 		</tx:attributes>
 	</tx:advice>
-
+ 
 	<aop:config>
 		<!-- com.alibaba.NetCTOSS.*mag.service*.impl.*ServiceImpl.*(..) -->
 		<aop:pointcut id="pointExpression"
