@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Administrator</title>
+    <script type="text/javascript" src="../../js/jquery-3.3.1.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../../js/jquery.json-2.4.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../../jQuery-easyui/jquery.easyui.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../../jQuery-easyui/locale/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="../../js/administartor.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="../../jQuery-easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="../../jQuery-easyui/themes/icon.css">
+    <script type="text/javascript">
+    </script>
+</head>
+
+<body class="easyui-layout">
+<div data-options="region:'center',title:'管理员操作界面',iconCls:'icon-ok'"
+     style="padding: 5px; background: #eee;">
+    <table id="tt" class="easyui-datagrid"
+           style="width: auto; height: 100%"
+           data-options="fitColumns:true,method:'GET',idField:'id',striped:true,singleSelect:false,toolbar:'#tb',pagination:true">
+        <thead>
+        <tr>
+            <th data-options="field:'ck',checkbox:true"></th>
+            <th
+                    data-options="field:'userName',width:100,align:'center',sortable:true">管理员名称</th>
+            <th
+                    data-options="field:'loginName',width:100,align:'center',sortable:true">管理员账号</th>
+            <th
+                    data-options="field:'loginName1',width:100,align:'center',sortable:true">密码</th>
+            <th
+                    data-options="field:'loginName2',width:100,align:'center',sortable:true">联系电话</th>
+            <th
+                    data-options="field:'loginName3',width:100,align:'center',sortable:true">邮箱</th>
+            <th
+                    data-options="field:'loginName4',width:100,align:'center',sortable:true">角色</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+
+
+
+        </tbody>
+    </table>
+
+</div>
+
+<div id="tb">
+    <a id="add" href="javascript:void(0)" class="easyui-linkbutton"
+       data-options="iconCls:'icon-add',plain:true" onclick="$('#add_users_dialog').window('open')">新增</a>
+    <a id="edit"
+       href="javascript:void(0)" class="easyui-linkbutton"
+       data-options="iconCls:'icon-reload',plain:true">修改
+    </a>
+    <a id="delete"
+       href="javascript:void(0)" class="easyui-linkbutton"
+       data-options="iconCls:'icon-remove',plain:true">删除</a>
+    <table>
+        <tr>
+            <td>管理员名称</td>
+            <td><input id="userName" class="easyui-validatebox"
+                       data-options="required:false" /></td>
+            <td>管理员账号</td>
+            <td><input id="loginName" class="easyui-validatebox"
+                       data-options="required:false" /></td>
+
+            <td colspan="2" align="center"><a id="query"
+                                              href="javascript:void(0)" class="easyui-linkbutton"
+                                              data-options="iconCls:'icon-search'">查询</a></td>
+        </tr>
+
+
+    </table>
+
+</div>
+
+
+
+
+<div id="add_users_dialog" class="easyui-dialog"
+     style="width:30%; height:83%"
+     data-options="title:'新增用户',buttons:'#add_users_dialog_bb',modal:true,
+		collapsible:true,minimizable:true,maximizable:true,resizable:true,closable:true,closed:true">
+    <div class="easyui-panel" title="增加管理员" style="width:100%;padding:10px 60px">
+        <div style="margin-bottom:20px">
+            <div>管理员名称:</div>
+            <input class="easyui-textbox" data-options="prompt:'Enter a email address...',validType:'email'" style="width:100%;height:32px">
+        </div>
+        <div style="margin-bottom:20px">
+            <div>管理员账号:</div>
+            <input class="easyui-textbox" style="width:100%;height:32px">
+        </div>
+        <div style="margin-bottom:20px">
+            <div>密码:</div>
+            <input type="password" class="easyui-textbox"  style="width:100%;height:32px" >
+        </div>
+        <div style="margin-bottom:20px">
+            <div>联系电话:</div>
+            <input class="easyui-textbox" style="width:100%;height:32px">
+        </div>
+        <div style="margin-bottom:20px">
+            <div>邮箱:</div>
+            <input class="easyui-textbox" style="width:100%;height:32px">
+        </div>
+        <div style="margin-bottom:20px">
+            <div>角色:</div>
+            <select id="cc" style="width:150px"></select>
+            <div id="sp">
+
+                <div style="padding:10px">
+                    <input type="radio" name="lang" value="01"><span>管理员</span><br/>
+                    <input type="radio" name="lang" value="02"><span>用户</span><br/>
+
+                </div>
+            </div>
+        </div>
+        <div>
+            <a href="#" class="easyui-linkbutton" iconCls="icon-ok" style="width:100%;height:32px">添加</a>
+        </div><br/>
+        <div>
+            <a href="Administrator.jsp"  class="easyui-linkbutton" iconCls="icon-no" style="width:100%;height:32px" >取消</a>
+        </div>
+    </div>
+
+
+</div>
+
+
+
+<div id="update_users_dialog" class="easyui-dialog"
+     style="width: 30%; height: 80%"
+     data-options="title:'修改用户',buttons:'#update_users_dialog_bb',modal:true,
+		collapsible:true,minimizable:true,maximizable:true,resizable:true,closable:true,closed:true">
+    <div style="margin-bottom:20px">
+        <div>管理员名称:</div>
+        <input class="easyui-textbox" data-options="prompt:'Enter a email address...',validType:'email'" style="width:70%;height:32px">
+    </div>
+    <div style="margin-bottom:20px">
+        <div>管理员账号:</div>
+        <input class="easyui-textbox" style="width:70%;height:32px">
+    </div>
+    <div style="margin-bottom:20px">
+        <div>密码:</div>
+        <input type="password" class="easyui-textbox"  style="width:70%;height:32px" >
+    </div>
+    <div style="margin-bottom:20px">
+        <div>联系电话:</div>
+        <input class="easyui-textbox" style="width:70%;height:32px">
+    </div>
+    <div style="margin-bottom:20px">
+        <div>邮箱:</div>
+        <input class="easyui-textbox" style="width:70%;height:32px">
+    </div>
+    <div style="margin-bottom:20px">
+        <div>角色:</div>
+        <select id="cc1" style="width:150px"></select>
+        <div id="sp1">
+
+            <div style="padding:10px">
+                <input type="radio" name="lang1" value="01"><span>管理员</span><br/>
+                <input type="radio" name="lang1" value="02"><span>用户</span><br/>
+
+            </div>
+        </div>
+    </div>
+    <div>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-ok" style="width:100%;height:32px">确认修改</a>
+    </div><br/>
+    <div>
+        <a href="Administrator.jsp"  class="easyui-linkbutton" iconCls="icon-no" style="width:100%;height:32px" >取消</a>
+    </div>
+</div>
+
+</body>
+</html>

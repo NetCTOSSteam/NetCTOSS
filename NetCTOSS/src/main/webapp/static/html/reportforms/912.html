@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script type="text/javascript" src="../../js/jquery-3.3.1.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../../js/jquery.json-2.4.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../../easyui/jquery.easyui.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../../js/easyui.demo.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../../easyui/locale/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="../../echarts/echarts.js" charset="utf-8"></script>
+
+    <link rel="stylesheet" type="text/css" href="../../easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="../../easyui/themes/icon.css">
+</head>
+<body class="easyui-layout" >
+<div id="tb">
+
+    账务账号: <input class="easyui-textbox" style="width:75px;height:22px" id="customName" /> &nbsp; &nbsp;
+    请输入年月: <select id="cc" class="easyui-combobox" name="dept" style="width:200px;">
+    <option value="aa">aitem1</option>
+    <option>bitem2</option>
+    <option>bitem3</option>
+    <option>ditem4</option>
+    <option>eitem5</option>
+</select>
+    <a id="query" href="javascript:void(0)" class="easyui-linkbutton"
+       data-options="iconCls:'icon-search'">查询</a>
+</div>
+<div id="main" style="width: 80%;height:400px" >
+    <select id="cc1" class="easyui-combotree" style="width:200px;"
+            data-options="url:'get_data.php',required:true"></select>
+</div>
+<script>
+
+    $(function(){
+        $("input",$("#customName").next("span")).blur(function(){
+            alert($("#customName").val());
+
+            $.ajax({
+                type: "GET",
+                url: "",
+                async: false,
+                data:$("#customName").val(),
+                success: function(data){
+
+                }
+            });
+        });
+    })
+
+    var myChart = echarts.init(document.getElementById('main'));
+    // 显示标题，图例和空的坐标轴
+    myChart.setOption({
+        title : {
+            text: '某站点用户访问来源',
+            subtext: '',
+            x:'center'
+        },
+        tooltip : {
+            trigger: 'item'
+//            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+            orient: 'vertical',
+            left: 'left',
+            data: ['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
+        },
+        series : [
+            {
+                name: '访问来源',
+                type: 'pie',
+                radius : '55%',
+                center: ['50%', '60%'],
+                data:[
+                    {value:335, name:'直接访问'},
+                    {value:310, name:'邮件营销'},
+                    {value:234, name:'联盟广告'},
+                    {value:135, name:'视频广告'},
+                    {value:1548, name:'搜索引擎'}
+                ],
+                itemStyle: {
+                    emphasis: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }
+        ]
+    });
+</script>
+</body>
+</html>

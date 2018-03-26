@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title></title>
+    <script type="text/javascript" src="../../js/jquery-3.3.1.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../../js/jquery.json-2.4.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../../easyui/jquery.easyui.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../../easyui/locale/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="../../js/zhangwu.js"></script>
+
+
+    <link rel="stylesheet" type="text/css" href="../../easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="../../easyui/themes/icon.css">
+</head>
+
+<body class="easyui-layout">
+<div style="margin:20px 0;"></div>
+<div class="easyui-layout" style="width: 1200px; height: 95%; margin: 0 auto">
+    <!-- 搜索 框-->
+    <div data-options="region:'north'" style="height:50px">
+        <!-- 查询显示 -->
+        <table id="table_noe" style="width: 779px;margin: 0 auto;line-height: 2;">
+            <tr>
+                <td> 姓名：</td>
+                <td>
+                    <input id="name" class="easyui-textbox" style="width:150px;height:32px">
+                </td>
+                <td>账务帐号:</td>
+                <td>
+                    <input id="acc" class="easyui-textbox" style="width:150px;height:32px">
+                </td>
+                <td>
+                    <a id="query" href="Javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-search'" style="width: 100px;height:32px">查询</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <!-- 数据列表 -->
+    <div data-options="region:'center',title:'账务账号管理',iconCls:'icon-ok'">
+        <table id="tt" class="easyui-datagrid"
+               iconCls="icon-save" pagination="true"
+               data-options="fitColumns:true,method:'get',border:false,
+                   singleSelect:true,fit:true,fitColumns:true,singleSelect:'true'">
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+                <td>5</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+                <td>5</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- 工具 -->
+    <div id="tb">
+        <a id="add" href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add'">添加单个账务帐号</a>
+
+        <input class="easyui-filebox"></input>
+
+        <a id="edit" href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-reload'">修改账务帐号</a>
+
+        <a id="delete" href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-remove'">删除账务帐号</a>
+
+        <a id="tip" href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-tip'">账务账号详情</a>
+    </div>
+    <!-- 添加弹窗 -->
+    <div id="add_dialog" class="easyui-dialog"
+         style="width: 600px; height: 400px"
+         data-options="title:'新增客户',buttons:'#add_dialog_bb',modal:true,
+		collapsible:true,minimizable:true,maximizable:true,resizable:true,closable:true,closed:true">
+
+        <form id="add_form" method="post">
+
+            <table>
+                <tr>
+                    <td>账务帐号：</td>
+                    <td><input class="easyui-validatebox" type="text" id="login_name"
+                               name="loginName" data-options="required:false" /></td>
+                </tr>
+                <tr>
+                    <td>真实姓名：</td>
+                    <td><input class="easyui-validatebox" type="text" id="u_name"
+                               name="name" data-options="required:false" /></td>
+                </tr>
+                <tr>
+                    <td>性别：</td>
+                    <td><input class="easyui-combobox" name="gender" id="u_gender"
+                               data-options="valueField:'id',textField:'text'" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>身份证号码：</td>
+                    <td><input class="easyui-validatebox" type="text" id="id_card"
+                               name="idCard" data-options="required:false" /></td>
+                </tr>
+                <tr>
+                    <td>密码：</td>
+                    <td><input class="easyui-validatebox" type="text" id="pass_word"
+                               name="password" data-options="required:false" /></td>
+                </tr>
+                <tr>
+                    <td>联系电话：</td>
+                    <td><input class="easyui-validatebox" type="text" id="u_tel"
+                               name="tel" data-options="required:false" /></td>
+                </tr>
+                <tr>
+                    <td>邮编：</td>
+                    <td><input class="easyui-validatebox" type="text" id="u_postcode"
+                               name="postcode" data-options="required:false" /></td>
+                </tr>
+                <tr>
+                    <td>通讯地址：</td>
+                    <td><input class="easyui-validatebox" type="text" id="u_address"
+                               name="address" data-options="required:false" /></td>
+                </tr>
+                <tr>
+                    <td>QQ号码：</td>
+                    <td><input class="easyui-validatebox" type="text" id="u_qq"
+                               name="qq" data-options="required:false" /></td>
+                </tr>
+                <tr>
+                    <td>角色：</td>
+                    <td>用户</td>
+                </tr>
+            </table>
+        </form>
+
+        <div id="add_dialog_bb">
+            <a id="save_users"  class="easyui-linkbutton"
+               data-options="iconCls:'icon-ok',plain:true">添加</a>
+            <a class="easyui-linkbutton"
+               data-options="iconCls:'icon-no',plain:true"
+               onclick="$('#add_dialog').dialog('close')">取消</a>
+        </div>
+    </div>
+    <!--修改弹窗-->
+    <div id="update_dialog" class="easyui-dialog"
+         style="width: 600px; height: 400px"
+         data-options="title:'修改客户',buttons:'#update_dialog_bb',modal:true,
+            collapsible:true,minimizable:true,maximizable:true,resizable:true,closable:true,closed:true">
+
+        <form id="update_custom" method="post">
+
+            <table>
+                <tr>
+                    <td>账务帐号：</td>
+                    <td>123</td>
+                </tr>
+                <tr>
+                    <td>真实姓名：</td>
+                    <td><input class="easyui-validatebox" type="text" id="names"
+                               name="name" data-options="required:false" /></td>
+                </tr>
+                <tr>
+                    <td>性别：</td>
+                    <td><input class="easyui-combobox" name="gender" id="gender"
+                               data-options="valueField:'id',textField:'text'" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>身份证号码：</td>
+                    <td><input class="easyui-validatebox" type="text" id="idCard"
+                               name="idCard" data-options="required:false" /></td>
+                </tr>
+                <tr>
+                    <td>密码：</td>
+                    <td><input class="easyui-validatebox" type="text" id="password"
+                               name="password" data-options="required:false" /></td>
+                </tr>
+                <tr>
+                    <td>联系电话：</td>
+                    <td><input class="easyui-validatebox" type="text" id="tel"
+                               name="tel" data-options="required:false" /></td>
+                </tr>
+                <tr>
+                    <td>邮编：</td>
+                    <td><input class="easyui-validatebox" type="text" id="postcode"
+                               name="postcode" data-options="required:false" /></td>
+                </tr>
+                <tr>
+                    <td>通讯地址：</td>
+                    <td><input class="easyui-validatebox" type="text" id="address"
+                               name="address" data-options="required:false" /></td>
+                </tr>
+                <tr>
+                    <td>QQ号码：</td>
+                    <td><input class="easyui-validatebox" type="text" id="qq"
+                               name="qq" data-options="required:false" /></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div id="update_dialog_bb">
+        <a id="update_users" href="javascript:void(0)"
+           class="easyui-linkbutton" data-options="iconCls:'icon-ok',plain:true">修改</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton"
+           data-options="iconCls:'icon-no',plain:true"
+           onclick="$('#update_dialog').dialog('close')">取消</a>
+    </div>
+
+    <!-- 详细信息弹窗 -->
+    <div id="tip_dialog" class="easyui-dialog"
+         style="width: 600px; height: 300px"
+         data-options="title:'业务账号详情',buttons:'#tip_dialog_bb',modal:true,
+                    collapsible:true,minimizable:true,maximizable:true,resizable:true,closable:true,closed:true">
+
+        <table>
+            <tr>
+                <td>账务帐号：</td>
+                <td>123</td>
+            </tr>
+            <tr>
+                <td>真实姓名：</td>
+                <td>张三</td>
+            </tr>
+            <tr>
+                <td>性别：</td>
+                <td>男</td>
+            </tr>
+            <tr>
+                <td>身份证号码：</td>
+                <td>141516161716716139</td>
+            </tr>
+            <tr>
+                <td>联系电话：</td>
+                <td>13456789098</td>
+            </tr>
+            <tr>
+                <td>邮编：</td>
+                <td>610000</td>
+            </tr>
+            <tr>
+                <td>通讯地址：</td>
+                <td>墨尔本</td>
+            </tr>
+            <tr>
+                <td>QQ号码：</td>
+                <td>234567899</td>
+            </tr>
+        </table>
+
+        <div id="tip_dialog_bb">
+            <a class="easyui-linkbutton"
+               data-options="plain:true"
+               onclick="$('#tip_dialog').dialog('close')">返回</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

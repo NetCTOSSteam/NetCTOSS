@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script type="text/javascript" src="../../js/jquery-3.3.1.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../../js/jquery.json-2.4.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../../easyui/jquery.easyui.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../../js/easyui.demo.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../../easyui/locale/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="../../echarts/echarts.js" charset="utf-8"></script>
+
+    <link rel="stylesheet" type="text/css" href="../../easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="../../easyui/themes/icon.css">
+</head>
+<body class="easyui-layout" >
+<div id="tb">
+
+    账务账号: <input class="easyui-textbox" style="width:75px;height:22px" id="acc" />&nbsp; &nbsp;
+    请输入年月: <select id="cc" class="easyui-combobox" name="dept" style="width:200px;">
+    <option value="aa">aitem1</option>
+    <option>bitem2</option>
+    <option>bitem3</option>
+    <option>ditem4</option>
+    <option>eitem5</option>
+</select>
+
+    <a id="query" href="javascript:void(0)" class="easyui-linkbutton"
+       data-options="iconCls:'icon-search'">查询</a>
+</div>
+<div id="main" style="width: 80%;height:400px;" >
+
+</div>
+<script>
+
+    var myChart = echarts.init(document.getElementById('main'));
+    // 显示标题，图例和空的坐标轴
+    myChart.setOption({
+        title: {
+            text: '业务图行报表'
+        },
+        tooltip: {},
+        legend: {
+            data:['销量']
+        },
+//        xAxis: {
+//            data: ["安迪","樊胜美","关关","曲筱筱","邱莹莹"]
+//        },
+        xAxis : [
+            {
+                type: 'category',
+                data : (function(){
+                    var arr=[];
+                    $.ajax({
+                        type : "post",
+                        async : false, //同步执行
+                        url : "gpadd.do?getNum",
+                        data : {},
+                        dataType : "json", //返回数据形式为json
+                        success : function(result) {
+                            if (result) {
+                                for(var i=0;i<result.length;i++){
+                                    console.log(result[i].userName);
+                                    arr.push(result[i].userName);
+                                }
+                            }
+
+                        },
+                        error : function(errorMsg) {
+                            alert("不好意思，图表请求数据失败啦!");
+                            myChart.hideLoading();
+                        }
+                    })
+                    return arr;
+                })
+            }
+        ],
+        yAxis: {},
+        series: [{
+            name: 'fensi',
+            type: 'line',
+            data: [40, 19, 15, 18, 9]
+        } ,
+            {
+                name:'联盟广告',
+                type:'line',
+                stack: '总量',
+                data:[220, 182, 191, 234, 290]
+            }]
+    });
+</script>
+</body>
+</html>

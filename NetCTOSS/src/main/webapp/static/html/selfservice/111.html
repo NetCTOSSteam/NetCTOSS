@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title></title>
+    <script type="text/javascript" src="../../js/jquery-3.3.1.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../../js/jquery.json-2.4.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../../easyui/jquery.easyui.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../../js/zhangdan.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../../easyui/locale/easyui-lang-zh_CN.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="../../easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="../../easyui/themes/icon.css">
+</head>
+
+<body class="easyui-layout" >
+
+<div data-options="region:'center',title:'单个账务账号对应业务查询页面 ' ">
+    <div id="tb">
+
+        请输入查询年月：<input id="startTime" type="text" class="easyui-textbox" />
+
+        <a id="query" href="javascript:void(0)" class="easyui-linkbutton"
+           data-options="iconCls:'icon-search'">查询</a>
+    </div>
+    <table id="tt" class="easyui-datagrid"
+           style="width: auto; height: 550px"
+           data-options="fitColumns:true,idField:'id',striped:true,singleSelect:false,toolbar:'#tb',pagination:true">
+
+        <tbody>
+        <tr>
+            <td >123</td>
+            <td >123</td>
+            <td >123</td>
+            <td >123</td>
+
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

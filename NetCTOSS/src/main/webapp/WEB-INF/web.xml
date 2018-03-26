@@ -56,7 +56,7 @@
 		<filter-class>com.alibaba.NetCTOSS.filter.HttpDeleteFormContentFilter</filter-class>
 	</filter>
 	
-	<filter>
+	<!-- <filter>
 		<filter-name>URLFilter</filter-name>
 		<display-name>URLFilter</display-name>
 		<filter-class>com.alibaba.NetCTOSS.filter.UrlFilter</filter-class>
@@ -68,7 +68,7 @@
 	<filter-mapping>
 		<filter-name>URLFilter</filter-name>
 		<url-pattern>/static/*</url-pattern>
-	</filter-mapping>
+	</filter-mapping> -->
 
 	<filter-mapping>
 		<filter-name>encodingFilter</filter-name>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>账务</title>
+    <link rel="stylesheet" type="text/css" href="../../jQuery-easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="../../jQuery-easyui/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="../../jQuery-easyui/demo.css">
+    <script type="text/javascript" src="../../js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="../../js/jquery.json-2.4.js"></script>
+    <script type="text/javascript" src="../../jQuery-easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../../jQuery-easyui/locale/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="../../js/Accounting_js/Accounting.js"></script>
+</head>
+<body class="easyui-layout">
+    <div style="margin:20px 0;"></div>
+    <div class="easyui-layout" style="width: 100%; height: 95%; margin: 0 auto">
+        <!-- 搜索 框-->
+        <div data-options="region:'north'" style="height:80px">
+            <!-- 年-年 -->
+            <table id="t_year" style="width: 779px;margin: 0 auto;line-height: 6;">
+                <td>账务账号：</td>
+                <td>
+                    <input id="year_acc" class="easyui-textbox" style="width:150px;height:32px">
+                </td>
+                <td>真实姓名：</td>
+                <td>
+                    <input id="year_name" class="easyui-textbox" style="width:150px;height:32px">
+                </td>
+                <td>年：</td>
+                <td>
+                    <input id="year_y" style="height: 30px" name="dept" value="2018">
+                </td>
+                <td>
+                    <a id="year_query" href="Javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" style="width: 100px;height:32px">搜索</a>
+                </td>
+            </table>
+            <!-- 年-月 -->
+            <table id="t_y_moth" style="width: 779px;margin: 0 auto;line-height: 6;display: none;">
+                <td>账务账号：</td>
+                <td>
+                    <input id="year_moth_acc" class="easyui-textbox" style="width:150px;height:32px">
+                </td>
+                <td>真实姓名：</td>
+                <td>
+                    <input id="year_moth_name" class="easyui-textbox" style="width:150px;height:32px">
+                </td>
+                <td>月：</td>
+                <td>
+                    <input id="year_moth_m" style="height: 30px" name="dept" value="2018">
+                </td>
+                <td>
+                    <a id="year_moth_query" href="Javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" style="width: 100px;height:32px">搜索</a>
+                </td>
+            </table>
+            <!-- 月 -->
+            <table id="t_moth" style="width: 779px;margin: 0 auto;line-height: 2;display: none;">
+                <tr>
+                    <td>账务账号：</td>
+                    <td>
+                        <input id="moth_acc" class="easyui-textbox" style="width:150px;height:32px">
+                    </td>
+                    <td>真实姓名：</td>
+                    <td>
+                        <input id="moth_name" class="easyui-textbox" style="width:150px;height:32px">
+                    </td>
+                    <td rowspan="2">
+                        <a id="moth_query" href="Javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" style="width: 100px;height:32px">搜索</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>年：</td>
+                    <td>
+                        <input id="moth_y" style="height: 30px" name="dept" value="2018">
+                    </td>
+                    <td>月：</td>
+                    <td>
+                        <input id="moth_m" style="height: 30px" name="dept" value="2018">
+                    </td>
+                </tr>
+            </table>
+            <!-- 日 -->
+            <table id="t_day" style="width: 779px;margin: 0 auto;line-height: 6;display: none;">
+                    <td>账务账号：</td>
+                    <td>
+                        <input id="day_acc" class="easyui-textbox" style="width:150px;height:32px">
+                    </td>
+                    <td>实验室IP：</td>
+                    <td>
+                        <input id="day_name" class="easyui-textbox" style="width:150px;height:32px">
+                    </td>
+                    <td>日：</td>
+                    <td>
+                        <input id="day_y" style="height: 30px" name="dept" value="28">
+                    </td>
+                    <td>
+                        <a id="day_query" href="Javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" style="width: 100px;height:32px">搜索</a>
+                    </td>
+            </table>
+        </div>
+        <!-- 数据列表 -->
+        <div data-options="region:'center',title:'账务列表',iconCls:'icon-ok'">
+            <table id="tt" class="easyui-datagrid"
+                   iconCls="icon-save" pagination="true"
+                   data-options="fitColumns:true,method:'get',border:false,
+                   singleSelect:true,fit:true,fitColumns:true">
+                <tbody>
+                    <tr>
+                        <td>账务账号</td>
+                        <td>真实姓名</td>
+                        <td>业务账号数量</td>
+                        <td>使用时长（/小时）</td>
+                        <td>aa</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- 工具 -->
+        <div id="tb">
+            <a id="back" href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-back',plain:true">回退</a>
+            <a id="year" href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-ok',plain:true">按年查询</a>
+            <a id="moth" href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-no',plain:true">按月查询</a>
+        </div>
+    </div>
+</body>
+</html>

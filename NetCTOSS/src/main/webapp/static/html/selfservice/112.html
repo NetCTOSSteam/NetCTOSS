@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title></title>
+    <script type="text/javascript" src="../../js/jquery-3.3.1.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../../js/jquery.json-2.4.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../../easyui/jquery.easyui.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../../js/easyui.demo.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../../easyui/locale/easyui-lang-zh_CN.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="../../easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="../../easyui/themes/icon.css">
+</head>
+<body class="easyui-layout" >
+
+    <div data-options="region:'center',title:'个人信息 ' ">
+        <table style="width: 400px;height: 250px">
+            <tr>
+                <td>账务账号</td>
+                <td><input class="easyui-numberbox" value="1234567.89" data-options="precision:2,groupSeparator:','"></input></td>
+            </tr>
+            <tr>
+                <td>邮箱</td>
+                <td><input class="easyui-numberbox" value="1234567.89" data-options="precision:2,groupSeparator:' ',decimalSeparator:','"></input></td>
+            </tr>
+            <tr>
+                <td>地址</td>
+                <td><input class="easyui-numberbox" value="1234567.89" data-options="precision:2,groupSeparator:',',decimalSeparator:'.',prefix:'$'"></input></td>
+            </tr>
+            <tr>
+                <td>电话</td>
+                <td><input class="easyui-numberbox" value="1234567.89" data-options="precision:2,groupSeparator:',',decimalSeparator:' ',prefix:'€'"></input></td>
+            </tr>
+
+        </table>
+        <br>
+        <a id="btn1" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">返回上一级</a>
+        <a id="edit" href="javascript:void(0)" class="easyui-linkbutton"
+           data-options="iconCls:'icon-reload'" style="margin-left: 50px"
+           onclick="$('#update_users_dialog').dialog('open')">修改个人资料</a>
+    </div>
+
+    <div id="update_users_dialog" class="easyui-dialog"
+         style="width: 400px; height: 300px"
+         data-options="title:'修改个人资料',buttons:'#update_users_dialog_bb',modal:true,
+		collapsible:true,minimizable:true,maximizable:true,resizable:true,closable:true,closed:true">
+
+        <form id="update_user" method="post">
+
+            <input type="hidden" name="_method" value="put" />
+            <input type="hidden" name="id" id="c_id" />
+
+            <table>
+                <tr>
+                    <td>客户姓名：</td>
+                    <td><input class="easyui-validatebox" type="text" id=""    value="11"
+                               name="" data-options="required:false" disabled="disabled" /></td>
+                </tr>
+
+                <tr>
+                    <td>账务账号：</td>
+                    <td><input class="easyui-validatebox" type="text" id=""  value="11"
+                               name="" data-options="required:false"  disabled="disabled"/></td>
+                </tr>
+                <tr>
+                    <td>身份证：</td>
+                    <td><input class="easyui-validatebox" type="text" id=""   value="11"
+                               name="" data-options="required:false"  disabled="disabled" /></td>
+                </tr>
+                <tr>
+                    <td>邮箱：</td>
+                    <td><input class="easyui-validatebox" type="text" id=""
+                               name="" data-options="required:false" /></td>
+                </tr>
+                </tr>
+                <tr>
+                    <td>地址：</td>
+                    <td><input class="easyui-validatebox" type="text" id=""
+                               name="" data-options="required:false" /></td>
+                </tr>
+                </tr>
+                <tr>
+                    <td>电话号码：</td>
+                    <td><input class="easyui-validatebox" type="text" id=""
+                               name="" data-options="required:false" /></td>
+                </tr>
+                </tr>
+            </table>
+        </form>
+
+    </div>
+    <div id="update_users_dialog_bb">
+        <a id="update_users" href="javascript:void(0)"
+           class="easyui-linkbutton" data-options="iconCls:'icon-ok',plain:true">保存</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton"
+           data-options="iconCls:'icon-no',plain:true"
+           onclick="$('#update_users_dialog').dialog('close')">取消</a>
+    </div>
+</body>
+</html>

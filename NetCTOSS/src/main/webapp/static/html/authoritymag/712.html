@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title></title>
+    <script type="text/javascript" src="../../js/jquery-3.3.1.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../../js/jquery.json-2.4.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../../easyui/jquery.easyui.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../../js/permis.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../../easyui/locale/easyui-lang-zh_CN.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="../../easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="../../easyui/themes/icon.css">
+</head>
+
+<body class="easyui-layout" style="height: 100%">
+
+<div data-options="region:'center',title:'权限查询 ' ">
+    <div id="tb">
+        权限名称：<input id="customName" type="text" class="easyui-textbox"   />
+
+        <a id="query" href="javascript:void(0)" class="easyui-linkbutton"
+           data-options="iconCls:'icon-search'">查询</a>
+        <br>
+
+        <a id="add" href="javascript:void(0)" class="easyui-linkbutton"
+           data-options="iconCls:'icon-add'">添加</a>
+
+        <a id="update" href="javascript:void(0)" class="easyui-linkbutton"
+           data-options="iconCls:'icon-reload'">修改</a>
+
+        <a id="delete" href="javascript:void(0)" class="easyui-linkbutton"
+           data-options="iconCls:'icon-remove'">删除</a>
+
+    </div>
+    <table id="tt" class="easyui-datagrid"
+           style="width: auto; height: 550px"
+           data-options="fitColumns:true,method:'GET',idField:'id',striped:true,singleSelect:false,toolbar:'#tb',pagination:true">
+        <thead>
+        <tr>
+            <th data-options="field:'ck',checkbox:true"></th>
+            <th data-options="field:'customName',width:110,align:'center'">权限名称</th>
+            <th data-options="field:'loginName',width:110,align:'center'">权限描述</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr>
+            <td data-options="field:'ck',checkbox:true"></td>
+            <td >123</td>
+            <td >123</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div id="add_dialog" class="easyui-dialog"
+     style="width: 600px; height: 400px"
+     data-options="title:'添加权限',buttons:'#add_dialog_bb',modal:true,
+            collapsible:true,minimizable:true,maximizable:true,resizable:true,closable:true,closed:true">
+
+    <form id="add_form" method="post">
+
+        <input type="hidden" class="easyui-datebox" name="createTime" id="a_create_time" />
+
+        <table>
+            <tr>
+                <td>权限名称：</td>
+                <td><input class="easyui-validatebox" type="text" id="c_loginName"
+                           name="loginName" data-options="required:false" />
+                </td>
+            </tr>
+            <tr>
+                <td>权限描述：</td>
+                <td><textarea rows="8" cols="30" ></textarea>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <div id="add_dialog_bb">
+        <a id="save_users"  class="easyui-linkbutton"
+           data-options="iconCls:'icon-ok',plain:true">确定</a>
+        <a class="easyui-linkbutton"
+           data-options="iconCls:'icon-no',plain:true"
+           onclick="$('#add_dialog').dialog('close')">取消</a>
+    </div>
+</div>
+
+<div id="update_dialog" class="easyui-dialog"
+     style="width: 600px; height: 400px"
+     data-options="title:'修改权限',buttons:'#update_dialog_bb',modal:true,
+                collapsible:true,minimizable:true,maximizable:true,resizable:true,closable:true,closed:true">
+
+    <form id="update_custom" method="post">
+
+        <input type="hidden" class="easyui-datebox" name="createTime" id="a_create_time" />
+
+        <table>
+            <tr>
+                <td>权限名称：</td>
+                <td><input class="easyui-validatebox" type="text" id="c_loginName"
+                           name="loginName" data-options="required:false" >
+                </td>
+            </tr>
+            <tr>
+                <td>权限描述：</td>
+                <td><textarea rows="8" cols="30" ></textarea></td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div id="update_dialog_bb">
+    <a id="update_users" href="javascript:void(0)"
+       class="easyui-linkbutton" data-options="iconCls:'icon-ok',plain:true">确定</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton"
+       data-options="iconCls:'icon-no',plain:true"
+       onclick="$('#update_dialog').dialog('close')">取消</a>
+</div>
+
+</body>
+</html>
