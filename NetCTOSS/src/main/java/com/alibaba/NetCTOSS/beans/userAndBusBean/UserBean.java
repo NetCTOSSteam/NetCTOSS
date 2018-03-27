@@ -109,20 +109,17 @@ public class UserBean implements Serializable {
 	 * 数据是否有效
 	 */
 	@Column(name="u_bo")
-	private boolean bo;
+	private int bo;
 	
 	
-	@OneToMany(fetch=FetchType.LAZY)
+	@OneToMany(fetch=FetchType.LAZY,mappedBy="userBean")
 	@Cascade(value= {CascadeType.ALL})
-	@JoinColumn(name="bus_u_id")
 	private Set<BusinessBean> BusinessBeans;
 	
-	
-	
-	
+
 	public UserBean() {
 		// TODO Auto-generated constructor stub
-		bo = true; 
+		bo = 1; 
 	}
 
 	public Integer getId() {
@@ -206,11 +203,11 @@ public class UserBean implements Serializable {
 	}
 
 	
-	public boolean isBo() {
+	public int isBo() {
 		return bo;
 	}
 
-	public void setBo(boolean bo) {
+	public void setBo(int bo) {
 		this.bo = bo;
 	}
 

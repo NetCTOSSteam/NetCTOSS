@@ -108,13 +108,13 @@ public class BusinessBean implements Serializable {
 	 * 数据是否有效
 	 */
 	@Column(name="bus_bo")
-	private boolean bo;
+	private int bo;
 	
 	
 	
 	public BusinessBean() {
 		// TODO Auto-generated constructor stub
-		bo = true; 
+		bo = 1; 
 	}
 
 
@@ -164,6 +164,7 @@ public class BusinessBean implements Serializable {
 
 
 	public void setMealBean(MealBean mealBean) {
+		nextMealBean=mealBean;//默认下月资费为当月资费
 		this.mealBean = mealBean;
 	}
 
@@ -208,6 +209,15 @@ public class BusinessBean implements Serializable {
 	}
 
 
+	public int isBo() {
+		return bo;
+	}
+
+
+	public void setBo(int bo) {
+		this.bo = bo;
+	}
+
 	@Override
 	public String toString() {
 		return "BusinessBean [id=" + id + ", busName=" + busName + ", serverIP=" + serverIP + ", password=" + password
@@ -216,13 +226,5 @@ public class BusinessBean implements Serializable {
 	}
 
 
-	public boolean isBo() {
-		return bo;
-	}
-
-
-	public void setBo(boolean bo) {
-		this.bo = bo;
-	}
 	
 }
