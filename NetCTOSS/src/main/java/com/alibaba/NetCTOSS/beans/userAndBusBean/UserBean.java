@@ -203,19 +203,28 @@ public class UserBean implements Serializable {
 	}
 
 	
-	public int isBo() {
+	public int getBo() {
 		return bo;
 	}
 
 	public void setBo(int bo) {
 		this.bo = bo;
 	}
+	
+	public Set<BusinessBean> getBusinessBeans() {
+		return BusinessBeans;
+	}
+
+	public void setBusinessBeans(Set<BusinessBean> businessBeans) {
+		BusinessBeans = businessBeans;
+	}
 
 	@Override
 	public String toString() {
 		return "UserBean [id=" + id + ", userName=" + userName + ", tel=" + tel + ", idCard=" + idCard + ", gender="
 				+ gender + ", address=" + address + ", postcode=" + postcode + ", qq=" + qq + ", loginName=" + loginName
-				+ ", password=" + password + ", bo=" + bo + "]";
+				+ ", password=" + password + ", bo=" + bo + ", BusinessBeans=" + BusinessBeans + "]";
 	}
+
 
 }

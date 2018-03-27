@@ -209,14 +209,16 @@ public class BusinessBean implements Serializable {
 	}
 
 
-	public int isBo() {
-		return bo;
-	}
-
-
 	public void setBo(int bo) {
 		this.bo = bo;
 	}
+	
+	
+
+	public int getBo() {
+		return bo;
+	}
+
 
 	@Override
 	public String toString() {
