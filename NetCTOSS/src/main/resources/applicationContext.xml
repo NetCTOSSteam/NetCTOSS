@@ -98,6 +98,7 @@
 		<property name="basePackage"
 			value="com.alibaba.NetCTOSS.billmag.mapper_demand;
 			com.alibaba.NetCTOSS.logmag.mapper_demand;
+			com.alibaba.NetCTOSS.admmag.mapper_demand;
 			com.alibaba.NetCTOSS.usermag.mapper_demand"></property>
 		<!-- 将session与程序中的sqlmapper配置文件进行关联，为SQLMapper接口在spring容器中，产生对应的动态代理实例 -->
 		<property name="sqlSessionFactoryBeanName" value="sessionFactory"></property>
@@ -157,6 +158,7 @@
 				/admin*=authc
 				/student=roles[teacher]
 				/teacher=perms["user:create"]
+				/logout = logout
 	        </value>  
 	    </property>
 	</bean>  

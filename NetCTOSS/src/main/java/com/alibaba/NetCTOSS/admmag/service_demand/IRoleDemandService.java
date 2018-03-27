@@ -1,5 +1,7 @@
 package com.alibaba.NetCTOSS.admmag.service_demand;
 
+import java.util.Set;
+
 import com.alibaba.NetCTOSS.beans.admAndRoleBean.RoleBean;
 
 /**
@@ -16,7 +18,12 @@ public interface IRoleDemandService {
 	 */
 	public RoleBean findRoleByAdminLoginName(String adminLoginName);
 	
-	
+	/**
+	 * 通过角色名查询权限信息
+	 * @param roleName
+	 * @return
+	 */
+	public Set<String> getPermissions(String roleName);
 	
 	
 }
