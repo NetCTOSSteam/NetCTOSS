@@ -23,6 +23,7 @@
 		<mybatis_spring.version>1.3.0</mybatis_spring.version>
 		<mybatis.version>3.4.1</mybatis.version>
 		<ehcache.version>2.10.4</ehcache.version>
+		<jstl.version>1.2</jstl.version>
 		<pagehelper.version>5.1.2</pagehelper.version>
 	</properties>
 
@@ -112,7 +113,7 @@
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
-			<version>1.2</version>
+			<version>${jstl.version}</version>
 		</dependency>
 
 		<dependency>
