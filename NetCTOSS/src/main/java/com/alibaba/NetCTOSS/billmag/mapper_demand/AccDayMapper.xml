@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+	<mapper namespace="com.alibaba.NetCTOSS.billmag.mapper_demand.AccDayMapper">
+		
+		<resultMap type="com.alibaba.NetCTOSS.beans.billBean.AccountDayBean" id="beanMap">
+			<id property="id" column="id" javaType="int"/>
+			<result property="year" column="acc_year" javaType="int"/>
+			<result property="month" column="acc_month" javaType="int"/>
+			<result property="day" column="acc_day" javaType="int"/>
+			
+			<result property="account" column="acc_acc" javaType="String"/>
+			<result property="name" column="acc_name" javaType="String"/>
+			<result property="server" column="acc_server" javaType="String"/>
+			
+			<result property="OSAccount" column="acc_os_account" javaType="String"/>
+			<result property="timeLong" column="acc_all_time" javaType="int"/>
+		</resultMap>
+		
+		
+		<select id="findLikeAll"  resultMap="beanMap">
+			select id ,acc_year,acc-monrh,acc_day,acc_acc ,acc_name,acc_server,acc_os_account,acc_all_time
+			 from t_account_day 
+			<where>
+				<if test="bean.year > 0">
+				and acc_year = #{bean.year} 
+				</if>
+				<if test="bean.month > 0">
+				and acc_month = #{bean.month} 
+				</if>
+				<if test="bean.da > 0">
+				and acc_day = #{bean.day} 
+				</if>
+				<if test="bean.account != null">
+				and acc_acc like COUNT(#{bean.account},'%') 
+				</if>
+				<if test="bean.name != null">
+				and acc_name like COUNt(#{bean.name},'%')
+				</if>
+				<if test="bean.server != null">
+				and acc_server = {bean.server} 
+				</if>
+				<if test="bean.OSAccount != null">
+				and acc_os_account like COUNT(#{bean.OSAccount},'%') 
+				</if>
+			</where>
+		</select>
+		
+	</mapper>

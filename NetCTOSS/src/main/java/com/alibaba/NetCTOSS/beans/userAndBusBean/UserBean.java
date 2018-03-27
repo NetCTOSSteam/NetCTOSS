@@ -110,6 +110,7 @@ public class UserBean implements Serializable {
 	
 	public UserBean() {
 		// TODO Auto-generated constructor stub
+		bo = true; 
 	}
 
 	public Integer getId() {

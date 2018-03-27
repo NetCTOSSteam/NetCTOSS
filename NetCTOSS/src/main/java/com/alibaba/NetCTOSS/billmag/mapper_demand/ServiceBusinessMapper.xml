@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+	<mapper namespace="com.test.Mybits.mapper.BookMapperInter">
+		
+		<resultMap type="com.test.Mybits.bean.BookBean" id="bookMap">
+			<id property="bookId" column="pk_id" javaType="int"/>
+			<result property="bookname" column="f_bookname" javaType="string"/>
+			<result property="author" column="f_author" javaType="string"/>
+			<result property="bookNum" column="f_balance" javaType="int"/>
+		</resultMap>
+		
+		<select id="findAllRows"  resultType="int">
+			select count(id) from t_book 
+			<where>
+				<if test="bean.bookname != null">
+				and f_bookname like COUNT(#{bean.bookname},'%') 
+				</if>
+				<if test="bean.author != null">
+				and f_author like COUNT(#{bean.author},'%') 
+				</if>
+				<if test="bean.bookNum != null">
+				and f_bookname &gt; #{bean.bookNum}
+				</if>
+			</where>
+		</select>
+		
+		<select id="findLikeAll"  resultMap="bookMap">
+			select pk_id as bookId,f_bookname as bookname,f_author as author,f_balance as bookNum from t_book 
+			<where>
+				<if test="bean.bookname != null">
+				and f_bookname like COUNT(#{bean.bookname},'%') 
+				</if>
+				<if test="bean.bookname != null">
+				and f_author like COUNT(#{bean.author},'%') 
+				</if>
+				<if test="bean.bookNum != null">
+				and f_bookname &gt; #{bean.bookNum}
+				</if>
+			</where>
+		</select>
+		
+		<update id="updateBook">
+			update t_book 
+			<set>
+				<if test="bean.bookname != null">f_bookname = #{bean.bookname} ,  </if>
+				<if test="bean.bookNum != null">f_balance = #{bean.bean.bookNum} ,</if>
+				<if test="bean.author != null">f_author = #{bean.author} ,</if>
+			</set>
+			<where>
+				<if test="bean.bookId != null"> pk_id = #{bean.bookId}</if>
+			</where>
+		</update>
+		
+		<select id="findLikeAllPage">
+			select pk_id as bookId,f_bookname as bookname,f_author as author,f_balance as bookNum from t_book 
+			<where>
+				<if test="bean.bookname != null">
+				and f_bookname like COUNT(#{map.bookname},'%') 
+				</if>
+				<if test="bean.bookname != null">
+				and f_author like COUNT(#{map.author},'%') 
+				</if>
+				<if test="bean.bookNum != null">
+				and f_bookname &gt; #{map.bookNum}
+				</if>
+			</where>
+			limit #{map.beginRow},#{map.row}
+		</select>
+		
+		<insert id="addBook" useGeneratedKeys="true" keyProperty="bean.bookId">
+			insert into t_book (f_bookname,f_author,f_balance) values(#{bean.bookname},#{bean.author},#{bean.bookNum});
+		</insert>
+		
+	</mapper>
