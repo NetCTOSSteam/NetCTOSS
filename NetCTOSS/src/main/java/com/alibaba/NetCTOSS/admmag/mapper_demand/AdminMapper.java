@@ -2,6 +2,8 @@ package com.alibaba.NetCTOSS.admmag.mapper_demand;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.alibaba.NetCTOSS.beans.admAndRoleBean.AdministratorBean;
 
 public interface AdminMapper {
@@ -10,5 +12,5 @@ public interface AdminMapper {
 	 * @param administratorBean 管理员对象
 	 * @return 管理员集合 
 	 */
-	List<AdministratorBean> findAllAdministratorBeansByParam(AdministratorBean administratorBean);
+	List<AdministratorBean> findAllAdministratorBeansByParam(@Param("administratorBean")AdministratorBean administratorBean);
 }

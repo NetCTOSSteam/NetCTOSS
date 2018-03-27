@@ -3,6 +3,19 @@
 
 <mapper namespace="com.alibaba.NetCTOSS.admmag.mapper_demand.AdminMapper">
 
+	<!-- 添加查询动态SQL  cqs; -->
+	<sql id="adminParam">
+		<where>
+			adm.adm_bo = 1
+			<if test="adminName!=null">
+				and adm.adm_name like concat(#{administratorBean.adminName},%)
+			</if>
+			<if test="loginName!=null">
+				and adm.login_name like concat(#{administratorBean.loginName},%)
+			</if>
+		</where>
+	</sql>
+	
 	<resultMap type="AdministratorBean" id="AdministratorBeanMap">
 		<id property="id" column="adm_id" />
 		<result property="adminName" column="adm_name" />
@@ -10,8 +23,25 @@
 		<result property="password" column="pass_word" />
 		<result property="telephone" column="adm_tel" />
 		<result property="email" column="adm_eml" />
-		<association property="" column="" fetchType="lazy" select=""></association>
+		<association property="role" javaType="RoleBean">
+			<id property="id" column="role_id"/>
+			<result property="roleName" column="role_name" />
+		</association>
 	</resultMap>
-		
+	
+	<!-- 根据传入的参数   进行查询管理员集合  参数为管理员对象 cqs; -->
+	<select id="findAllAdministratorBeansByParam">
+		select 
+		adm.adm_id,
+		adm.adm_name,
+		adm.pass_word,
+		adm.login_name,
+		adm.adm_tel,
+		adm.adm_eml,
+		role.role_id,
+		role.role_name 
+		from t_adm as adm,t_role as role
+		<include refid="adminParam"></include>
+	</select>
 	
 </mapper>
