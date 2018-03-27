@@ -57,7 +57,7 @@ public class AdministratorBean implements Serializable {
 	private RoleBean role;//所属角色
 	
 	@Column(name="adm_bo")
-	private Boolean status;//数据是否有效
+	private int status;//数据是否有效
 	
 	
 	public AdministratorBean() {
@@ -135,12 +135,12 @@ public class AdministratorBean implements Serializable {
 	}
 
 
-	public Boolean getStatus() {
+	public int getStatus() {
 		return status;
 	}
 
 
-	public void setStatus(Boolean status) {
+	public void setStatus(int status) {
 		this.status = status;
 	}
 
