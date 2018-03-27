@@ -3,6 +3,14 @@ package com.alibaba.NetCTOSS.beans.userAndBusBean;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+
 /**
  * 资费类
  * @author Administrator
@@ -12,6 +20,8 @@ import java.util.Date;
  * @author asus
  *
  */
+@Entity
+@Table(name="t_meal")
 public class MealBean implements Serializable {
 
 	/**
@@ -21,39 +31,51 @@ public class MealBean implements Serializable {
 	/**
 	 * 资费id
 	 */
-	int mealId;
+	@Id
+	@Column(name="mea_id")
+	@GenericGenerator(name="hibernate.id",strategy="identity")
+	@GeneratedValue(generator="hibernate.id")
+	private int mealId;
 	/**
 	 * 资费名字
 	 */
-	String mealName;
+	@Column(name="mea_name",length=20)
+	private String mealName;
 	/**
 	 * 资费类型
 	 */
-    int mealType;
+	@Column(name="mea_type")
+	private int mealType;
     /**
      * 资费时长
      */
-    int mealTime;
+	@Column(name="mea_time")
+	private int mealTime;
     /**
      * 基本费用
      */
-    double mealBasicMoney;
+	@Column(name="mea_basic_money")
+	private double mealBasicMoney;
     /**
      * 单位费用
      */
-    double mealMoney;
+	@Column(name="mea_money")
+	private double mealMoney;
     /**
      * 资费说明
      */
-	String mealDescribe;
+	@Column(name="mea_describe")
+	private String mealDescribe;
 	/**
 	 * 资费状态
 	 */
-	boolean mealStatus;
+	@Column(name="mea_status")
+	private boolean mealStatus;
 	/**
 	 * 开通时间
 	 */
-	Date mealStartTime;
+	@Column(name="mea_start_time")
+	private Date mealStartTime;
 	
 	public MealBean() {
 		// TODO Auto-generated constructor stub
