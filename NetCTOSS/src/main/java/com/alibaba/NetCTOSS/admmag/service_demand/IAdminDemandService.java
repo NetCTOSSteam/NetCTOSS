@@ -1,5 +1,8 @@
 package com.alibaba.NetCTOSS.admmag.service_demand;
 
+import java.util.List;
+
+import com.alibaba.NetCTOSS.beans.admAndRoleBean.AdministratorBean;
 
 /**
  * 管理员的查询接口
@@ -8,7 +11,12 @@ package com.alibaba.NetCTOSS.admmag.service_demand;
  */
 public interface IAdminDemandService {
 	
-	
+	/**
+	 * 根据传入的参数   进行查询管理员集合  参数为管理员对象
+	 * @param administratorBean 管理员对象
+	 * @return 管理员集合 
+	 */
+	List<AdministratorBean> findAllAdministratorBeansByParam(AdministratorBean administratorBean);
 	
 	
 	

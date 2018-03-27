@@ -98,6 +98,16 @@ public class UserBean implements Serializable {
 	@Column(name="pass_word",length=32)
 	private String password;
 	
+	/**
+	 * u_bo
+	 * 数据是否有效
+	 */
+	@Column(name="u_bo")
+	private boolean bo;
+	
+	
+	
+	
 	public UserBean() {
 		// TODO Auto-generated constructor stub
 	}
@@ -182,11 +192,20 @@ public class UserBean implements Serializable {
 		this.password = password;
 	}
 
+	
+	public boolean isBo() {
+		return bo;
+	}
+
+	public void setBo(boolean bo) {
+		this.bo = bo;
+	}
+
 	@Override
 	public String toString() {
 		return "UserBean [id=" + id + ", userName=" + userName + ", tel=" + tel + ", idCard=" + idCard + ", gender="
 				+ gender + ", address=" + address + ", postcode=" + postcode + ", qq=" + qq + ", loginName=" + loginName
-				+ ", password=" + password + "]";
+				+ ", password=" + password + ", bo=" + bo + "]";
 	}
 
 }

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.alibaba.NetCTOSS.admmag.mapper_demand.AdminMapper">
+
+	<resultMap type="AdministratorBean" id="AdministratorBeanMap">
+		<id property="id" column="adm_id" />
+		<result property="adminName" column="adm_name" />
+		<result property="loginName" column="login_name" />
+		<result property="password" column="pass_word" />
+		<result property="telephone" column="adm_tel" />
+		<result property="email" column="adm_eml" />
+		<association property="" column="" fetchType="lazy" select=""></association>
+	</resultMap>
+		
+	
+</mapper>
