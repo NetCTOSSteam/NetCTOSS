@@ -17,7 +17,7 @@ public interface IAccMonthDemandService {
 	 * @param bean
 	 * @return
 	 */
-	public List<AccountMonthBean> findAccountDayByBean(AccountMonthBean bean);
+	public List<AccountMonthBean> findAccountMonthByBean(AccountMonthBean bean);
 	
 	
 	

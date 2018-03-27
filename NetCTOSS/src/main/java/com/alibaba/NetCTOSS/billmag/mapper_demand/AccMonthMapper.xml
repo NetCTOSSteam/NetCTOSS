@@ -17,8 +17,8 @@
 		</resultMap>
 		
 		
-		<select id="findLikeAll"  resultMap="beanMap">
-			select id ,acc_year,acc-monrh,acc_day,acc_acc ,acc_name,acc_server,acc_os_account,acc_all_time
+		<select id="findAccountMonthByBean"  resultMap="beanMap">
+			select id ,acc_year,acc_monrh,acc_day,acc_acc ,acc_name,acc_server,acc_os_account,acc_all_time
 			 from t_account_day 
 			<where>
 				<if test="bean.year > 0">

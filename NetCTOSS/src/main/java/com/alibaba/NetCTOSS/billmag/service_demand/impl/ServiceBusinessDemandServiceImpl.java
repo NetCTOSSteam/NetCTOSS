@@ -16,7 +16,7 @@ public class ServiceBusinessDemandServiceImpl implements IServiceBusinessDemandS
 	@Resource
 	private IServiceBusinessDemandDao iServiceBusinessDemandDao;
 	@Override
-	public List<ServiceAndBusinessBean> findAccountDayByBean(ServiceAndBusinessBean bean) {
+	public List<ServiceAndBusinessBean> findServiceBusByBean(ServiceAndBusinessBean bean) {
 		// TODO Auto-generated method stub
 		return iServiceBusinessDemandDao.findAccountDayByBean(bean);
 	}

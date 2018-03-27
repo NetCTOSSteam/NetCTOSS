@@ -18,7 +18,7 @@ public class ServiceBusinessDemandDaoImpl implements IServiceBusinessDemandDao {
 	@Override
 	public List<ServiceAndBusinessBean> findAccountDayByBean(ServiceAndBusinessBean bean) {
 		// TODO Auto-generated method stub
-		return serviceBusinessMapper.findAccountDayByBean(bean);
+		return serviceBusinessMapper.findServiceBusByBean(bean);
 	}
 
 }

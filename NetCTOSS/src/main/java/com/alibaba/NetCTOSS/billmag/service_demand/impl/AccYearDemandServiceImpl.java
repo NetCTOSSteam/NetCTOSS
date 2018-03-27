@@ -15,8 +15,9 @@ public class AccYearDemandServiceImpl implements IAccYearDemandService {
 	@Resource
 	private IAccYearDemandDao iAccYearDemandDao; 
 	
+
 	@Override
-	public List<AccountYearBillBean> findAccountDayByBean(AccountYearBillBean bean) {
+	public List<AccountYearBillBean> findAccountYearByBean(AccountYearBillBean bean) {
 		// TODO Auto-generated method stub
 		return iAccYearDemandDao.findAccountDayByBean(bean);
 	}

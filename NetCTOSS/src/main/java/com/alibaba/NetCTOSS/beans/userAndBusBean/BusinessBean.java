@@ -85,7 +85,7 @@ public class BusinessBean implements Serializable {
 	 * 业务状态
 	 */
 	@Column(name="bus_state")
-	private boolean state;
+	private String state;
 	
 	/**
 	 * bus_next_mea_id
@@ -179,12 +179,12 @@ public class BusinessBean implements Serializable {
 	}
 
 
-	public boolean isState() {
+	public String isState() {
 		return state;
 	}
 
 
-	public void setState(boolean state) {
+	public void setState(String state) {
 		this.state = state;
 	}
 

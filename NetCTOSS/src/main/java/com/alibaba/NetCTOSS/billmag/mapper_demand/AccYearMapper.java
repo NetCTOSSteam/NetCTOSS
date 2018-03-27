@@ -12,5 +12,5 @@ public interface AccYearMapper {
 	 * @param bean
 	 * @return
 	 */
-	public List<AccountYearBillBean> findAccountDayByBean(@Param("bean")AccountYearBillBean bean);
+	public List<AccountYearBillBean> findAccountYearByBean(@Param("bean")AccountYearBillBean bean);
 }

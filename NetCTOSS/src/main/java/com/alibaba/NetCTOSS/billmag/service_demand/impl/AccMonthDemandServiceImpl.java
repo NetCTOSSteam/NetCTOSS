@@ -15,10 +15,14 @@ public class AccMonthDemandServiceImpl implements IAccMonthDemandService {
 	@Resource
 	private IAccMonthDemandDao iAccMonthDemandDao; 
 
+
 	@Override
-	public List<AccountMonthBean> findAccountDayByBean(AccountMonthBean bean) {
+	public List<AccountMonthBean> findAccountMonthByBean(AccountMonthBean bean) {
 		// TODO Auto-generated method stub
 		return iAccMonthDemandDao.findAccountDayByBean(bean);
 	}
+
+	
+
 
 }

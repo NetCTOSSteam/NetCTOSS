@@ -12,6 +12,6 @@ public interface AccMonthMapper {
 	 * @param bean
 	 * @return
 	 */
-	public List<AccountMonthBean> findAccountDayByBean(@Param("bean")AccountMonthBean bean);
+	public List<AccountMonthBean> findAccountMonthByBean(@Param("bean")AccountMonthBean bean);
 	
 }

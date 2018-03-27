@@ -16,7 +16,7 @@ public interface IServiceBusinessDemandService {
 	 * @param bean
 	 * @return
 	 */
-	public List<ServiceAndBusinessBean> findAccountDayByBean(ServiceAndBusinessBean bean);
+	public List<ServiceAndBusinessBean> findServiceBusByBean(ServiceAndBusinessBean bean);
 	
 	
 	

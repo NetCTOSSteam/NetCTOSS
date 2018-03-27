@@ -18,7 +18,7 @@ public class AccMonthDemandDaoImpl implements IAccMonthDemandDao {
 	@Override
 	public List<AccountMonthBean> findAccountDayByBean(AccountMonthBean bean) {
 		// TODO Auto-generated method stub
-		return accMonthMapper.findAccountDayByBean(bean);
+		return accMonthMapper.findAccountMonthByBean(bean);
 	}
 
 }

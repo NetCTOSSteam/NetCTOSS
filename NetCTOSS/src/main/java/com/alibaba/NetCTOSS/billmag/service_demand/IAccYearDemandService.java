@@ -17,7 +17,7 @@ public interface IAccYearDemandService {
 	 * @param bean
 	 * @return
 	 */
-	public List<AccountYearBillBean> findAccountDayByBean(AccountYearBillBean bean);
+	public List<AccountYearBillBean> findAccountYearByBean(AccountYearBillBean bean);
 	
 	
 	
