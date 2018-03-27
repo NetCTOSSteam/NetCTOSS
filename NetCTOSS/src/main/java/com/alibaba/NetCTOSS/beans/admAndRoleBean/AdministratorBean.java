@@ -8,7 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cascade;
@@ -51,8 +51,8 @@ public class AdministratorBean implements Serializable {
 	@Column(name="adm_eml")
 	private String email;//联系邮箱
 	
-	@OneToOne(fetch=FetchType.LAZY)
-	@Cascade(CascadeType.ALL)
+	@ManyToOne(fetch=FetchType.LAZY)
+	@Cascade(value={CascadeType.ALL})
 	@JoinColumn(name="adm_role_id")
 	private RoleBean role;//所属角色
 	

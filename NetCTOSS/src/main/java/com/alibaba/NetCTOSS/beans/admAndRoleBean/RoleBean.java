@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cascade;
@@ -46,12 +47,16 @@ public class RoleBean implements Serializable {
 	@Column(name="role_bo")
 	private boolean status;//角色状态
 
+	@OneToMany(fetch=FetchType.LAZY,mappedBy="role")
+	@Cascade(value = {CascadeType.ALL})
+	private Set<AdministratorBean> admins;//一个角色有多个用户
+	
 	@ManyToMany(fetch=FetchType.LAZY)
 	@Cascade(CascadeType.ALL)
 	@JoinTable(name="t_role_power",
 	joinColumns=@JoinColumn(name="rp_role_id"),
 	inverseJoinColumns=@JoinColumn(name="rp_power_id"))
-	private Set<PowerBean> powers;//一个角色对应多个权限
+	private Set<PowerBean> powers;//一个角色对应多个权限，一个权限被多个角色拥有
 	public RoleBean() {
 		// TODO Auto-generated constructor stub
 	}
@@ -96,9 +101,17 @@ public class RoleBean implements Serializable {
 		this.powers = powers;
 	}
 
+	public Set<AdministratorBean> getAdmins() {
+		return admins;
+	}
+
+	public void setAdmins(Set<AdministratorBean> admins) {
+		this.admins = admins;
+	}
+
 	@Override
 	public String toString() {
-		return "RoleBean [id=" + id + ", roleName=" + roleName + ", type=" + type + ", status=" + status + ", powers="
-				+ powers + "]";
+		return "RoleBean [id=" + id + ", roleName=" + roleName + ", type=" + type + ", status=" + status + ", admins="
+				+ admins + ", powers=" + powers + "]";
 	}
 }
