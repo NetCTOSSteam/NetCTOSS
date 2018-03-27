@@ -64,15 +64,19 @@
     <!-- 工具 -->
     <div id="tb">
         <a id="add" href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add'">添加单个账务帐号</a>
-
-        <input class="easyui-filebox"></input> <a id="sub" href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-ok'">提交</a>
-        
-
-        <a id="edit" href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-reload'">修改账务帐号</a>
+		
+		<a id="edit" href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-reload'">修改账务帐号</a>
 
         <a id="delete" href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-remove'">删除账务帐号</a>
 
         <a id="tip" href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-tip'">账务账号详情</a>
+		
+		<form id="adds_from" method="#" enctype="multipart/form-data">
+			<input class="easyui-filebox" value="请选择excel"></input> 
+			<input id="sub" type="submit" class="easyui-linkbutton" data-options="iconCls:'icon-ok'" value="批量上传"></input> 
+		</form>
+		
+        
     </div>
     <!-- 添加弹窗 -->
     <div id="add_dialog" class="easyui-dialog"
