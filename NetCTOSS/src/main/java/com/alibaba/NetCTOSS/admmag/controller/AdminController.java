@@ -44,6 +44,7 @@ public class AdminController {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			System.out.println(admin);
 			request.setAttribute("admin", admin);
 			request.setAttribute("errorMsg", "用户名或密码错误！");
 			return "login";

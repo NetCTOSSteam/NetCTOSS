@@ -31,7 +31,7 @@
 				<div class="log">
 					<div class="name">
 						<label>口 令：</label><input required type="text" class="text1"
-							id="inp1" placeholder="登录口令" name="userName" tabindex="1">
+							id="inp1" placeholder="登录口令" name="loginName" tabindex="1">
 							<select id="sele">
 								<option selected="selected">管理员</option>
 								<option>用户</option>
@@ -81,7 +81,7 @@
 				var password = $('#inp2').val();
 				var code = $('#inp3').val();
 				data = {
-					loginName : userName,
+					userName : userName,
 					password : password,
 					code : code
 				};
@@ -93,7 +93,7 @@
 			var password = $('#inp2').val();
 			var code = $('#inp3').val();
 			data = {
-				userName : userName,
+				loginName : userName,
 				password : password,
 				code : code
 			};
