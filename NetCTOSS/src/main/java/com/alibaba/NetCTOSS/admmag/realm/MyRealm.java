@@ -22,10 +22,10 @@ import com.alibaba.NetCTOSS.beans.admAndRoleBean.RoleBean;
 public class MyRealm extends AuthorizingRealm {
 
 	@Resource
-	private IAdminDemandService adminDemandService;
+	private IAdminDemandService adminDemandServiceImpl;
 
 	@Resource
-	private IRoleDemandService roleDemandService;
+	private IRoleDemandService roleDemandServiceImpl;
 
 	/**
 	 * 为当限前登录的用户授予角色和权限
@@ -36,7 +36,7 @@ public class MyRealm extends AuthorizingRealm {
 		String userName = (String) principal.getPrimaryPrincipal();
 		SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
 
-		RoleBean role = adminDemandService.getRole(userName);
+		RoleBean role = adminDemandServiceImpl.getRole(userName);
 
 		String roleName = role.getRoleName();
 
@@ -45,7 +45,7 @@ public class MyRealm extends AuthorizingRealm {
 		roles.add(roleName);
 
 		authorizationInfo.setRoles(roles);
-		authorizationInfo.setStringPermissions(roleDemandService.getPermissions(role.getRoleName()));
+		authorizationInfo.setStringPermissions(roleDemandServiceImpl.getPermissions(role.getRoleName()));
 		return authorizationInfo;
 	}
 
@@ -56,7 +56,7 @@ public class MyRealm extends AuthorizingRealm {
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 		// TODO Auto-generated method stub
 		String adminLoginName = (String) token.getPrincipal();
-		AdministratorBean admin = adminDemandService.findAdminByAdminLoginName(adminLoginName);
+		AdministratorBean admin = adminDemandServiceImpl.findAdminByAdminLoginName(adminLoginName);
 		if (admin != null) {
 			AuthenticationInfo authcInfo = new SimpleAuthenticationInfo(admin.getLoginName(), admin.getPassword(),
 					getName());
