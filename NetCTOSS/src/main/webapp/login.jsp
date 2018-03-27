@@ -1,26 +1,27 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html;charset=utf-8" pageEncoding="utf-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>登录</title>
-<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
-<script type="text/javascript" src="js/fun.base.js"></script>
-<script type="text/javascript" src="js/script.js"></script>
+<script type="text/javascript" src="static/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="static/js/fun.base.js"></script>
+<script type="text/javascript" src="static/js/script.js"></script>
 <!-- 引入EasyUI -->
 <script type="text/javascript"
-	src="jQuery-easyui/jquery.easyui.min.js"></script>
+	src="static/jQuery-easyui/jquery.easyui.min.js"></script>
 <!-- 引入EasyUI的中文国际化js，让EasyUI支持中文 -->
 <script type="text/javascript"
-	src="jQuery-easyui/locale/easyui-lang-zh_CN.js"></script>
-<script type="text/javascript" src="js/date.js"></script>
-<script type="text/javascript" src="js/jquery.json-2.4.js"></script>
+	src="static/jQuery-easyui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="static/js/date.js"></script>
+<script type="text/javascript" src="static/js/jquery.json-2.4.js"></script>
 <!-- 引入EasyUI的样式文件-->
 <link rel="stylesheet"
-	href="jQuery-easyui/themes/default/easyui.css" type="text/css" />
+	href="static/jQuery-easyui/themes/default/easyui.css" type="text/css" />
 <!-- 引入EasyUI的图标样式文件-->
-<link rel="stylesheet" href="jQuery-easyui/themes/icon.css"
+<link rel="stylesheet" href="static/jQuery-easyui/themes/icon.css"
 	type="text/css" />
-<link href="css/main.css" rel="stylesheet" type="text/css" />
+<link href="static/css/main.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 	<div class="login">
