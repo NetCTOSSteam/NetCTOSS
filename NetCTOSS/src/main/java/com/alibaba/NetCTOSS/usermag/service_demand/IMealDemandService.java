@@ -1,6 +1,9 @@
 package com.alibaba.NetCTOSS.usermag.service_demand;
 
-import com.github.pagehelper.Page;
+import java.util.List;
+
+import com.alibaba.NetCTOSS.beans.userAndBusBean.MealBean;
+
 
 /**
  * 资费 的查询接口
@@ -9,10 +12,18 @@ import com.github.pagehelper.Page;
  */
 public interface IMealDemandService {
 	/**
-	 * 初始页面的分页查询
-	 * @return 分页对象
+	 * 查询所有MealBean，好在页面进行分页
+	 * @return mealBean 集合
 	 */
-	public Page<?> findAllAndPage();
+	public List<MealBean> findAllMealBean();
+	
+	/**
+	 * 根据ID查询MealBean 
+	 * 查询出根据MealBean的资费状态判断能否进行操作
+	 * @param id mealBean ID
+	 * @return MealBean
+	 */
+	public MealBean findByMealBeanId(int id);
 	
 	
 	
