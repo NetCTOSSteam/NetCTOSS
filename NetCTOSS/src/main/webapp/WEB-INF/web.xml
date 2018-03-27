@@ -103,9 +103,10 @@
 		<filter-name>HttpDeleteFormContentFilter</filter-name>
 		<servlet-name>dispatcherServlet</servlet-name>
 	</filter-mapping>
-	<listener>
+	
+	<!-- <listener>
 		<listener-class>org.apache.shiro.web.env.EnvironmentLoaderListener</listener-class>
-	</listener>
+	</listener> -->
 
 	<!-- 使用ContextLoaderListener开启spring容器，为除了web层的组件提供一个运行环境， 并且将spring容器向web容器进行注册 -->
 	<listener>

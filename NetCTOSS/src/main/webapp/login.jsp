@@ -73,9 +73,18 @@
 		$('#button1').click(function() {
 			var sele = $('#sele').val();
 			var seleStatus;
+			var data;
 			if(sele=='管理员'){
 				seleStatus = 1;
 				console.info(seleStatus)
+				var userName = $('#inp1').val();
+				var password = $('#inp2').val();
+				var code = $('#inp3').val();
+				data = {
+					loginName : userName,
+					password : password,
+					code : code
+				};
 			}else{
 				seleStatus = 0;
 				console.info(seleStatus)
@@ -83,27 +92,19 @@
 			var userName = $('#inp1').val();
 			var password = $('#inp2').val();
 			var code = $('#inp3').val();
-			var data = {
+			data = {
 				userName : userName,
 				password : password,
 				code : code
 			};
 			$.ajax({
 				type : "POST",
-				url : "user/login",
+				url : "admin/login",
 				async :true,
 				data : data,
 				contentType : "application/x-www-form-urlencoded",
 				success : function(msg) {
-					if (msg.status == 1) {
-						$.messager.alert('提示',msg.information,'info',function(){
-							window.location.href="static/jsp/demo.jsp"; 
-						}); 
-					}else if(msg.status == -1){
-						$.messager.alert('提示',msg.information,'info'); 
-					}else{
-						$.messager.alert('提示',msg.information,'info'); 
-					}
+					$.messager.alert('提示',"${errorMsg}",'info'); 
 				}
 			});
 		});
