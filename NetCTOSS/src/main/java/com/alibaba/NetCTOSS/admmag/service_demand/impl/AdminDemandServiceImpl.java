@@ -12,6 +12,7 @@ public class AdminDemandServiceImpl implements IAdminDemandService {
 	 */
 	@Override
 	public AdministratorBean findByAdminLoginName(String adminLoginName) {
+		
 		return null;
 	}
 	@Override
