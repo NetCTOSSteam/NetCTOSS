@@ -62,6 +62,7 @@ public class AdministratorBean implements Serializable {
 	
 	public AdministratorBean() {
 		// TODO Auto-generated constructor stub
+		status = 1 ;
 	}
 
 

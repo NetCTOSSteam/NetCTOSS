@@ -1,5 +1,5 @@
 $(function(){
-
+	 
     // 默认数据列表的显示
     $('#tt').datagrid({
         url:"customs/page",
@@ -38,7 +38,8 @@ $(function(){
     $('#add').click(function(){
 
         $('#add_users_dialog').dialog('open');
-
+        	
+        ddd();
     });
 
     function queryParamsToSave(){
@@ -102,7 +103,7 @@ $(function(){
                 $('#c_customName').attr('value',row.customName);
                 $('#c_loginName').attr('value',row.loginName);
                 $('#c_gender').combobox('select', row.gender);
-                var text = dateformatter(new Date(row.birthday));
+             
                 $('#c_birthday').datebox('setValue',text);
                 $('#update_user').form('validate');
             }else{
@@ -231,6 +232,8 @@ $(function(){
         var s = $(this).next('span').text();
         $('#cc').combo('setValue', v).combo('setText', s).combo('hidePanel');
     });
+    
+ 
 });
 
 $(function(){
@@ -244,4 +247,32 @@ $(function(){
         var s = $(this).next('span').text();
         $('#cc1').combo('setValue', v).combo('setText', s).combo('hidePanel');
     });
+  
+   
+    
 });
+
+
+function ddd(){
+	var checkValue=$("#cc");
+   
+
+    if(checkValue.val()=="包月"){
+     document.getElementById('ji').style.display='block';
+     document.getElementById('dan').style.display='none';
+     document.getElementById('data').style.display='none';
+   
+    }else if(checkValue.val()=="包时"){
+    	  document.getElementById('dan').style.display='inline';
+    	   document.getElementById('data').style.display='none';
+    	   document.getElementById('ji').style.display='none';
+    
+    }else if(checkValue.val()=="套餐"){
+    	  
+    	   document.getElementById('data').style.display='inline';
+    	   document.getElementById('ji').style.display='inline';
+    	   document.getElementById('dan').style.display='inline';
+    }
+    } 
+
+

@@ -1,5 +1,8 @@
 package com.alibaba.NetCTOSS.billmag.dao_demand;
 
+import java.util.List;
+
+import com.alibaba.NetCTOSS.beans.billBean.ServiceAndBusinessBean;
 
 /**
  * 服务器 明细 os账户（业务账户） 账单的查询接口
@@ -9,7 +12,12 @@ package com.alibaba.NetCTOSS.billmag.dao_demand;
 public interface IServiceBusinessDemandDao {
 	
 	
-	
+	/**
+	 * 条件查询  bean 为空时  查询全部
+	 * @param bean
+	 * @return
+	 */
+	public List<ServiceAndBusinessBean> findAccountDayByBean(ServiceAndBusinessBean bean);
 	
 	
 	

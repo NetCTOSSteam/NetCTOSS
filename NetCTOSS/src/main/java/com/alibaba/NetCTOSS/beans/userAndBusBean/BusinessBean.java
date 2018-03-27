@@ -103,9 +103,18 @@ public class BusinessBean implements Serializable {
 	@Column(name="bus_time")
 	private Date startTime;
 	
+	/**
+	 * bus_bo
+	 * 数据是否有效
+	 */
+	@Column(name="bus_bo")
+	private boolean bo;
+	
+	
 	
 	public BusinessBean() {
 		// TODO Auto-generated constructor stub
+		bo = true; 
 	}
 
 
@@ -204,6 +213,16 @@ public class BusinessBean implements Serializable {
 		return "BusinessBean [id=" + id + ", busName=" + busName + ", serverIP=" + serverIP + ", password=" + password
 				+ ", mealBean=" + mealBean + ", userBean=" + userBean + ", state=" + state + ", nextMealBean="
 				+ nextMealBean + ", startTime=" + startTime + "]";
+	}
+
+
+	public boolean isBo() {
+		return bo;
+	}
+
+
+	public void setBo(boolean bo) {
+		this.bo = bo;
 	}
 	
 }

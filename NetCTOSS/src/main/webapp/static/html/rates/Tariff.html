@@ -13,7 +13,26 @@
     <link rel="stylesheet" type="text/css" href="../../jQuery-easyui/themes/icon.css">
     <script type="text/javascript">
     </script>
+<style>
+  #ji{
+display: none;
+
+}
+
+#data{
+display: none;
+}
+
+#dan{
+display: none;
+}
+
+</style>
+    
 </head>
+
+
+
 <body class="easyui-layout">
 <div data-options="region:'center',title:'资费操作界面',iconCls:'icon-ok'"
      style="padding: 5px; background: #eee;">
@@ -77,17 +96,35 @@
 <div id="add_users_dialog" class="easyui-dialog"
      style="width: 30%; height: 74%"
      data-options="title:'新增资费',buttons:'#add_users_dialog_bb',modal:true,
-		collapsible:true,minimizable:true,maximizable:true,resizable:true,closable:true,closed:true">
+		collapsible:true,minimizable:true,maximizable:true,resizable:true,closable:true,closed:true ">
     <div class="easyui-panel" title="增加资费信息" style="width:100%;padding:10px 60px">
-        <div style="margin-bottom:20px">
+       <div style="margin-bottom:20px">
+            <div>资费类型:</div>
+         <select id="cc"  class="easyui-combobox" style="width:150px;" onchange="ddd()">
+            
+              <option >套餐</option>
+              <option >包时</option>
+              <option selected="selected" >包月</option>
+   </select>
+            
+           
+           
+        </div>
+        <div style="margin-bottom:20px" >
             <div>资费信息:</div>
             <input class="easyui-textbox" data-options="prompt:'Enter a email address...',validType:'email'" style="width:100%;height:32px">
         </div>
-        <div style="margin-bottom:20px">
+        <div style="margin-bottom:20px" id="ji">
             <div>基本费用:</div>
             <input class="easyui-textbox" style="width:100%;height:32px">
         </div>
-        <div style="margin-bottom:20px">
+        
+        <div style="margin-bottom:20px" id="dan">
+            <div>单位费用:</div>
+            <input class="easyui-textbox" style="width:100%;height:32px">
+        </div>
+        
+        <div style="margin-bottom:20px" id="data">
             <div>基本时长:</div>
             <input class="easyui-textbox" style="width:100%;height:32px">
         </div>
@@ -95,24 +132,12 @@
             <div>资费说明:</div>
             <input class="easyui-textbox" style="width:100%;height:32px">
         </div>
-        <div style="margin-bottom:20px">
-            <div>资费类型:</div>
-            <select id="cc" style="width:150px"></select>
-            <div id="sp">
-
-                <div style="padding:10px">
-                    <input type="radio" name="lang" value="01"><span>包月</span><br/>
-                    <input type="radio" name="lang" value="02"><span>包时</span><br/>
-                    <input type="radio" name="lang" value="03"><span>套餐</span><br/>
-
-                </div>
-            </div>
-        </div>
+     
         <div>
             <a href="#" class="easyui-linkbutton" iconCls="icon-ok" style="width:100%;height:32px">添加</a>
         </div><br/>
         <div>
-            <a href="Tariff.jsp" onclick="open(location, '_self').close();" class="easyui-linkbutton" iconCls="icon-no" style="width:100%;height:32px" >取消</a>
+            <a href="Tariff.html" onclick="open(location, '_self').close();" class="easyui-linkbutton" iconCls="icon-no" style="width:100%;height:32px" >取消</a>
         </div>
     </div>
 
@@ -129,11 +154,7 @@
         <div>资费名称:</div>
         <input class="easyui-textbox" data-options="prompt:'Enter a email address...',validType:'email'" style="width:70%;height:32px">
     </div>
-    <div style="margin-bottom:20px">
-        <div>管理员账号:</div>
-        <input class="easyui-textbox" style="width:70%;height:32px">
-    </div>
-
+ 
     <div style="margin-bottom:20px">
         <div>资费说明:</div>
         <input class="easyui-textbox" style="width:70%;height:32px">
@@ -154,8 +175,8 @@
 
             <div style="padding:10px">
                 <input type="radio" name="lang1" value="01"><span>包月</span><br/>
-                <input type="radio" name="lang1" value="02"><span>包时</span><br/>
-                <input type="radio" name="lang1" value="03"><span>套餐</span><br/>
+                <input type="radio" name="lang2" value="02"><span>包时</span><br/>
+                <input type="radio" name="lang3" value="03"><span>套餐</span><br/>
 
             </div>
         </div>
@@ -165,10 +186,15 @@
     </div><br/>
     <div>
 
-        <a href="Tariff.jsp" onclick="open(location, '_self').close();" class="easyui-linkbutton" iconCls="icon-no" style="width:100%;height:32px" >取消</a>
+        <a href="Tariff.html" onclick="open(location, '_self').close();" class="easyui-linkbutton" iconCls="icon-no" style="width:100%;height:32px" >取消</a>
     </div>
 
 </div>
+ <script>
+ 
+ 
+ 
+ </script>
 
 </body>
 </html>
