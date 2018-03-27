@@ -59,6 +59,12 @@ $(function(){
         return data;
     }
 
+    
+    $('#sub').click(function(){
+    	alert('');
+    })
+    
+    
 
     //新增
     $('#save_users').click(function(){
