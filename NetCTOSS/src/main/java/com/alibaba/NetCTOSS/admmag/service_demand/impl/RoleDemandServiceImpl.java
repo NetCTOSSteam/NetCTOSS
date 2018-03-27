@@ -2,9 +2,12 @@ package com.alibaba.NetCTOSS.admmag.service_demand.impl;
 
 import java.util.Set;
 
+import org.springframework.stereotype.Service;
+
 import com.alibaba.NetCTOSS.admmag.service_demand.IRoleDemandService;
 import com.alibaba.NetCTOSS.beans.admAndRoleBean.RoleBean;
 
+@Service
 public class RoleDemandServiceImpl implements IRoleDemandService {
 
 	/**
