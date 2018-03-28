@@ -36,7 +36,7 @@ public class UserBean implements Serializable {
 	 *  id字段
 	 */
 	@Id
-	@Column(name="id")
+	@Column(name="u_id")
 	@GenericGenerator(name="hibernate.id",strategy="identity")
 	@GeneratedValue(generator="hibernate.id")
 	private Integer id;

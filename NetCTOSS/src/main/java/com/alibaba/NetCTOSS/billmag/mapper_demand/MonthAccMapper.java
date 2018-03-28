@@ -21,6 +21,17 @@ public interface MonthAccMapper {
 	 */
 	public MonthAndAccountBean findByMonthAndAccountBean (MonthAndAccountBean bean);
 	
+	/**
+	 * 得到排重后的年集合
+	 * @return 
+	 */
+	public List<Integer> getYear();
+	
+	/**
+	 * 得到排重后的月集合
+	 * @return 
+	 */
+	public List<Integer> getMonth();
 	
 	
 }

@@ -52,12 +52,12 @@
 	</select>
 	
 	<!-- 返回年 -->
-	<select id="" resultType="string">
+	<select id="getYear" resultType="int">
 		select distinct account_year from t_month_account
 	</select>
 	
 	<!-- 返回月 -->
-	<select id="" resultType="string">
+	<select id="getMonth" resultType="int">
 		select distinct account_month from t_month_account
 	</select>
 	
