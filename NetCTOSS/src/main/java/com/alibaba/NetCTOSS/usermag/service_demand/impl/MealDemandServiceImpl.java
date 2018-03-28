@@ -2,23 +2,30 @@ package com.alibaba.NetCTOSS.usermag.service_demand.impl;
 
 import java.util.List;
 
-import com.alibaba.NetCTOSS.beans.userAndBusBean.MealBean;
-import com.alibaba.NetCTOSS.usermag.service_demand.IMealDemandService;
-import com.github.pagehelper.Page;
+import javax.annotation.Resource;
 
+import org.springframework.stereotype.Service;
+
+import com.alibaba.NetCTOSS.beans.userAndBusBean.MealBean;
+import com.alibaba.NetCTOSS.usermag.dao_demand.IMealDemandDao;
+import com.alibaba.NetCTOSS.usermag.service_demand.IMealDemandService;
+
+@Service
 public class MealDemandServiceImpl implements IMealDemandService {
 
-
-	@Override
+	@Resource
+	private IMealDemandDao mealDemandDaoImpl;
+	
+ @Override
 	public List<MealBean> findAllMealBean() {
 		// TODO Auto-generated method stub
-		return null;
+		return mealDemandDaoImpl.findAllMealBean();
 	}
 
 	@Override
 	public MealBean findByMealBeanId(int id) {
 		// TODO Auto-generated method stub
-		return null;
+		return mealDemandDaoImpl.findByMealBeanId(id);
 	}
 
 }

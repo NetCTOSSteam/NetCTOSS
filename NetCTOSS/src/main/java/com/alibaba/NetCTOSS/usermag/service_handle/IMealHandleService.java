@@ -13,6 +13,7 @@ public interface IMealHandleService {
 	 * @param bean  MealBean
 	 */
 	public void addMealBean(MealBean bean);
+	
 	/**
 	 *根据id删除资费信息
 	 */
@@ -21,7 +22,6 @@ public interface IMealHandleService {
 	 * 修改资费信息
 	 * @return 修改后的MealBean
 	 */
-	public MealBean updateMealBean(MealBean bean);
-	
+	public void updateMealBean(String name ,int id);
 	
 }

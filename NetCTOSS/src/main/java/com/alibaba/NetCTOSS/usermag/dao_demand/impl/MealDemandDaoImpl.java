@@ -2,10 +2,20 @@ package com.alibaba.NetCTOSS.usermag.dao_demand.impl;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
+
 import com.alibaba.NetCTOSS.beans.userAndBusBean.MealBean;
 import com.alibaba.NetCTOSS.usermag.dao_demand.IMealDemandDao;
-
+import com.alibaba.NetCTOSS.usermag.mapper_demand.MealMapper;
+@Repository
 public class MealDemandDaoImpl implements IMealDemandDao {
+	@Resource
+	private MealMapper mealMapper;
+	
+	
 	/**
 	 * 查询所有MealBean，好在页面进行分页
 	 * @return mealBean 集合
@@ -13,7 +23,8 @@ public class MealDemandDaoImpl implements IMealDemandDao {
 	@Override
 	public List<MealBean> findAllMealBean() {
 		// TODO Auto-generated method stub
-		return null;
+		
+		return mealMapper.findAllMealBean();
 	}
 	/**
 	 * 根据ID查询MealBean 
@@ -24,7 +35,8 @@ public class MealDemandDaoImpl implements IMealDemandDao {
 	@Override
 	public MealBean findByMealBeanId(int id) {
 		// TODO Auto-generated method stub
-		return null;
+	
+		return mealMapper.findByMealBeanId(id);
 	}
 
 }
