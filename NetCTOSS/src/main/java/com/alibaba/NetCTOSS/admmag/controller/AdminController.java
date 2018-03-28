@@ -6,13 +6,14 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.NetCTOSS.beans.admAndRoleBean.AdministratorBean;
+import com.alibaba.NetCTOSS.beans.admAndRoleBean.Messager;
 
-@Controller
+@RestController
 @RequestMapping("/admin")
 public class AdminController {
 	/**
@@ -23,13 +24,14 @@ public class AdminController {
 	 * @return
 	 */
 	@RequestMapping(value = "/login", method = { RequestMethod.POST }, produces = { "application/json" })
-	public String login(AdministratorBean admin, String code, HttpServletRequest request) {
-		
+	public Messager login(AdministratorBean admin, String code, HttpServletRequest request) {
 		Subject subject = SecurityUtils.getSubject();// 获取subject主体内容
 		UsernamePasswordToken token = new UsernamePasswordToken(admin.getLoginName(), admin.getPassword());
 		Session session = subject.getSession();
 		// 得到后台随机生成验证码的数字是多少
 		String CODE = (String) session.getAttribute("code");
+		
+		Messager msg = null;
 		try {
 			subject.login(token);
 			/*
@@ -39,16 +41,17 @@ public class AdminController {
 			 * session.setAttribute("info", "session的数据");
 			 */
 			if (!CODE.equals(code)) {
-				request.setAttribute("errorMsg", "验证码输入错误！");
-				return "login";
+				msg = new Messager(0, "验证码输入错误，请重新输入！");
+				return msg;
 			} else {
-				return "redirect:/static/html/index.html";
+				msg = new Messager(1, "登录成功！");
+				return msg;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("admin", admin);
-			request.setAttribute("errorMsg", "用户名或密码错误！");
-			return "login";
+			msg = new Messager(-1, "用户名或者密码错误，请重新输入！");
+			return msg;
 		}
 	}
 }

@@ -155,7 +155,6 @@
 	    <property name="filterChainDefinitions">  
 	        <value>  
 	             /login=anon
-				/admin*=authc
 				/student=roles[teacher]
 				/teacher=perms["user:create"]
 				/logout = logout

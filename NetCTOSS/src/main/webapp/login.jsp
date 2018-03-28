@@ -100,11 +100,18 @@
 			$.ajax({
 				type : "POST",
 				url : "admin/login",
-				async :false,
+				async :true,
 				data : data,
-				contentType : "application/x-www-form-urlencoded",
 				success : function(msg) {
-					$.messager.alert('提示',"${errorMsg}",'info'); 
+					if (msg.status == 1) {
+						$.messager.alert('提示',msg.information,'info',function(){
+							window.location.href="static/jsp/index.jsp"; 
+						}); 
+					}else if(msg.status == -1){
+						$.messager.alert('提示',msg.information,'info'); 
+					}else{
+						$.messager.alert('提示',msg.information,'info'); 
+					}
 				}
 			});
 		});
