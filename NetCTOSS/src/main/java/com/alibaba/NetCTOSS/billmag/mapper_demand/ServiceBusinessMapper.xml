@@ -18,7 +18,7 @@
 		<select id="findServiceBusByBean"  resultMap="beanMap">
 			select id ,f_os_account,f_server_id,f_start_time,f_end_timr ,f_online_time,acc_sf_moneyerver,f_tariff
 			 from t_server_account 
-			 where f_start_time &gt;= #{bean.f_start_time} and f_end_timr &lt; #{f_end_timr}
+			 where f_start_time &gt;= #{bean.startTime} 
 			
 		</select>
 		
