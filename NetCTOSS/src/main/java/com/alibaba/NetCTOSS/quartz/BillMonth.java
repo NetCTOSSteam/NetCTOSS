@@ -18,7 +18,7 @@ public class BillMonth implements Job {
 	@Override
 	public void execute(JobExecutionContext arg0) throws JobExecutionException {
 		// TODO Auto-generated method stub
-
+		System.err.println("运行月账单");
 	}
 
 }

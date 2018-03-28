@@ -20,7 +20,7 @@ public class BillDay implements Job {
 		// TODO Auto-generated method stub
 
 		
-		
+		System.out.println("运行日账单");
 		
 		
 	}
