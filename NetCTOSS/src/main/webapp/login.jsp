@@ -71,21 +71,26 @@
 		
 		$('#button1').click(function() {
 			var sele = $('#sele').val();
+			var seleStatus;
 			var data;
 			var loginName = $('#inp1').val();
 			var password = $('#inp2').val();
 			var code = $('#inp3').val();
-			data = {
+			/* data = {
 				loginName : loginName,
 				password : password,
 				code : code
-			};
+			}; */
 			if(sele=='管理员'){
 				$.ajax({
 					type : "POST",
 					url : "admin/login",
 					async :true,
-					data : data,
+					data : {
+						seleStatus : "admin",
+						loginName : loginName,
+						password : password,
+						code : code},
 					success : function(msg) {
 						if (msg.status == 1) {
 							$.messager.alert('提示',msg.information,'info',function(){
@@ -104,7 +109,11 @@
 					type : "POST",
 					url : "user/login",
 					async :true,
-					data : data,
+					data : {
+						seleStatus : "user",
+						loginName : loginName,
+						password : password,
+						code : code},
 					success : function(msg) {
 						if (msg.status == 1) {
 							$.messager.alert('提示',msg.information,'info',function(){

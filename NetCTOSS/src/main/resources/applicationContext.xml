@@ -134,20 +134,32 @@
 	</bean>
 
 	<!-- 配置shiro -->
-	<!-- 自定义Realm -->
-	<bean id="myRealm" class="com.alibaba.NetCTOSS.admmag.realm.MyRealm"/>  
-	<bean id="myUserRealm" class="com.alibaba.NetCTOSS.usermag.realm.MyUserRealm"/>  
 	
 	<!-- 安全管理器 -->
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">  
+		<property name="authenticator" ref="authenticator"></property>
   	 	 <property name="realms">  
 	        <list>  
-	            <ref bean="myRealm"/>  
-	            <ref bean="myUserRealm"/>  
+	            <ref bean="AdminRealm"/>  
+	            <ref bean="UserRealm"/>  
 	        </list>  
     	</property>    
 	</bean>  
-	
+	<!-- 配置使用自定义认证器，可以实现多Realm认证，并且可以指定特定Realm处理特定类型的验证 -->
+    <bean id="authenticator" class="com.alibaba.NetCTOSS.usermag.realm.CustomizedModularRealmAuthenticator">
+        <!-- 配置认证策略，只要有一个Realm认证成功即可，并且返回所有认证成功信息 -->
+        <property name="authenticationStrategy">
+            <bean class="org.apache.shiro.authc.pam.FirstSuccessfulStrategy"></bean>
+        </property>
+    </bean>
+    
+    <!-- 自定义Realm -->
+	<bean id="AdminRealm" class="com.alibaba.NetCTOSS.admmag.realm.AdminRealm">
+		<property name="cachingEnabled" value="false"></property>
+	</bean>  
+	<bean id="UserRealm" class="com.alibaba.NetCTOSS.usermag.realm.UserRealm">
+		<property name="cachingEnabled" value="false"></property>
+	</bean>  
 	<!-- Shiro过滤器 -->
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">  
 	    <!-- Shiro的核心安全接口,这个属性是必须的 -->  
@@ -170,6 +182,7 @@
 	        	/static/js/*=anon
 	        	/img/1=anon
 	             /admin/login=anon
+	             /user/login=anon
 				/**=authc
 				/logout = logout
 	        </value>  

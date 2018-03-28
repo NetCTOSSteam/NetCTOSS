@@ -14,13 +14,18 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 
+import com.alibaba.NetCTOSS.admmag.service_demand.IRoleDemandService;
+import com.alibaba.NetCTOSS.beans.admAndRoleBean.RoleBean;
 import com.alibaba.NetCTOSS.beans.userAndBusBean.UserBean;
 import com.alibaba.NetCTOSS.usermag.service_demand.IUserDemandService;
 
-public class MyUserRealm extends AuthorizingRealm {
+public class UserRealm extends AuthorizingRealm {
 
 	@Resource
 	private IUserDemandService userDemandServiceImpl;
+	
+	@Resource
+	private IRoleDemandService roleDemandServiceImpl;
 	/**
 	 * 为当限前登录的用户授予角色和权限
 	 */
@@ -29,11 +34,18 @@ public class MyUserRealm extends AuthorizingRealm {
 		// TODO Auto-generated method stub
 		SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
 
-		Set<String> permission = new HashSet<>();
+		String userName = (String) principal.getPrimaryPrincipal();
+		
+		RoleBean role = userDemandServiceImpl.getRole(userName);
 
-		permission.add("用户自服务系统");
+		String roleName = role.getRoleName();
 
-		authorizationInfo.setStringPermissions(permission);
+		Set<String> roles = new HashSet<>();
+
+		roles.add(roleName);
+
+		authorizationInfo.setRoles(roles);
+		authorizationInfo.setStringPermissions(roleDemandServiceImpl.getPermissions(roleName));
 		return authorizationInfo;
 	}
 
@@ -43,12 +55,13 @@ public class MyUserRealm extends AuthorizingRealm {
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 		// TODO Auto-generated method stub
-		String loginName = (String) token.getPrincipal();
-		String password = (String) token.getCredentials();
-		UserBean bean = new UserBean();
-		bean.setLoginName(loginName);
-		bean.setPassword(password);
-		UserBean user = userDemandServiceImpl.findByBean(bean);
+		
+		// 1. 把AuthenticationToken转换为CustomizedToken
+        CustomizedToken customizedToken = (CustomizedToken) token;
+		
+		String loginName = (String) customizedToken.getPrincipal();
+		
+		UserBean user = userDemandServiceImpl.findByLoginName(loginName);
 		if (user != null) {
 			AuthenticationInfo authcInfo = new SimpleAuthenticationInfo(user.getLoginName(), user.getPassword(),
 					getName());

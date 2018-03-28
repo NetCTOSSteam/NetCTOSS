@@ -40,7 +40,7 @@
 	                    <li><span>查看用户账单</span></li>
 	                </ul>
 	            </li>
-             </shiro:hasPermission>   
+             </shiro:hasPermission>  
              <shiro:hasPermission name="用户管理权限">  
 	            <li data-options="state:'closed'"><span>用户管理系统</span>
 	                <ul>

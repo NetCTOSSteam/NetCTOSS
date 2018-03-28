@@ -18,8 +18,9 @@ import com.alibaba.NetCTOSS.admmag.service_demand.IAdminDemandService;
 import com.alibaba.NetCTOSS.admmag.service_demand.IRoleDemandService;
 import com.alibaba.NetCTOSS.beans.admAndRoleBean.AdministratorBean;
 import com.alibaba.NetCTOSS.beans.admAndRoleBean.RoleBean;
+import com.alibaba.NetCTOSS.usermag.realm.CustomizedToken;
 
-public class MyRealm extends AuthorizingRealm {
+public class AdminRealm extends AuthorizingRealm {
 
 	@Resource
 	private IAdminDemandService adminDemandServiceImpl;
@@ -55,7 +56,11 @@ public class MyRealm extends AuthorizingRealm {
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 		// TODO Auto-generated method stub
-		String adminLoginName = (String) token.getPrincipal();
+		// 1. 把AuthenticationToken转换为CustomizedToken
+        CustomizedToken customizedToken = (CustomizedToken) token;
+		
+		String adminLoginName = (String) customizedToken.getPrincipal();
+		
 		AdministratorBean admin = adminDemandServiceImpl.findAdminByAdminLoginName(adminLoginName);
 		if (admin != null) {
 			AuthenticationInfo authcInfo = new SimpleAuthenticationInfo(admin.getLoginName(), admin.getPassword(),

@@ -3,7 +3,6 @@ package com.alibaba.NetCTOSS.usermag.controller;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,10 +11,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.NetCTOSS.beans.admAndRoleBean.Messager;
 import com.alibaba.NetCTOSS.beans.userAndBusBean.UserBean;
+import com.alibaba.NetCTOSS.usermag.realm.CustomizedToken;
+import com.alibaba.NetCTOSS.usermag.realm.LoginType;
 
-@RestController(value="UserController")
+@RestController
 @RequestMapping("/user")
 public class UserController {
+	
+	 private static final String USER_LOGIN_TYPE = LoginType.USER.toString();
 	/**
 	 * 用户账户登录
 	 * 
@@ -24,16 +27,17 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping(value = "/login", method = { RequestMethod.POST }, produces = { "application/json" })
-	public Messager login(UserBean user, String code, HttpServletRequest request) {
+	public Messager login(UserBean user, String code, String loginType,HttpServletRequest request) {
 		Subject subject = SecurityUtils.getSubject();// 获取subject主体内容
-		UsernamePasswordToken token = new UsernamePasswordToken(user.getLoginName(), user.getPassword());
+		CustomizedToken customizedToken = new CustomizedToken(user.getLoginName(), user.getPassword(), USER_LOGIN_TYPE);
+		//UsernamePasswordToken token = new UsernamePasswordToken();
 		Session session = subject.getSession();
 		// 得到后台随机生成验证码的数字是多少
 		String CODE = (String) session.getAttribute("code");
 
 		Messager msg = null;
 		try {
-			subject.login(token);
+			subject.login(customizedToken);
 			/*
 			 * System.out.println("sessionId:" +session.getId());
 			 * System.out.println("sessionHost:" + session.getHost());

@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.alibaba.NetCTOSS.beans.admAndRoleBean.RoleBean;
 import com.alibaba.NetCTOSS.beans.userAndBusBean.BusinessBean;
 import com.alibaba.NetCTOSS.beans.userAndBusBean.UserBean;
 import com.alibaba.NetCTOSS.usermag.dao_demand.IBusinessDemandDao;
@@ -51,5 +52,17 @@ public class UserDemandServiceImpl implements IUserDemandService {
 		
 		return set;
 		
+	}
+
+	@Override
+	public UserBean findByLoginName(String loginName) {
+		// TODO Auto-generated method stub
+		return iUserDemandDao.findByLoginName(loginName);
+	}
+
+	@Override
+	public RoleBean getRole(String userLoginName) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

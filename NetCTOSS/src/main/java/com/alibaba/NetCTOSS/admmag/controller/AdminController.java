@@ -6,7 +6,6 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,10 +16,14 @@ import com.alibaba.NetCTOSS.admmag.service_demand.IAdminDemandService;
 import com.alibaba.NetCTOSS.admmag.service_handle.IAdminHandleService;
 import com.alibaba.NetCTOSS.beans.admAndRoleBean.AdministratorBean;
 import com.alibaba.NetCTOSS.beans.admAndRoleBean.Messager;
+import com.alibaba.NetCTOSS.usermag.realm.CustomizedToken;
+import com.alibaba.NetCTOSS.usermag.realm.LoginType;
 
-@RestController
+@RestController(value="AdminController")
 @RequestMapping("/admin")
 public class AdminController {
+	
+	 private static final String ADMIN_LOGIN_TYPE = LoginType.ADMIN.toString();
 	
 	@Resource
 	private IAdminHandleService adminHandleServiceImpl;
@@ -37,16 +40,18 @@ public class AdminController {
 	 * @return
 	 */
 	@RequestMapping(value = "/login", method = { RequestMethod.POST }, produces = { "application/json" })
-	public Messager login(AdministratorBean admin, String code, HttpServletRequest request) {
+	public Messager login(AdministratorBean admin, String code, String loginType,HttpServletRequest request) {
 		Subject subject = SecurityUtils.getSubject();// 获取subject主体内容
-		UsernamePasswordToken token = new UsernamePasswordToken(admin.getLoginName(), admin.getPassword());
+		
+		CustomizedToken customizedToken = new CustomizedToken(admin.getLoginName(), admin.getPassword(), ADMIN_LOGIN_TYPE);
+		//UsernamePasswordToken token = new UsernamePasswordToken(admin.getLoginName(), admin.getPassword());
 		Session session = subject.getSession();
 		// 得到后台随机生成验证码的数字是多少
 		String CODE = (String) session.getAttribute("code");
 		
 		Messager msg = null;
 		try {
-			subject.login(token);
+			subject.login(customizedToken);
 			/*
 			 *  System.out.println("sessionId:"
 			 * +session.getId()); System.out.println("sessionHost:" + session.getHost());

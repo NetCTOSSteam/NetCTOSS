@@ -15,8 +15,8 @@
 			
 			<result property="qq" column="u_qq" javaType="String"/>
 			
-			<result property="password" column="pass_word" javaType="int"/>
-			<result property="loginName" column="login_name" javaType="int"/>
+			<result property="password" column="pass_word" javaType="string"/>
+			<result property="loginName" column="login_name" javaType="string"/>
 			
 			<result property="bo" column="u_bo" javaType="int"/>
 			
@@ -58,4 +58,15 @@
 				
 			</where>
 		</select>
+		
+		<select id="findByLoginName" resultMap="beanMap">
+			select * from t_user where login_name=#{loginName}
+		</select>
+		
+		<select id="getRole" resultMap="com.alibaba.NetCTOSS.admmag.mapper_demand.RoleMapper.roleMap">
+			SELECT role_name from t_role,t_user where t_role.role_id = t_user.user_role_id 
+			and t_user.login_name = #{userLoginName}			
+		</select>
+		
+		
 	</mapper>

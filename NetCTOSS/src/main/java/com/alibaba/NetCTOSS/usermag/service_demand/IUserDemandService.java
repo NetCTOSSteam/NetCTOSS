@@ -2,6 +2,7 @@ package com.alibaba.NetCTOSS.usermag.service_demand;
 
 import java.util.List;
 
+import com.alibaba.NetCTOSS.beans.admAndRoleBean.RoleBean;
 import com.alibaba.NetCTOSS.beans.userAndBusBean.UserBean;
 
 /**
@@ -24,5 +25,19 @@ public interface IUserDemandService {
 	 * @return
 	 */
 	public UserBean findByBean(UserBean bean);
+	
+	/**
+	 * 通过用户名查找用户对象
+	 * @param loginName
+	 * @return
+	 */
+	public UserBean findByLoginName(String loginName);
+	
+	/**
+	 * 通过用户登录名查找角色信息
+	 * @param adminLoginName
+	 * @return
+	 */
+	public RoleBean getRole(String userLoginName);
 	
 }
