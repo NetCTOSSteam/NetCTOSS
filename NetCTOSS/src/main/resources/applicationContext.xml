@@ -155,7 +155,13 @@
 	    <!-- Shiro连接约束配置,即过滤链的定义 -->  
 	    <property name="filterChainDefinitions">  
 	        <value>  
-	        	/static/**=anon
+	        	/static/css/*=anon
+	        	/static/easyui/**=anon
+	        	/static/echarts/**=anon
+	        	/static/html/**=anon
+	        	/static/img/*=anon
+	        	/static/jQuery-easyui/**=anon
+	        	/static/js/*=anon
 	        	/img/1=anon
 	             /admin/login=anon
 				/**=authc
