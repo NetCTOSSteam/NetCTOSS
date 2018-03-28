@@ -4,10 +4,12 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.stereotype.Repository;
+
 import com.alibaba.NetCTOSS.beans.billBean.MonthAndBusinessBean;
 import com.alibaba.NetCTOSS.billmag.dao_demand.IMonthBusinessDemandDao;
 import com.alibaba.NetCTOSS.billmag.mapper_demand.MonthBusinessMapper;
-
+@Repository
 public class MonthBusinessDemandDaoImpl implements IMonthBusinessDemandDao {
 
 	@Resource

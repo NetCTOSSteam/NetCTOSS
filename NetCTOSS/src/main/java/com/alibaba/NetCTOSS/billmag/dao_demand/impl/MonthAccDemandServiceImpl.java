@@ -4,10 +4,12 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.stereotype.Repository;
+
 import com.alibaba.NetCTOSS.beans.billBean.MonthAndAccountBean;
 import com.alibaba.NetCTOSS.billmag.mapper_demand.MonthAccMapper;
 import com.alibaba.NetCTOSS.billmag.service_demand.IMonthAccDemandService;
-
+@Repository
 public class MonthAccDemandServiceImpl implements IMonthAccDemandService {
 
 	@Resource
