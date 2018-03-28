@@ -97,7 +97,7 @@
         <!-- 指定Tirgger绑定的Job -->
         <property name="jobDetail" ref="yearJob"/>
         <!-- 指定Cron 的表达式 ，次年年的一月二日运行-->
-        <property name="cronExpression" value="59 59 11 1 0 ?" />
+        <property name="cronExpression" value="59 59 11 1 1 ?" />
     </bean>
 
 

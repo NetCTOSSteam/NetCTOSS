@@ -230,7 +230,6 @@
 			<value>true</value>
 		</property>
 	</bean>
-
 	<!-- base-package 主要完成自动扫描，扫描满足JPA规范的DAO接口 -->
 	<!-- entity-manager-factory-ref 再使用这个标签所对应的localEntityManagerFactoryBean，完成对上述接口实例化，并且注入Session -->
 	<jpa:repositories base-package="com.alibaba.NetCTOSS"
