@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.alibaba.NetCTOSS.logmag.mapper_demand.DoLogMapper">
+	
+	<!-- 在mybatis配置文件中，包装类型，直接可以使用基础数据类型替代，String也可以使用string来替代 -->
+	<resultMap type="DoLogBean" id="doLogMap">
+		<id property="id" column="do_id" javaType="int"/>
+		<result property="admName" column="do_name" javaType="string"/>
+		<result property="loginName" column="do_loginname" javaType="string"/>
+		<result property="place" column="do_place" javaType="string" />
+		<result property="IP" column="do_ip" javaType="string" />
+		<result property="data" column="do_data" javaType="string" />
+		<result property="action" column="do_action" javaType="int" />
+		<result property="time" column="do_time" javaType="date" />
+	</resultMap>
+	  
+	<insert id="saveDoLogBean">
+		insert into t_do_log(do_name,do_loginname,do_place,do_data,do_action,do_ip,do_time) values (#{log.do_name},#{log.do_loginname},#{log.do_place},#{log.do_data},#{log.do_action},#{log.do_ip}),#{log.do_time}
+	</insert>
+	
+	<select id="findAll" resultMap="doLogMap">
+		select * from t_do_log
+	</select>
+	
+	<select id="findDoLogsByParams" resultMap="doLogMap">
+		select
+		do_id,do_name,do_loginname,do_place,do_data,do_action,do_ip,do_time from t_do_log
+		<where>
+			<if test="params.admName != null">
+				and do_name like CONCAT(#{params.admName},'%')
+			</if>
+
+			<if test="params.loginName != null">
+				and do_loginname like CONCAT(#{params.loginName},'%') 
+			</if>
+			
+			<if test="params.IP != null">
+				and do_ip like CONCAT(#{params.IP},'%') 
+			</if>
+		</where>
+	</select>	
+
+</mapper>
