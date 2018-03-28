@@ -56,7 +56,7 @@
 	</select>
 	
 	<!-- 通过管理员账号查询该管理员的角色 -->
-	<select id="getRole" resultMap="adminMap">
+	<select id="getRole" resultMap="com.alibaba.NetCTOSS.admmag.mapper_demand.RoleMapper.roleMap">
 			SELECT * from t_role,t_adm where t_role.role_id = t_adm.adm_role_id 
 			and t_adm.login_name = #{adminLoginName}
 	</select>

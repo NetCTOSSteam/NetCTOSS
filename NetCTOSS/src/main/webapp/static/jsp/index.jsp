@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html;charset=utf-8" pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html;charset=utf-8" pageEncoding="utf-8" isELIgnored="false"%>
+<%@taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -22,7 +23,7 @@
 <div data-options="region:'north',border:false"
      style="height: 80px; background: white; padding: 10px; font-size: 25px">
     <img src="../img/timg.jpg" style="height: 50px"/>
-    <span style="font-size: 20px;color:red;font-family: 华文楷体">欢迎用户XXX登录</span>
+    <span style="font-size: 20px;color:red;font-family: 华文楷体">欢迎用户[<shiro:principal/>]登录</span>
    <span style="margin-left: 20px;font-size: 40px;font-family: 华文楷体"> 电信服务器NetCTOSS计费系统 </span>
     <span id="clock" style="font-size: 15px;font-family: 华文楷体;margin-top: 20px; float: right"></span>
     <a href="javascript:void(0)" onclick="addone()" style="font-size: 15px;text-decoration:none;color: #0052A3;font-family: 华文楷体;margin-left: 30px;">个人信息</a>
@@ -33,6 +34,9 @@
     <div style="margin: 0px;"></div>
     <div class="easyui-panel" style="width: 100%; height: 100%;">
         <ul id="tt"  class="easyui-tree">
+            <shiro:hasPermission name="*:前台用户管理权限">  
+		    	具有前台用户管理权限
+		    </shiro:hasPermission>   
             <li data-options="state:'closed'"><span>前台用户系统</span>
                 <ul>
                     <li><span>查看用户账单</span></li>

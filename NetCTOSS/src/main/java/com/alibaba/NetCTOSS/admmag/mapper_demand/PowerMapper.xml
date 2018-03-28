@@ -6,12 +6,6 @@
 		<id property="id" column="power_id" />
 		<result property="powerName" column="power_name" />
 		<result property="describe" column="power_describe" />
-		<collection property="roles" javaType="java.util.Set"
-			fetchType="lazy">
-			<id property="id" column="role_id" />
-			<result property="roleName" column="role_name" />
-			<result property="type" column="role_type" />
-			<result property="status" column="role_bo" />
-		</collection>
+		
 	</resultMap>
 </mapper>

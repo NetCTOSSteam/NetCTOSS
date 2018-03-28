@@ -19,16 +19,6 @@ public class RoleDemandServiceImpl implements IRoleDemandService {
 	
 	@Resource
 	private IAdminDemandDao adminDemandDaoImpl;
-	/**
-	 * 通过管理员登录名获取对应的角色
-	 * @param adminLoginName
-	 * @return
-	 */
-	@Override
-	public RoleBean findRoleByAdminLoginName(String adminLoginName) {
-		// TODO Auto-generated method stub
-		return adminDemandDaoImpl.getRole(adminLoginName);
-	}
 
 	/**
 	 * 通过角色名查询权限信息

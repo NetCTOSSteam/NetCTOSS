@@ -7,15 +7,15 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Repository;
 
 import com.alibaba.NetCTOSS.admmag.dao_demand.IRoleDemandDao;
-import com.alibaba.NetCTOSS.admmag.service_demand.IRoleDemandService;
+import com.alibaba.NetCTOSS.admmag.mapper_demand.RoleMapper;
 @Repository
 public class RoleDemandDaoImpl implements IRoleDemandDao {
 
 	@Resource
-	private IRoleDemandService roleDemandServiceImpl;
+	private RoleMapper roleMapper;
 	@Override
 	public Set<String> getPermissions(String roleName) {
 		// TODO Auto-generated method stub
-		return roleDemandServiceImpl.getPermissions(roleName);
+		return roleMapper.getPermissions(roleName);
 	}
 }

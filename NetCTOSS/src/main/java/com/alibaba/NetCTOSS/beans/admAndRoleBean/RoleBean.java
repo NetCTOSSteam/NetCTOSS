@@ -111,7 +111,6 @@ public class RoleBean implements Serializable {
 
 	@Override
 	public String toString() {
-		return "RoleBean [id=" + id + ", roleName=" + roleName + ", type=" + type + ", status=" + status + ", admins="
-				+ admins + ", powers=" + powers + "]";
+		return "RoleBean [id=" + id + ", roleName=" + roleName + ", type=" + type + ", status=" + status + ", powers=" + powers + "]";
 	}
 }

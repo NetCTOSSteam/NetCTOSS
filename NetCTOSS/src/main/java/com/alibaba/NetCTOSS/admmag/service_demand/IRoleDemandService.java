@@ -12,13 +12,6 @@ import com.alibaba.NetCTOSS.beans.admAndRoleBean.RoleBean;
 public interface IRoleDemandService {
 	
 	/**
-	 * 通过管理员登录名获取对应的角色
-	 * @param adminLoginName
-	 * @return
-	 */
-	public RoleBean findRoleByAdminLoginName(String adminLoginName);
-	
-	/**
 	 * 通过角色名查询权限信息
 	 * @param roleName
 	 * @return
