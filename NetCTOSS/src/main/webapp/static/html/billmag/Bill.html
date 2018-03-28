@@ -22,7 +22,21 @@
         <!-- 月查显示 -->
         <table id="table_noe" style="width: 779px;margin: 0 auto;line-height: 2;">
             <tr>
-                <td>身份证：</td>
+             	<td>账务账号：</td>
+                <td>
+                    <input id="acc" class="easyui-textbox" style="width:150px;height:32px">
+                </td>
+                <td>年：</td>
+                <td>
+                    <input id="c_year" style="height: 30px;width: 151px;" name="dept" value="2018-10">
+                </td>
+                <td>月：</td>
+                <td>
+                    <input id="c_month" style="height: 30px;width: 151px;" name="dept" value="2018-10">
+                </td>
+            </tr>
+            <tr>
+               	<td>身份证：</td>
                 <td>
                     <input id="id_card" class="easyui-textbox" style="width:150px;height:32px">
                 </td>
@@ -30,18 +44,8 @@
                 <td>
                     <input id="name" class="easyui-textbox" style="width:150px;height:32px">
                 </td>
-                <td rowspan="2">
+                <td>
                     <a id="query" href="Javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" style="width: 100px;height:32px">搜索</a>
-                </td>
-            </tr>
-            <tr>
-                <td>账务账号：</td>
-                <td>
-                    <input id="acc" class="easyui-textbox" style="width:150px;height:32px">
-                </td>
-                <td>年-月：</td>
-                <td>
-                    <input id="cc" style="height: 30px;width: 151px;" name="dept" value="2018-10">
                 </td>
             </tr>
         </table>

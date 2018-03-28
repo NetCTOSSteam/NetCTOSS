@@ -1,5 +1,8 @@
 package com.alibaba.NetCTOSS.admmag.controller;
 
+import java.util.List;
+
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.shiro.SecurityUtils;
@@ -10,12 +13,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.alibaba.NetCTOSS.admmag.service_demand.IAdminDemandService;
+import com.alibaba.NetCTOSS.admmag.service_handle.IAdminHandleService;
 import com.alibaba.NetCTOSS.beans.admAndRoleBean.AdministratorBean;
 import com.alibaba.NetCTOSS.beans.admAndRoleBean.Messager;
 
 @RestController
 @RequestMapping("/admin")
 public class AdminController {
+	
+	@Resource
+	private IAdminHandleService adminHandleServiceImpl;
+	
+	@Resource
+	private IAdminDemandService adminDemandServiceImpl;
+	
+	
 	/**
 	 * 用户登录
 	 * 
@@ -54,4 +67,67 @@ public class AdminController {
 			return msg;
 		}
 	}
+	
+	/**
+	 * 增加管理员对象
+	 * @param administratorBean
+	 * @return
+	 */
+	@RequestMapping(value = "/add", method = { RequestMethod.POST }, produces = { "application/json" })
+	public boolean addAdministratorBean(AdministratorBean administratorBean) {
+		try {
+			adminHandleServiceImpl.saveAdministratorBean(administratorBean);
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	/**
+	 * 修改管理员对象
+	 * @param administratorBean
+	 * @return
+	 */
+	@RequestMapping(value = "/update", method = { RequestMethod.PUT }, produces = { "application/json" })
+	public boolean updateAdministratorBean(AdministratorBean administratorBean) {
+		try {
+			adminHandleServiceImpl.updateAdministratorBean(administratorBean);
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	/**
+	 * 删除管理员  需要传入管理员信息
+	 * @param administratorBean
+	 * @return
+	 */
+	@RequestMapping(value = "/delete", method = { RequestMethod.DELETE }, produces = { "application/json" })
+	public boolean deleteAdministratorBean(AdministratorBean administratorBean) {
+		try {
+			adminHandleServiceImpl.deleteAdministratorBean(administratorBean);
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	/**
+	 * 跟据参数查询 管理员信息
+	 * @param administratorBean
+	 * @return
+	 */
+	@RequestMapping(value = "/{id}", method = { RequestMethod.GET }, produces = { "application/json" })
+	public List getAdministratorBeans(AdministratorBean administratorBean) {
+		List admins = adminDemandServiceImpl.findAllAdministratorBeansByParam(administratorBean);
+		return admins;
+	}
+	
 }

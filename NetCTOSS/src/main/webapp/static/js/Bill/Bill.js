@@ -107,7 +107,12 @@ $(function () {
         ]],
         toolbar:'#tb'
     });
-    $('#cc').combobox({
+    $('#c_year').combobox({
+        url:'',
+        valueField:'id',
+        textField:'text'
+    });
+    $('#c_month').combobox({
         url:'',
         valueField:'id',
         textField:'text'
