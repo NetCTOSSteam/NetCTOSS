@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.alibaba.NetCTOSS.admmag.mapper_demand.PowerMapper">
+	<resultMap type="PowerBean" id="powerMap">
+		<id property="id" column="power_id" />
+		<result property="powerName" column="power_name" />
+		<result property="describe" column="power_describe" />
+		<collection property="roles" javaType="java.util.Set"
+			fetchType="lazy">
+			<id property="id" column="role_id" />
+			<result property="roleName" column="role_name" />
+			<result property="type" column="role_type" />
+			<result property="status" column="role_bo" />
+		</collection>
+	</resultMap>
+</mapper>

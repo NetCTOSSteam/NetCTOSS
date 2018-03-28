@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-	<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.alibaba.NetCTOSS.admmag.mapper_demand.AdminMapper">
 
@@ -48,6 +48,17 @@
 		role.role_name 
 		from t_adm as adm,t_role as role
 		<include refid="adminParam"></include>
+	</select>
+	
+	<!-- 通过管理员账号查询是否存在 -->
+	<select id="findAdminByAdminLoginName" resultMap="adminMap">
+			SELECT * from t_adm WHERE login_name = #{adminLoginName}
+	</select>
+	
+	<!-- 通过管理员账号查询该管理员的角色 -->
+	<select id="getRole" resultMap="adminMap">
+			SELECT * from t_role,t_adm where t_role.role_id = t_adm.adm_role_id 
+			and t_adm.login_name = #{adminLoginName}
 	</select>
 	
 </mapper>
