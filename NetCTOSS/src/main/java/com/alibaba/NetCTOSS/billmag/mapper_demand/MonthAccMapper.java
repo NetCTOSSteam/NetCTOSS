@@ -2,6 +2,8 @@ package com.alibaba.NetCTOSS.billmag.mapper_demand;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.alibaba.NetCTOSS.beans.billBean.MonthAndAccountBean;
 
 public interface MonthAccMapper {
@@ -10,7 +12,7 @@ public interface MonthAccMapper {
 	 * @param bean
 	 * @return
 	 */
-	public List<MonthAndAccountBean> findLikeMonthAndAccountBean (MonthAndAccountBean bean);
+	public List<MonthAndAccountBean> findLikeMonthAndAccountBean (@Param("bean") MonthAndAccountBean bean);
 	
 	/**
 	 * 精确查询  可以有id

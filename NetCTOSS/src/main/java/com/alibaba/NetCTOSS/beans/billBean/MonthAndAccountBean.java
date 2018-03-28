@@ -59,6 +59,10 @@ public class MonthAndAccountBean implements Serializable {
 		@Column(name="account_status")
 		private int status;
 		
+		//身份证         account_IDcard
+		@Column(name="account_IDcard",length=20)
+		private String IDcard;
+		
 		public MonthAndAccountBean() {
 			// TODO Auto-generated constructor stub
 		}
@@ -126,10 +130,21 @@ public class MonthAndAccountBean implements Serializable {
 		public void setStatus(int status) {
 			this.status = status;
 		}
+		
+
+		public String getIDcard() {
+			return IDcard;
+		}
+
+		public void setIDcard(String iDcard) {
+			IDcard = iDcard;
+		}
 
 		@Override
 		public String toString() {
-			return "MonthAndBusinessBean [id=" + id + ", account=" + account + ", name=" + name + ", year=" + year
-					+ ", month=" + month + ", money=" + money + ", type=" + type + ", status=" + status + "]";
+			return "MonthAndAccountBean [id=" + id + ", account=" + account + ", name=" + name + ", year=" + year
+					+ ", month=" + month + ", money=" + money + ", type=" + type + ", status=" + status + ", IDcard="
+					+ IDcard + "]";
 		}
+		
 }
