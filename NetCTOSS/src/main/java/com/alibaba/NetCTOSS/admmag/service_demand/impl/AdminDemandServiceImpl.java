@@ -22,7 +22,7 @@ public class AdminDemandServiceImpl implements IAdminDemandService {
 	@Override
 	public AdministratorBean findAdminByAdminLoginName(String adminLoginName) {
 		// TODO Auto-generated method stub
-		return null;
+		return adminDemandDaoImpl.findAdminByAdminLoginName(adminLoginName);
 	}
 	
 	/**
@@ -33,7 +33,7 @@ public class AdminDemandServiceImpl implements IAdminDemandService {
 	@Override
 	public RoleBean getRole(String adminLoginName) {
 		// TODO Auto-generated method stub
-		return null;
+		return adminDemandDaoImpl.getRole(adminLoginName);
 	}
 	
 	@Override
