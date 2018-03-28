@@ -20,4 +20,7 @@ public interface MonthAccMapper {
 	 * @return
 	 */
 	public MonthAndAccountBean findByMonthAndAccountBean (MonthAndAccountBean bean);
+	
+	
+	
 }

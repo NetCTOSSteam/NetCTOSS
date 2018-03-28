@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 	<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.alibaba.NetCTOSS.billmag.mapper_demand.AccDayMapper">
+<mapper namespace="com.alibaba.NetCTOSS.billmag.mapper_demand.MonthAccMapper">
 
 	<sql id="params">
 		<where>
@@ -15,10 +15,10 @@
 				and account_name like concat(#{bean.name},%)
 			</if>
 			<if test="bean.year>0">
-			
+				and account_year = #{bean.year}
 			</if>
 			<if test="bean.month>0">
-			
+				and account_month = #{bean.month}
 			</if>
 		</where>
 	</sql>
@@ -35,8 +35,9 @@
 		<result property="IDcard" column="account_IDcard" />
 	</resultMap>
 
-
-	<select id="" resultMap="beanMap">
+	
+	<!-- 参数查询 -->
+	<select id="findLikeMonthAndAccountBean" resultMap="beanMap">
 		select 
 		account_acc,
 		account_name,
@@ -49,5 +50,16 @@
 		from t_month_account
 		<include refid="params"></include>
 	</select>
-
+	
+	<!-- 返回年 -->
+	<select id="" resultType="string">
+		select distinct account_year from t_month_account
+	</select>
+	
+	<!-- 返回月 -->
+	<select id="" resultType="string">
+		select distinct account_month from t_month_account
+	</select>
+	
+	
 </mapper>
