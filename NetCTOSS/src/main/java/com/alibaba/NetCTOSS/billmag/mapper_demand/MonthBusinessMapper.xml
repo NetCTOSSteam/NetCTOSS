@@ -3,18 +3,42 @@
 
 <mapper namespace="com.alibaba.NetCTOSS.billmag.mapper_demand.MonthBusinessMapper">
 
+	<sql id="params">
+		<where>
+			<if test="bean.businessAccount!=null">
+				business_account like concat(#{bean.businessAccount},%)
+			</if>
+			<if test="bean.server!=null">
+				and business_server_information = #{bean.server}
+			</if>
+			<if test="bean.tariff!=null">
+				and business_tariff = #{bean.tariff}
+			</if>
+		</where>
+	</sql>
+
 	<resultMap type="MonthAndBusinessBean" id="beanMap">
 		<id property="id" column="id" javaType="int" />
-		<result property="account" column="account_acc" />
-		<result property="name" column="account_name" />
-		<result property="year" column="account_year" />
-		<result property="month" column="account_month" />
-		<result property="money" column="account_money" />
-		<result property="type" column="account_type" />
-		<result property="status" column="account_status" />
+		<result property="businessAccount" column="business_account" />
+		<result property="year" column="business_year" />
+		<result property="month" column="business_month" />
+		<result property="money" column="business_all_money" />
+		<result property="tariff" column="business_tariff" />
+		<result property="server" column="business_server_information" />
 	</resultMap>
 	
 	
-	
+	<!-- 参数查询 -->
+	<select id="findLikeMonthAndBusinessBean" resultMap="beanMap">
+		select 
+		business_account,
+		business_year,
+		business_month,
+		business_all_money,
+		business_tariff,
+		business_server_information 
+		from t_month_business
+		<include refid="params"></include>
+	</select>
 	
 </mapper>

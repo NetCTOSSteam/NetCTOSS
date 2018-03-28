@@ -16,8 +16,10 @@ public interface IMonthAccHandleService {
 	 */
 	public void saveMonthAndAccountBean(MonthAndAccountBean bean);
 	
+	
+	
 	/**
-	 * 修改
+	 * 修改账单支付状态
 	 * @param bean
 	 */
 	public void updateMonthAndAccountBean(MonthAndAccountBean bean);

@@ -49,11 +49,11 @@ public class MonthAndBusinessBean implements Serializable {
 	
 	//资费套餐   business_tariff
 	@Column(name="business_tariff")
-	private double tariff;
+	private String tariff;
 	
 	//服务器信息   business_server_information
 	@Column(name="business_server_information")
-	private double server;
+	private String server;
 	
 	public MonthAndBusinessBean() {
 		// TODO Auto-generated constructor stub
@@ -99,19 +99,20 @@ public class MonthAndBusinessBean implements Serializable {
 		this.money = money;
 	}
 
-	public double getTariff() {
+
+	public String getTariff() {
 		return tariff;
 	}
 
-	public void setTariff(double tariff) {
+	public void setTariff(String tariff) {
 		this.tariff = tariff;
 	}
 
-	public double getServer() {
+	public String getServer() {
 		return server;
 	}
 
-	public void setServer(double server) {
+	public void setServer(String server) {
 		this.server = server;
 	}
 

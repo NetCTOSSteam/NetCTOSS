@@ -17,15 +17,19 @@ public interface IMonthAccDemandService {
 	 * @param bean
 	 * @return
 	 */
-	public List<MonthAndAccountBean> findLikeMonthAndAccountBean (MonthAndAccountBean bean);
+	List<MonthAndAccountBean> findLikeMonthAndAccountBean (MonthAndAccountBean bean);
+	
 	
 	/**
-	 * 精确查询  可以有id
-	 * @param bean
+	 * 得到排重后的  所有年  集合
 	 * @return
 	 */
-	public MonthAndAccountBean findByMonthAndAccountBean (MonthAndAccountBean bean);
+	List<Integer> getYear();
 	
-	
+	/**
+	 * 得到排重后的  所有月  集合
+	 * @return
+	 */
+	List<Integer> getMonth();
 	
 }

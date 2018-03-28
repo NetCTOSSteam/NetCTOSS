@@ -14,13 +14,7 @@ public interface MonthAccMapper {
 	 */
 	public List<MonthAndAccountBean> findLikeMonthAndAccountBean (@Param("bean") MonthAndAccountBean bean);
 	
-	/**
-	 * 精确查询  可以有id
-	 * @param bean
-	 * @return
-	 */
-	public MonthAndAccountBean findByMonthAndAccountBean (MonthAndAccountBean bean);
-	
+
 	/**
 	 * 得到排重后的年集合
 	 * @return 

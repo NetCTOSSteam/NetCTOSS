@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 import com.alibaba.NetCTOSS.beans.billBean.MonthAndAccountBean;
 import com.alibaba.NetCTOSS.billmag.mapper_demand.MonthAccMapper;
 import com.alibaba.NetCTOSS.billmag.service_demand.IMonthAccDemandService;
+
+
 @Repository
 public class MonthAccDemandServiceImpl implements IMonthAccDemandService {
 
@@ -19,11 +21,16 @@ public class MonthAccDemandServiceImpl implements IMonthAccDemandService {
 		// TODO Auto-generated method stub
 		return monthAccMapper.findLikeMonthAndAccountBean(bean);
 	}
-
 	@Override
-	public MonthAndAccountBean findByMonthAndAccountBean(MonthAndAccountBean bean) {
+	public List<Integer> getYear() {
 		// TODO Auto-generated method stub
-		return monthAccMapper.findByMonthAndAccountBean(bean);
+		return monthAccMapper.getYear();
 	}
+	@Override
+	public List<Integer> getMonth() {
+		// TODO Auto-generated method stub
+		return monthAccMapper.getMonth();
+	}
+
 
 }
