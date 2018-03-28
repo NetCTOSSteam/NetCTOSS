@@ -7,30 +7,36 @@
 	<sql id="adminParam">
 		<where>
 			adm.adm_bo = 1
-			<if test="adminName!=null">
+			<if test="administratorBean.adminName!=null">
 				and adm.adm_name like concat(#{administratorBean.adminName},%)
 			</if>
-			<if test="loginName!=null">
+			<if test="administratorBean.loginName!=null">
 				and adm.login_name like concat(#{administratorBean.loginName},%)
 			</if>
 		</where>
 	</sql>
 	
-	<resultMap type="AdministratorBean" id="AdministratorBeanMap">
+	<resultMap type="AdministratorBean" id="adminMap">
 		<id property="id" column="adm_id" />
 		<result property="adminName" column="adm_name" />
 		<result property="loginName" column="login_name" />
 		<result property="password" column="pass_word" />
 		<result property="telephone" column="adm_tel" />
 		<result property="email" column="adm_eml" />
-		<association property="role" javaType="RoleBean">
+		<association property="role" javaType="com.alibaba.NetCTOSS.beans.admAndRoleBean.RoleBean">
 			<id property="id" column="role_id"/>
 			<result property="roleName" column="role_name" />
+			<result property="type" column="role_name" />
+			<collection property="powers" javaType="java.util.Set">
+				<id property="id" column="power_id"/>
+				<result property="powerName" column="power_name" />
+				<result property="describe" column="power_describe" />
+			</collection>
 		</association>
 	</resultMap>
 	
 	<!-- 根据传入的参数   进行查询管理员集合  参数为管理员对象 cqs; -->
-	<select id="findAllAdministratorBeansByParam">
+	<select id="findAllAdministratorBeansByParam" resultMap="adminMap">
 		select 
 		adm.adm_id,
 		adm.adm_name,
