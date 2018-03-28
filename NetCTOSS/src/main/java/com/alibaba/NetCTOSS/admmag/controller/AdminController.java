@@ -30,7 +30,7 @@ public class AdminController {
 	
 	
 	/**
-	 * 用户登录
+	 * 管理员登录
 	 * 
 	 * @param admin
 	 * @param request
@@ -61,8 +61,6 @@ public class AdminController {
 				return msg;
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
-			request.setAttribute("admin", admin);
 			msg = new Messager(-1, "用户名或者密码错误，请重新输入！");
 			return msg;
 		}

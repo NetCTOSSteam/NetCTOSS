@@ -136,10 +136,16 @@
 	<!-- 配置shiro -->
 	<!-- 自定义Realm -->
 	<bean id="myRealm" class="com.alibaba.NetCTOSS.admmag.realm.MyRealm"/>  
+	<bean id="myUserRealm" class="com.alibaba.NetCTOSS.usermag.realm.MyUserRealm"/>  
 	
 	<!-- 安全管理器 -->
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">  
-  	 	 <property name="realm" ref="myRealm"/>  
+  	 	 <property name="realms">  
+	        <list>  
+	            <ref bean="myRealm"/>  
+	            <ref bean="myUserRealm"/>  
+	        </list>  
+    	</property>    
 	</bean>  
 	
 	<!-- Shiro过滤器 -->

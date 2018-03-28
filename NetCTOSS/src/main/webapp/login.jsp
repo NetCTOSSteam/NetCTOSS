@@ -62,7 +62,6 @@
 			var oimg = document.getElementById("img");
 			oimg.src = "img/1?" + Math.random();
 		}
-
 		
 		$('#button2').click(function () {
 			$('#inp1').val("");
@@ -72,48 +71,54 @@
 		
 		$('#button1').click(function() {
 			var sele = $('#sele').val();
-			var seleStatus;
 			var data;
-			if(sele=='管理员'){
-				seleStatus = 1;
-				console.info(seleStatus)
-				var userName = $('#inp1').val();
-				var password = $('#inp2').val();
-				var code = $('#inp3').val();
-				data = {
-					userName : userName,
-					password : password,
-					code : code
-				};
-			}else{
-				seleStatus = 0;
-				console.info(seleStatus)
-			}
-			var userName = $('#inp1').val();
+			var loginName = $('#inp1').val();
 			var password = $('#inp2').val();
 			var code = $('#inp3').val();
 			data = {
-				loginName : userName,
+				loginName : loginName,
 				password : password,
 				code : code
 			};
-			$.ajax({
-				type : "POST",
-				url : "admin/login",
-				async :true,
-				data : data,
-				success : function(msg) {
-					if (msg.status == 1) {
-						$.messager.alert('提示',msg.information,'info',function(){
-							window.location.href="static/jsp/index.jsp"; 
-						}); 
-					}else if(msg.status == -1){
-						$.messager.alert('提示',msg.information,'info'); 
-					}else{
-						$.messager.alert('提示',msg.information,'info'); 
+			if(sele=='管理员'){
+				$.ajax({
+					type : "POST",
+					url : "admin/login",
+					async :true,
+					data : data,
+					success : function(msg) {
+						if (msg.status == 1) {
+							$.messager.alert('提示',msg.information,'info',function(){
+								window.location.href="static/jsp/index.jsp"; 
+							}); 
+						}else if(msg.status == -1){
+							$.messager.alert('提示',msg.information,'info'); 
+						}else{
+							$.messager.alert('提示',msg.information,'info'); 
+						}
 					}
-				}
-			});
+				});
+				
+			}else{
+				$.ajax({
+					type : "POST",
+					url : "user/login",
+					async :true,
+					data : data,
+					success : function(msg) {
+						if (msg.status == 1) {
+							$.messager.alert('提示',msg.information,'info',function(){
+								window.location.href="static/jsp/index.jsp"; 
+							}); 
+						}else if(msg.status == -1){
+							$.messager.alert('提示',msg.information,'info'); 
+						}else{
+							$.messager.alert('提示',msg.information,'info'); 
+						}
+					}
+				});
+			}
+			
 		});
 	</script>
 	<div
