@@ -39,7 +39,7 @@
 				</if>
 				
 				<if test="bean.account != null">
-				and bus_name like COUNT(#{bean.busName},'%') 
+				and bus_name like CONCAT(#{bean.busName},'%') 
 				</if>
 				<if test="bean.mealBean != null">
 				and bus_mea_id = #{bean.mealBean.mealId}

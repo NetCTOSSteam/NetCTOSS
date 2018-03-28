@@ -24,10 +24,10 @@
 				</if>
 				
 				<if test="bean.account != null">
-				and acc_acc like COUNT(#{bean.account},'%') 
+				and acc_acc like CONCAT(#{bean.account},'%') 
 				</if>
 				<if test="bean.name != null">
-				and acc_name like COUNt(#{bean.name},'%')
+				and acc_name like CONCAT(#{bean.name},'%')
 				</if>
 				
 				

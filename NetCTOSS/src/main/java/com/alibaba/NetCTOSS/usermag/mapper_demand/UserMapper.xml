@@ -33,10 +33,10 @@
 				</if>
 				
 				<if test="bean.account != null">
-				and u_name like COUNT(#{bean.userName},'%') 
+				and u_name like CONCAT(#{bean.userName},'%') 
 				</if>
 				<if test="bean.name != null">
-				and login_name like COUNt(#{bean.loginName},'%')
+				and login_name like CONCAT(#{bean.loginName},'%')
 				</if>
 				
 			</where>
