@@ -5,10 +5,12 @@ import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 
 /**
- * 每月定时任务 当月最后一天的23：59：59触发 并保存为  日账务表
+ * 每月定时任务 次月第一天 触发 并保存为  月账务表
  * 
- * 月初当天的凌晨00：00：00开始包含
- * 下月第一天00：00：00开始不包含
+ * 添加月志  
+ * 将所有的 业务账户  的资费变为 下月的变为本月  并激活状态
+ * 
+ * 
  * 
  * @author Administrator
  *

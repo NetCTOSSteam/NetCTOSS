@@ -5,34 +5,62 @@
 		
 		<resultMap type="com.alibaba.NetCTOSS.beans.userAndBusBean.BusinessBean" id="beanMap">
 			<id property="id" column="bus_id" javaType="int"/>
-			<result property="busName" column="bus_name" javaType="string"/>
-			<result property="serverIP" column="bus_ip" javaType="string"/>
-			<result property="password" column="bus_password" javaType="string"/>
+			<result property="busName" column="t1.bus_name" javaType="string"/>
+			<result property="serverIP" column="t1.bus_ip" javaType="string"/>
+			<result property="password" column="t1.bus_password" javaType="string"/>
 			
-			<result property="state" column="bus_state" javaType="string"/>
-			<result property="startTime" column="bus_time" javaType="String"/>
-			<result property="bo" column="bus_bo" javaType="String"/>
+			<result property="state" column="t1.bus_state" javaType="string"/>
+			<result property="startTime" column="t1.bus_time" javaType="String"/>
+			<result property="bo" column="t1.bus_bo" javaType="String"/>
 			
 			<association property="UserBean" javaType="com.alibaba.NetCTOSS.beans.userAndBusBean.UserBean" >
 
-			    <id property="id" column=""></id>
-			    <result property="name" column="f_name" ></result>
+			    <id property="id" column="u_id"></id>
+			    <result property="userName" column="u_name" ></result>
+			    <result property="tel" column="u_tel" ></result>
+			    <result property="idCard" column="id_card" ></result>
+			    <result property="gender" column="u_gender" ></result>
+			    <result property="address" column="u_address" ></result>
+			    <result property="postcode" column="u_postcode" ></result>
+			    <result property="qq" column="u_qq" ></result>
+			    <result property="loginName" column="login_name" ></result>
+			    <result property="password" column="pass_word" ></result>
+			    <result property="bo" column="u_bo" ></result>
 			
 			</association>
 			
 			<association property="MealBean" javaType="com.alibaba.NetCTOSS.beans.userAndBusBean.MealBean" >
 
-			    <id property="id" column=""></id>
-			    <result property="name" column="f_name" ></result>
+			    <id property="mealId" column="mea_id" ></id>
+			    <result property="mealName" column="mea_name" ></result>
+			    <result property="mealTime" column="mea_time" ></result>
+			    <result property="mealType" column="mea_type" ></result>
+			    <result property="mealBasicMoney" column="mea_basic_money" ></result>
+			    <result property="mealMoney" column="mea_money" ></result>
+			    <result property="mealDescribe" column="mea_describe" ></result>
+			    <result property="mealStatus" column="mea_status" ></result>
+			    <result property="mealStartTime" column="mea_start_time" ></result>
 			
 			</association>
 		</resultMap>
 		
 		<!-- UserBean MealBean  -->
 		<select id="findLikeByBean"  resultMap="beanMap">
-			select bus_id ,bus_name,bus_ip,bus_password,bus_state ,
-			bus_time,bus_bo
-			 from t_business 
+			select t1.bus_id ,t1.bus_name,t1.bus_ip,
+			t1.bus_password,t1.bus_state ,t1.bus_time,t1.bus_bo,
+			
+			t2.mea_id,t2.mea_name,t2.mea_type,t2.mea_time,t2.mea_basic_money,
+			t2.mea_money,t2.mea_describe,t2.mea_status,
+			
+			t3.u_id,t3.u_name,t3.u_tel,t3.id_card,t3.u_gender,t3.u_address,t3.u_postcode,
+			t3.u_qq,t3.login_name,t3.pass_word,t3.u_bo
+			
+			 from t_business as t1 
+			 left join 
+			 t_meal as t2 on t1.bus_mea_id = t2.mea_id
+			 left join t_user as t3 on t1.bus_u_id = t3.u_id
+			 
+			   
 			<where>
 				<if test="1 == 1">
 				and bus_bo = 1
@@ -45,20 +73,31 @@
 				and bus_mea_id = #{bean.mealBean.mealId}
 				</if>
 				
+				
 			</where>
 		</select>
 		
 		<select id="findByBean"  resultMap="beanMap">
-			select bus_id ,bus_name,bus_ip,bus_password,bus_state ,
-			bus_time,bus_bo
-			 from t_business 
+			select t1.bus_id ,t1.bus_name,t1.bus_ip,
+			t1.bus_password,t1.bus_state ,t1.bus_time,t1.bus_bo,
+			
+			t2.mea_id,t2.mea_name,t2.mea_type,t2.mea_time,t2.mea_basic_money,
+			t2.mea_money,t2.mea_describe,t2.mea_status,
+			
+			t3.u_id,t3.u_name,t3.u_tel,t3.id_card,t3.u_gender,t3.u_address,t3.u_postcode,
+			t3.u_qq,t3.login_name,t3.pass_word,t3.u_bo
+			
+			 from t_business as t1 
+			 left join 
+			 t_meal as t2 on t1.bus_mea_id = t2.mea_id
+			 left join t_user as t3 on t1.bus_u_id = t3.u_id
 			<where>
 				<if test="1 == 1">
-				and bus_bo = 1
+				and t1.bus_bo = 1
 				</if>
 				
-				<if test="bean.account != null">
-				and id like #{bean.id} 
+				<if test="bean.id != null">
+				and t1.bus_id = #{bean.id} 
 				</if>
 			</where>
 		</select>
@@ -69,11 +108,14 @@
 			 from t_account_day 
 			<where>
 				<if test="1 == 1">
-				and bus_bo = 1
+				and t1.bus_bo = 1
 				</if>
 				
 				<if test="1 == 1">
-				and bus_u_id like #{bean.id} 
+				and t1.bus_u_id like #{bean.id} 
+				</if>
+				<if test="bean.serverIP != null">
+				and t1.bus_ip = #{bean.serverIP}
 				</if>
 			</where>
 		</select>

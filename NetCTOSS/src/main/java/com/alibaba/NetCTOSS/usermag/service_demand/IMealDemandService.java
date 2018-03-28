@@ -11,6 +11,7 @@ import com.alibaba.NetCTOSS.beans.userAndBusBean.MealBean;
  *
  */
 public interface IMealDemandService {
+	
 	/**
 	 * 查询所有MealBean，好在页面进行分页
 	 * @return mealBean 集合

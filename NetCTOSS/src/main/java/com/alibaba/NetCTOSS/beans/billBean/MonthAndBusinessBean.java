@@ -55,6 +55,18 @@ public class MonthAndBusinessBean implements Serializable {
 	@Column(name="business_server_information")
 	private String server;
 	
+	@Column(name="business_nowtime")
+	//现在共用时间
+	private Long nowTime;
+	
+	public Long getNowTime() {
+		return nowTime;
+	}
+
+	public void setNowTime(Long nowTime) {
+		this.nowTime = nowTime;
+	}
+
 	public MonthAndBusinessBean() {
 		// TODO Auto-generated constructor stub
 	}
