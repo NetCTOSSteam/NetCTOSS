@@ -100,7 +100,7 @@
 			$.ajax({
 				type : "POST",
 				url : "admin/login",
-				async :true,
+				async :false,
 				data : data,
 				contentType : "application/x-www-form-urlencoded",
 				success : function(msg) {
