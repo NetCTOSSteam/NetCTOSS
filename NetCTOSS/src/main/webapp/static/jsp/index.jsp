@@ -27,65 +27,80 @@
    <span style="margin-left: 20px;font-size: 40px;font-family: 华文楷体"> 电信服务器NetCTOSS计费系统 </span>
     <span id="clock" style="font-size: 15px;font-family: 华文楷体;margin-top: 20px; float: right"></span>
     <a href="javascript:void(0)" onclick="addone()" style="font-size: 15px;text-decoration:none;color: #0052A3;font-family: 华文楷体;margin-left: 30px;">个人信息</a>
-    <a href="#" style="font-size: 15px;text-decoration:none;color: #0052A3; font-family: 华文楷体;">退出</a>
+    <a href="logout" style="font-size: 15px;text-decoration:none;color: #0052A3; font-family: 华文楷体;">退出</a>
 </div>
 <div data-options="region:'west',split:true,title:'菜单项'"
      style="width: 200px; height: 100%; padding: 0px;">
     <div style="margin: 0px;"></div>
     <div class="easyui-panel" style="width: 100%; height: 100%;">
         <ul id="tt"  class="easyui-tree">
-            <shiro:hasPermission name="*:前台用户管理权限">  
-		    	具有前台用户管理权限
-		    </shiro:hasPermission>   
-            <li data-options="state:'closed'"><span>前台用户系统</span>
-                <ul>
-                    <li><span>查看用户账单</span></li>
-                </ul>
-            </li>
-            <li data-options="state:'closed'"><span>用户管理系统</span>
-                <ul>
-                    <li><span>账务账号管理</span></li>
-                    <li><span>业务账号管理</span></li>
-                </ul>
-            </li>
-            <li data-options="state:'closed'"><span>管理员管理系统</span>
-                <ul>
-                    <li><span>管理员管理</span></li>
-                </ul>
-            </li>
-            <li data-options="state:'closed'"><span>资费管理系统</span>
-                <ul>
-                    <li><span>资费管理</span></li>
-                </ul>
-            </li>
-            <li data-options="state:'closed'"><span>账单查询系统</span>
-                <ul>
-                    <li><span>账单查询</span></li>
-                </ul>
-            </li>
-            <li data-options="state:'closed'"><span>账务查询系统</span>
-                <ul>
-                    <li><span>查询</span></li>
-                </ul>
-            </li>
-            <li data-options="state:'closed'"><span>权限管理系统</span>
-                <ul>
-                    <li><span>角色管理</span></li>
-                    <li><span>权限管理</span></li>
-                </ul>
-            </li>
-            <li data-options="state:'closed'"><span>前台日志系统</span>
-                <ul>
-                    <li><span>登录服务日志</span></li>
-                    <li><span>操作日志</span></li>
-                </ul>
-            </li>
-            <li data-options="state:'closed'"><span>报表查询系统</span>
-                <ul>
-                    <li><span>账务账单报表查询</span></li>
-                    <li><span>业务账单报表查询</span></li>
-                </ul>
-            </li>
+            <shiro:hasPermission name="前台用户查看权限">  
+	            <li data-options="state:'closed'"><span>前台用户系统</span>
+	                <ul>
+	                    <li><span>查看用户账单</span></li>
+	                </ul>
+	            </li>
+             </shiro:hasPermission>   
+             <shiro:hasPermission name="用户管理权限">  
+	            <li data-options="state:'closed'"><span>用户管理系统</span>
+	                <ul>
+	                    <li><span>账务账号管理</span></li>
+	                    <li><span>业务账号管理</span></li>
+	                </ul>
+	            </li>
+	          </shiro:hasPermission>   
+	          <shiro:hasPermission name="管理员管理权限">  
+	            <li data-options="state:'closed'"><span>管理员管理系统</span>
+	                <ul>
+	                    <li><span>管理员管理</span></li>
+	                </ul>
+	            </li>
+	            </shiro:hasPermission> 
+	             <shiro:hasPermission name="资费管理权限">  
+		            <li data-options="state:'closed'"><span>资费管理系统</span>
+		                <ul>
+		                    <li><span>资费管理</span></li>
+		                </ul>
+		            </li>
+		          </shiro:hasPermission>
+		          <shiro:hasPermission name="账单查询权限">  
+		            <li data-options="state:'closed'"><span>账单查询系统</span>
+		                <ul>
+		                    <li><span>账单查询</span></li>
+		                </ul>
+		            </li>
+		           </shiro:hasPermission>
+		           <shiro:hasPermission name="账务查询权限"> 
+			            <li data-options="state:'closed'"><span>账务查询系统</span>
+			                <ul>
+			                    <li><span>查询</span></li>
+			                </ul>
+			            </li>
+			        </shiro:hasPermission>
+			         <shiro:hasPermission name="权限管理权限"> 
+			            <li data-options="state:'closed'"><span>权限管理系统</span>
+			                <ul>
+			                    <li><span>角色管理</span></li>
+			                    <li><span>权限管理</span></li>
+			                </ul>
+			            </li>
+			          </shiro:hasPermission>
+			          <shiro:hasPermission name="日志管理权限"> 
+			            <li data-options="state:'closed'"><span>前台日志系统</span>
+			                <ul>
+			                    <li><span>登录服务日志</span></li>
+			                    <li><span>操作日志</span></li>
+			                </ul>
+			            </li>
+             		</shiro:hasPermission>
+            <shiro:hasPermission name="报表查询"> 
+	            <li data-options="state:'closed'"><span>报表查询系统</span>
+	                <ul>
+	                    <li><span>账务账单报表查询</span></li>
+	                    <li><span>业务账单报表查询</span></li>
+	                </ul>
+	            </li>
+            </shiro:hasPermission>
         </ul>
     </div>
 </div>

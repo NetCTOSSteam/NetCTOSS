@@ -155,9 +155,10 @@
 	    <!-- Shiro连接约束配置,即过滤链的定义 -->  
 	    <property name="filterChainDefinitions">  
 	        <value>  
-	             /login=anon
-				/student=roles[teacher]
-				/teacher=perms["user:create"]
+	        	/static/**=anon
+	        	/img/1=anon
+	             /admin/login=anon
+				/**=authc
 				/logout = logout
 	        </value>  
 	    </property>

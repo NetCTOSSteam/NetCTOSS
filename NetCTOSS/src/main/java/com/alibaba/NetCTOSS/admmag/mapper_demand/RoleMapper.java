@@ -4,11 +4,13 @@ import java.util.Set;
 
 import org.springframework.data.repository.query.Param;
 
+import com.alibaba.NetCTOSS.beans.admAndRoleBean.PowerBean;
+
 public interface RoleMapper {
 	/**
 	 * 通过角色名查询权限信息
 	 * @param roleName
 	 * @return
 	 */
-	public Set<String> getPermissions(@Param("roleName")String roleName);
+	public Set<PowerBean> getPermissions(@Param("roleName")String roleName);
 }
