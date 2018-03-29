@@ -68,5 +68,14 @@
 		</where>
 		</if>
 	</sql>
-	
+	<select id="findByServerMothAndBusinessBean"  resultMap="beanMap">
+		select 
+		business_account,
+		business_year,
+		business_month,
+		business_all_money,
+		business_tariff,
+		business_server_information 
+		from t_month_business where account_acc = #{"account"};
+	</select>
 </mapper>

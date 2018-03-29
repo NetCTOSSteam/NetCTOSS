@@ -20,4 +20,13 @@ public interface MonthBusinessMapper {
 	 * @return
 	 */
 	public MonthAndBusinessBean findByMonthAndBusinessBean(MonthAndBusinessBean bean);
+	
+	
+	/**
+	 * 根据账务账号查询说有业务信息的方法
+	 * @param account_acc 账务账号
+	 * @return 返回该账务账号下使用的所有业务集合
+	 */
+	public List<MonthAndBusinessBean> findByServerMothAndBusinessBean(@Param("account") String account_acc);
+	
 }
