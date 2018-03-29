@@ -1,5 +1,6 @@
 package com.alibaba.NetCTOSS.admmag.dao_demand.impl;
 
+import java.util.Map;
 import java.util.Set;
 
 import javax.annotation.Resource;
@@ -18,6 +19,11 @@ public class PowerDemandDaoImpl implements IPowerDemandDao {
 	public Set<PowerBean> findAllPowers() {
 		// TODO Auto-generated method stub
 		return powerMapper.findAllPowers();
+	}
+	@Override
+	public Set<PowerBean> findPowersByCondition(Map<String, String> param) {
+		// TODO Auto-generated method stub
+		return powerMapper.findPowersByCondition(param);
 	}
 
 	
