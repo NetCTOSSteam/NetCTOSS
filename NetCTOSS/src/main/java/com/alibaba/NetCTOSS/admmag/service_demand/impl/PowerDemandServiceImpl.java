@@ -1,5 +1,6 @@
 package com.alibaba.NetCTOSS.admmag.service_demand.impl;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -21,7 +22,7 @@ public class PowerDemandServiceImpl implements IPowerDemandService {
 		return powerDemandDao.findAllPowers();
 	}
 	@Override
-	public Set<PowerBean> findPowersByCondition(Map<String, String> param) {
+	public List<PowerBean> findPowersByCondition(Map<String, String> param) {
 		// TODO Auto-generated method stub
 		return powerDemandDao.findPowersByCondition(param);
 	}

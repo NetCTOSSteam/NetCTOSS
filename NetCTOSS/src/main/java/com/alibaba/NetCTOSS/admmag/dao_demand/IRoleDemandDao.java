@@ -1,5 +1,6 @@
 package com.alibaba.NetCTOSS.admmag.dao_demand;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -24,7 +25,7 @@ public interface IRoleDemandDao {
 	 * 查询所有角色信息
 	 * @return
 	 */
-	public Set<RoleBean> findAllRoles();
+	public List<RoleBean> findAllRoles();
 	
 	/**
 	 * 按照条件查询
@@ -32,6 +33,6 @@ public interface IRoleDemandDao {
 	 * @param rolePermission角色的权限
 	 * @return
 	 */
-	public Set<RoleBean> findRolesByCondition(Map<String, String> param);
+	public List<RoleBean> findRolesByCondition(Map<String, String> param);
 	
 }

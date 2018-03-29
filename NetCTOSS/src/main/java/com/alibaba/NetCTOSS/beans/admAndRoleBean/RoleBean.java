@@ -1,6 +1,7 @@
 package com.alibaba.NetCTOSS.beans.admAndRoleBean;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -56,7 +57,7 @@ public class RoleBean implements Serializable {
 	@JoinTable(name="t_role_power",
 	joinColumns=@JoinColumn(name="rp_role_id"),
 	inverseJoinColumns=@JoinColumn(name="rp_power_id"))
-	private Set<PowerBean> powers;//一个角色对应多个权限，一个权限被多个角色拥有
+	private List<PowerBean> powers;//一个角色对应多个权限，一个权限被多个角色拥有
 	public RoleBean() {
 		// TODO Auto-generated constructor stub
 	}
@@ -93,11 +94,11 @@ public class RoleBean implements Serializable {
 		this.status = status;
 	}
 
-	public Set<PowerBean> getPowers() {
+	public List<PowerBean> getPowers() {
 		return powers;
 	}
 
-	public void setPowers(Set<PowerBean> powers) {
+	public void setPowers(List<PowerBean> powers) {
 		this.powers = powers;
 	}
 

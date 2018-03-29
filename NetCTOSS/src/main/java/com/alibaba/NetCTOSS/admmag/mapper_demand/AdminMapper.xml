@@ -27,7 +27,7 @@
 			<id property="id" column="role_id"/>
 			<result property="roleName" column="role_name" />
 			<result property="type" column="role_name" />
-			<collection property="powers" javaType="java.util.Set">
+			<collection property="powers" javaType="java.util.List">
 				<id property="id" column="power_id"/>
 				<result property="powerName" column="power_name" />
 				<result property="describe" column="power_describe" />

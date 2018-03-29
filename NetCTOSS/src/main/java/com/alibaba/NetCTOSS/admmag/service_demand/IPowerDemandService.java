@@ -1,5 +1,6 @@
 package com.alibaba.NetCTOSS.admmag.service_demand;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -24,5 +25,5 @@ public interface IPowerDemandService {
 	 * @param param
 	 * @return
 	 */
-	public Set<PowerBean> findPowersByCondition(Map<String, String> param);
+	public List<PowerBean> findPowersByCondition(Map<String, String> param);
 }

@@ -1,5 +1,6 @@
 package com.alibaba.NetCTOSS.admmag.service_demand.impl;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -33,13 +34,13 @@ public class RoleDemandServiceImpl implements IRoleDemandService {
 	}
 
 	@Override
-	public Set<RoleBean> findAllRoles() {
+	public List<RoleBean> findAllRoles() {
 		// TODO Auto-generated method stub
 		return roleDemandDaoImpl.findAllRoles();
 	}
 
 	@Override
-	public Set<RoleBean> findRolesByCondition(Map<String, String> param) {
+	public List<RoleBean> findRolesByCondition(Map<String, String> param) {
 		// TODO Auto-generated method stub
 		return roleDemandDaoImpl.findRolesByCondition(param);
 	}

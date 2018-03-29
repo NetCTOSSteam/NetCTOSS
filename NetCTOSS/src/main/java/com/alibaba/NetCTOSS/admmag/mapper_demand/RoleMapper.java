@@ -1,5 +1,6 @@
 package com.alibaba.NetCTOSS.admmag.mapper_demand;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -20,7 +21,7 @@ public interface RoleMapper {
 	 * 查询所有角色信息
 	 * @return
 	 */
-	public Set<RoleBean> findAllRoles();
+	public List<RoleBean> findAllRoles();
 	
 	/**
 	 * 按照条件查询
@@ -28,5 +29,5 @@ public interface RoleMapper {
 	 * @param rolePermission角色的权限
 	 * @return
 	 */
-	public Set<RoleBean> findRolesByCondition(@Param("param")Map<String, String> param);
+	public List<RoleBean> findRolesByCondition(@Param("param")Map<String, String> param);
 }

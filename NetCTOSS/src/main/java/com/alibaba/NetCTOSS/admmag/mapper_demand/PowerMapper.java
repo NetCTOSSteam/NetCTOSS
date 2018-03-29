@@ -1,5 +1,6 @@
 package com.alibaba.NetCTOSS.admmag.mapper_demand;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -19,5 +20,5 @@ public interface PowerMapper {
 	 * @param param
 	 * @return
 	 */
-	public Set<PowerBean> findPowersByCondition(@Param("param")Map<String, String> param);
+	public List<PowerBean> findPowersByCondition(@Param("param")Map<String, String> param);
 }

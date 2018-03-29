@@ -1,68 +1,70 @@
 $(function(){
     // 默认数据列表的显示
     $('#tt').datagrid({
-        url:"customs/page",
+        url:"/NetCTOSS/role/findAllRoles",
         method:"GET",
         queryParams:queryParams()
     });
-
-    //查询参数的封装
+    // 查询参数的封装
     function queryParams(){
 
-        var customName = $('#customName').val();
-        var loginName = $('#loginName').val();
-        var password = $('#password').val();
-        var gender = $('#gender').val();
-        var birthday = $('#birthday').val();
-        var createTime = $('#createTime').val();
-
+        var roleName = $('#roleName').val();
+        var type = $('#type').val();
+        var str="";
+        $("input[name=items]:checkbox:checked").each(function(){
+            str = str + $(this).val() + ",";
+        });
         var data = {
-            customName:customName,
-            loginName:loginName,
-            password:password,
-            gender:gender,
-            birthday:birthday,
-            createTime:createTime
+        	roleName:roleName,
+        	type:type,
+        	permission:str
         };
 
         return data;
     }
-    //条件查询功能
+    
+    
+    // 条件查询功能
     $('#query').click(function(){
 
         $('#tt').datagrid('reload',queryParams());
 
     });
-
     $('#add').click(function(){
 
         $('#add_dialog').dialog('open');
-
+        
+        $.ajax({
+        	   type: "GET",
+        	   url: "power/findAllPowers",
+        	   success: function(result){
+        		   for(var i=0; i < result.length; i++ ){
+        	            $("#permission").append(
+        	                "<label>" 
+        	                    + "<input name='items' type='checkbox' value=" 
+        	                        + result[i].powerName
+        	                    + ">"
+        	                        + result[i].powerName
+        	                +"</label>" + "&nbsp;&nbsp;"
+        	            );
+        	            
+        	          //一个汉字占两个字符
+        	            if(result[i].powerName.length == 2){
+        	                $("#permission").append("&nbsp;&nbsp;");
+        	            }
+        	            //每三个进行换行
+        	            if( (i+1) % 3 == 0){
+        	                $("#permission").append("<br>");
+        	            }
+        	        }
+        	   }
+        	});
     });
-
-    function queryParamsToSave(){
-        var customName = $('#c_customName').val();
-        var loginName = $('#c_loginName').val();
-        var password = $('#c_password').val();
-        var gender = $('#c_gender').val();
-        var birthday = $('#c_birthday').val();
-        var createTime = new Date();
-        var data = {
-            customName:customName,
-            loginName:loginName,
-            password:password,
-            gender:gender,
-            birthday:birthday,
-            createTime:createTime
-        };
-        return data;
-    }
-    //新增
-    $('#save_users').click(function(){
-        console.info("进来了");
-        var url = "customs/save";
-        console.info(queryParamsToSave());
-        $('#add_custom_form').form('submit', {
+    
+    // 新增
+    $('#save_roles').click(function(){
+        var url = "role/save";
+        $('#add_form').form('submit', {
             type:"POST",
             url:url,
             onSubmit: function(){
@@ -71,34 +73,59 @@ $(function(){
                 return true;
             },
             success:function(data){
-                var data = eval('(' + data + ')');
-                if(data.status){
-                    $('#add_users_dialog').dialog('close');
+                if(data.status==1){
+                    $('#add_dialog').dialog('close');
+                    $.messager.alert({
+    					title : '消息提示',
+    					msg : data.information,
+    					timeout : 5000,
+    					showType : 'slide'
+    				});
                 }
-
                 $('#tt').datagrid('reload',queryParams());
             }
-
         });
-        console.info("111111222");
     });
-    //修改
+    // 修改
     $('#edit').click(function(){
         var rows = $('#tt').datagrid('getSelections');
-        var row = $('#tt').datagrid('getSelected')//返回的第1行记录
-        if(row){//如果选中了数据，就进入if语句
+        var row = $('#tt').datagrid('getSelected')// 返回的第1行记录
+        
+        if(row){// 如果选中了数据，就进入if语句
             var lenth = rows.length;
             if(lenth == 1){
-                $('#update_dialog').dialog('open');//打开修改窗体
-                $('#c_id').attr('value',row.id);
-                $('#c_version').attr('value',row.version);
-                $('#c_password').attr('value',row.password);
-                $('#c_customName').attr('value',row.customName);
-                $('#c_loginName').attr('value',row.loginName);
-                $('#c_gender').combobox('select', row.gender);
-                var text = dateformatter(new Date(row.birthday));
-                $('#c_birthday').datebox('setValue',text);
-                $('#update_user').form('validate');
+                $('#update_dialog').dialog('open');// 打开修改窗体
+                
+                $.ajax({
+             	   type: "GET",
+             	   url: "power/findAllPowers",
+             	   success: function(result){
+             		   for(var i=0; i < result.length; i++ ){
+             	            $("#permission1").append(
+             	                "<label>" 
+             	                    + "<input name='items' type='checkbox' value=" 
+             	                        + result[i].powerName
+             	                    + ">"
+             	                        + result[i].powerName
+             	                +"</label>" + "&nbsp;&nbsp;"
+             	            );
+             	            
+             	          //一个汉字占两个字符
+             	            if(result[i].powerName.length == 2){
+             	                $("#permission1").append("&nbsp;&nbsp;");
+             	            }
+             	            //每三个进行换行
+             	            if( (i+1) % 3 == 0){
+             	                $("#permission1").append("<br>");
+             	            }
+             	        }
+             	   }
+             	});
+                
+				$('#roleName1').attr('value', row.roleName);
+				$('#type1').attr('value', row.type);
+				
+				$('#update_customer').form('validate');
             }else{
                 $.messager.show({
                     title:'消息提示',
@@ -116,11 +143,11 @@ $(function(){
             });
         }
     });
-    //修改保存
-    $('#update_users').click(function(){
+    // 修改保存
+    $('#update_role_bb').click(function(){
         var row = $('#tt').datagrid('getSelected')
-        var url = "customs/"+row.id;
-        $('#update_custom').form('submit', {
+        var url = "role/"+row.id;
+        $('#update_role').form('submit', {
             url:url,
             onSubmit: function(){
                 // do some check
@@ -129,8 +156,8 @@ $(function(){
             },
             success:function(data){
                 var data = eval('(' + data + ')');
-                if(data.status){
-                    $('#update_users_dialog').dialog('close');
+                if(data.status==1){
+                    $('#update_dialog').dialog('close');
                 }
                 $.messager.show({
                     title:'消息提示',
@@ -143,11 +170,6 @@ $(function(){
             }
         });
     });
-
-
-
-
-
     $('#delete').click(function(){
         // 返回的是：所选择数据的数组
         var rows = $('#tt').datagrid('getSelections')
@@ -163,7 +185,7 @@ $(function(){
             $.messager.confirm('友情提示', '你确定需要删除这些数据么?', function(r){
                 if (r){
                     var json = $.toJSON(rows);
-                    var url = "customs/batch";
+                    var url = "role/delete";
                     $.ajax({
                         type: "DELETE",
                         url: url,

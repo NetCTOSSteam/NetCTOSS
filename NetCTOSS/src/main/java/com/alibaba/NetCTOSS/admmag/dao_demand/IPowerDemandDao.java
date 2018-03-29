@@ -1,5 +1,6 @@
 package com.alibaba.NetCTOSS.admmag.dao_demand;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -24,6 +25,6 @@ public interface IPowerDemandDao {
 	 * @param param
 	 * @return
 	 */
-	public Set<PowerBean> findPowersByCondition(Map<String, String> param);
+	public List<PowerBean> findPowersByCondition(Map<String, String> param);
 	
 }

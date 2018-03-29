@@ -1,7 +1,7 @@
 package com.alibaba.NetCTOSS.beans.admAndRoleBean;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -43,11 +43,11 @@ public class PowerBean implements Serializable {
 	private String describe;//权限描述
 	
 	@Column(name="power_bo")
-	private Boolean status;//状态是否可用
+	private int status;//状态是否可用
 	
 	@ManyToMany(fetch=FetchType.LAZY,mappedBy="powers")
 	@Cascade(CascadeType.ALL)
-	private Set<RoleBean> roles;//一种权限对应多种角色
+	private List<RoleBean> roles;//一种权限对应多种角色
 	
 	public PowerBean() {
 		// TODO Auto-generated constructor stub
@@ -77,19 +77,19 @@ public class PowerBean implements Serializable {
 		this.describe = describe;
 	}
 
-	public Boolean getStatus() {
+	public int getStatus() {
 		return status;
 	}
 
-	public void setStatus(Boolean status) {
+	public void setStatus(int status) {
 		this.status = status;
 	}
 
-	public Set<RoleBean> getRoles() {
+	public List<RoleBean> getRoles() {
 		return roles;
 	}
 
-	public void setRoles(Set<RoleBean> roles) {
+	public void setRoles(List<RoleBean> roles) {
 		this.roles = roles;
 	}
 
