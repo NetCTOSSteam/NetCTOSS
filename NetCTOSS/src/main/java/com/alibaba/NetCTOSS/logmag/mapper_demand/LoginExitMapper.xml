@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.alibaba.NetCTOSS.logmag.mapper_demand.LoginExitMapper">
+	
+	<!-- 在mybatis配置文件中，包装类型，直接可以使用基础数据类型替代，String也可以使用string来替代 -->
+	<resultMap type="LoginExitBean" id="loginExitMap">
+		<id property="id" column="log_id" javaType="int"/>
+		<result property="name" column="log_name" javaType="string"/>
+		<result property="accNumber" column="log_loginname" javaType="string"/>
+		<result property="loginTime" column="log_logintime" javaType="date" />
+		<result property="IP" column="log_ip" javaType="string" />
+		<result property="quitTime" column="log_quittime" javaType="date" />
+	</resultMap>
+	  
+	<insert id="saveLoginExitBean">
+		insert into t_login_exit(log_name,log_loginname,log_logintime,log_ip,log_quittime) values (#{log.name},#{log.accNumber},#{log.loginTime},#{log.IP},#{log.quitTime}
+	</insert>
+	
+	<select id="findAll" resultMap="loginExitMap">
+		select * from t_login_exit
+	</select>
+	
+	<select id="findLoginExitsByParams" resultMap="loginExitMap">
+		select
+		log_id,log_name,log_loginname,log_logintime,log_ip,log_quittime from t_login_exit
+		<where>
+			<if test="params.name != null">
+				and log_name like CONCAT(#{params.name},'%')
+			</if>
+
+			<if test="params.accNumber != null">
+				and log_loginname like CONCAT(#{params.accNumber},'%') 
+			</if>
+			
+			<if test="params.IP != null">
+				and log_ip like CONCAT(#{params.IP},'%') 
+			</if>
+		</where>
+	</select>	
+
+</mapper>
