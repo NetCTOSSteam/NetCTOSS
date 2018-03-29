@@ -1,5 +1,4 @@
 $(function(){
-
     // 默认数据列表的显示
     $('#tt').datagrid({
         url:"customs/page",
@@ -58,8 +57,6 @@ $(function(){
         };
         return data;
     }
-
-
     //新增
     $('#save_users').click(function(){
         console.info("进来了");
@@ -85,11 +82,8 @@ $(function(){
         });
         console.info("111111222");
     });
-
-
     //修改
     $('#edit').click(function(){
-
         var rows = $('#tt').datagrid('getSelections');
         var row = $('#tt').datagrid('getSelected')//返回的第1行记录
         if(row){//如果选中了数据，就进入if语句
@@ -122,14 +116,6 @@ $(function(){
             });
         }
     });
-
-
-
-
-
-
-
-
     //修改保存
     $('#update_users').click(function(){
         var row = $('#tt').datagrid('getSelected')
@@ -198,8 +184,6 @@ $(function(){
         }
     });
 });
-
-
 Date.prototype.format = function(fmt) {
     var o = {
         "M+" : this.getMonth()+1,                 // 月份

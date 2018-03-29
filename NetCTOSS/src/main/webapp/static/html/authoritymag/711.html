@@ -48,20 +48,12 @@
            style="width: auto; height: 550px"
            data-options="fitColumns:true,method:'GET',idField:'id',striped:true,singleSelect:false,toolbar:'#tb',pagination:true">
         <thead>
-        <tr>
-            <th data-options="field:'ck',checkbox:true"></th>
-            <th data-options="field:'customName',width:110,align:'center'">角色名称</th>
-            <th data-options="field:'loginName',width:110,align:'center'">权限</th>
-        </tr>
+	        <tr>
+	            <th data-options="field:'ck',checkbox:true"></th>
+	            <th data-options="field:'roleName',width:110,align:'center'">角色名称</th>
+	            <th data-options="field:'powers',width:110,align:'center'">权限</th>
+	        </tr>
         </thead>
-
-        <tbody>
-        <tr>
-            <td data-options="field:'ck',checkbox:true"></td>
-            <td >123</td>
-            <td >123</td>
-        </tr>
-        </tbody>
     </table>
 </div>
 
@@ -77,25 +69,26 @@
             <table>
                 <tr>
                     <td>角色名称：</td>
-                    <td><input class="easyui-validatebox" type="text" id="c_loginName"
+                    <td><input class="easyui-validatebox" type="text" id="roleName"
                                name="loginName" data-options="required:false" />
                     </td>
                 </tr>
                 <tr>
                     <td>角色类型：</td>
-                    <td><input class="easyui-combobox" name="gender" id="c_gender"
+                    <td><input class="easyui-combobox" name="gender" id="roleType"
                                data-options="valueField:'id',textField:'text'" /></td>
                 </tr>
                 <tr>
                     <td>权限：</td>
-                    <td><span><input type="checkbox" name="vehicle" value="Car" />用户管理权限</span>
+                    <td>
+                    	<span><input type="checkbox" name="vehicle" value="Car" />用户管理权限</span>
                         <span><input type="checkbox" name="vehicle" value="Car" />资费管理权限</span>
                         <span><input type="checkbox" name="vehicle" value="Car" />管理员管理权限</span>
                         <span><input type="checkbox" name="vehicle" value="Car" />账单管理权限</span>
-                        <p><span><input type="checkbox" name="vehicle" value="Car" />账务管理权限</span>
+                        <span><input type="checkbox" name="vehicle" value="Car" />账务管理权限</span>
                         <span><input type="checkbox" name="vehicle" value="Car" />用户自服务权限</span>
                         <span><input type="checkbox" name="vehicle" value="Car" />权限管理权限</span>
-                        <span><input type="checkbox" name="vehicle" value="Car" />报表查询权限</span></p>
+                        <span><input type="checkbox" name="vehicle" value="Car" />报表查询权限</span>
                     </td>
                 </tr>
             </table>
