@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.alibaba.NetCTOSS.admmag.dao_demand.IRoleDemandDao;
 import com.alibaba.NetCTOSS.admmag.mapper_demand.RoleMapper;
 import com.alibaba.NetCTOSS.beans.admAndRoleBean.PowerBean;
+import com.alibaba.NetCTOSS.beans.admAndRoleBean.RoleBean;
 @Repository
 public class RoleDemandDaoImpl implements IRoleDemandDao {
 
@@ -24,5 +25,15 @@ public class RoleDemandDaoImpl implements IRoleDemandDao {
 			permissions.add(powerBean.getPowerName());
 		}
 		return permissions;
+	}
+	@Override
+	public Set<RoleBean> findAllRoles() {
+		// TODO Auto-generated method stub
+		return roleMapper.findAllRoles();
+	}
+	@Override
+	public Set<RoleBean> findRolesByCondition(String roleName,String rolePermission) {
+		// TODO Auto-generated method stub
+		return roleMapper.findRolesByCondition(roleName, rolePermission);
 	}
 }

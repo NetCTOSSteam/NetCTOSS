@@ -30,5 +30,17 @@ public class RoleDemandServiceImpl implements IRoleDemandService {
 		// TODO Auto-generated method stub
 		return roleDemandDaoImpl.getPermissions(roleName);
 	}
+
+	@Override
+	public Set<RoleBean> findAllRoles() {
+		// TODO Auto-generated method stub
+		return roleDemandDaoImpl.findAllRoles();
+	}
+
+	@Override
+	public Set<RoleBean> findRolesByCondition(String roleName,String rolePermission) {
+		// TODO Auto-generated method stub
+		return roleDemandDaoImpl.findRolesByCondition(roleName, rolePermission);
+	}
 	
 }

@@ -5,6 +5,7 @@ import java.util.Set;
 import org.springframework.data.repository.query.Param;
 
 import com.alibaba.NetCTOSS.beans.admAndRoleBean.PowerBean;
+import com.alibaba.NetCTOSS.beans.admAndRoleBean.RoleBean;
 
 public interface RoleMapper {
 	/**
@@ -13,4 +14,18 @@ public interface RoleMapper {
 	 * @return
 	 */
 	public Set<PowerBean> getPermissions(@Param("roleName")String roleName);
+	
+	/**
+	 * 查询所有角色信息
+	 * @return
+	 */
+	public Set<RoleBean> findAllRoles();
+	
+	/**
+	 * 按照条件查询
+	 * @param roleName角色的名称
+	 * @param rolePermission角色的权限
+	 * @return
+	 */
+	public Set<RoleBean> findRolesByCondition(@Param("roleName")String roleName,@Param("rolePermission")String rolePermission);
 }
