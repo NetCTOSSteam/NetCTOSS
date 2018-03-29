@@ -1,11 +1,13 @@
 package com.alibaba.NetCTOSS.aspects;
 
 import java.util.Arrays;
+import java.util.Date;
 
 import javax.annotation.Resource;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
@@ -14,7 +16,7 @@ import com.alibaba.NetCTOSS.logmag.service_handle.IDoLogHandleService;
 import com.alibaba.NetCTOSS.util.MyLog;
 
 @Component
-@Resource
+@Aspect
 public class DoLogAspect {
 	
 	@Resource
@@ -35,9 +37,9 @@ public class DoLogAspect {
 		log.setAction(Integer.parseInt(targetMethod));
 		Object[] args = jp.getArgs();//获取目标方法传入的参数
 		log.setData(Arrays.toString(args));
+		log.setTime(new Date());
 		doLogHandleServiceImpl.saveDoLogBean(log);
-		
-		
+	
 	}	
 	
 }

@@ -23,15 +23,15 @@ public interface IMonthAccDemandDao {
 	 * 得到排重后的  所有年  集合
 	 * @return
 	 */
-	List<Integer> getYear();
+	public List<Integer> getYear();
 	
 	/**
 	 * 得到排重后的  所有月  集合
 	 * @return
 	 */
-	List<Integer> getMonth();
+	public List<Integer> getMonth();
 
-	MonthAndAccountBean findByMonthAndAccountBean(MonthAndAccountBean maab);
+	public MonthAndAccountBean findByMonthAndAccountBean(MonthAndAccountBean maab);
 	
 	
 	

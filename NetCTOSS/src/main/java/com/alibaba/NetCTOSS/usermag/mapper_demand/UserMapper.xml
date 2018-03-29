@@ -50,11 +50,11 @@
 				<if test="1 == 1">
 				and u_bo = 1
 				</if>
-				
+				<if test="bean != null">
 				<if test="bean.account != null">
 				and id = #{bean.id}
 				</if>
-				
+				</if>
 				
 			</where>
 		</select>

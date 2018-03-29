@@ -20,6 +20,7 @@
 		<select id="findAccountMonthByBean"  resultMap="beanMap">
 			select id ,acc_year,acc_month,acc_day,acc_acc ,acc_name,acc_server,acc_os_account,acc_all_time
 			 from t_account_day 
+			 <if test="bean != null">
 			<where>
 				<if test="bean.year > 0">
 				and acc_year = #{bean.year} 
@@ -36,6 +37,7 @@
 				</if>
 				
 			</where>
+			</if>
 		</select>
 		
 	</mapper>

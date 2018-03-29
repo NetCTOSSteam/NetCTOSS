@@ -34,7 +34,7 @@ public interface DoLogMapper {
 //	@Insert(value="insert into t_do_log(do_name,do_loginname,do_place,do_data,do_action,do_ip,do_time) values (#{log.do_name},#{log.do_loginname},#{log.do_place},#{log.do_data},#{log.do_action},#{log.do_ip}),#{log.do_time}")
 //	@Options(useGeneratedKeys=true,
 //	keyProperty="log.id")
-	public int saveDoLogBean(@Param("log") DoLogBean log);
+	public void saveDoLogBean(@Param("log") DoLogBean log);
 	
 	
 	

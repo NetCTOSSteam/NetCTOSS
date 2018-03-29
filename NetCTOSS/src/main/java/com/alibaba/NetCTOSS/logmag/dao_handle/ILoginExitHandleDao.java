@@ -1,11 +1,16 @@
 package com.alibaba.NetCTOSS.logmag.dao_handle;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+
+import com.alibaba.NetCTOSS.beans.logBean.LoginExitBean;
+
 /**
- * 操作 日志 操作
+ * 登录日志 操作
  * @author Administrator
  *
  */
-public interface ILoginExitHandleDao {
+public interface ILoginExitHandleDao extends JpaRepository<LoginExitBean, Integer>,JpaSpecificationExecutor<LoginExitBean>{
 	
 	
 	

@@ -4,6 +4,7 @@
 <mapper namespace="com.alibaba.NetCTOSS.billmag.mapper_demand.MonthBusinessMapper">
 
 	<sql id="params">
+	<if test="bean != null">
 		<where>
 			<if test="bean.businessAccount!=null">
 				business_account like concat(#{bean.businessAccount},%)
@@ -15,6 +16,7 @@
 				and business_tariff = #{bean.tariff}
 			</if>
 		</where>
+		</if>
 	</sql>
 
 	<resultMap type="MonthAndBusinessBean" id="beanMap">
@@ -40,5 +42,40 @@
 		from t_month_business
 		<include refid="params"></include>
 	</select>
-	
+	<select id="findByMonthAndBusinessBean" resultMap="beanMap">
+		select 
+		business_account,
+		business_year,
+		business_month,
+		business_all_money,
+		business_tariff,
+		business_server_information 
+		from t_month_business
+		<include refid="params2"></include>
+	</select>
+	<sql id="params2">
+	<if test="bean != null">
+		<where>
+			<if test="bean.businessAccount!=null">
+				business_account = concat(#{bean.businessAccount},%)
+			</if>
+			<if test="bean.server!=null">
+				and business_server_information = #{bean.server}
+			</if>
+			<if test="bean.tariff!=null">
+				and business_tariff = #{bean.tariff}
+			</if>
+		</where>
+		</if>
+	</sql>
+	<select id="findByServerMothAndBusinessBean"  resultMap="beanMap">
+		select 
+		business_account,
+		business_year,
+		business_month,
+		business_all_money,
+		business_tariff,
+		business_server_information 
+		from t_month_business where account_acc = #{"account"};
+	</select>
 </mapper>

@@ -59,6 +59,10 @@ public class MonthAndBusinessBean implements Serializable {
 	//现在共用时间
 	private Long nowTime;
 	
+	@Column(name="acc_acc",length=20)
+	   /** @pdOid 21c125c8-a9b8-422d-814f-ca949a44c5e1 账务账号名 */
+	   private String account;
+	
 	public Long getNowTime() {
 		return nowTime;
 	}
@@ -128,10 +132,19 @@ public class MonthAndBusinessBean implements Serializable {
 		this.server = server;
 	}
 
+	public String getAccount() {
+		return account;
+	}
+
+	public void setAccount(String account) {
+		this.account = account;
+	}
+
 	@Override
 	public String toString() {
 		return "MonthAndBusinessBean [id=" + id + ", businessAccount=" + businessAccount + ", year=" + year + ", month="
-				+ month + ", money=" + money + ", tariff=" + tariff + ", server=" + server + "]";
+				+ month + ", money=" + money + ", tariff=" + tariff + ", server=" + server + ", nowTime=" + nowTime
+				+ ", account=" + account + "]";
 	}
 	
 }

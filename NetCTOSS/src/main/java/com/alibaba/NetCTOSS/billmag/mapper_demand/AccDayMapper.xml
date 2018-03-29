@@ -21,6 +21,7 @@
 		<select id="findAccountDayByBean"  resultMap="beanMap">
 			select id ,acc_year,acc_month,acc_day,acc_acc ,acc_name,acc_server,acc_os_account,acc_all_time
 			 from t_account_day 
+			 <if test="bean != null">
 			<where>
 				<if test="bean.year > 0">
 				and acc_year = #{bean.year} 
@@ -28,9 +29,10 @@
 				<if test="bean.month > 0">
 				and acc_month = #{bean.month} 
 				</if>
-				<if test="bean.da > 0">
+				<if test="bean.day > 0">
 				and acc_day = #{bean.day} 
 				</if>
+				
 				<if test="bean.account != null">
 				and acc_acc like CONCAT(#{bean.account},'%') 
 				</if>
@@ -38,12 +40,13 @@
 				and acc_name like CONCAT(#{bean.name},'%')
 				</if>
 				<if test="bean.server != null">
-				and acc_server = {bean.server} 
+				and acc_server = #{bean.server} 
 				</if>
 				<if test="bean.OSAccount != null">
-				and acc_os_account like CONCAT(#{bean.OSAccount},'%') 
+				and acc_os_account like CONCAT(#{bean.OSAccount},'%')
 				</if>
 			</where>
+			</if>
 		</select>
 		
 	</mapper>
