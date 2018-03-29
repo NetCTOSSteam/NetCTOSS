@@ -38,15 +38,16 @@ public class AdminRealm extends AuthorizingRealm {
 		SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
 
 		RoleBean role = adminDemandServiceImpl.getRole(userName);
+		String roleName = null;
+		if (role != null) {
+			roleName = role.getRoleName();
+			Set<String> roles = new HashSet<>();
 
-		String roleName = role.getRoleName();
+			roles.add(roleName);
 
-		Set<String> roles = new HashSet<>();
-
-		roles.add(roleName);
-
-		authorizationInfo.setRoles(roles);
-		authorizationInfo.setStringPermissions(roleDemandServiceImpl.getPermissions(role.getRoleName()));
+			authorizationInfo.setRoles(roles);
+			authorizationInfo.setStringPermissions(roleDemandServiceImpl.getPermissions(role.getRoleName()));
+		}
 		return authorizationInfo;
 	}
 
@@ -57,10 +58,10 @@ public class AdminRealm extends AuthorizingRealm {
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 		// TODO Auto-generated method stub
 		// 1. 把AuthenticationToken转换为CustomizedToken
-        CustomizedToken customizedToken = (CustomizedToken) token;
-		
+		CustomizedToken customizedToken = (CustomizedToken) token;
+
 		String adminLoginName = (String) customizedToken.getPrincipal();
-		
+
 		AdministratorBean admin = adminDemandServiceImpl.findAdminByAdminLoginName(adminLoginName);
 		if (admin != null) {
 			AuthenticationInfo authcInfo = new SimpleAuthenticationInfo(admin.getLoginName(), admin.getPassword(),

@@ -23,29 +23,32 @@ public class UserRealm extends AuthorizingRealm {
 
 	@Resource
 	private IUserDemandService userDemandServiceImpl;
-	
+
 	@Resource
 	private IRoleDemandService roleDemandServiceImpl;
+
 	/**
 	 * 为当限前登录的用户授予角色和权限
 	 */
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principal) {
 		// TODO Auto-generated method stub
+		String userName = (String) principal.getPrimaryPrincipal();
+
 		SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
 
-		String userName = (String) principal.getPrimaryPrincipal();
-		
 		RoleBean role = userDemandServiceImpl.getRole(userName);
+		if (role != null) {
+			String roleName = role.getRoleName();
 
-		String roleName = role.getRoleName();
+			Set<String> roles = new HashSet<>();
 
-		Set<String> roles = new HashSet<>();
+			roles.add(roleName);
 
-		roles.add(roleName);
+			authorizationInfo.setRoles(roles);
+			authorizationInfo.setStringPermissions(roleDemandServiceImpl.getPermissions(roleName));
+		}
 
-		authorizationInfo.setRoles(roles);
-		authorizationInfo.setStringPermissions(roleDemandServiceImpl.getPermissions(roleName));
 		return authorizationInfo;
 	}
 
@@ -55,12 +58,12 @@ public class UserRealm extends AuthorizingRealm {
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 		// TODO Auto-generated method stub
-		
+
 		// 1. 把AuthenticationToken转换为CustomizedToken
-        CustomizedToken customizedToken = (CustomizedToken) token;
-		
+		CustomizedToken customizedToken = (CustomizedToken) token;
+
 		String loginName = (String) customizedToken.getPrincipal();
-		
+
 		UserBean user = userDemandServiceImpl.findByLoginName(loginName);
 		if (user != null) {
 			AuthenticationInfo authcInfo = new SimpleAuthenticationInfo(user.getLoginName(), user.getPassword(),

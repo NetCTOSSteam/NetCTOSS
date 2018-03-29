@@ -63,6 +63,6 @@ public class UserDemandServiceImpl implements IUserDemandService {
 	@Override
 	public RoleBean getRole(String userLoginName) {
 		// TODO Auto-generated method stub
-		return null;
+		return iUserDemandDao.getRole(userLoginName);
 	}
 }
