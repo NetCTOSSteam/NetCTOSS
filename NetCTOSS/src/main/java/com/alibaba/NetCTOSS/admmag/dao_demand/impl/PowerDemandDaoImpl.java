@@ -12,6 +12,14 @@ import com.alibaba.NetCTOSS.beans.admAndRoleBean.PowerBean;
 @Repository
 public class PowerDemandDaoImpl implements IPowerDemandDao {
 
+	@Resource
+	private PowerMapper powerMapper;
+	@Override
+	public Set<PowerBean> findAllPowers() {
+		// TODO Auto-generated method stub
+		return powerMapper.findAllPowers();
+	}
+
 	
 
 }

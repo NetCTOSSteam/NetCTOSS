@@ -8,4 +8,8 @@
 		<result property="describe" column="power_describe" />
 		
 	</resultMap>
+	
+	<select id="findAllPowers" resultMap="powerMap">
+		SELECT power_name FROM t_power
+	</select>
 </mapper>
