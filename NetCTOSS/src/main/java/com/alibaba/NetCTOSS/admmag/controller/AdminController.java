@@ -1,6 +1,8 @@
 package com.alibaba.NetCTOSS.admmag.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +20,8 @@ import com.alibaba.NetCTOSS.beans.admAndRoleBean.AdministratorBean;
 import com.alibaba.NetCTOSS.beans.admAndRoleBean.Messager;
 import com.alibaba.NetCTOSS.usermag.realm.CustomizedToken;
 import com.alibaba.NetCTOSS.usermag.realm.LoginType;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 
 @RestController(value="AdminController")
 @RequestMapping("/admin")
@@ -128,9 +132,14 @@ public class AdminController {
 	 * @return
 	 */
 	@RequestMapping(value = "/{id}", method = { RequestMethod.GET }, produces = { "application/json" })
-	public List getAdministratorBeans(AdministratorBean administratorBean) {
-		List admins = adminDemandServiceImpl.findAllAdministratorBeansByParam(administratorBean);
-		return admins;
+	public Map<Object,Object> getAdministratorBeans(AdministratorBean administratorBean,int page,int rows) {
+		Map<Object,Object> map = new HashMap<Object,Object>();	
+		PageHelper.startPage(page, rows);
+		List<AdministratorBean>  admins = adminDemandServiceImpl.findAllAdministratorBeansByParam(administratorBean);
+		PageInfo<AdministratorBean> pages = new PageInfo<AdministratorBean>(admins);
+		map.put("total", pages.getTotal());
+		map.put("rows", pages.getList());
+		return map;
 	}
 	
 }

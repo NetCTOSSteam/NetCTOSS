@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Administrator</title>
+    <script type="text/javascript" src="../../js/jquery-3.3.1.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../../js/jquery.json-2.4.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../../jQuery-easyui/jquery.easyui.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../../jQuery-easyui/locale/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="../../js/administartor.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="../../jQuery-easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="../../jQuery-easyui/themes/icon.css">
+    <script type="text/javascript">
+    </script>
+</head>
+<body class="easyui-layout">
+<div style="margin:20px 0;"></div>
+<div class="easyui-layout" style="width: 100%; height: 95%; margin: 0 auto">
+    <!-- 搜索 框-->
+    <div data-options="region:'north'" style="height:80px">
+        <!-- 月查显示 -->
+        <table id="table_noe" style="width: 779px;margin: 0 auto;line-height: 6;">
+                <td>管理员名称：</td>
+                <td>
+                    <input id="admin_name" class="easyui-textbox" style="width:150px;height:32px">
+                </td>
+                <td>管理员账号：</td>
+                <td>
+                    <input id="admin_acc" class="easyui-textbox" style="width:150px;height:32px">
+                </td>
+                <td>
+                    <a id="query" href="Javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" style="width: 100px;height:32px">搜索</a>
+                </td>
+        </table>
+    </div>
+    <!-- 数据列表 -->
+    <div data-options="region:'center',title:'账单列表',iconCls:'icon-ok'">
+        <table id="tt" class="easyui-datagrid"
+               iconCls="icon-save" pagination="true"
+               data-options="fitColumns:true,method:'get',border:false,
+                   singleSelect:true,fit:true,fitColumns:true,singleSelect:'true'">
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4（/小时）</td>
+                <td>5</td>
+                <td>6</td>
+                <td>7</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4（/小时）</td>
+                <td>5</td>
+                <td>6</td>
+                <td>7</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- 工具 -->
+    <div id="tb">
+        <a id="add" href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add'">添加</a>
+        <a id="edit" href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-reload'">修改</a>
+        <a id="delete" href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-remove'">删除</a>
+    </div>
+    <!-- 添加弹窗 -->
+    <div id="add_win" class="easyui-dialog" title="添加管理员" style="width:400px;height:380px;"
+         data-options="iconCls:'icon-save',resizable:true,modal:true,closed:true">
+        <table style="margin: 0 auto;padding-top: 10px">
+            <tr>
+                <td>管理员名称:</td>
+                <td>
+                    <input id="add_admin_name" class="easyui-textbox" style="width:150px;height:32px">
+                </td>
+            </tr>
+            <tr>
+                <td>管理员账号:</td>
+                <td>
+                    <input id="add_admin_acc" class="easyui-textbox" style="width:150px;height:32px">
+                </td>
+            </tr>
+            <tr>
+                <td>密码:</td>
+                <td>
+                    <input id="add_admin_pwd" class="easyui-textbox" style="width:150px;height:32px">
+                </td>
+            </tr>
+            <tr>
+                <td>确认密码:</td>
+                <td>
+                    <input id="add_admin_pwd_2" class="easyui-textbox" style="width:150px;height:32px">
+                </td>
+            </tr>
+            <tr>
+                <td>联系电话:</td>
+                <td>
+                    <input id="add_admin_phone" class="easyui-textbox" style="width:150px;height:32px">
+                </td>
+            </tr>
+            <tr>
+                <td>邮箱:</td>
+                <td>
+                    <input id="add_admin_e" class="easyui-textbox" style="width:150px;height:32px">
+                </td>
+            </tr>
+            <tr>
+                <td>角色:</td>
+                <td>
+                    管理员
+                </td>
+            </tr>
+        </table>
+        <div style="width: 205px;margin: 0 auto;padding-top: 15px">
+            <a id="add_ok" href="Javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" style="width: 100px;height:32px">确定</a>
+            <a id="add_not" href="Javascript:void(0)" class="easyui-linkbutton" iconCls="icon-back" style="width: 100px;height:32px">取消</a>
+        </div>
+    </div>
+    <!-- 修改弹窗 -->
+    <div id="update_win" class="easyui-dialog" title="添加管理员" style="width:400px;height:380px;"
+         data-options="iconCls:'icon-save',resizable:true,modal:true,closed:true">
+        <table style="margin: 0 auto;padding-top: 10px">
+            <tr>
+                <td>管理员名称:</td>
+                <td>
+                    <input id="update_admin_name" class="easyui-textbox" style="width:150px;height:32px">
+                </td>
+            </tr>
+            <tr>
+                <td>管理员账号:</td>
+                <td>
+                    <input id="update_admin_acc" class="easyui-textbox" style="width:150px;height:32px">
+                </td>
+            </tr>
+            <tr>
+                <td>密码:</td>
+                <td>
+                    <input id="update_admin_pwd" class="easyui-textbox" style="width:150px;height:32px">
+                </td>
+            </tr>
+            <tr>
+                <td>确认密码:</td>
+                <td>
+                    <input id="update_admin_pwd_2" class="easyui-textbox" style="width:150px;height:32px">
+                </td>
+            </tr>
+            <tr>
+                <td>联系电话:</td>
+                <td>
+                    <input id="update_admin_phone" class="easyui-textbox" style="width:150px;height:32px">
+                </td>
+            </tr>
+            <tr>
+                <td>邮箱:</td>
+                <td>
+                    <input id="update_admin_e" class="easyui-textbox" style="width:150px;height:32px">
+                </td>
+            </tr>
+            <tr>
+                <td>角色:</td>
+                <td>
+                    管理员
+                </td>
+            </tr>
+        </table>
+        <div style="width: 205px;margin: 0 auto;padding-top: 15px">
+            <a id="update_ok" href="Javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" style="width: 100px;height:32px">确定</a>
+            <a id="update_not" href="Javascript:void(0)" class="easyui-linkbutton" iconCls="icon-back" style="width: 100px;height:32px">取消</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
