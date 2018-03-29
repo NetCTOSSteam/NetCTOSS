@@ -30,6 +30,11 @@ public class MonthAccDemandServiceImpl implements IMonthAccDemandService {
 		// TODO Auto-generated method stub
 		return iMonthAccDemandDao.getMonth();
 	}
+	@Override
+	public MonthAndAccountBean findByMonthAndAccountBean(MonthAndAccountBean maab) {
+		// TODO Auto-generated method stub
+		return iMonthAccDemandDao.findByMonthAndAccountBean(maab);
+	}
 
 
 }

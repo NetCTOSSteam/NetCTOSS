@@ -30,6 +30,8 @@ public interface IMonthAccDemandDao {
 	 * @return
 	 */
 	List<Integer> getMonth();
+
+	MonthAndAccountBean findByMonthAndAccountBean(MonthAndAccountBean maab);
 	
 	
 	

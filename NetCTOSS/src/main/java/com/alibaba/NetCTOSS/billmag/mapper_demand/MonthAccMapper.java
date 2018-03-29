@@ -26,6 +26,14 @@ public interface MonthAccMapper {
 	 * @return 
 	 */
 	public List<Integer> getMonth();
+
+
+	/**
+	 * 精确查询
+	 * @param maab
+	 * @return
+	 */
+	public MonthAndAccountBean findByMonthAndAccountBean(MonthAndAccountBean maab);
 	
 	
 }

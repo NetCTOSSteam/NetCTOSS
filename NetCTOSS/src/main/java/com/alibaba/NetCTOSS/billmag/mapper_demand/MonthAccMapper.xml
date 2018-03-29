@@ -61,5 +61,19 @@
 		select distinct account_month from t_month_account
 	</select>
 	
+	<!-- 精确查询  -->
+	<select id="findByMonthAndAccountBean" resultMap="beanMap">
+		select 
+		account_acc,
+		account_name,
+		account_year,
+		account_month,
+		account_money,
+		account_type,
+		account_status,
+		account_IDcard 
+		from t_month_account
+		<include refid="params"></include>
+	</select>
 	
 </mapper>

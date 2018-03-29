@@ -7,12 +7,12 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Repository;
 
 import com.alibaba.NetCTOSS.beans.billBean.MonthAndAccountBean;
+import com.alibaba.NetCTOSS.billmag.dao_demand.IMonthAccDemandDao;
 import com.alibaba.NetCTOSS.billmag.mapper_demand.MonthAccMapper;
-import com.alibaba.NetCTOSS.billmag.service_demand.IMonthAccDemandService;
 
 
 @Repository
-public class MonthAccDemandServiceImpl implements IMonthAccDemandService {
+public class MonthAccDemandDaoImpl implements IMonthAccDemandDao {
 
 	@Resource
 	private MonthAccMapper monthAccMapper;
@@ -30,6 +30,11 @@ public class MonthAccDemandServiceImpl implements IMonthAccDemandService {
 	public List<Integer> getMonth() {
 		// TODO Auto-generated method stub
 		return monthAccMapper.getMonth();
+	}
+	@Override
+	public MonthAndAccountBean findByMonthAndAccountBean(MonthAndAccountBean maab) {
+		// TODO Auto-generated method stub
+		return monthAccMapper.findByMonthAndAccountBean(maab);
 	}
 
 

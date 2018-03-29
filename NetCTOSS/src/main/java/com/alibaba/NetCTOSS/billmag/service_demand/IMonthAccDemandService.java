@@ -31,5 +31,8 @@ public interface IMonthAccDemandService {
 	 * @return
 	 */
 	List<Integer> getMonth();
+
+
+	MonthAndAccountBean findByMonthAndAccountBean(MonthAndAccountBean maab);
 	
 }
