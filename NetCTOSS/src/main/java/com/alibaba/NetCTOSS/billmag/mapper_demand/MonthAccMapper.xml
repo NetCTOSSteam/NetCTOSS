@@ -4,6 +4,7 @@
 <mapper namespace="com.alibaba.NetCTOSS.billmag.mapper_demand.MonthAccMapper">
 
 	<sql id="params">
+	<if test="bean != null">
 		<where>
 			<if test="bean.account!=null">
 				account_acc like concat(#{bean.account},%)
@@ -21,6 +22,7 @@
 				and account_month = #{bean.month}
 			</if>
 		</where>
+		</if>
 	</sql>
 
 	<resultMap type="MonthAndAccountBean" id="beanMap">
@@ -73,7 +75,27 @@
 		account_status,
 		account_IDcard 
 		from t_month_account
-		<include refid="params"></include>
+		<include refid="params2"></include>
 	</select>
-	
+	<sql id="params2">
+	<if test="bean != null">
+		<where>
+			<if test="bean.account!=null">
+				account_acc = #{bean.account}
+			</if>
+			<if test="bean.IDcard!=null">
+				and account_IDcard = #{bean.IDcard}
+			</if>
+			<if test="bean.name!=null">
+				and account_name = #{bean.name}
+			</if>
+			<if test="bean.year>0">
+				and account_year = #{bean.year}
+			</if>
+			<if test="bean.month>0">
+				and account_month = #{bean.month}
+			</if>
+		</where>
+		</if>
+	</sql>
 </mapper>

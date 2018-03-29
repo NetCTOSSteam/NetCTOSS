@@ -65,14 +65,14 @@
 				<if test="1 == 1">
 				and bus_bo = 1
 				</if>
-				
-				<if test="bean.account != null">
-				and bus_name like CONCAT(#{bean.busName},'%') 
+				<if test="bean != null">
+					<if test="bean.account != null">
+					and bus_name like CONCAT(#{bean.busName},'%') 
+					</if>
+					<if test="bean.mealBean != null">
+					and bus_mea_id = #{bean.mealBean.mealId}
+					</if>
 				</if>
-				<if test="bean.mealBean != null">
-				and bus_mea_id = #{bean.mealBean.mealId}
-				</if>
-				
 				
 			</where>
 		</select>
@@ -95,9 +95,10 @@
 				<if test="1 == 1">
 				and t1.bus_bo = 1
 				</if>
-				
-				<if test="bean.id != null">
-				and t1.bus_id = #{bean.id} 
+				<if test="bean != null">
+					<if test="bean.id != null">
+					and t1.bus_id = #{bean.id} 
+					</if>
 				</if>
 			</where>
 		</select>
@@ -110,12 +111,13 @@
 				<if test="1 == 1">
 				and t1.bus_bo = 1
 				</if>
-				
+				<if test="bean != null">
 				<if test="1 == 1">
 				and t1.bus_u_id like #{bean.id} 
 				</if>
 				<if test="bean.serverIP != null">
 				and t1.bus_ip = #{bean.serverIP}
+				</if>
 				</if>
 			</where>
 		</select>
