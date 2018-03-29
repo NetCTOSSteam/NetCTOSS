@@ -69,6 +69,12 @@
 			$('#inp3').val("");
 		});
 		
+		$(document).keydown(function(event){ 
+			if(event.keyCode==13){ 
+				$('#button1').click(); 
+				} 
+			}); 
+		
 		$('#button1').click(function() {
 			var sele = $('#sele').val();
 			var seleStatus;

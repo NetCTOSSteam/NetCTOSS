@@ -18,7 +18,7 @@
        					http://www.springframework.org/schema/cache/spring-cache.xsd
        					http://www.springframework.org/schema/data/jpa
 						http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
-	<import resource="Quartz.xml"/>
+	<import resource="Quartz.xml" />
 	<!-- 1、开启自动扫描 -->
 	<context:component-scan base-package="com.alibaba.NetCTOSS">
 		<!-- 管理除开web表现层(controller层)的组件 -->
@@ -89,7 +89,7 @@
 			com.alibaba.NetCTOSS.beans.logBean;
 			com.alibaba.NetCTOSS.beans.userAndBusBean">
 		</property>
-		
+
 	</bean>
 
 	<!-- 5、配置Mapper映射扫描组件 -->
@@ -134,69 +134,87 @@
 	</bean>
 
 	<!-- 配置shiro -->
-	
+
 	<!-- 安全管理器 -->
-	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">  
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
 		<property name="authenticator" ref="authenticator"></property>
-  	 	 <property name="realms">  
-	        <list>  
-	            <ref bean="AdminRealm"/>  
-	            <ref bean="UserRealm"/>  
-	        </list>  
-    	</property>    
-	</bean>  
+		<property name="realms">
+			<list>
+				<ref bean="AdminRealm" />
+				<ref bean="UserRealm" />
+			</list>
+		</property>
+	</bean>
 	<!-- 配置使用自定义认证器，可以实现多Realm认证，并且可以指定特定Realm处理特定类型的验证 -->
-    <bean id="authenticator" class="com.alibaba.NetCTOSS.usermag.realm.CustomizedModularRealmAuthenticator">
-        <!-- 配置认证策略，只要有一个Realm认证成功即可，并且返回所有认证成功信息 -->
-        <property name="authenticationStrategy">
-            <bean class="org.apache.shiro.authc.pam.FirstSuccessfulStrategy"></bean>
-        </property>
-    </bean>
-    
-    <!-- 自定义Realm -->
+	<bean id="authenticator"
+		class="com.alibaba.NetCTOSS.usermag.realm.CustomizedModularRealmAuthenticator">
+		<!-- 配置认证策略，只要有一个Realm认证成功即可，并且返回所有认证成功信息 -->
+		<property name="authenticationStrategy">
+			<bean class="org.apache.shiro.authc.pam.FirstSuccessfulStrategy"></bean>
+		</property>
+	</bean>
+
+	<!-- 自定义Realm -->
 	<bean id="AdminRealm" class="com.alibaba.NetCTOSS.admmag.realm.AdminRealm">
 		<property name="cachingEnabled" value="false"></property>
-	</bean>  
+	</bean>
 	<bean id="UserRealm" class="com.alibaba.NetCTOSS.usermag.realm.UserRealm">
 		<property name="cachingEnabled" value="false"></property>
-	</bean>  
+	</bean>
+
+	<!--自定义LogoutFilter,退出 -->
+	<bean id="logoutFilter" class="com.alibaba.NetCTOSS.filter.SystemLogoutFilter">
+		<property name="redirectUrl" value="/login.jsp" />
+	</bean>
 	<!-- Shiro过滤器 -->
-	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">  
-	    <!-- Shiro的核心安全接口,这个属性是必须的 -->  
-	    <property name="securityManager" ref="securityManager"/>
-	    <!-- 身份认证失败，则跳转到登录页面的配置 -->  
-	    <property name="loginUrl" value="/login.jsp"/>
-	    <!-- 身份认证成功，则跳转到主页面的配置 -->  
-	    <property name="successUrl" value="/static/html/index.html"/>
-	    <!-- 权限认证失败，则跳转到指定页面 -->  
-	    <property name="unauthorizedUrl" value="/login.jsp"/>  
-	    <!-- Shiro连接约束配置,即过滤链的定义 -->  
-	    <property name="filterChainDefinitions">  
-	        <value>  
-	        	/static/css/*=anon
-	        	/static/easyui/**=anon
-	        	/static/echarts/**=anon
-	        	/static/html/**=anon
-	        	/static/img/*=anon
-	        	/static/jQuery-easyui/**=anon
-	        	/static/js/*=anon
-	        	/img/1=anon
-	             /admin/login=anon
-	             /user/login=anon
-				/**=authc
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<!-- Shiro的核心安全接口,这个属性是必须的 -->
+		<property name="securityManager" ref="securityManager" />
+		<!-- 身份认证失败，则跳转到登录页面的配置 -->
+		<property name="loginUrl" value="/login.jsp" />
+		<!-- 身份认证成功，则跳转到主页面的配置 -->
+		<property name="successUrl" value="/static/html/index.html" />
+		<!-- 权限认证失败，则跳转到指定页面 -->
+		<property name="unauthorizedUrl" value="/login.jsp" />
+
+		<!--自定义的filter -->
+		<property name="filters">
+			<map>
+				<!-- 将自定义 的FormAuthenticationFilter注入shiroFilter中 -->
+				<entry key="logout" value-ref="logoutFilter" />
+			</map>
+		</property>
+		<!-- Shiro连接约束配置,即过滤链的定义 -->
+		<property name="filterChainDefinitions">
+			<value>
+				/static/css/*=anon
+				/static/easyui/**=anon
+				/static/echarts/**=anon
+				/static/html/**=anon
+				/static/img/*=anon
+				/static/jQuery-easyui/**=anon
+				/static/js/*=anon
+				/img/1=anon
+				/admin/login=anon
+				/user/login=anon
+				<!-- 请求logout地址，shiro去清除session --> 
 				/logout = logout
-	        </value>  
-	    </property>
-	</bean>  
-	
-	<!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->  
-	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>  
-	
+				/**=authc
+			</value>
+		</property>
+	</bean>
+
+	<!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
+	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
+
 	<!-- 开启Shiro注解 -->
-	<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor"/>  
-  		<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">  
-  	  <property name="securityManager" ref="securityManager"/>  
-    </bean>  
+	<bean
+		class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
+		depends-on="lifecycleBeanPostProcessor" />
+	<bean
+		class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+		<property name="securityManager" ref="securityManager" />
+	</bean>
 
 
 	<!-- 5、配置事务管理器 -->

@@ -24,10 +24,10 @@
      style="height: 80px; background: white; padding: 10px; font-size: 25px">
     <img src="../img/timg.jpg" style="height: 50px"/>
     <span style="font-size: 20px;color:red;font-family: 华文楷体">欢迎用户[<shiro:principal/>]登录</span>
-   <span style="margin-left: 20px;font-size: 40px;font-family: 华文楷体"> 电信服务器NetCTOSS计费系统 </span>
+   <span style="margin-left: 5px;font-size: 40px;font-family: 华文楷体"> 电信服务器NetCTOSS计费系统 </span>
     <span id="clock" style="font-size: 15px;font-family: 华文楷体;margin-top: 20px; float: right"></span>
-    <a href="javascript:void(0)" onclick="addone()" style="font-size: 15px;text-decoration:none;color: #0052A3;font-family: 华文楷体;margin-left: 30px;">个人信息</a>
-    <a href="logout" style="font-size: 15px;text-decoration:none;color: #0052A3; font-family: 华文楷体;">退出</a>
+    <a href="javascript:void(0)" onclick="addone()" style="font-size: 15px;text-decoration:none;color: #0052A3;font-family: 华文楷体;margin-left: 15px;">个人信息</a>
+    <a href="/NetCTOSS/logout" style="font-size: 15px;text-decoration:none;color: #0052A3; font-family: 华文楷体;">退出</a>
 </div>
 <div data-options="region:'west',split:true,title:'菜单项'"
      style="width: 200px; height: 100%; padding: 0px;">
