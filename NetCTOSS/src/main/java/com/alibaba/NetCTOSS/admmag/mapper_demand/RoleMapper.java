@@ -1,5 +1,6 @@
 package com.alibaba.NetCTOSS.admmag.mapper_demand;
 
+import java.util.Map;
 import java.util.Set;
 
 import org.springframework.data.repository.query.Param;
@@ -27,5 +28,5 @@ public interface RoleMapper {
 	 * @param rolePermission角色的权限
 	 * @return
 	 */
-	public Set<RoleBean> findRolesByCondition(@Param("roleName")String roleName,@Param("rolePermission")String rolePermission);
+	public Set<RoleBean> findRolesByCondition(@Param("param")Map<String, String> param);
 }

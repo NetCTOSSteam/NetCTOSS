@@ -1,5 +1,6 @@
 package com.alibaba.NetCTOSS.admmag.service_demand;
 
+import java.util.Map;
 import java.util.Set;
 
 import com.alibaba.NetCTOSS.beans.admAndRoleBean.RoleBean;
@@ -30,6 +31,6 @@ public interface IRoleDemandService {
 	 * @param rolePermission角色的权限
 	 * @return
 	 */
-	public Set<RoleBean> findRolesByCondition(String roleName,String rolePermission);
+	public Set<RoleBean> findRolesByCondition(Map<String, String> param);
 	
 }

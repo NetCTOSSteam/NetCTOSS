@@ -1,6 +1,7 @@
 package com.alibaba.NetCTOSS.admmag.dao_demand.impl;
 
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import javax.annotation.Resource;
@@ -32,8 +33,9 @@ public class RoleDemandDaoImpl implements IRoleDemandDao {
 		return roleMapper.findAllRoles();
 	}
 	@Override
-	public Set<RoleBean> findRolesByCondition(String roleName,String rolePermission) {
+	public Set<RoleBean> findRolesByCondition(Map<String, String> param) {
 		// TODO Auto-generated method stub
-		return roleMapper.findRolesByCondition(roleName, rolePermission);
+		
+		return roleMapper.findRolesByCondition(param);
 	}
 }
