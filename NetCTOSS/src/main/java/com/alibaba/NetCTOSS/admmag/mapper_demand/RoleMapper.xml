@@ -45,19 +45,17 @@
 
 	<!-- 根据条件查询角色信息 -->
 	<select id="findRolesByCondition" resultMap="roleMap">
-		SELECT * from
-		t_role,t_role_power,t_power
+		SELECT
+		t_role.role_name,t_power.power_name from t_role LEFT JOIN t_role_power
+		on t_role.role_id = t_role_power.rp_role_id
+		LEFT JOIN t_power on t_power.power_id=t_role_power.rp_power_id
 		<where>
-			t_role.role_id =
-			t_role_power.rp_role_id
-			and
-			t_power.power_id=t_role_power.rp_power_id
-			and t_role.role_bo = 1
-			<if test="roleName!=null">
+			t_role.role_bo = 1 
+			<if test="roleName!=null&amp;&amp;roleName!=''">
 				and t_role.role_name like concat(#{roleName},'%')
 			</if>
-			<if test="rolePermission!=null">
-				and t_power.power_name like concat(#{rolePermission},'%')
+			<if test="permission!=null&amp;&amp;permission!=''">
+				and t_power.power_name like concat(#{permission},'%')
 			</if>
 		</where>
 	</select>

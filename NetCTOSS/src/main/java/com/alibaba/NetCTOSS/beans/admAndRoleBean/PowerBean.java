@@ -43,7 +43,7 @@ public class PowerBean implements Serializable {
 	private String describe;//权限描述
 	
 	@Column(name="power_bo")
-	private int status;//状态是否可用
+	private Integer status;//状态是否可用
 	
 	@ManyToMany(fetch=FetchType.LAZY,mappedBy="powers")
 	@Cascade(CascadeType.ALL)
@@ -77,11 +77,11 @@ public class PowerBean implements Serializable {
 		this.describe = describe;
 	}
 
-	public int getStatus() {
+	public Integer getStatus() {
 		return status;
 	}
 
-	public void setStatus(int status) {
+	public void setStatus(Integer status) {
 		this.status = status;
 	}
 

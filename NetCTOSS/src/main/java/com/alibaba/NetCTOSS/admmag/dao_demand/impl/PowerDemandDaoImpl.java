@@ -2,7 +2,6 @@ package com.alibaba.NetCTOSS.admmag.dao_demand.impl;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -17,7 +16,7 @@ public class PowerDemandDaoImpl implements IPowerDemandDao {
 	@Resource
 	private PowerMapper powerMapper;
 	@Override
-	public Set<PowerBean> findAllPowers() {
+	public List<PowerBean> findAllPowers() {
 		// TODO Auto-generated method stub
 		return powerMapper.findAllPowers();
 	}

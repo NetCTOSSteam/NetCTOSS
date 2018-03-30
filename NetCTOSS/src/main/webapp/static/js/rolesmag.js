@@ -1,28 +1,49 @@
 $(function(){
+	
     // 默认数据列表的显示
     $('#tt').datagrid({
         url:"/NetCTOSS/role/findAllRoles",
         method:"GET",
-        queryParams:queryParams()
+        queryParams:queryParams(),
+        columns:[[    
+            {field:'ck',checkbox:true},    
+            {field:'roleName',title:'角色名称',width:100,align:'center'},    
+            {field:'powers',title:'权限',width:100,align:'center',
+            	formatter:function(value,row,index){
+            		var str = '';
+            		for (var i = 0; i < row.powers.length; i++) {
+            			if(row.powers.length ==1){
+            				str = row.powers[i].powerName
+            			}else{
+            				str = row.powers[i].powerName + ',';
+            			}
+					}
+            			return str;
+                }
+            }    
+        ]]    
     });
     // 查询参数的封装
     function queryParams(){
 
         var roleName = $('#roleName').val();
-        var type = $('#type').val();
-        var str="";
+        var permission = $('#permission').val();
+        /*var str="";
         $("input[name=items]:checkbox:checked").each(function(){
             str = str + $(this).val() + ",";
-        });
+        });*/
         var data = {
         	roleName:roleName,
-        	type:type,
-        	permission:str
+        	permission:permission
         };
-
         return data;
     }
     
+    $(document).keydown(function(event){ 
+		if(event.keyCode==13){ 
+			$('#query').click(); 
+			} 
+		}); 
     
     // 条件查询功能
     $('#query').click(function(){
@@ -30,16 +51,16 @@ $(function(){
         $('#tt').datagrid('reload',queryParams());
 
     });
+    
     $('#add').click(function(){
-
         $('#add_dialog').dialog('open');
-        
         $.ajax({
         	   type: "GET",
-        	   url: "power/findAllPowers",
+        	   url: "/NetCTOSS/power/findAllPowers",
         	   success: function(result){
+        		   $("#allPermission").html('');
         		   for(var i=0; i < result.length; i++ ){
-        	            $("#permission").append(
+        	           $("#allPermission").append(
         	                "<label>" 
         	                    + "<input name='items' type='checkbox' value=" 
         	                        + result[i].powerName
@@ -47,9 +68,8 @@ $(function(){
         	                        + result[i].powerName
         	                +"</label>" + "&nbsp;&nbsp;"
         	            );
-        	            
         	          //一个汉字占两个字符
-        	            if(result[i].powerName.length == 2){
+        	            if(result[i].powerName.length == 6){
         	                $("#permission").append("&nbsp;&nbsp;");
         	            }
         	            //每三个进行换行
@@ -63,18 +83,27 @@ $(function(){
     
     // 新增
     $('#save_roles').click(function(){
-        var url = "role/save";
+        var url = "/NetCTOSS/role/save";
         $('#add_form').form('submit', {
             type:"POST",
             url:url,
+            data:{
+            	add_roleName : $("add_roleName").val(),
+            	add_type : $("add_type").val(),
+            	allPermission : $("input[type='checkbox']").attr('value')
+            },
             onSubmit: function(){
                 // do some check
                 // return false to prevent submit;
-                return true;
+            	if($("input[type='checkbox']").is(':checked')){
+            		return true;
+            	}
+            	return false;
             },
             success:function(data){
+            	var data = eval('(' + data + ')');
                 if(data.status==1){
-                    $('#add_dialog').dialog('close');
+                	$('#add_dialog').dialog('close');
                     $.messager.alert({
     					title : '消息提示',
     					msg : data.information,

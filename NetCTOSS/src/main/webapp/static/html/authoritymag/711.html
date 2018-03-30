@@ -17,18 +17,8 @@
 
 <div data-options="region:'center',title:'角色管理 ' ">
     <div id="tb">
-        角色名称：<input id="customName" type="text" class="easyui-textbox"   />
-        按照权限查询:<select name="power">
-        <option value="yh" >用户管理权限</option>
-        <option value="zf">资费管理权限</option>
-        <option value="gly" >管理员管理权限</option>
-        <option value="zd">账单管理权限</option>
-        <option value="zw" >账务管理权限</option>
-        <option value="zfw">用户自服务管理权限</option>
-        <option value="qx" >权限管理权限</option>
-        <option value="bb">报表管理权限</option>
-    </select>
-
+        角色名称：<input id="roleName" type="text" class="easyui-textbox"   />
+        按照权限查询：<input id="permission" type="text" class="easyui-textbox"   />
         <a id="query" href="javascript:void(0)" class="easyui-linkbutton"
            data-options="iconCls:'icon-search'">查询</a>
         <br>
@@ -46,13 +36,7 @@
     <table id="tt" class="easyui-datagrid"
            style="width: auto; height: 100%"
            data-options="fitColumns:true,method:'GET',idField:'id',striped:true,singleSelect:false,toolbar:'#tb',pagination:true">
-        <thead>
-	        <tr>
-	            <th data-options="field:'ck',checkbox:true"></th>
-	            <th data-options="field:'roleName',width:110,align:'center'">角色名称</th>
-	            <th data-options="field:'powers',width:110,align:'center'">权限</th>
-	        </tr>
-        </thead>
+       
     </table>
 </div>
 
@@ -65,18 +49,20 @@
             <table>
                 <tr>
                     <td style="width: 80px">角色名称：</td>
-                    <td><input class="easyui-validatebox" type="text" id="roleName"
+                    <td><input class="easyui-validatebox" type="text" id="add_roleName"
                                name="roleName" data-options="required:true" />
                     </td>
                 </tr>
                 <tr>
                     <td>角色类型：</td>
-                    <td><span id="type">管理员</span></td>
+                    <td><span id="add_type">管理员</span></td>
                 </tr>
                 <tr>
                     <td>权限：</td>
-                    <td id="permission">
+                    <td>
+                    	<div id="allPermission">
                     	<!--  冲后台获取权限数据-->
+                    	</div>
                     </td>
                 </tr>
             </table>
@@ -124,6 +110,10 @@
            data-options="iconCls:'icon-no',plain:true"
            onclick="$('#update_dialog').dialog('close')">取消</a>
     </div>
-
+	<script type="text/javascript">
+		function managerPowerFormat(value,row,index){
+			return row.powers.powerName;
+		};
+	</script>
 </body>
 </html>

@@ -86,12 +86,12 @@ public class RoleBean implements Serializable {
 		this.type = type;
 	}
 
-	public int isStatus() {
+	public int getStatus() {
 		return status;
 	}
 
 	public void setStatus(int status) {
-		this.status = status;
+		this.status = 1;
 	}
 
 	public List<PowerBean> getPowers() {

@@ -2,7 +2,6 @@ package com.alibaba.NetCTOSS.admmag.service_demand;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import com.alibaba.NetCTOSS.beans.admAndRoleBean.PowerBean;
 
@@ -18,7 +17,7 @@ public interface IPowerDemandService {
 	 * 查询所有的权限信息
 	 * @return
 	 */
-	public Set<PowerBean> findAllPowers();
+	public List<PowerBean> findAllPowers();
 	
 	/**
 	 * 根据参数查询权限信息
