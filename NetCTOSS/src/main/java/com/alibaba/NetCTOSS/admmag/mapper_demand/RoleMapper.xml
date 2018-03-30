@@ -37,18 +37,25 @@
 	<!-- 查询所有的角色信息 -->
 	<select id="findAllRoles" resultMap="roleMap">
 		SELECT
-		t_role.role_name,t_power.power_name from t_role LEFT JOIN t_role_power
+		t_role.role_name,group_concat(t_power.power_name) from t_role LEFT
+		JOIN t_role_power
 		on t_role.role_id = t_role_power.rp_role_id
-		LEFT JOIN t_power on t_power.power_id=t_role_power.rp_power_id WHERE
-		t_role.role_bo = 1
+		LEFT JOIN
+		t_power on t_power.power_id=t_role_power.rp_power_id WHERE
+		t_role.role_bo = 1 GROUP BY t_role.role_name
 	</select>
 
 	<!-- 根据条件查询角色信息 -->
 	<select id="findRolesByCondition" resultMap="roleMap">
 		SELECT
-		t_role.role_name,t_power.power_name from t_role LEFT JOIN t_role_power
-		on t_role.role_id = t_role_power.rp_role_id
-		LEFT JOIN t_power on t_power.power_id=t_role_power.rp_power_id
+		t_role.role_name,group_concat(t_power.power_name) as power_name from
+		t_role
+		LEFT JOIN t_role_power
+		on t_role.role_id =
+		t_role_power.rp_role_id
+		LEFT
+		JOIN t_power on
+		t_power.power_id=t_role_power.rp_power_id
 		<where>
 			t_role.role_bo = 1 
 			<if test="roleName!=null&amp;&amp;roleName!=''">
@@ -58,5 +65,6 @@
 				and t_power.power_name like concat(#{permission},'%')
 			</if>
 		</where>
+			GROUP BY t_role.role_name
 	</select>
 </mapper>

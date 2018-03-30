@@ -13,9 +13,9 @@ $(function(){
             		var str = '';
             		for (var i = 0; i < row.powers.length; i++) {
             			if(row.powers.length ==1){
-            				str = row.powers[i].powerName
+            				str = row.powers[i].powerName;
             			}else{
-            				str = row.powers[i].powerName + ',';
+            				str = row.powers[i].powerName;
             			}
 					}
             			return str;
@@ -69,7 +69,7 @@ $(function(){
         	                +"</label>" + "&nbsp;&nbsp;"
         	            );
         	          //一个汉字占两个字符
-        	            if(result[i].powerName.length == 6){
+        	            if(result[i].powerName.length == 2){
         	                $("#permission").append("&nbsp;&nbsp;");
         	            }
         	            //每三个进行换行
@@ -127,8 +127,9 @@ $(function(){
                 
                 $.ajax({
              	   type: "GET",
-             	   url: "power/findAllPowers",
+             	   url: "/NetCTOSS/power/findAllPowers",
              	   success: function(result){
+             		  $("#permission1").html('');
              		   for(var i=0; i < result.length; i++ ){
              	            $("#permission1").append(
              	                "<label>" 
@@ -138,7 +139,9 @@ $(function(){
              	                        + result[i].powerName
              	                +"</label>" + "&nbsp;&nbsp;"
              	            );
-             	            
+             	          /* if(row.powers[i].powerName=result[i].powerName){
+              				  $("input[type=checkbox value='result[i].powerName']").attr("checked","checked");
+              			   };*/
              	          //一个汉字占两个字符
              	            if(result[i].powerName.length == 2){
              	                $("#permission1").append("&nbsp;&nbsp;");
@@ -153,8 +156,9 @@ $(function(){
                 
 				$('#roleName1').attr('value', row.roleName);
 				$('#type1').attr('value', row.type);
+				$('#permission1').attr('value', row.powers);
 				
-				$('#update_customer').form('validate');
+				$('#update_dialog').form('validate');
             }else{
                 $.messager.show({
                     title:'消息提示',
@@ -175,12 +179,11 @@ $(function(){
     // 修改保存
     $('#update_role_bb').click(function(){
         var row = $('#tt').datagrid('getSelected')
-        var url = "role/"+row.id;
+        var url = "/NetCTOSS/role/"+row.id;
         $('#update_role').form('submit', {
             url:url,
             onSubmit: function(){
                 // do some check
-                // return false to prevent submit;
                 return true;
             },
             success:function(data){
@@ -199,6 +202,7 @@ $(function(){
             }
         });
     });
+    
     $('#delete').click(function(){
         // 返回的是：所选择数据的数组
         var rows = $('#tt').datagrid('getSelections')
@@ -214,7 +218,7 @@ $(function(){
             $.messager.confirm('友情提示', '你确定需要删除这些数据么?', function(r){
                 if (r){
                     var json = $.toJSON(rows);
-                    var url = "role/delete";
+                    var url = "/NetCTOSS/role/delete";
                     $.ajax({
                         type: "DELETE",
                         url: url,
@@ -235,23 +239,3 @@ $(function(){
         }
     });
 });
-Date.prototype.format = function(fmt) {
-    var o = {
-        "M+" : this.getMonth()+1,                 // 月份
-        "d+" : this.getDate(),                    // 日
-        "h+" : this.getHours(),                   // 小时
-        "m+" : this.getMinutes(),                 // 分
-        "s+" : this.getSeconds(),                 // 秒
-        "q+" : Math.floor((this.getMonth()+3)/3), // 季度
-        "S"  : this.getMilliseconds()             // 毫秒
-    };
-    if(/(y+)/.test(fmt)) {
-        fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));
-    }
-    for(var k in o) {
-        if(new RegExp("("+ k +")").test(fmt)){
-            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));
-        }
-    }
-    return fmt;
-}

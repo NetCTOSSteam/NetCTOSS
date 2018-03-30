@@ -91,7 +91,7 @@ public class RoleBean implements Serializable {
 	}
 
 	public void setStatus(Integer status) {
-		this.status = 1;
+		this.status = status;
 	}
 
 	public List<PowerBean> getPowers() {

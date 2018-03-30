@@ -35,7 +35,7 @@
     </div>
     <table id="tt" class="easyui-datagrid"
            style="width: auto; height: 100%"
-           data-options="fitColumns:true,method:'GET',idField:'id',striped:true,singleSelect:false,toolbar:'#tb',pagination:true">
+           data-options="fitColumns:true,method:'GET',idField:'id',striped:true,singleSelect:true,toolbar:'#tb',pagination:true">
        
     </table>
 </div>
@@ -110,10 +110,5 @@
            data-options="iconCls:'icon-no',plain:true"
            onclick="$('#update_dialog').dialog('close')">取消</a>
     </div>
-	<script type="text/javascript">
-		function managerPowerFormat(value,row,index){
-			return row.powers.powerName;
-		};
-	</script>
 </body>
 </html>

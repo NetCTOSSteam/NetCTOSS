@@ -26,4 +26,11 @@ public interface IPowerHandleService {
 	 * @param power
 	 */
 	public void deletePowerBean(PowerBean power);
+	
+	/**
+	 * 通过权限名来找到对应的权限对象
+	 * @param powerName
+	 * @return
+	 */
+	public PowerBean findPowerBeanByPowerName(String powerName);
 }

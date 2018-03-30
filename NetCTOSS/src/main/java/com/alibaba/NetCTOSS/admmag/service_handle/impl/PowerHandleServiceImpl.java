@@ -30,4 +30,10 @@ public class PowerHandleServiceImpl implements IPowerHandleService {
 		powerHandleDao.delete(power);
 	}
 
+	@Override
+	public PowerBean findPowerBeanByPowerName(String powerName) {
+		// TODO Auto-generated method stub
+		return powerHandleDao.findPowerBeanByPowerName(powerName);
+	}
+
 }
