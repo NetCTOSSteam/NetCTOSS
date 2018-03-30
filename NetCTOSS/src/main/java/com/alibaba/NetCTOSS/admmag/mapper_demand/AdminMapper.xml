@@ -6,12 +6,12 @@
 	<!-- 添加查询动态SQL  cqs; -->
 	<sql id="adminParam">
 		<where>
-			adm.adm_bo = 1
+			adm.adm_bo = 1 and role.role_bo = 1
 			<if test="administratorBean.adminName!=null">
-				and adm.adm_name like concat(#{administratorBean.adminName},%)
+				and adm.adm_name like concat(#{administratorBean.adminName},'%')
 			</if>
 			<if test="administratorBean.loginName!=null">
-				and adm.login_name like concat(#{administratorBean.loginName},%)
+				and adm.login_name like concat(#{administratorBean.loginName},'%')
 			</if>
 		</where>
 	</sql>
@@ -26,7 +26,7 @@
 		<association property="role" javaType="com.alibaba.NetCTOSS.beans.admAndRoleBean.RoleBean">
 			<id property="id" column="role_id"/>
 			<result property="roleName" column="role_name" />
-			<result property="type" column="role_name" />
+			<result property="type" column="role_type" />
 			<collection property="powers" javaType="java.util.List">
 				<id property="id" column="power_id"/>
 				<result property="powerName" column="power_name" />
@@ -45,8 +45,13 @@
 		adm.adm_tel,
 		adm.adm_eml,
 		role.role_id,
-		role.role_name 
-		from t_adm as adm,t_role as role
+		role.role_name,
+		role.role_type 
+		from 
+		t_adm as adm 
+		left join 
+		t_role as role 
+		on adm.adm_role_id = role.role_id
 		<include refid="adminParam"></include>
 	</select>
 	
@@ -59,6 +64,10 @@
 	<select id="getRole" resultMap="com.alibaba.NetCTOSS.admmag.mapper_demand.RoleMapper.roleMap">
 			SELECT * from t_role,t_adm where t_role.role_id = t_adm.adm_role_id 
 			and t_adm.login_name = #{adminLoginName}
+	</select>
+	
+	<select id="findAdministratorBeanById" resultMap="adminMap">
+		select * from t_adm where adm_id = #{id}
 	</select>
 	
 </mapper>

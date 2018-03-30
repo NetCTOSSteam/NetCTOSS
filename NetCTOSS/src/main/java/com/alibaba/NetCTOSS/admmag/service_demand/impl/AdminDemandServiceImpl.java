@@ -41,6 +41,12 @@ public class AdminDemandServiceImpl implements IAdminDemandService {
 		// TODO Auto-generated method stub
 		return adminDemandDaoImpl.findAllAdministratorBeansByParam(administratorBean);
 	}
+
+	@Override
+	public AdministratorBean findAdministratorBeanById(int id) {
+		// TODO Auto-generated method stub
+		return adminDemandDaoImpl.findAdministratorBeanId(id);
+	}
 	
 	
 

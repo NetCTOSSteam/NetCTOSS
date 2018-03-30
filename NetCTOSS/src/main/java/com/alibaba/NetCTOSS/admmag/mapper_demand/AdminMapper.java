@@ -30,4 +30,7 @@ public interface AdminMapper {
 	 */
 	public RoleBean getRole(@Param("adminLoginName")String adminLoginName);
 
+
+	AdministratorBean findAdministratorBeanById(@Param("id") int id);
+
 }

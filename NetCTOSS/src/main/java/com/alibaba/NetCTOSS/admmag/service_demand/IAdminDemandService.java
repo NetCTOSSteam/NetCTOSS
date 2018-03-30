@@ -34,6 +34,11 @@ public interface IAdminDemandService {
 	 */
 	List<AdministratorBean> findAllAdministratorBeansByParam(AdministratorBean administratorBean);
 	
-	
+	/**
+	 * 根据ID查询对应消息
+	 * @param id
+	 * @return
+	 */
+	AdministratorBean findAdministratorBeanById(int id);
 	
 }

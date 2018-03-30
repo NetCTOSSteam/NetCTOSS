@@ -117,6 +117,10 @@ public class AdminController {
 	@RequestMapping(value = "/delete", method = { RequestMethod.DELETE }, produces = { "application/json" })
 	public boolean deleteAdministratorBean(AdministratorBean administratorBean) {
 		try {
+			/*
+			 * 删除数据。但是数据需要保留，将status 字段跟改为无效数据   0    
+			 * */
+			administratorBean.setStatus(0);
 			adminHandleServiceImpl.deleteAdministratorBean(administratorBean);
 			return true;
 		} catch (Exception e) {
@@ -134,12 +138,19 @@ public class AdminController {
 	@RequestMapping(value = "/{id}", method = { RequestMethod.GET }, produces = { "application/json" })
 	public Map<Object,Object> getAdministratorBeans(AdministratorBean administratorBean,int page,int rows) {
 		Map<Object,Object> map = new HashMap<Object,Object>();	
-		PageHelper.startPage(page, rows);
+		
+		//先查询一次
 		List<AdministratorBean>  admins = adminDemandServiceImpl.findAllAdministratorBeansByParam(administratorBean);
-		PageInfo<AdministratorBean> pages = new PageInfo<AdministratorBean>(admins);
-		map.put("total", pages.getTotal());
+		//
+		PageHelper.startPage(page, rows);
+		//再次分页查询
+		List<AdministratorBean>  adminsPage = adminDemandServiceImpl.findAllAdministratorBeansByParam(administratorBean);
+		
+		PageInfo<AdministratorBean> pages = new PageInfo<AdministratorBean>(adminsPage);
+		map.put("total", admins.size());
 		map.put("rows", pages.getList());
 		return map;
 	}
+	
 	
 }

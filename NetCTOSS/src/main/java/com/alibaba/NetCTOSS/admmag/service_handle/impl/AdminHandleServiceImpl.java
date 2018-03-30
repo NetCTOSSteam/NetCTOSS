@@ -29,10 +29,7 @@ public class AdminHandleServiceImpl implements IAdminHandleService {
 	public void deleteAdministratorBean(AdministratorBean administratorBean) {
 		// TODO Auto-generated method stub
 		
-		/*
-		 * 删除数据。但是数据需要保留，将status 字段跟改为无效数据   0    
-		 * */
-		administratorBean.setStatus(0);
+	
 		iAdminHandleDao.saveAndFlush(administratorBean);
 	}
 

@@ -31,5 +31,10 @@ public class AdminDemandDaoImpl implements IAdminDemandDao {
 		// TODO Auto-generated method stub
 		return adminMapper.getRole(adminLoginName);
 	}
+	@Override
+	public AdministratorBean findAdministratorBeanId(int id) {
+		// TODO Auto-generated method stub
+		return adminMapper.findAdministratorBeanById(id);
+	}
 
 }

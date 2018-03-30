@@ -33,5 +33,8 @@ public interface IAdminDemandDao {
 	 * @return
 	 */
 	public RoleBean getRole(String adminLoginName);
+
+
+	AdministratorBean findAdministratorBeanId(int id);
 	
 }
