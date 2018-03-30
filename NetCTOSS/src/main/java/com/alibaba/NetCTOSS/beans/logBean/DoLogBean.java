@@ -50,7 +50,7 @@ public class DoLogBean implements Serializable {
 	/**
 	 * 操作的模块
 	 */
-	@Column(name = "do_place", length = 20)
+	@Column(name = "do_place")
 	private String place;
 
 	/**
@@ -62,14 +62,14 @@ public class DoLogBean implements Serializable {
 	/**
 	 * 操作了哪些数据
 	 */
-	@Column(name = "do_data", length = 20)
+	@Column(name = "do_data")
 	private String data;
 
 	/**
 	 * 操作的行为
 	 */
 	@Column(name = "do_action")
-	private int action;
+	private String action;
 	/**
 	 * 操作的时间
 	 */
@@ -128,11 +128,11 @@ public class DoLogBean implements Serializable {
 		this.data = data;
 	}
 
-	public int getAction() {
+	public String getAction() {
 		return action;
 	}
 
-	public void setAction(int action) {
+	public void setAction(String action) {
 		this.action = action;
 	}
 

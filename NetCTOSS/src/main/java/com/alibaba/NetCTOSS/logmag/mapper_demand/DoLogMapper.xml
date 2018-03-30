@@ -12,14 +12,10 @@
 		<result property="loginName" column="do_loginname" javaType="string"/>
 		<result property="place" column="do_place" javaType="string" />
 		<result property="IP" column="do_ip" javaType="string" />
-		<result property="data" column="do_data" javaType="string" />
-		<result property="action" column="do_action" javaType="int" />
+		<result property="data" column="do_data" />
+		<result property="action" column="do_action" javaType="string" />
 		<result property="time" column="do_time" javaType="date" />
 	</resultMap>
-	  
-	<insert id="saveDoLogBean">
-		insert into t_do_log(do_name,do_loginname,do_place,do_data,do_action,do_ip,do_time) values (#{log.admName},#{log.loginName},#{log.place},#{log.data},#{log.action},#{log.IP}),#{log.time}
-	</insert>
 	
 	<select id="findAll" resultMap="doLogMap">
 		select * from t_do_log

@@ -2,7 +2,9 @@ package com.alibaba.NetCTOSS.logmag.service_demand;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
+import com.alibaba.NetCTOSS.beans.admAndRoleBean.PowerBean;
 import com.alibaba.NetCTOSS.beans.logBean.DoLogBean;
 
 /**
@@ -17,7 +19,7 @@ public interface IDoLogDemandService {
 	 * @param 
 	 * @return
 	 */
-	public List<DoLogBean> findAll();
+	public Set<DoLogBean> findAll();
 	
 	/**
 	 * 根据参数查询操作日志

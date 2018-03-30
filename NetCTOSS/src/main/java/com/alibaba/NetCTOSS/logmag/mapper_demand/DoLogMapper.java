@@ -2,6 +2,7 @@ package com.alibaba.NetCTOSS.logmag.mapper_demand;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Options;
@@ -17,7 +18,7 @@ public interface DoLogMapper {
 	 * @param 
 	 * @return
 	 */
-	public List<DoLogBean> findAll();
+	public Set<DoLogBean> findAll();
 	
 	/**
 	 * 根据参数查询操作日志
@@ -26,17 +27,4 @@ public interface DoLogMapper {
 	 */
 	public List<DoLogBean> findDoLogsByParams(@Param("params") Map params);
 	
-	/**
-	 * 保存操作日志
-	 * @param log
-	 * @return
-	 */
-//	@Insert(value="insert into t_do_log(do_name,do_loginname,do_place,do_data,do_action,do_ip,do_time) values (#{log.do_name},#{log.do_loginname},#{log.do_place},#{log.do_data},#{log.do_action},#{log.do_ip}),#{log.do_time}")
-//	@Options(useGeneratedKeys=true,
-//	keyProperty="log.id")
-	public void saveDoLogBean(@Param("log") DoLogBean log);
-	
-	
-	
-
 }

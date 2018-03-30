@@ -32,10 +32,10 @@ public @interface MyLog {
 	String place() default "";  
 	
 	/**
-	 * 什么操作 增 1   删 2   改3
+	 * 什么操作
 	 * @return
 	 */
-	int action() ;  
+	String action() default "";  
 	
 	/**
 	 * 操作的数据

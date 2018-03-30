@@ -2,6 +2,7 @@ package com.alibaba.NetCTOSS.logmag.service_demand.impl;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -21,7 +22,7 @@ public class DoLogDemandServiceImpl implements IDoLogDemandService {
 	IDoLogDemandDao dao=new DoLogDemandDaoImpl();
 
 	@Override
-	public List<DoLogBean> findAll() {
+	public Set<DoLogBean> findAll() {
 		// TODO Auto-generated method stub
 		return dao.findAll();
 	}
@@ -31,6 +32,8 @@ public class DoLogDemandServiceImpl implements IDoLogDemandService {
 		// TODO Auto-generated method stub
 		return dao.findDoLogsByParams(params);
 	}
+
+	
 	
 }
 	
