@@ -46,7 +46,7 @@ public class RoleBean implements Serializable {
 	private String type;//角色类型
 	
 	@Column(name="role_bo")
-	private int status;//数据是否有效
+	private Integer status;//数据是否有效
 
 	@OneToMany(fetch=FetchType.LAZY,mappedBy="role")
 	@Cascade(value = {CascadeType.ALL})
@@ -86,11 +86,11 @@ public class RoleBean implements Serializable {
 		this.type = type;
 	}
 
-	public int getStatus() {
+	public Integer getStatus() {
 		return status;
 	}
 
-	public void setStatus(int status) {
+	public void setStatus(Integer status) {
 		this.status = 1;
 	}
 
