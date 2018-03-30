@@ -52,6 +52,16 @@ public class HttpDeleteFormContentFilter extends OncePerRequestFilter {
 			MultiValueMap<String, String> formParameters = formConverter.read(null, inputMessage);
 			HttpServletRequest wrapper = new HttpDeleteFormContentRequestWrapper(request, formParameters);
 			filterChain.doFilter(wrapper, response);
+		}else if (("PUT".equals(request.getMethod())) && isFormContentType(request)) {
+			HttpInputMessage inputMessage = new ServletServerHttpRequest(request) {
+				@Override
+				public InputStream getBody() throws IOException {
+					return request.getInputStream();
+				}
+			};
+			MultiValueMap<String, String> formParameters = formConverter.read(null, inputMessage);
+			HttpServletRequest wrapper = new HttpDeleteFormContentRequestWrapper(request, formParameters);
+			filterChain.doFilter(wrapper, response);
 		}
 		else {
 			filterChain.doFilter(request, response);

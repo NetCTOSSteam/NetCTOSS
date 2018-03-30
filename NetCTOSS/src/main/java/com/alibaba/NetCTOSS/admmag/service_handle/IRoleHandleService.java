@@ -26,4 +26,11 @@ public interface IRoleHandleService {
 	 * @param role
 	 */
 	public void deleteRole(RoleBean role);
+	
+	/**
+	 * 通过id查找role对象
+	 * @param id
+	 * @return
+	 */
+	public RoleBean findById(int id);
 }

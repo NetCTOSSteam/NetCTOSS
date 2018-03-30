@@ -27,7 +27,13 @@ public class RoleHandleServiceImpl implements IRoleHandleService {
 	@Override
 	public void deleteRole(RoleBean role) {
 		// TODO Auto-generated method stub
-		roleHandleDaoImpl.delete(role);
+		roleHandleDaoImpl.saveAndFlush(role);
+	}
+
+	@Override
+	public RoleBean findById(int id) {
+		// TODO Auto-generated method stub
+		return roleHandleDaoImpl.findOne(id);
 	}
 
 }

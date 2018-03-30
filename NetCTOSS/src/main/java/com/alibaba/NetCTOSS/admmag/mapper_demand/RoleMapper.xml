@@ -36,7 +36,7 @@
 
 	<!-- 查询所有的角色信息 -->
 	<select id="findAllRoles" resultMap="roleMap">
-		SELECT
+		SELECT t_role.role_id,
 		t_role.role_name,group_concat(t_power.power_name) from t_role LEFT
 		JOIN t_role_power
 		on t_role.role_id = t_role_power.rp_role_id
@@ -47,7 +47,7 @@
 
 	<!-- 根据条件查询角色信息 -->
 	<select id="findRolesByCondition" resultMap="roleMap">
-		SELECT
+		SELECT t_role.role_id,
 		t_role.role_name,group_concat(t_power.power_name) as power_name from
 		t_role
 		LEFT JOIN t_role_power

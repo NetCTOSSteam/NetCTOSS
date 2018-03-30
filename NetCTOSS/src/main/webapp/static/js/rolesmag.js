@@ -178,49 +178,68 @@ $(function(){
     });
     // 修改保存
     $('#update_role_bb').click(function(){
+        // 返回第一个被选中的行或如果没有选中的行则返回null
         var row = $('#tt').datagrid('getSelected')
-        var url = "/NetCTOSS/role/"+row.id;
-        $('#update_role').form('submit', {
-            url:url,
-            onSubmit: function(){
-                // do some check
-                return true;
-            },
-            success:function(data){
-                var data = eval('(' + data + ')');
-                if(data.status==1){
-                    $('#update_dialog').dialog('close');
-                }
-                $.messager.show({
-                    title:'消息提示',
-                    msg:data.information,
-                    timeout:3000,
-                    showType:'slide'
-                });
-
-                $('#tt').datagrid('reload',queryParams());// 重新加载数据
-            }
+        
+        //jquery获取复选框值  
+        var chk_value =[];//定义一个数组  
+        $('input[name="items"]:checked').each(function(){//遍历每一个名字为interest的复选框，其中选中的执行函数  
+        	chk_value.push($(this).val());//将选中的值添加到数组chk_value中  
         });
+        var json = $.toJSON(chk_value);
+        
+        if (row == null) {// 没有选择任何需要被修改的数据
+			$.messager.alert({
+				title : '消息提示',
+				msg : '请选择需要修改的数据！',
+				timeout : 5000,
+				showType : 'slide'
+			});
+        }else{// 已经选择了，需要被修改的数据
+            $.messager.confirm('友情提示', '你确定需要修改这条数据么?', function(r){
+                    var url = "/NetCTOSS/role/"+row.id;
+                    $.ajax({
+                        type: "PUT",
+                        url: url,
+                        data :{
+                   		   id : row.id,
+                   		 roleName : $('#roleName1').val(),
+                   		  items : json
+                   	   },
+                        success: function(msg){
+                            $.messager.show({
+                                title:'消息提示',
+                                msg:msg.information,
+                                timeout:5000,
+                                showType:'slide'
+                            });
+                            
+                            $('#update_dialog').dialog('close');
+                            
+                            $('#tt').datagrid('reload',queryParams());// 重新加载数据
+                        }
+                    });
+                
+            });
+        }
     });
     
     $('#delete').click(function(){
-        // 返回的是：所选择数据的数组
-        var rows = $('#tt').datagrid('getSelections')
-        var lenth = rows.length;
-        if(lenth == 0){// 没有选择任何需要被删除的数据
-            $.messager.show({
-                title:'消息提示',
-                msg:'请选择需要删除的数据！',
-                timeout:5000,
-                showType:'slide'
-            });
+        // 返回第一个被选中的行或如果没有选中的行则返回null
+        var row = $('#tt').datagrid('getSelected')
+        if (row == null) {// 没有选择任何需要被删除的数据
+			$.messager.alert({
+				title : '消息提示',
+				msg : '请选择需要删除的数据！',
+				timeout : 5000,
+				showType : 'slide'
+			});
         }else{// 已经选择了，需要被删除的数据
-            $.messager.confirm('友情提示', '你确定需要删除这些数据么?', function(r){
-                if (r){
-                    var json = $.toJSON(rows);
-                    var url = "/NetCTOSS/role/delete";
+            $.messager.confirm('友情提示', '你确定需要删除这条数据么?', function(r){
+                    var json = $.toJSON(row);
+                    var url = "/NetCTOSS/role/delete/"+row.id;
                     $.ajax({
-                        type: "DELETE",
+                        type: "PUT",
                         url: url,
                         contentType:"application/json",
                         data: json,
@@ -234,7 +253,7 @@ $(function(){
                             $('#tt').datagrid('reload',queryParams());// 重新加载数据
                         }
                     });
-                }
+                
             });
         }
     });
