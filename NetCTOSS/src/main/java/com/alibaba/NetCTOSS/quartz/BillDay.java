@@ -12,7 +12,6 @@ import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 
 import com.alibaba.NetCTOSS.activeMQ.service.PushService;
-import com.alibaba.NetCTOSS.activeMQ.service.imp.NewPushService;
 import com.alibaba.NetCTOSS.beans.billBean.AccountDayBean;
 import com.alibaba.NetCTOSS.beans.billBean.MonthAndAccountBean;
 import com.alibaba.NetCTOSS.beans.billBean.MonthAndBusinessBean;

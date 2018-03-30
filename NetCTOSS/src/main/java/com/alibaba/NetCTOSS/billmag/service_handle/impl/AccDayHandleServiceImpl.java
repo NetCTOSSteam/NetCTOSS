@@ -14,14 +14,14 @@ public class AccDayHandleServiceImpl implements IAccDayHandleService {
 	@Resource
 	private IAccDayHandleDao iAccDayHandleDao;
 	@Override
-	@MyLog(action=1,place="saveAccountDayBean")
+	@MyLog(action="1",place="saveAccountDayBean")
 	public void saveAccountDayBean(AccountDayBean bean) {
 		// TODO Auto-generated method stub
 		iAccDayHandleDao.save(bean);
 	}
 
 	@Override
-	@MyLog(action=3,place="updateAccountDayBean")
+	@MyLog(action="3",place="updateAccountDayBean")
 	public void updateAccountDayBean(AccountDayBean bean) {
 		// TODO Auto-generated method stub
 		iAccDayHandleDao.saveAndFlush(bean);

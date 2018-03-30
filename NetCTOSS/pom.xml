@@ -36,14 +36,14 @@
 	<dependencies>
 	
 	<!-- 队列消息需求json包 -->
-	<dependency>
+	<!-- <dependency>
 	    <groupId>com.alibaba</groupId>
 	    <artifactId>fastjson</artifactId>
 	    <version>${fastjson.version}</version>
-	</dependency>
+	</dependency> -->
 	
 	<!-- 引入消息队列 及其辅助包 -->
-		<dependency>
+	<!-- 	<dependency>
 				<groupId>org.apache.activemq</groupId>
 				<artifactId>activemq-all</artifactId>
 				  <version>${activemq.version}</version>
@@ -52,14 +52,14 @@
 			<groupId>org.apache.activemq</groupId>
 			<artifactId>activemq-pool</artifactId>
 			  <version>${activemq.version}</version>
-		</dependency>
-		<!-- 引入slf4j相关jar包 --> 
-		<dependency>
+		</dependency> -->
+	<!-- 引入slf4j相关jar包 --> 
+	<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>${slf4j.version}</version>
 			<scope>test</scope>
-		</dependency>
+		</dependency> 
 
 		<!-- 引入定时任务 quartz及其辅包 -->
 		<dependency>

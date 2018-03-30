@@ -15,14 +15,14 @@ public class AccMonthHandleServiceImpl implements IAccMonthHandleService {
 	@Resource
 	private IAccMonthHandleDao iAccMonthHandleDao;
 	@Override
-	@MyLog(action=1,place="saveAccountMonthBean")
+	@MyLog(action="1",place="saveAccountMonthBean")
 	public void saveAccountMonthBean(AccountMonthBean bean) {
 		// TODO Auto-generated method stub
 		iAccMonthHandleDao.save(bean);
 	}
 
 	@Override
-	@MyLog(action=3,place="updateAccountMonthBean")
+	@MyLog(action="3",place="updateAccountMonthBean")
 	public void updateAccountMonthBean(AccountMonthBean bean) {
 		// TODO Auto-generated method stub
 		iAccMonthHandleDao.saveAndFlush(bean);
