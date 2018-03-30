@@ -1,7 +1,9 @@
 package com.alibaba.NetCTOSS.quartz;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -9,6 +11,8 @@ import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 
+import com.alibaba.NetCTOSS.activeMQ.service.PushService;
+import com.alibaba.NetCTOSS.activeMQ.service.imp.NewPushService;
 import com.alibaba.NetCTOSS.beans.billBean.AccountDayBean;
 import com.alibaba.NetCTOSS.beans.billBean.MonthAndAccountBean;
 import com.alibaba.NetCTOSS.beans.billBean.MonthAndBusinessBean;
@@ -64,6 +68,8 @@ public class BillDay implements Job {
 	@Resource
 	private IMonthBusinessHandleService iMonthBusinessHandleService;
 	
+	@Resource
+    private PushService userPushService;
 	
 	@Override
 	public void execute(JobExecutionContext arg0) throws JobExecutionException {
@@ -84,20 +90,38 @@ public class BillDay implements Job {
 		bean.setStartTime(date);
 		
 		List<ServiceAndBusinessBean> li = iServiceBusinessDemandService.findServiceBusByBean(bean);
-		
+		Map map1 = new HashMap<>();
+		map1.put("1", "可以了！！！！！");
+		userPushService.push(map1);
 		//此时调用消息列队
 		for (ServiceAndBusinessBean serviceAndBusinessBean : li) {
-			saveAccDayBill(serviceAndBusinessBean,yea,mont,day);
-			double  money = updateMonthBus(serviceAndBusinessBean,yea,mont,day);
-			updateMonthAcc(serviceAndBusinessBean,yea,mont,day,money);
+			AccountDayBean accountDayBean = saveAccDayBill(serviceAndBusinessBean,yea,mont,day);
 			
+			MonthAndBusinessBean monthAndBusinessBean = updateMonthBus(serviceAndBusinessBean,yea,mont,day);
+			double  money = monthAndBusinessBean.getMoney();
+			MonthAndAccountBean monthAndAccountBean = updateMonthAcc(serviceAndBusinessBean,yea,mont,day,money);
+			
+//			NewPushService newPushService = new NewPushService();
+			Map map = new HashMap<>();
+			
+			/*
+			 * day
+			 * month
+			 * year
+			 * mbus
+			 * macc
+			 */
+			map.put("day", accountDayBean);
+			map.put("mbus", monthAndBusinessBean);
+			map.put("macc", monthAndAccountBean);
+//			newPushService.push(map);
 		}
 	}
 	
 	/**
 	 * 添加每天的 日志
 	 */
-	private void saveAccDayBill(ServiceAndBusinessBean bean,int y ,int m , int d) {
+	private AccountDayBean saveAccDayBill(ServiceAndBusinessBean bean,int y ,int m , int d) {
 		
 		UserBean user = new UserBean();
 		BusinessBean bus = new BusinessBean();
@@ -118,14 +142,15 @@ public class BillDay implements Job {
 		accountDayBean.setServer(bus.getServerIP());
 		accountDayBean.setTimeLong((int)bean.getOnlineTimr());
 		
-		//保存当天的  日志
 		IAccDayHandleService.saveAccountDayBean(accountDayBean);
+		//保存当天的  日志
+		return accountDayBean;
 	}
 
 	/**
 	 * 修改当月的 该账务账户  账单
 	 */
-	private void updateMonthAcc(ServiceAndBusinessBean bean,int y ,int m , int d,double money) {
+	private MonthAndAccountBean updateMonthAcc(ServiceAndBusinessBean bean,int y ,int m , int d,double money) {
 		UserBean user = new UserBean();
 		BusinessBean bus = new BusinessBean();
 		MealBean mealBean = new MealBean();
@@ -143,7 +168,14 @@ public class BillDay implements Job {
 		maab.setAccount(user.getLoginName());
 		maab.setMonth(m);
 		maab.setYear(y);
-		maab = iMonthAccDemandService.findByMonthAndAccountBean(maab);
+		
+		if(iMonthAccDemandService.findByMonthAndAccountBean(maab) == null) {
+			maab.setIDcard(user.getIdCard());
+			maab.setName(user.getUserName());
+			maab.setStatus(1);
+		}else{
+			maab = iMonthAccDemandService.findByMonthAndAccountBean(maab);
+		}
 		
 		
 		switch (mealBean.getMealType()) {
@@ -153,6 +185,10 @@ public class BillDay implements Job {
 	 * 	包月 
 	 * 
 	 * 套餐 不设置 money
+	 * 
+	 * maab.setType(bus.getNextMealBean().getMealName());
+			
+		maab.setMoney(0);
 	 * 
 	 * 按时就直接 加
 	 */
@@ -171,11 +207,13 @@ public class BillDay implements Job {
 			break;
 		}
 		
+		iMonthAccHandleService.saveMonthAndAccountBean(maab);
+		return maab;
 	}
 	/**
 	 * 修改当月 每一个业务账户的 账单
 	 */
-	private double updateMonthBus(ServiceAndBusinessBean bean,int y ,int m , int d) {
+	private MonthAndBusinessBean updateMonthBus(ServiceAndBusinessBean bean,int y ,int m , int d) {
 		
 		UserBean user = new UserBean();
 		BusinessBean bus = new BusinessBean();
@@ -194,7 +232,13 @@ public class BillDay implements Job {
 		mabb.setBusinessAccount(bean.getOSAccount());
 		mabb.setMonth(m);
 		mabb.setYear(y);
-		mabb = iMonthBusinessDemandService.findByMonthAndBusinessBean(mabb);
+		if(iMonthBusinessDemandService.findByMonthAndBusinessBean(mabb) == null) {
+			
+			mabb.setAccount(user.getUserName());
+		}else{
+			mabb = iMonthBusinessDemandService.findByMonthAndBusinessBean(mabb);
+		}
+	
 		
 		
 		//当前消费
@@ -212,7 +256,7 @@ public class BillDay implements Job {
 	 * 
 	 * MonthBus 已用时间   相减 再得 进行乘除 加减
 	 * 
-	 * 
+	 *  设置资费类型
 	 * 按时就直接 进行乘除 加减
 	 */
 		
@@ -229,8 +273,8 @@ public class BillDay implements Job {
 			System.err.println("异常！！！没有资费类型");
 			break;
 		}
-		
-		return money1;
+		iMonthBusinessHandleService.saveMonthAndBusinessBean(mabb);
+		return mabb;
 		
 	}
 }

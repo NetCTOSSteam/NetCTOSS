@@ -74,8 +74,8 @@
         <property name="group" value="day_trigger_group"/>
         <!-- 指定Tirgger绑定的Job -->
         <property name="jobDetail" ref="dayJob"/>
-        <!-- 指定Cron 的表达式 ，每天晚上运行-->
-        <property name="cronExpression" value="59 59 23 ? * *" />
+        <!-- 指定Cron 的表达式 ，每天晚上运行 59 59 23 ? * *-->
+        <property name="cronExpression" value="1/5 * * * * ?" />
     </bean>
     
     <bean id="cronTriggermonth" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
@@ -85,8 +85,8 @@
         <property name="group" value="month_trigger_group"/>
         <!-- 指定Tirgger绑定的Job -->
         <property name="jobDetail" ref="monthJob"/>
-        <!-- 指定Cron 的表达式 ，次月一日早上运行-->
-        <property name="cronExpression" value="59 59 7 1 * ?" />
+        <!-- 指定Cron 的表达式 ，次月一日早上运行  59 59 23 ? * *-->
+        <property name="cronExpression" value=" 59 59 23 ? * *" />
     </bean>
     
     <bean id="cronTriggeryear" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">

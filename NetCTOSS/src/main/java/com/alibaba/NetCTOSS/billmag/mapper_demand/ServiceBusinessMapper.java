@@ -31,7 +31,7 @@ public interface ServiceBusinessMapper {
 	 * @param f_os_account os账号
 	 * @return 返回服务器信息对象
 	 */
-	public ServiceAndBusinessBean findOneServiceBusByBean(String f_os_account);
+	public ServiceAndBusinessBean findOneServiceBusByBean(@Param("f_os_account") String f_os_account);
 	
 
 }

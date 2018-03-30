@@ -7,11 +7,11 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>NetCTOSS Maven Webapp</name>
 	<url>http://maven.apache.org</url>
-
+ 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<jpa.version>1.10.6.RELEASE</jpa.version>
-		<junit.version>4.12</junit.version>
+		<junit.version>4.12</junit.version> 
 		<hibernate.version>4.3.11.Final</hibernate.version>
 		<hibernate.validator_version>5.4.0.Final</hibernate.validator_version>
 		<druid.version>1.1.6</druid.version>
@@ -28,10 +28,32 @@
 		<pagehelper.version>5.1.2</pagehelper.version>
 		<quartz.version>2.2.1</quartz.version>
 		<slf4j.version>1.7.25</slf4j.version>
+		<activemq.version>5.15.3</activemq.version>
+		<fastjson.version>1.2.41</fastjson.version>
+		
 	</properties>
 
 	<dependencies>
-		<!-- 引入slf4j相关jar包 -->
+	
+	<!-- 队列消息需求json包 -->
+	<dependency>
+	    <groupId>com.alibaba</groupId>
+	    <artifactId>fastjson</artifactId>
+	    <version>${fastjson.version}</version>
+	</dependency>
+	
+	<!-- 引入消息队列 及其辅助包 -->
+		<dependency>
+				<groupId>org.apache.activemq</groupId>
+				<artifactId>activemq-all</artifactId>
+				  <version>${activemq.version}</version>
+			</dependency>
+		<dependency>
+			<groupId>org.apache.activemq</groupId>
+			<artifactId>activemq-pool</artifactId>
+			  <version>${activemq.version}</version>
+		</dependency>
+		<!-- 引入slf4j相关jar包 --> 
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
@@ -136,7 +158,7 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>${junit.version}</version>
+			<version>${junit.version} </version>
 			<scope>test</scope>
 		</dependency>
 
