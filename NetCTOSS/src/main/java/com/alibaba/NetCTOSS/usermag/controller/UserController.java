@@ -38,6 +38,8 @@ public class UserController {
 		Messager msg = null;
 		try {
 			subject.login(customizedToken);
+			
+			session.setAttribute("user", user);
 			/*
 			 * System.out.println("sessionId:" +session.getId());
 			 * System.out.println("sessionHost:" + session.getHost());

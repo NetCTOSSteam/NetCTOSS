@@ -56,6 +56,8 @@ public class AdminController {
 		Messager msg = null;
 		try {
 			subject.login(customizedToken);
+			
+			session.setAttribute("admin", admin);
 			/*
 			 *  System.out.println("sessionId:"
 			 * +session.getId()); System.out.println("sessionHost:" + session.getHost());
