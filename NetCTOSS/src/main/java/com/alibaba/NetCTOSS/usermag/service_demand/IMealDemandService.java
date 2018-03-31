@@ -16,7 +16,7 @@ public interface IMealDemandService {
 	 * 查询所有MealBean，好在页面进行分页
 	 * @return mealBean 集合
 	 */
-	public List<MealBean> findAllMealBean();
+	public List<MealBean> findAllMealBean(int page, int rows);
 	
 	/**
 	 * 根据ID查询MealBean 

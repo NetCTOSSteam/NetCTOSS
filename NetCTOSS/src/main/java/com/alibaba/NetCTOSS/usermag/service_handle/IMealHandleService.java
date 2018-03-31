@@ -22,6 +22,6 @@ public interface IMealHandleService {
 	 * 修改资费信息
 	 * @return 修改后的MealBean
 	 */
-	public void updateMealBean(String name ,int id);
+	public void updateMealBean(MealBean bean);
 	
 }

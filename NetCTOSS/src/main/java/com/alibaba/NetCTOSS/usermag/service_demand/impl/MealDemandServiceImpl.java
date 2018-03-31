@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.alibaba.NetCTOSS.beans.userAndBusBean.MealBean;
 import com.alibaba.NetCTOSS.usermag.dao_demand.IMealDemandDao;
 import com.alibaba.NetCTOSS.usermag.service_demand.IMealDemandService;
+import com.github.pagehelper.PageHelper;
 
 @Service
 public class MealDemandServiceImpl implements IMealDemandService {
@@ -17,9 +18,11 @@ public class MealDemandServiceImpl implements IMealDemandService {
 	private IMealDemandDao mealDemandDaoImpl;
 	
  @Override
-	public List<MealBean> findAllMealBean() {
+	public List<MealBean> findAllMealBean(int page, int rows) {
 		// TODO Auto-generated method stub
-		return mealDemandDaoImpl.findAllMealBean();
+	      PageHelper.startPage(page, rows);
+	      List<MealBean> list= mealDemandDaoImpl.findAllMealBean();
+		return list;
 	}
 
 	@Override

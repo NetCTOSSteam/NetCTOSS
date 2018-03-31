@@ -33,9 +33,9 @@ public class MealHandleServiceImpl implements IMealHandleService {
 	 * @return 修改后的MealBean
 	 */
 	@Override
-	public void updateMealBean(String name,int id) {
+	public void updateMealBean(MealBean bean) {
 		// TODO Auto-generated method stub
-		mealHandleDao.updateMealBean(name,id);
+		mealHandleDao.saveAndFlush(bean);
 		
 	}
 	
