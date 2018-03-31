@@ -18,7 +18,7 @@ public class DoLogDemandDaoImpl implements IDoLogDemandDao{
 	private DoLogMapper dg;
 
 	@Override
-	public Set<DoLogBean> findAll() {
+	public List<DoLogBean> findAll() {
 		// TODO Auto-generated method stub
 		return dg.findAll();
 	}

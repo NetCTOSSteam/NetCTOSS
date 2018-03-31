@@ -18,7 +18,7 @@ public interface IDoLogDemandDao {
 	 * @param 
 	 * @return
 	 */
-	public Set<DoLogBean> findAll();
+	public List<DoLogBean> findAll();
 	
 	/**
 	 * 根据参数查询操作日志

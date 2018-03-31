@@ -22,7 +22,7 @@ public class DoLogDemandServiceImpl implements IDoLogDemandService {
 	IDoLogDemandDao dao=new DoLogDemandDaoImpl();
 
 	@Override
-	public Set<DoLogBean> findAll() {
+	public List<DoLogBean> findAll() {
 		// TODO Auto-generated method stub
 		return dao.findAll();
 	}
