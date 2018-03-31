@@ -7,10 +7,8 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
-import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.NetCTOSS.admmag.service_demand.IRoleDemandService;
@@ -28,7 +26,7 @@ public class RoleController {
 
 	@Resource
 	private IRoleDemandService roleDemandServiceImpl;
-	
+
 	@Resource
 	private IRoleHandleService roleHandleServiceImpl;
 
@@ -37,7 +35,7 @@ public class RoleController {
 
 	@RequestMapping(value = "/findAllRoles", method = { RequestMethod.GET }, produces = {
 			"application/json;charset=utf-8" })
-	public Map<Object, Object> findAllPowerBean(int page, int rows, String roleName, String permission) {
+	public Map<Object, Object> findAllRole(int page, int rows, String roleName, String permission) {
 		Map<Object, Object> map = new HashMap<>();
 
 		Map<String, String> param = new HashMap<>();
@@ -58,12 +56,20 @@ public class RoleController {
 		return map;
 	}
 
-	@RequestMapping(value = "/save", method = { RequestMethod.POST }, 
-			produces = { "application/json" })
-	public Messager saveRole(RoleBean role,String items) {
+	@RequestMapping(value = "/findAll", method = { RequestMethod.GET }, produces = {
+			"application/json;charset=utf-8" })
+	public List<RoleBean> findAllRoleBean() {
 		
+		List<RoleBean> roles = roleDemandServiceImpl.findAllRoles();
+		
+		return roles;
+	}
+
+	@RequestMapping(value = "/save", method = { RequestMethod.POST }, produces = { "application/json" })
+	public Messager saveRole(RoleBean role, String items) {
+
 		List<PowerBean> powers = new ArrayList<>();
-		
+
 		String[] powerName = items.split(",");
 		for (String string : powerName) {
 			PowerBean power = powerHandleService.findPowerBeanByPowerName(string);
@@ -82,18 +88,17 @@ public class RoleController {
 		}
 		return mes;
 	}
-	
-	@RequestMapping(value = "/{id}", method = { RequestMethod.PUT }, 
-			produces = { "application/json" })
-	public Messager updateRole(RoleBean role,String items) {
-		
+
+	@RequestMapping(value = "/{id}", method = { RequestMethod.PUT }, produces = { "application/json" })
+	public Messager updateRole(RoleBean role, String items) {
+
 		List<PowerBean> powers = new ArrayList<>();
-		String Str = items.substring(1,items.length()-1);
-		
+		String Str = items.substring(1, items.length() - 1);
+
 		String[] powerName = Str.split(",");
-		
+
 		for (String string : powerName) {
-			PowerBean power = powerHandleService.findPowerBeanByPowerName(string.substring(1,string.length()-1));
+			PowerBean power = powerHandleService.findPowerBeanByPowerName(string.substring(1, string.length() - 1));
 			powers.add(power);
 		}
 		role.setType("管理员");
@@ -109,13 +114,12 @@ public class RoleController {
 		}
 		return mes;
 	}
-	
-	@RequestMapping(value = "/delete/{id}", method = { RequestMethod.PUT }, 
-			produces = { "application/json" })
+
+	@RequestMapping(value = "/delete/{id}", method = { RequestMethod.PUT }, produces = { "application/json" })
 	public Messager deleteRole(RoleBean role) {
-		
+
 		role.setStatus(0);
-		
+
 		Messager mes = new Messager(1, "删除成功！");
 		try {
 			roleHandleServiceImpl.deleteRole(role);
