@@ -7,11 +7,16 @@
     <link rel="stylesheet" type="text/css" href="../../jQuery-easyui/themes/icon.css">
     <link rel="stylesheet" type="text/css" href="../../jQuery-easyui/demo.css">
 
+
     <script type="text/javascript" src="../../js/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="../../js/jquery.json-2.4.js"></script>
     <script type="text/javascript" src="../../jQuery-easyui/jquery.easyui.min.js"></script>
     <script type="text/javascript" src="../../jQuery-easyui/locale/easyui-lang-zh_CN.js"></script>
     <script type="text/javascript" src="../../js/Bill/Bill.js"></script>
+    
+    <script type="text/javascript">
+
+</script>
 </head>
 <body>
 <body class="easyui-layout">
@@ -24,25 +29,29 @@
             <tr>
              	<td>账务账号：</td>
                 <td>
-                    <input id="acc" class="easyui-textbox" style="width:150px;height:32px">
+                    <input id="account" name ="account"  class="easyui-textbox" style="width:150px;height:32px">
                 </td>
                 <td>年：</td>
                 <td>
-                    <input id="c_year" style="height: 30px;width: 151px;" name="dept" value="2018-10">
+                <input class="easyui-combobox" name="year" id="year"
+						data-options="valueField:'id',textField:'text',url:'',method:'GET'" />
+                 <!--    <input id="year"  name="year" style="height: 30px;width: 151px;"  value=""> -->
                 </td>
                 <td>月：</td>
                 <td>
-                    <input id="c_month" style="height: 30px;width: 151px;" name="dept" value="2018-10">
+                <input class="easyui-combobox" name="month" id="month"
+						data-options="valueField:'id',textField:'text',url:'',method:'GET'" />
+                  <!--   <input id="month" name="month"  style="height: 30px;width: 151px;"  value=""> -->
                 </td>
             </tr>
             <tr>
                	<td>身份证：</td>
                 <td>
-                    <input id="id_card" class="easyui-textbox" style="width:150px;height:32px">
+                    <input id="IDcard" name ="IDcard" class="easyui-textbox" style="width:150px;height:32px">
                 </td>
                 <td>用户姓名：</td>
                 <td>
-                    <input id="name" class="easyui-textbox" style="width:150px;height:32px">
+                    <input id="name" name ="name" class="easyui-textbox" style="width:150px;height:32px">
                 </td>
                 <td colspan='2'>
                     <a id="query" href="Javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" style="width: 100px;height:32px">搜索</a>
@@ -53,15 +62,15 @@
         <table id="table_two" style="width: 779px;margin: 0 auto;line-height: 6;display: none">
             <td>OS账号：</td>
             <td>
-                <input id="os_acc" class="easyui-textbox" style="width:150px;height:32px">
+                <input id=businessAccount class="easyui-textbox" style="width:150px;height:32px">
             </td>
             <td>服务器IP：</td>
             <td>
-                <input id="server_IP" class="easyui-textbox" style="width:150px;height:32px">
+                <input id="server" class="easyui-textbox" style="width:150px;height:32px">
             </td>
             <td>资费套餐：</td>
             <td>
-                <input id="tariff" style="height: 30px" name="dept" value="98">
+                <input id="tariff" style="height: 30px" name="dept" >
             </td>
             <td>
                 <a id="query_two" href="Javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" style="width: 100px;height:32px">搜索</a>
@@ -74,26 +83,8 @@
                iconCls="icon-save" pagination="true"
                data-options="fitColumns:true,method:'get',border:false,
                    singleSelect:true,fit:true,fitColumns:true,singleSelect:'true'">
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4（/小时）</td>
-                    <td>5</td>
-                    <td>6</td>
-                    <td>7</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4（/小时）</td>
-                    <td>5</td>
-                    <td>6</td>
-                    <td>7</td>
-                </tr>
-            </tbody>
+    
+           
         </table>
     </div>
     <!-- 工具 -->
@@ -137,30 +128,30 @@
     <!-- 详细信息弹窗 -->
     <div id="x_data" class="easyui-dialog" title="详细信息" style="width:400px;height:300px;"
          data-options="iconCls:'icon-save',resizable:true,modal:true,closed:true">
-        <table style="margin: 0 auto;padding-top: 10px">
-            <tr>
-                <td>服务器信息</td>
-                <td><span id="server">127.0.0.1</span></td>
+        <table id='server'  style="margin: 0 auto;padding-top: 10px">
+       		 <tr>
+                <td>服务器IP:</td>
+                <td><span id="server_ip"></span></td>
             </tr>
             <tr>
-                <td>时长</td>
-                <td><span id="time">1:12:28</span></td>
+                <td>时长:</td>
+                <td><span id="time"></span></td>
             </tr>
             <tr>
-                <td>登陆时间</td>
-                <td><span id="startTime">2018-02-20 12:00:00</span></td>
+                <td>登陆时间:</td>
+                <td><span id="startTime"></span></td>
             </tr>
             <tr>
-                <td>登出时间</td>
-                <td><span id="endTime">2018-02-20 13:12:28</span></td>
+                <td>登出时间:</td>
+                <td><span id="endTime" ></span></td>
             </tr>
             <tr>
-                <td>费用（元）</td>
-                <td><span id="money">20</span></td>
+                <td>费用（元）:</td>
+                <td><span id="money"></span></td>
             </tr>
             <tr>
-               <td>资费套餐</td>
-               <td><span id="x_tariff">88套餐</span></td>
+               <td>资费套餐:</td>
+               <td><span id="x_tariff"></span></td>
             </tr>
         </table>
         <div style="width: 205px;margin: 0 auto;padding-top: 15px">

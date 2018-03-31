@@ -20,5 +20,10 @@ public class ServiceBusinessDemandDaoImpl implements IServiceBusinessDemandDao {
 		// TODO Auto-generated method stub
 		return serviceBusinessMapper.findServiceBusByBean(bean);
 	}
+	@Override
+	public ServiceAndBusinessBean findOneServiceBusByBean(String f_os_account) {
+		// TODO Auto-generated method stub
+		return serviceBusinessMapper.findOneServiceBusByBean(f_os_account);
+	}
 
 }

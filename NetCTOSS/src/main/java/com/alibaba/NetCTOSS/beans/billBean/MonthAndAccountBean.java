@@ -29,7 +29,7 @@ public class MonthAndAccountBean implements Serializable {
 		@Column(name="id")
 		@GeneratedValue(generator="hibernate.id")
 		@GenericGenerator(name="hibernate.id",strategy="identity")
-		private int id;
+		private Integer id;
 		
 		//账务账号 account_acc
 		@Column(name="account_acc",length=20)
@@ -41,15 +41,15 @@ public class MonthAndAccountBean implements Serializable {
 		
 		//年 字段     year
 		@Column(name="account_year")
-		private int year;
+		private Integer year;
 		
 		//月字段  moth
 		@Column(name="account_month")
-		private int month;
+		private Integer month;
 		
 		//  费用
 		@Column(name="account_money")
-		private double money;
+		private Double money;
 		
 		//支付方式
 		@Column(name="account_type",length=10)
@@ -57,7 +57,7 @@ public class MonthAndAccountBean implements Serializable {
 		
 		//支付状态      0 未支付     1 已支付
 		@Column(name="account_status")
-		private int status;
+		private Integer status;
 		
 		//身份证         account_IDcard
 		@Column(name="account_IDcard",length=20)
@@ -67,11 +67,11 @@ public class MonthAndAccountBean implements Serializable {
 			// TODO Auto-generated constructor stub
 		}
 
-		public int getId() {
+		public Integer getId() {
 			return id;
 		}
 
-		public void setId(int id) {
+		public void setId(Integer id) {
 			this.id = id;
 		}
 
@@ -91,27 +91,27 @@ public class MonthAndAccountBean implements Serializable {
 			this.name = name;
 		}
 
-		public int getYear() {
+		public Integer getYear() {
 			return year;
 		}
 
-		public void setYear(int year) {
+		public void setYear(Integer year) {
 			this.year = year;
 		}
 
-		public int getMonth() {
+		public Integer getMonth() {
 			return month;
 		}
 
-		public void setMonth(int month) {
+		public void setMonth(Integer month) {
 			this.month = month;
 		}
 
-		public double getMoney() {
+		public Double getMoney() {
 			return money;
 		}
 
-		public void setMoney(double money) {
+		public void setMoney(Double money) {
 			this.money = money;
 		}
 
@@ -123,14 +123,13 @@ public class MonthAndAccountBean implements Serializable {
 			this.type = type;
 		}
 
-		public int getStatus() {
+		public Integer getStatus() {
 			return status;
 		}
 
-		public void setStatus(int status) {
+		public void setStatus(Integer status) {
 			this.status = status;
 		}
-		
 
 		public String getIDcard() {
 			return IDcard;

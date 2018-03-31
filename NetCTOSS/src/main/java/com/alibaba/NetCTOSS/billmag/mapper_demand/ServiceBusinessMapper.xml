@@ -15,14 +15,27 @@
 		</resultMap>
 		
 		
+		<resultMap type="com.alibaba.NetCTOSS.beans.billBean.ServiceAndBusinessBean" id="oneMap">
+			<id property="id" column="id" javaType="int"/>
+			<result property="OSAccount" column="f_os_account" />
+			
+			<result property="serverIP" column="f_server_id" />
+			<result property="startTime" column="f_start_time" />
+			
+			<result property="endTime" column="f_end_time" />
+			<result property="onlineTimr" column="f_online_time" />
+			<result property="money" column="f_money" />
+			<result property="tariff" column="f_tariff" />
+		</resultMap>
+		
 		<select id="findServiceBusByBean"  resultMap="beanMap">
 			select id ,f_os_account,f_server_id,f_start_time,f_end_timr ,f_online_time,acc_sf_moneyerver,f_tariff
 			 from t_server_account 
 			 where f_start_time &gt;= #{bean.startTime} 
 			
 		</select>
-		<select id="findOneServiceBusByBean"  resultMap="beanMap">
-			select id ,f_os_account,f_server_id,f_start_time,f_end_timr ,f_online_time,acc_sf_moneyerver,f_tariff
+		<select id="findOneServiceBusByBean"  resultMap="oneMap">
+			select id ,f_os_account,f_server_id,f_start_time,f_end_time ,f_online_time,f_money,f_tariff
 			 from t_server_account 
 			 where f_os_account = #{f_os_account} 
 			

@@ -6,19 +6,19 @@
 	<sql id="params">
 	<if test="bean != null">
 		<where>
-			<if test="bean.account!=null">
-				account_acc like concat(#{bean.account},%)
+			<if test="bean.account!=null&amp;&amp;bean.account!=''" >
+				account_acc like concat(#{bean.account},'%')
 			</if>
-			<if test="bean.IDcard!=null">
+			<if test="bean.IDcard!=null&amp;&amp;bean.IDcard!=''">
 				and account_IDcard = #{bean.IDcard}
 			</if>
-			<if test="bean.name!=null">
-				and account_name like concat(#{bean.name},%)
+			<if test="bean.name!=null&amp;&amp;bean.name!=''">
+				and account_name like concat(#{bean.name},'%')
 			</if>
-			<if test="bean.year>0">
+			<if test="bean.year!=null&amp;&amp;bean.year!=''">
 				and account_year = #{bean.year}
 			</if>
-			<if test="bean.month>0">
+			<if test="bean.month!=null&amp;&amp;bean.month!=''">
 				and account_month = #{bean.month}
 			</if>
 		</where>
@@ -41,6 +41,7 @@
 	<!-- 参数查询 -->
 	<select id="findLikeMonthAndAccountBean" resultMap="beanMap">
 		select 
+		id,
 		account_acc,
 		account_name,
 		account_year,

@@ -6,13 +6,13 @@
 	<sql id="params">
 	<if test="bean != null">
 		<where>
-			<if test="bean.businessAccount!=null">
-				business_account like concat(#{bean.businessAccount},%)
+			<if test="bean.businessAccount!=null&amp;&amp;bean.businessAccount!=''">
+				business_account like concat(#{bean.businessAccount},'%')
 			</if>
-			<if test="bean.server!=null">
+			<if test="bean.server!=null&amp;&amp;bean.server!=''">
 				and business_server_information = #{bean.server}
 			</if>
-			<if test="bean.tariff!=null">
+			<if test="bean.tariff!=null&amp;&amp;bean.tariff!=''">
 				and business_tariff = #{bean.tariff}
 			</if>
 		</where>
@@ -27,6 +27,8 @@
 		<result property="money" column="business_all_money" />
 		<result property="tariff" column="business_tariff" />
 		<result property="server" column="business_server_information" />
+		<result property="nowTime" column="business_nowtime" />
+		<result property="account" column="acc_acc" />
 	</resultMap>
 	
 	
@@ -38,7 +40,9 @@
 		business_month,
 		business_all_money,
 		business_tariff,
-		business_server_information 
+		business_server_information, 
+		business_nowtime,
+		acc_acc
 		from t_month_business
 		<include refid="params"></include>
 	</select>
@@ -56,13 +60,13 @@
 	<sql id="params2">
 	<if test="bean != null">
 		<where>
-			<if test="bean.businessAccount!=null">
-				business_account = concat(#{bean.businessAccount},%)
+			<if test="bean.businessAccount!=null&amp;&amp;bean.businessAccount!=''">
+				business_account = concat(#{bean.businessAccount},'%')
 			</if>
-			<if test="bean.server!=null">
+			<if test="bean.server!=null&amp;&amp;bean.server!=''">
 				and business_server_information = #{bean.server}
 			</if>
-			<if test="bean.tariff!=null">
+			<if test="bean.tariff!=null&amp;&amp;bean.tariff!=''">
 				and business_tariff = #{bean.tariff}
 			</if>
 		</where>
@@ -75,7 +79,9 @@
 		business_month,
 		business_all_money,
 		business_tariff,
-		business_server_information 
-		from t_month_business where account_acc = #{"account"};
+		business_server_information, 
+		business_nowtime,
+		acc_acc
+		from t_month_business where acc_acc = #{account}
 	</select>
 </mapper>

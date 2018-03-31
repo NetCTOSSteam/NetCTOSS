@@ -4,10 +4,12 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.stereotype.Service;
+
 import com.alibaba.NetCTOSS.beans.billBean.MonthAndBusinessBean;
 import com.alibaba.NetCTOSS.billmag.dao_demand.IMonthBusinessDemandDao;
 import com.alibaba.NetCTOSS.billmag.service_demand.IMonthBusinessDemandService;
-
+@Service
 public class MonthBusinessDemandServiceImpl implements IMonthBusinessDemandService {
 
 	@Resource
@@ -27,7 +29,7 @@ public class MonthBusinessDemandServiceImpl implements IMonthBusinessDemandServi
 	@Override
 	public List<MonthAndBusinessBean> findByServerMothAndBusinessBean(String account_acc) {
 		// TODO Auto-generated method stub
-		return null;
+		return iMonthBusinessDemandDao.findByServerMothAndBusinessBean(account_acc);
 	}
 
 	

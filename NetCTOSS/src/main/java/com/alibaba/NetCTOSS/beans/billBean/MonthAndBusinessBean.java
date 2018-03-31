@@ -60,7 +60,6 @@ public class MonthAndBusinessBean implements Serializable {
 	private Long nowTime;
 	
 	@Column(name="acc_acc",length=20)
-	   /** @pdOid 21c125c8-a9b8-422d-814f-ca949a44c5e1 账务账号名 */
 	   private String account;
 	
 	public Long getNowTime() {

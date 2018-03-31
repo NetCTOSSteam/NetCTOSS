@@ -26,4 +26,10 @@ public class MonthBusinessDemandDaoImpl implements IMonthBusinessDemandDao {
 		return monthBusinessMapper.findByMonthAndBusinessBean(bean);
 	}
 
+	@Override
+	public List<MonthAndBusinessBean> findByServerMothAndBusinessBean(String account_acc) {
+		// TODO Auto-generated method stub
+		return monthBusinessMapper.findByServerMothAndBusinessBean(account_acc);
+	}
+
 }

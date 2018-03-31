@@ -40,7 +40,7 @@ public class ServiceAndBusinessBean implements Serializable {
 	@Column(name="f_start_time")
 	   private Date startTime; 
 	   //结束时间 
-	@Column(name="f_end_timr")
+	@Column(name="f_end_time")
 	   private Date endTime; 
 	   //在线时间 
 	@Column(name="f_online_time")

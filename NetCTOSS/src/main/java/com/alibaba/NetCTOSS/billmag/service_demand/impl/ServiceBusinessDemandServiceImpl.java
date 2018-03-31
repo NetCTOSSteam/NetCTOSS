@@ -27,6 +27,6 @@ public class ServiceBusinessDemandServiceImpl implements IServiceBusinessDemandS
 	 * @return 返回服务器信息对象
 	 */
 	public ServiceAndBusinessBean findOneServiceBusByBean(String f_os_account) {
-		return null;
+		return iServiceBusinessDemandDao.findOneServiceBusByBean(f_os_account);
 	}
 }
