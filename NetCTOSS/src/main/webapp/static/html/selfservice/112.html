@@ -2,100 +2,135 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title></title>
+    <title>个人信息</title>
     <script type="text/javascript" src="../../js/jquery-3.3.1.min.js" charset="utf-8"></script>
     <script type="text/javascript" src="../../js/jquery.json-2.4.js" charset="utf-8"></script>
     <script type="text/javascript" src="../../easyui/jquery.easyui.min.js" charset="utf-8"></script>
     <script type="text/javascript" src="../../js/easyui.demo.js" charset="utf-8"></script>
     <script type="text/javascript" src="../../easyui/locale/easyui-lang-zh_CN.js"></script>
-
     <link rel="stylesheet" type="text/css" href="../../easyui/themes/default/easyui.css">
     <link rel="stylesheet" type="text/css" href="../../easyui/themes/icon.css">
+    <style>
+        .massge{
+            width: 450px;
+            margin: 0 auto;
+        }
+        .tb{
+            margin: 0 auto;
+        }
+    </style>
 </head>
-<body class="easyui-layout" >
+<body class="easyui-layout">
+        <div style="height: 120px"></div>
+        <div class="massge">
+            <h1 style="text-align: center"><span>管理员</span>个人信息</h1>
+            <!-- 用户个人信息显示 -->
+            <div style="display: none">
+                <table class="tb">
+                    <tr>
+                        <td>账务账号：</td>
+                        <td>
+                            <span id="userName"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>登陆名：</td>
+                        <td>
+                            <span id="loginName"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>联系电话：</td>
+                        <td>
+                            <span id="tel"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>性别：</td>
+                        <td>
+                            <span id="gender"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>联系地址：</td>
+                        <td>
+                            <span id="address"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>邮政编号：</td>
+                        <td>
+                            <span id="postcode"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>QQ账号：</td>
+                        <td>
+                            <span id="qq"></span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <table class="tb">
+                    <tr>
+                        <td>姓名：</td>
+                        <td>
+                            <span id="adminName"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>登录名：</td>
+                        <td>
+                            <span id="admin_loginName"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>联系电话：</td>
+                        <td>
+                            <span id="admin_telephone"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>联系邮箱：</td>
+                        <td>
+                            <span id="admin_email"></span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <!-- 简单的js代码 -->
+        <script>
+            $(function () {
 
-    <div data-options="region:'center',title:'个人信息 ' ">
-        <table style="width: 400px;height: 250px">
-            <tr>
-                <td>账务账号</td>
-                <td><input class="easyui-numberbox" value="1234567.89" data-options="precision:2,groupSeparator:','"></input></td>
-            </tr>
-            <tr>
-                <td>邮箱</td>
-                <td><input class="easyui-numberbox" value="1234567.89" data-options="precision:2,groupSeparator:' ',decimalSeparator:','"></input></td>
-            </tr>
-            <tr>
-                <td>地址</td>
-                <td><input class="easyui-numberbox" value="1234567.89" data-options="precision:2,groupSeparator:',',decimalSeparator:'.',prefix:'$'"></input></td>
-            </tr>
-            <tr>
-                <td>电话</td>
-                <td><input class="easyui-numberbox" value="1234567.89" data-options="precision:2,groupSeparator:',',decimalSeparator:' ',prefix:'€'"></input></td>
-            </tr>
+                $.ajax({
+                    url: "",
+                    success: function (msg) {
+                        var data = eval('(' + msg + ')');
 
-        </table>
-        <br>
-        <a id="btn1" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">返回上一级</a>
-        <a id="edit" href="javascript:void(0)" class="easyui-linkbutton"
-           data-options="iconCls:'icon-reload'" style="margin-left: 50px"
-           onclick="$('#update_users_dialog').dialog('open')">修改个人资料</a>
-    </div>
+                    }
+                });
+                
+                
+                
+                
+                
+                //用户
+                $('#userName').html('章三大拉开了发');
+                $('#loginName').html('看哦打so还能对拉伸');
+                $('#tel').html('大厦法定');
+                $('#gender').html('adafadasdas');
+                $('#address').html('gafadasd');
+                $('#postcode').html('afasdasasf');
+                $('#qq').html('afdasfasfasd');
 
-    <div id="update_users_dialog" class="easyui-dialog"
-         style="width: 400px; height: 300px"
-         data-options="title:'修改个人资料',buttons:'#update_users_dialog_bb',modal:true,
-		collapsible:true,minimizable:true,maximizable:true,resizable:true,closable:true,closed:true">
-
-        <form id="update_user" method="post">
-
-            <input type="hidden" name="_method" value="put" />
-            <input type="hidden" name="id" id="c_id" />
-
-            <table>
-                <tr>
-                    <td>客户姓名：</td>
-                    <td><input class="easyui-validatebox" type="text" id=""    value="11"
-                               name="" data-options="required:false" disabled="disabled" /></td>
-                </tr>
-
-                <tr>
-                    <td>账务账号：</td>
-                    <td><input class="easyui-validatebox" type="text" id=""  value="11"
-                               name="" data-options="required:false"  disabled="disabled"/></td>
-                </tr>
-                <tr>
-                    <td>身份证：</td>
-                    <td><input class="easyui-validatebox" type="text" id=""   value="11"
-                               name="" data-options="required:false"  disabled="disabled" /></td>
-                </tr>
-                <tr>
-                    <td>邮箱：</td>
-                    <td><input class="easyui-validatebox" type="text" id=""
-                               name="" data-options="required:false" /></td>
-                </tr>
-                </tr>
-                <tr>
-                    <td>地址：</td>
-                    <td><input class="easyui-validatebox" type="text" id=""
-                               name="" data-options="required:false" /></td>
-                </tr>
-                </tr>
-                <tr>
-                    <td>电话号码：</td>
-                    <td><input class="easyui-validatebox" type="text" id=""
-                               name="" data-options="required:false" /></td>
-                </tr>
-                </tr>
-            </table>
-        </form>
-
-    </div>
-    <div id="update_users_dialog_bb">
-        <a id="update_users" href="javascript:void(0)"
-           class="easyui-linkbutton" data-options="iconCls:'icon-ok',plain:true">保存</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton"
-           data-options="iconCls:'icon-no',plain:true"
-           onclick="$('#update_users_dialog').dialog('close')">取消</a>
-    </div>
+                //管理员
+                $('#adminName').html('管理员王麻子');
+                $('#admin_loginName').html('管理员王麻子');
+                $('#admin_telephone').html('管理员王麻子');
+                $('#admin_email').html('管理员王麻子');
+            })
+        </script>
 </body>
 </html>

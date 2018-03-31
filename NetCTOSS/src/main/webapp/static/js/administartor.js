@@ -165,10 +165,10 @@ $(function () {
             $('#update_win').window('open');
             
             //更改所有修改框里面的值
-            $('#update_admin_name').val(row.adminName)
-            $('#update_admin_acc').val(row.loginName)
-            $('#update_admin_phone').val(row.telephone)
-            $('#update_admin_e').val(row.email)
+            $('#update_admin_name').html(row.adminName)
+            $('#update_admin_acc').html(row.loginName)
+            $('#update_admin_phone').html(row.telephone)
+            $('#update_admin_e').html(row.email)
             
         }else{
             $.messager.show({

@@ -1,69 +1,127 @@
-
 $(function () {
+    /**
+     *  初始化数据
+     */
+    accounting();
 
-    var clickNum = 0;
+
+    /**
+     * 账务信息
+     */
+    function accounting(json) {
+        $('#tt').datagrid({
+            url:'/NetCTOSS/monthAcc/all',
+            queryParams:json,
+            columns:[[
+                {field:'account',title:'账务账号',width:80,align:'center'},
+                {field:'name',title:'真实姓名',width:80,align:'center'},
+                {field:'d',title:'年月',width:80,align:'center',
+                	formatter:function(value,row,index){
+                		
+                		var year_month = row.year+'-'+row.month;
+                      	return year_month;}
+                },
+                {field:'money',title:'总消费',width:80,align:'center'}
+            ]],
+            toolbar:'#tb'
+        });
+    }
+
+    /**
+     *双击这条数据，可以查询这个月账务账号下所有的业务账号产生的费用明细。
+     */
+    function business (json) {
+        $('#tt').datagrid({
+            url:'',
+            queryParams:json,
+            columns:[[
+                //field数据对应的名称字段
+                {field:'businessAccount',title:'OS账号',width:80,align:'center'},
+                {field:'server',title:'服务器信息',width:80,align:'center'},
+                {field:'nowTime',title:'总时长',width:80,align:'center'},
+                {field:'tariff',title:'资费套餐',width:80,align:'center'},
+                {field:'money',title:'费用',width:80,align:'center'}
+            ]],
+            toolbar:'#tb'
+        });
+    }
+
+    /**
+     * 对应服务器的信息
+     */
+    function serverData(json) {
+        $('#tt').datagrid({
+            url:'',
+            queryParams:json,
+            columns:[[
+                {field:'OSAccount',title:'OS账号',width:80,align:'center'},
+                {field:'serverIP',title:'服务器IP',width:80,align:'center'},
+                {field:'startTime',title:'登陆时间',width:80,align:'center'},
+                {field:'endTime',title:'登出时间',width:80,align:'center'},
+                {field:'onlineTimr',title:'在线总时长',width:80,align:'center'},
+                {field:'money',title:'费用',width:80,align:'center'},
+                {field:'tariff',title:'资费',width:80,align:'center'}
+            ]],
+            toolbar:'#tb'
+        });
+    }
+
+
+    var num = 0;
     //双击单行数据更改表格
     $('#tt').datagrid({
         onDblClickRow: function(rowIndex, rowData){
-            clickNum+=1;
-            if(clickNum==1){
-                month_acc();
-            }else if(clickNum==2){
-                month_day();
-            }
-            if(clickNum>2){
-                clickNum=0;
-                month();
+        	$('#query_div').hide();
+        	$('#accounting').show();
+        	$('#accounting_name').html(rowData.name);
+            if(num==0){
+            	var json = {account:rowData.account};
+                business (json);
+                num+=1;
+            }else if(num==1){
+                serverData();
+                num+=1;
             }
         }
     });
+    //回退
+    $('#tb').click(function () {
+        if(num>1){
+            business ();
+            num=0;
+        }else{
+            accounting();
+            $('#query_div').show();
+            $('#accounting').hide();
+            num=0;
+        }
+    })
 
-    //账务月总账单
-    function month(){
-        $('#tt').datagrid({
-            url:'datagrid_data.json',
-            columns:[[
-                {field:'acc',title:'账务账户',width:80,align:'center'},
-                {field:'time',title:'总时间（/小时）',width:80,align:'center'},
-                {field:'year',title:'年月',width:80,align:'center'},
-                {field:'money',title:'总消费（/元）',width:80,align:'right'}
-            ]]
-        });
-    }
-    //账务月账单
-    function month_acc(){
-        $('#tt').datagrid({
-            url:'datagrid_data.json',
-            columns:[[
-                {field:'acc',title:'OS账号',width:50,align:'center'},
-                {field:'server',title:'服务器信息',width:50,align:'center'},
-                {field:'time',title:'时长（单位：时分秒）',width:50,align:'center'},
-                {field:'ca',title:'资费套餐',width:50,align:'center'},
-                {field:'money',title:'费用(元)',width:50,align:'center'}
-            ]]
-        });
-    }
 
-    //账务日账单
-    function month_day(){
-        $('#tt').datagrid({
-            url:'datagrid_data.json',
-            columns:[[
-                {field:'acc',title:'账务账户',width:50,align:'center'},
-                {field:'ip',title:'服务器ip',width:50,align:'center'},
-                {field:'startTime',title:'登入时间',width:50,align:'center'},
-                {field:'endTime',title:'登出时间',width:50,align:'center'},
-                {field:'dayTime',title:'时长（单位：秒）',width:50,align:'center'},
-                {field:'ca',title:'资费套餐',width:50.,align:'center'},
-                {field:'money',title:'费用(元)',width:50,align:'right'}
-            ]]
-        });
+    //查询条件获取
+    function queryData() {
+        var year = $('#year').val();
+        var month = $('#month').val();
+        var data = {};
+        if(year!=null && ''!=year){
+            data = {year:year}
+            if(month!=null && ''!=month){
+                data = {year:year,month:month}
+            }
+        }
+        return data;
     }
 
-    //根句年月查询账务账单
-    $('#query').click(function(){
-        month();
-        console.info("fasdf");
-        $('#tt').datagrid('reload', $('#startTime').val());
-    });
+    //按年月查询
+    $('#query').click(function () {
+        $('#year').html('');
+        $('#month').html('');
+        if(num<1){
+            accounting(queryData());
+        }else if(num==1){
+            business (queryData());
+        }else if(num>1){
+            serverData(queryData());
+        }
+    })
 })
