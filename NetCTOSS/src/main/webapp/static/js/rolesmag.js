@@ -88,14 +88,15 @@ $(function(){
             type:"POST",
             url:url,
             data:{
-            	add_roleName : $("add_roleName").val(),
-            	add_type : $("add_type").val(),
+            	add_roleName : $("#add_roleName").val(),
+            	add_type : $("#add_type").val(),
             	allPermission : $("input[type='checkbox']").attr('value')
             },
             onSubmit: function(){
                 // do some check
                 // return false to prevent submit;
-            	if($("input[type='checkbox']").is(':checked')){
+            	if($("input[type='checkbox']").is(':checked')
+            			&&$("#add_roleName").val() != "" || $.trim($("#add_roleName").val()).length != 0){
             		return true;
             	}
             	return false;

@@ -14,10 +14,11 @@
 	</select>
 	
 	<select id="findPowersByCondition" resultMap="powerMap">
-		SELECT power_id,power_name FROM t_power 
+		SELECT power_id,power_name,power_describe FROM t_power 
 		<where>
+			power_bo = 1
 			<if test="powerName!=null">
-				power_name like concat(#{powerName},'%')
+				and power_name like concat(#{powerName},'%')
 			</if>
 		</where>
 	</select>
