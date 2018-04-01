@@ -3,7 +3,7 @@
 
 	<mapper namespace="com.alibaba.NetCTOSS.billmag.mapper_demand.AccYearMapper">
 		
-		<resultMap type="com.alibaba.NetCTOSS.beans.billBean.AccountMonthBean" id="beanMap">
+		<resultMap type="com.alibaba.NetCTOSS.beans.billBean.AccountYearBillBean" id="beanMap">
 			<id property="id" column="id" javaType="int"/>
 			<result property="year" column="acc_year" javaType="int"/>
 			

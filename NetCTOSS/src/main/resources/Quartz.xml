@@ -75,7 +75,7 @@
         <!-- 指定Tirgger绑定的Job -->
         <property name="jobDetail" ref="dayJob"/>
         <!-- 指定Cron 的表达式 ，每天晚上运行 59 59 23 ? * *-->
-        <property name="cronExpression" value="1/5 * * * * ?" />
+        <property name="cronExpression" value="0/30 * * * * ?" />
     </bean>
     
     <bean id="cronTriggermonth" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
@@ -100,9 +100,10 @@
         <property name="cronExpression" value="59 59 11 1 1 ?" />
     </bean>
 
-
+ <!-- 目的  将spring 管理的bean 注入quart 的 job  定时任务的factorybean,配置其他config -->  
     <!-- 3.定义调度器，并将Trigger注册到调度器中 -->
     <bean id="scheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+         
         <property name="triggers">
             <list>
                 <!-- <ref bean="simpleTrigger"/> -->
@@ -111,6 +112,11 @@
                 <ref bean="cronTriggeryear"/>
             </list>
         </property>
-        <!-- <property name="autoStartup" value="true" /> -->
+         <!-- 所有Scheduler 延迟5s 启动 -->
+        <property name="startupDelay" value="5"/>
+       <property name="jobFactory">
+            <bean class="com.alibaba.NetCTOSS.quartz.JobFactory" />
+        </property>
     </bean>
+    
 </beans>

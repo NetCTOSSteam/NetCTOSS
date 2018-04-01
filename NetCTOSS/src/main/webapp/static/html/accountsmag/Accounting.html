@@ -29,7 +29,8 @@
                 </td>
                 <td>年：</td>
                 <td>
-                    <input id="year_y" style="height: 30px" name="dept" value="2018">
+                    <input id="year_y" class="easyui-combobox" name="dept"   
+    data-options="valueField:'id',textField:'text',method:'GET',url:'/NetCTOSS/accYear/find'" />  
                 </td>
                 <td>
                     <a id="year_query" href="Javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" style="width: 100px;height:32px">搜索</a>
@@ -47,7 +48,10 @@
                 </td>
                 <td>月：</td>
                 <td>
-                    <input id="year_moth_m" style="height: 30px" name="dept" value="2018">
+                    <input id="year_moth_m" class="easyui-combobox" name="dept"   
+    data-options="valueField:'id',textField:'text',method:'GET',url:'/NetCTOSS/accMonth/find'" />  
+                </td>
+                    
                 </td>
                 <td>
                     <a id="year_moth_query" href="Javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" style="width: 100px;height:32px">搜索</a>
@@ -62,7 +66,8 @@
                     </td>
                     <td>真实姓名：</td>
                     <td>
-                        <input id="moth_name" class="easyui-textbox" style="width:150px;height:32px">
+                     <input id="moth_name" class="easyui-textbox" name="dept"   
+     />
                     </td>
                     <td rowspan="2">
                         <a id="moth_query" href="Javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" style="width: 100px;height:32px">搜索</a>
@@ -71,11 +76,14 @@
                 <tr>
                     <td>年：</td>
                     <td>
-                        <input id="moth_y" style="height: 30px" name="dept" value="2018">
+                      <input id="moth_y" class="easyui-combobox" name="dept"   
+    data-options="valueField:'id',textField:'text',method:'GET',url:'/NetCTOSS/accMonth/find'" />
                     </td>
+                    
                     <td>月：</td>
                     <td>
-                        <input id="moth_m" style="height: 30px" name="dept" value="2018">
+                      <input id="moth_m" class="easyui-combobox" name="dept"   
+    data-options="valueField:'id',textField:'text',method:'GET',url:'/NetCTOSS/accDay/find'" />
                     </td>
                 </tr>
             </table>
@@ -91,7 +99,8 @@
                     </td>
                     <td>日：</td>
                     <td>
-                        <input id="day_y" style="height: 30px" name="dept" value="28">
+                    <input id="day_y" class="easyui-combobox" name="dept"   
+    data-options="valueField:'id',textField:'text',method:'GET',url:'/NetCTOSS/accDay/find'" />
                     </td>
                     <td>
                         <a id="day_query" href="Javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" style="width: 100px;height:32px">搜索</a>
@@ -104,15 +113,7 @@
                    iconCls="icon-save" pagination="true"
                    data-options="fitColumns:true,method:'get',border:false,
                    singleSelect:true,fit:true,fitColumns:true">
-                <tbody>
-                    <tr>
-                        <td>账务账号</td>
-                        <td>真实姓名</td>
-                        <td>业务账号数量</td>
-                        <td>使用时长（/小时）</td>
-                        <td>aa</td>
-                    </tr>
-                </tbody>
+             
             </table>
         </div>
         <!-- 工具 -->

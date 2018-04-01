@@ -29,7 +29,7 @@
 		</resultMap>
 		
 		<select id="findServiceBusByBean"  resultMap="beanMap">
-			select id ,f_os_account,f_server_id,f_start_time,f_end_timr ,f_online_time,acc_sf_moneyerver,f_tariff
+			select id ,f_os_account,f_server_id,f_start_time,f_end_time ,f_online_time,acc_sf_moneyerver,f_tariff
 			 from t_server_account 
 			 where f_start_time &gt;= #{bean.startTime} 
 			

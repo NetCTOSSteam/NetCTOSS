@@ -1,4 +1,4 @@
-package com.alibaba.NetCTOSS.activeMQ.service;
+package com.alibaba.NetCTOSS.activeMQ.producer.service;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

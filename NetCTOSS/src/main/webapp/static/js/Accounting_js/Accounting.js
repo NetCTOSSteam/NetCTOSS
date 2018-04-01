@@ -175,6 +175,7 @@ $(function () {
     // 年 - 年  year_query
     $('#year_query').click(function () {
         var data = year_data();
+        
         year(data);
     });
 
@@ -263,15 +264,17 @@ $(function () {
     //天数据显示
     function day(data) {
         $('#tt').datagrid({
-            url:'',
+            url:'/NetCTOSS/accDay/findDay',
             data:data,
             columns:[[
                 //field数据对应的名称字段
-                {field:'a',title:'实验室IP',width:80,align:'center'},
-                {field:'b',title:'账务账号',width:80,align:'center'},
-                {field:'d',title:'业务账号名',width:80,align:'center'},
-                {field:'c',title:'每天使用时长（/小时）',width:80,align:'center'},
-                {field:'e',title:'日',width:80,align:'center'}
+                {field:'server',title:'实验室IP',width:80,align:'center'},
+                {field:'account',title:'账务账号',width:80,align:'center'},
+                {field:'OSAccount',title:'业务账号名',width:80,align:'center'},
+                {field:'timeLong',title:'每天使用时长（/小时）',width:80,align:'center'},
+                {field:'year',title:'年',width:80,align:'center'},
+                {field:'month',title:'月',width:80,align:'center'},
+                {field:'day',title:'日',width:80,align:'center'}
             ]],
             toolbar:'#tb'
         });
@@ -281,15 +284,15 @@ $(function () {
     //年--月数据显示
     function year_moth(data) {
         $('#tt').datagrid({
-            url:'',
+            url:'/NetCTOSS/accMoth/findMoth',
             data:data,
             columns:[[
                 //field数据对应的名称字段
-                {field:'a',title:'实验室IP',width:80,align:'center'},
-                {field:'b',title:'账务账号',width:80,align:'center'},
-                {field:'d',title:'业务账号名',width:80,align:'center'},
-                {field:'c',title:'本月使用时长（/小时）',width:80,align:'center'},
-                {field:'e',title:'月',width:80,align:'center'}
+                {field:'server',title:'实验室IP',width:80,align:'center'},
+                {field:'account',title:'账务账号',width:80,align:'center'},
+                {field:'timeLong',title:'本月使用时长（/小时）',width:80,align:'center'},
+                {field:'year',title:'年',width:80,align:'center'},
+                {field:'month',title:'月',width:80,align:'center'}
             ]],
             toolbar:'#tb'
         });
@@ -299,15 +302,15 @@ $(function () {
     //年数据
     function year(data){
         $('#tt').datagrid({
-            url:'',
+            url:'/NetCTOSS/accYear/findYear',
             data:data,
             columns:[[
                 //field数据对应的名称字段
-                {field:'a',title:'账务账号',width:80,align:'center'},
-                {field:'b',title:'真实姓名',width:80,align:'center'},
-                {field:'d',title:'业务账号数量',width:80,align:'center'},
-                {field:'c',title:'本年使用时长（/小时）',width:80,align:'center'},
-                {field:'e',title:'年',width:80,align:'center'}
+                {field:'account',title:'账务账号',width:80,align:'center'},
+                {field:'name',title:'真实姓名',width:80,align:'center'},
+                {field:'busNum',title:'业务账号数量',width:80,align:'center'},
+                {field:'timeLong',title:'本年使用时长（/小时）',width:80,align:'center'},
+                {field:'year',title:'年',width:80,align:'center'}
             ]],
             toolbar:'#tb'
         });
@@ -317,15 +320,15 @@ $(function () {
     //月数据
     function moth(data){
         $('#tt').datagrid({
-            url:'',
+            url:'/NetCTOSS/accMoth/findMoth',
             data:data,
             columns:[[
                 //field数据对应的名称字段
-                {field:'a',title:'账务账号',width:80,align:'center'},
-                {field:'b',title:'真实姓名',width:80,align:'center'},
-                {field:'d',title:'业务账号数量',width:80,align:'center'},
-                {field:'c',title:'本月使用时长（/小时）',width:80,align:'center'},
-                {field:'e',title:'月',width:80,align:'center'}
+            	{field:'server',title:'实验室IP',width:80,align:'center'},
+                {field:'account',title:'账务账号',width:80,align:'center'},
+                {field:'timeLong',title:'本月使用时长（/小时）',width:80,align:'center'},
+                {field:'year',title:'年',width:80,align:'center'},
+                {field:'month',title:'月',width:80,align:'center'}
             ]],
             toolbar:'#tb'
         });
@@ -336,21 +339,17 @@ $(function () {
 $(function () {
 
     $('#tt').datagrid({
-        url:'',
+        url:'/NetCTOSS/accYear/findYear',
         columns:[[
             //field数据对应的名称字段
-            {field:'a',title:'账务账号',width:80,align:'center'},
-            {field:'b',title:'真实姓名',width:80,align:'center'},
-            {field:'d',title:'业务账号数量',width:80,align:'center'},
-            {field:'c',title:'本年使用时长（/小时）',width:80,align:'center'},
-            {field:'e',title:'年',width:80,align:'center'}
+        	{field:'account',title:'账务账号',width:80,align:'center'},
+            {field:'name',title:'真实姓名',width:80,align:'center'},
+            {field:'busNum',title:'业务账号数量',width:80,align:'center'},
+            {field:'timeLong',title:'本年使用时长（/小时）',width:80,align:'center'},
+            {field:'year',title:'年',width:80,align:'center'}
         ]],
         toolbar:'#tb'
     });
 
-    $('#year_y').combobox({
-        url:'',
-        valueField:'id',
-        textField:'text'
-    });
+  
 })

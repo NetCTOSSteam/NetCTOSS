@@ -4,38 +4,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class DateUtil {
+public class MyDateUtil {
 
-	/**
-	 * 得到当前的时间
-	 * @param da 需要的时间格式 例如 yyyy-MM-dd hh:mm:ss
-	 * @return
-	 */
-	public static Date getNewData(String da) {
-		Date date = new Date(System.currentTimeMillis());
-		
-		return updateData(date,da);
-	}
 	
-	/**
-	 * 时间转换 格式
-	 * @param da 需要的时间格式 例如 yyyy-MM-dd hh:mm:ss
-	 * @param date 时间数据
-	 * @return
-	 */
-	public static Date updateData(Date date,String da) {
-		SimpleDateFormat df = new SimpleDateFormat(da);
-		
-		Date d = null;
-		try {
-			d = df.parse(df.format(date));
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return d;
-	}
 	
 	
 	/**
@@ -69,4 +40,8 @@ public class DateUtil {
 		return date;
 		
 	}
+//	public static void main(String[] args) {
+//		Date date1 = new Date();
+//		System.out.println(DataToString(new Date(), "yyyy-MM-dd"));
+//	}
 }

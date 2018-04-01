@@ -1,5 +1,7 @@
 package com.alibaba.NetCTOSS.billmag.service_handle;
 
+import org.springframework.stereotype.Service;
+
 import com.alibaba.NetCTOSS.beans.billBean.MonthAndAccountBean;
 
 /**

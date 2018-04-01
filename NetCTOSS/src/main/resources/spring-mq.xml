@@ -18,6 +18,10 @@
 		<!-- ActiveMQ服务地址 -->
         <property name="brokerURL" value="tcp://127.0.0.1:61616" />
 	</bean>
+	<bean id="targetConnectionFactory2" class="org.apache.activemq.ActiveMQConnectionFactory">
+		<!-- ActiveMQ服务地址 -->
+        <property name="brokerURL" value="tcp://127.0.0.1:61616" />
+	</bean>
 
     <!-- 
     	ActiveMQ为我们提供了一个PooledConnectionFactory，通过往里面注入一个ActiveMQConnectionFactory
@@ -27,7 +31,12 @@
 	<bean id="pooledConnectionFactory" class="org.apache.activemq.pool.PooledConnectionFactory" 
 	destroy-method="stop">
 		<property name="connectionFactory" ref="targetConnectionFactory" />
-		<property name="maxConnections" value="${mq.pool.maxConnections}" />
+		<property name="maxConnections" value="20" />
+	</bean>
+	<bean id="pooledConnectionFactory2" class="org.apache.activemq.pool.PooledConnectionFactory" 
+	destroy-method="stop">
+		<property name="connectionFactory" ref="targetConnectionFactory2" />
+		<property name="maxConnections" value="20" />
 	</bean>
 
 	
@@ -45,4 +54,21 @@
             <value>my.service.queue</value>  
         </constructor-arg>  
     </bean>  
+    
+     <!-- 推送信息 -->  
+    <bean id="myPushListenerMQ" class="org.apache.activemq.command.ActiveMQQueue">  
+        <constructor-arg>  
+            <value>my.service.queue</value>  
+        </constructor-arg>  
+    </bean>  
+   
+      
+    <!-- 接受推送 -->  
+    <bean id="myPushListenerConsumer"  
+          class="org.springframework.jms.listener.DefaultMessageListenerContainer">  
+        <property name="connectionFactory" ref="pooledConnectionFactory2" />  
+        <property name="destination" ref="myPushListenerMQ" />  
+        <property name="messageListener" ref="myPushListener" />  
+    </bean> 
+  
 </beans>

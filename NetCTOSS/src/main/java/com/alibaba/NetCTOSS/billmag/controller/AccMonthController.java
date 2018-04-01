@@ -1,8 +1,11 @@
 package com.alibaba.NetCTOSS.billmag.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -36,5 +39,23 @@ public class AccMonthController {
 		map.put("total", li.size());// 得到总条数
 		map.put("rows", pages.getList());//得到每页的数据
 		return map;
+	}
+	@RequestMapping(value = "/find", method = { RequestMethod.GET })
+	public List<Map> findMonth(){
+		
+		List<Map> lim = new ArrayList<>();
+		Set<Integer> set = new HashSet<>();
+		List<AccountMonthBean> li = iAccMonthDemandService.findAccountMonthByBean(null);
+		for (AccountMonthBean accountMonthBean2 : li) {
+			set.add(accountMonthBean2.getYear());
+		}
+		for (Integer integer : set) {
+			Map<Object, Object> map = new HashMap<>();
+			map.put("id", 1);
+			map.put("text", integer);
+			lim.add(map);
+		}
+		
+		return lim;
 	}
 }

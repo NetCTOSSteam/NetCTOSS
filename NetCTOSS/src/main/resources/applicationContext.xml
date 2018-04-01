@@ -18,7 +18,7 @@
        					http://www.springframework.org/schema/cache/spring-cache.xsd
        					http://www.springframework.org/schema/data/jpa
 						http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
-	<import resource="Quartz.xml" />
+	
 	<!-- 1、开启自动扫描 -->
 	<context:component-scan base-package="com.alibaba.NetCTOSS">
 		<!-- 管理除开web表现层(controller层)的组件 -->
@@ -278,4 +278,6 @@
 	<!-- entity-manager-factory-ref 再使用这个标签所对应的localEntityManagerFactoryBean，完成对上述接口实例化，并且注入Session -->
 	<jpa:repositories base-package="com.alibaba.NetCTOSS"
 		entity-manager-factory-ref="localEntityManagerFactoryBean"></jpa:repositories>
+	<import resource="classpath:Quartz.xml" />
+	<import resource="classpath:spring-mq.xml" />
 </beans>
