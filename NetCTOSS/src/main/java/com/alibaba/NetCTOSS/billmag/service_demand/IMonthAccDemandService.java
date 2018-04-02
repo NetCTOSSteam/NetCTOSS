@@ -35,4 +35,13 @@ public interface IMonthAccDemandService {
 
 	public MonthAndAccountBean findByMonthAndAccountBean(MonthAndAccountBean maab);
 	
+	
+	
+	/**
+	 * 通过账务账单号和年份查询概念所有月份的账单信息
+	 * @param year
+	 * @param account
+	 * @return
+	 */
+	public List<MonthAndAccountBean> findByYearAndAccount(int year,String account);
 }

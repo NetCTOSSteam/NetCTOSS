@@ -36,6 +36,11 @@ public class MonthAccDemandDaoImpl implements IMonthAccDemandDao {
 		// TODO Auto-generated method stub
 		return monthAccMapper.findByMonthAndAccountBean(maab);
 	}
+	@Override
+	public List<MonthAndAccountBean> findByYearAndAccount(int year, String account) {
+		// TODO Auto-generated method stub
+		return monthAccMapper.findByYearAndAccount(year, account);
+	}
 
 
 }

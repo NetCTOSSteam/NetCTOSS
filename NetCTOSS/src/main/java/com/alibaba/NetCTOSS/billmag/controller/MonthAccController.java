@@ -74,4 +74,9 @@ public class MonthAccController {
 		return "false";
 	}
 	
+	@RequestMapping(value = "/findByYearAndAcc", method = { RequestMethod.GET }, produces = { "application/json" })
+	public List<MonthAndAccountBean> findByYearAndAccount(int year,String userAccount){
+		
+		return monthAccDemandServiceimpl.findByYearAndAccount(year, userAccount);
+	}
 }

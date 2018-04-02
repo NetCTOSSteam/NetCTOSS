@@ -8,6 +8,7 @@
     <script type="text/javascript" src="../../js/easyui.demo.js" charset="utf-8"></script>
     <script type="text/javascript" src="../../easyui/locale/easyui-lang-zh_CN.js"></script>
     <script type="text/javascript" src="../../echarts/echarts.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../../js/jquery.json-2.4.js" charset="utf-8"></script>
 
     <link rel="stylesheet" type="text/css" href="../../easyui/themes/default/easyui.css">
     <link rel="stylesheet" type="text/css" href="../../easyui/themes/icon.css">
@@ -43,65 +44,106 @@
     $(function(){
     	$('#userAccount').combobox('select', '1'); //设置下拉框默认选中第一条数据
     	$('#year').combobox('select', '1');
+    });
+    
+    
+    
+    $('#query').click(function() {
     	
+    	//饼图模板
+    	var dom = document.getElementById("main");
+    	var myChart = echarts.init(dom);
+    	option = null;
+    	option = {
+    	    title : {
+    	      text: '对应账务账号在该年每月的消费数据(单位：元)',
+    	      subtext: '',
+    	      x:'center'
+    	    },
+    	    tooltip : {
+    	      trigger: 'item',
+    	      formatter: "{a} <br/>{b} : {c} ({d}%)"
+    	    },
+    	    legend: {
+    	      orient : 'vertical',
+    	      x : 'left',
+    	      data:[]
+    	    },
+    	    toolbox: {
+    	      show : true,
+    	      feature : {
+    	        mark : {show: true},
+    	        dataView : {show: true, readOnly: false},
+    	        magicType : {
+    	          show: true,
+    	          type: ['pie', 'funnel'],
+    	          option: {
+    	            funnel: {
+    	              x: '25%',
+    	              width: '50%',
+    	              funnelAlign: 'left',
+    	              max: 1548
+    	            }
+    	          }
+    	        },
+    	        restore : {show: true},
+    	        saveAsImage : {show: true}
+    	      }
+    	    },
+    	    calculable : true,
+    	    series : [
+    	      {
+    	        name:'',
+    	        type:'pie',
+    	        radius : '55%',
+    	        center: ['50%', '60%'],
+    	        data:[]
+    	      }
+    	    ]
+    	  };
+    	;
+    	if (option && typeof option === "object") {
+    	  myChart.setOption(option, true);
+    	}
+    	//饼图动态赋值
+    	var userAccount = $('#userAccount').combobox("getText");
     	
-    	var myChart = echarts.init(document.getElementById('main'));
-    	
-    	$.ajax({
-    		   type: "GET",
-    		   url: "",
-    		   success: function(msg){
-    			   
-    			   
-    			// 显示标题，图例和空的坐标轴
-    		        myChart.setOption({
-    		            title : {
-    		                text: '对应账务账号在该年每月的数据',
-    		                subtext: '',
-    		                x:'center'
-    		            },
-    		            tooltip : {
-    		                trigger: 'item'
-//    		                formatter: "{a} <br/>{b} : {c} ({d}%)"
-    		            },
-    		            legend: {
-    		                orient: 'vertical',
-    		                left: 'left',
-    		                data: ['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
-    		            },
-    		            series : [
-    		                {
-    		                    name: '月数据',
-    		                    type: 'pie',
-    		                    radius : '55%',
-    		                    center: ['50%', '60%'],
-    		                    data:[
-    		                        {value:335, name:'直接访问'},
-    		                        {value:310, name:'邮件营销'},
-    		                        {value:234, name:'联盟广告'},
-    		                        {value:135, name:'视频广告'},
-    		                        {value:1548, name:'搜索引擎'}
-    		                    ],
-    		                    itemStyle: {
-    		                        emphasis: {
-    		                            shadowBlur: 10,
-    		                            shadowOffsetX: 0,
-    		                            shadowColor: 'rgba(0, 0, 0, 0.5)'
-    		                        }
-    		                    }
-    		                }
-    		            ]
-    		        });
-    		    });
-    			   
-    			   
-    			   
-    			   
-    			   
-    		   }
-    		});
-    	
-        
+    	var year = parseInt($('#year').combobox("getText"));
+    	  $.ajax({
+    		  type: "GET",
+         	   url: "/NetCTOSS/monthAcc/findByYearAndAcc",
+         	   data: {
+         		 userAccount : userAccount,
+         		   year : year},
+    	      success: function(result) {
+    	    	  if(result==null||result==''){
+    	    		  $.messager.alert('我的消息','该年无数据！','info');
+    	    	  }
+    	        var names=[];//定义两个数组
+    	         var nums=[];
+    	         $.each(result,function(key,values){ //此处我返回的是list<String,map<String,String>>循环map
+	    	           names.push(values.month+'月');
+	    	           var obj = new Object();
+	    	           obj.name = values.month+'月';
+	    	           obj.value = values.money;
+	    	           nums.push(obj);
+    	          });
+    	        myChart.setOption({ //加载数据图表
+    	             legend: {
+    	                data: names
+    	                },
+    	            series: {
+    	                // 根据名字对应到相应的系列
+    	                name: ['总费用'],
+    	                data: nums
+    	                } 
+    	      });
+    	      },
+    	      error: function(XMLHttpRequest, textStatus, errorThrown) {
+    	        alert("查询失败");
+    	      }
+    	    });
+	});
     
 </script>
 </body>
