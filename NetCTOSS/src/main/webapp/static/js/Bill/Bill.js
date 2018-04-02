@@ -30,18 +30,13 @@ $(function () {
 			url:"/NetCTOSS/serviceAndBusiness/one",
 			data:data,
 			success :function(msg){
-				console.log("对象"+msg);
-				console.log(msg);
+//				console.log("对象"+msg);
+//				console.log(msg);
 			
 				$('#server_ip').html(msg.serverIP);
 				$('#time').html(msg.onlineTimr);
-			
-				
 				$('#startTime').html(changeDate(msg.startTime));
 				$('#endTime').html(changeDate(msg.endTime));
-//				
-//				$('#startTime').html(msg.startTime);
-//				$('#endTime').html(msg.endTime);
 				$('#money').html(msg.money);
 				$('#x_tariff').html(msg.tariff);
 			
@@ -49,11 +44,6 @@ $(function () {
 		});
     	
  
-//    	$('#server').datagrid({
-//    		url:"/NetCTOSS/serviceAndBusiness/one",
-//    		method:"GET",
-//    		queryParams:data
-//    	});
     }
     
     function changeDate(da){
@@ -61,14 +51,7 @@ $(function () {
     	  var date = new Date(da);
           return date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
            +' '+date.getHours()+':'+date.getMinutes()+':'+date.getSeconds();
-//		var time = da.time;
-//		var date = new Date(time);
-//		console.info(da);
-//		
-//		var formatDate = date.format("yyyy-MM-dd hh:mm:ss");
-//		
-//		console.info(formatDate);
-//		return formatDate;
+
 	}
     	
     //回退
@@ -104,7 +87,7 @@ $(function () {
         $('#s_tariff').combobox({
         	 url:'/NetCTOSS/monthBusiness/tariff',
          	method:"GET",
-             valueField:'tariff',
+             valueField:'id',
              textField:'tariff',
         });
     };
@@ -148,7 +131,6 @@ $(function () {
 	        	if(row.status=="0"){
 	        		
 	        		$('#win').window('open');
-	        	     
     				$('#s_id').attr('value',row.id);
     				$('#s_name').attr('value',row.name);
     				$('#s_year').attr('value',row.year);
@@ -309,7 +291,9 @@ $(function () {
 	function osQueryParams(){
 		
 		var businessAccount = $('#businessAccount').val().trim();
-		var tariff = $('#tariff').val().trim();
+		
+		var tariff = $('#s_tariff').combobox('getValue'); 
+
 		var server = $('#server').val().trim();
 		var data = {
 				businessAccount:businessAccount,
@@ -317,6 +301,7 @@ $(function () {
 				server:server,
 				};
 	
+		console.info(data);
 		return data;
 	}
 	

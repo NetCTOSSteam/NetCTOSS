@@ -1,5 +1,6 @@
 package com.alibaba.NetCTOSS.billmag.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -71,12 +72,19 @@ public class MonthBusinessController {
 	 * @return
 	 */
 	@RequestMapping(value = "/tariff", method = { RequestMethod.GET }, produces = { "application/json" })
-	public Map findByServerMothAndBusinessBeanAllTariff(@Param("tariff")String tariff ){	
+	public List<Map> findByServerMothAndBusinessBeanAllTariff(@Param("tariff")String tariff ){	
 		
-		Map map = new HashMap<>();
+		
 		List<MonthAndBusinessBean> data = monthBusinessDemandServiceImpl.findByServerMothAndBusinessBeanAllTariff();
+		List <Map> li = new ArrayList<>();
+		for (MonthAndBusinessBean monthAndBusinessBean : data) {
+			Map map = new HashMap<>();
+			map.put("id", monthAndBusinessBean.getTariff());
+			map.put("tariff", monthAndBusinessBean.getTariff());
+			li.add(map);
+		}
 		
-		map.put("data", data);
-		return map;
+		
+		return li;
 	}	
 }
