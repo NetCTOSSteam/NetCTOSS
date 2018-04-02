@@ -34,4 +34,11 @@ public interface IRoleDemandService {
 	 */
 	public List<RoleBean> findRolesByCondition(Map<String, String> param);
 	
+	/**
+	 * 根据id、查询 RoleBean 对象
+	 * @param id
+	 * @return
+	 */
+	public RoleBean findRoleBeanById(int id);
+	
 }

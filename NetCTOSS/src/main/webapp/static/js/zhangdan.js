@@ -26,13 +26,12 @@ $(function () {
             toolbar:'#tb'
         });
     }
-
     /**
      *双击这条数据，可以查询这个月账务账号下所有的业务账号产生的费用明细。
      */
     function business (json) {
         $('#tt').datagrid({
-            url:'',
+            url:'/NetCTOSS/monthBusiness/likeAll',
             queryParams:json,
             columns:[[
                 //field数据对应的名称字段
@@ -65,6 +64,7 @@ $(function () {
             toolbar:'#tb'
         });
     }
+
 
 
     var num = 0;
@@ -169,8 +169,6 @@ $(function () {
 
     //按年月查询
     $('#query').click(function () {
-        $('#year').html('');
-        $('#month').html('');
         if(num<1){
             accounting(queryData());
         }else if(num==1){

@@ -67,4 +67,10 @@
 		</where>
 			GROUP BY t_role.role_name
 	</select>
+	
+	<select id="findRoleBeanById" resultMap="roleMap">
+		select * from t_role where role_id = #{id}
+	</select>
+	
+	
 </mapper>

@@ -34,5 +34,7 @@ public interface IRoleDemandDao {
 	 * @return
 	 */
 	public List<RoleBean> findRolesByCondition(Map<String, String> param);
+
+	public RoleBean findRoleBeanById(int id);
 	
 }
