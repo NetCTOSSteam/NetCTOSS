@@ -33,6 +33,14 @@ public class RoleController {
 	@Resource
 	private IPowerHandleService powerHandleService;
 
+	/**
+	 * 该方法用于前台获取所有的角色信息
+	 * @param page 前台传过来的当前的页码数
+	 * @param rows 代表前台传过来的当前页的数据条数
+	 * @param roleName 前台传送过来的角色的名字
+	 * @param permission 前台传送过来的权限名字
+	 * @return 返回从数据库查询出来的所有的数据
+	 */
 	@RequestMapping(value = "/findAllRoles", method = { RequestMethod.GET }, produces = {
 			"application/json;charset=utf-8" })
 	public Map<Object, Object> findAllRole(int page, int rows, String roleName, String permission) {
