@@ -58,17 +58,9 @@ $(function () {
     
     function changeDate(da){
     	  console.info("时间"+da);
-    	
-    	  	var year = da.year+1900;
-			var month = da.month+1;
-			var day = da.date;
-			
-			var time = da.time;
-			console.info(time);
-			
-			var result = year+"-"+month+"-"+day;
-			return result;
-    	
+    	  var date = new Date(da);
+          return date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
+           +' '+date.getHours()+':'+date.getMinutes()+':'+date.getSeconds();
 //		var time = da.time;
 //		var date = new Date(time);
 //		console.info(da);
@@ -378,46 +370,7 @@ $(function () {
      
         toolbar:'#tb',
     });
-    
- /*   $('#year').combobox({
-    
-        valueField:'id',
-        textField:'year'
-    });
-    $('#month').combobox({
-        url:'',
-        valueField:'id',
-        textField:'text'
-        loader:function(param,success,error){
-        	success(data):{
-        	} 
-        	
-        }
-    });*/ 
 })
-
-
-Date.prototype.format = function(fmt) { 
-    var o = { 
-       "M+" : this.getMonth()+1,                 // 月份
-       "d+" : this.getDate(),                    // 日
-       "h+" : this.getHours(),                   // 小时
-       "m+" : this.getMinutes(),                 // 分
-       "s+" : this.getSeconds(),                 // 秒
-       "q+" : Math.floor((this.getMonth()+3)/3), // 季度
-       "S"  : this.getMilliseconds()             // 毫秒
-   }; 
-   if(/(y+)/.test(fmt)) {
-           fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length)); 
-   }
-    for(var k in o) {
-       if(new RegExp("("+ k +")").test(fmt)){
-            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));
-        }
-    }
-   return fmt; 
-}
-
 //格式化日期
 function myformatter(date) {
     //获取年份
