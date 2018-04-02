@@ -73,7 +73,7 @@ $(function(){
     	now = now + date.getSeconds()+"";
     	console.info(now);
         var mealName = $('#mea_name').val();
-       
+        
         var mealTime = $('#mea_time').val();
         var mealMoney = $('#mea_money').val();
         var mealDescribe = $('#mea_describe').val();
@@ -121,30 +121,7 @@ $(function(){
              $('#tt').datagrid('reload',queryParams());
     	});
         
-       /* var url = "/NetCTOSS/tar/adds";
-        console.info(queryParamsToSave());
-        $('#add_custom_form').form('submit', {
-            
-            url:url,
-            data:queryParamsToSave(),
-            onSubmit: function(){
-                // do some check
-                // return false to prevent submit;
-            	  console.info("进来了");
-                return true;
-            },
-            success:function(data){
-            	  console.info(data);
-                 
-                if(data){
-                    $('#add_users_dialog').dialog('close');
-                }
-
-                $('#tt').datagrid('reload',queryParams());
-            }
-
-        });
-        console.info("111111222");*/
+      
     });
 
 
@@ -165,15 +142,13 @@ $(function(){
         	          
         	                $('#mealId1').attr('value',row.mealId);
         					$('#mealBasicMoney1').attr('value',row.mealBasicMoney);
-        					console.info(row)
-        					console.info(row.mealId)
-        					console.info( $('#mealId1'))
+        					
         					$('#mealTime1').attr('value',row.mealTime);
         					$('#mealMoney1').attr('value',row.mealMoney);
         					$('#mealName1').attr('value',row.mealName);        				
         					$('#mealDescribe1').attr('value',row.mealDescribe);
         					$('#cc1').combobox('select', row.mealType);
-        					
+        					$('#mealStartTime').attr('value',row.mealStartTime);
         					
         	            }else{
         	                $.messager.show({
@@ -233,19 +208,7 @@ $(function(){
 				$('#tt').datagrid('reload',queryParams());// 重新加载数据
 		    }   
 		});  
-      /*  $.ajax({
-			type:"put",
-			url:url,
-			data:queryParamsTouodate(),
-			success :function(msg){
-				if(msg){
-					  $('#update_users_dialog').dialog('close');
-					
-				}else{
-					  $('#tt').datagrid('reload',queryParams());// 重新加载数据
-				}
-			}
-		});*/
+     
     });
 
 
@@ -253,6 +216,7 @@ $(function(){
 
 
     $('#delete').click(function(){
+    	  var row = $('#tt').datagrid('getSelected')
         // 返回的是：所选择数据的数组
         var rows = $('#tt').datagrid('getSelections')
         
@@ -296,6 +260,134 @@ $(function(){
            
         }
     });
+    
+    
+    $('#kai').click(function(){
+    	
+        var rows = $('#tt').datagrid('getSelections');
+        // 返回的是：所选择数据的数组
+      
+        var lenth = rows.length;
+        if(lenth == 0){// 没有选择任何需要被删除的数据
+            $.messager.show({
+                title:'消息提示',
+                msg:'请选择需要开通的资费！',
+                timeout:5000,
+                showType:'slide'
+            });
+        }else{// 已经选择了
+        	if(!rows[0].mealStatus){
+        		 
+        		   $('#cc2').attr('value',rows[0].mealType);
+        		
+        	      $('#mealId2').attr('value',rows[0].mealId);        	   
+        	      $('#mealStatus2').attr('value',rows[0].mealStatus);
+        	      $('#mealName2').attr('value',rows[0].mealName);
+        	      $('#mealDescribe2').attr('value',rows[0].mealDescribe);   
+        	      $('#mealTime2').attr('value',rows[0].mealTime);   
+        	      $('#mealBasicMoney2').attr('value',rows[0].mealBasicMoney);  
+        	      $('#mealMoney2').attr('value',rows[0].mealMoney);
+        	  	$('#mealStartTime1').attr('value',rows[0].mealStartTime);
+        	  
+        		 $.messager.confirm('友情示', '提你确定需要开通这个资费么?', function(r){
+                     if (r){
+                        
+                         var url = "/NetCTOSS/tar/update1";
+                         $('#update_user1').form('submit', {   
+                 		    url:url, 
+                 		   
+                 		    onSubmit: function(){   
+                 		        // do some check   
+                 		        // return false to prevent submit; 
+                 		    	return true;
+                 		    },   
+                 		    success:function(data){                 		    
+                 		    	 $.messager.show({
+                 						title:'消息提示',
+                 						msg:'开通成功',
+                 						timeout:5000,
+                 						showType:'slide'
+                 				});
+                 		    	 
+                 				$('#tt').datagrid('reload',queryParams());// 重新加载数据
+                 		    }   
+                 		});  
+                     }
+                 });
+        	}else{
+        		$.messager.show({
+	                title:'消息提示',
+	                msg:'正在使用中，不能进行操作！',
+	                timeout:3000,
+	                showType:'slide'
+	            });
+        	}
+           
+        }
+    });
+
+
+$('#zhan').click(function(){
+	
+    var rows = $('#tt').datagrid('getSelections');
+    // 返回的是：所选择数据的数组
+  
+    var lenth = rows.length;
+    if(lenth == 0){// 没有选择任何需要被删除的数据
+        $.messager.show({
+            title:'消息提示',
+            msg:'请选择需要开通的资费！',
+            timeout:5000,
+            showType:'slide'
+        });
+    }else{// 已经选择了
+    	if(!rows[0].mealStatus){
+ 		   $('#cc3').attr('value',rows[0].mealType);
+    	      $('#mealId3').attr('value',rows[0].mealId);        	   
+    	      $('#mealStatus3').attr('value',rows[0].mealStatus);
+    	      $('#mealName3').attr('value',rows[0].mealName);
+    	      $('#mealDescribe3').attr('value',rows[0].mealDescribe);   
+    	      $('#mealTime3').attr('value',rows[0].mealTime);   
+    	      $('#mealBasicMoney3').attr('value',rows[0].mealBasicMoney);  
+    	      $('#mealMoney3').attr('value',rows[0].mealMoney);
+    	  	$('#mealStartTime3').attr('value',rows[0].mealStartTime);
+    	  	
+    		 $.messager.confirm('友情示', '提你确定需要暂停这个资费么?', function(r){
+                 if (r){
+                    
+                     var url = "/NetCTOSS/tar/update2";
+                     $('#update_user2').form('submit', {   
+             		    url:url, 
+             		   
+             		    onSubmit: function(){   
+             		        // do some check   
+             		        // return false to prevent submit; 
+             		    	return true;
+             		    },   
+             		    success:function(data){                 		    
+             		    	 $.messager.show({
+             						title:'消息提示',
+             						msg:'暂停成功',
+             						timeout:5000,
+             						showType:'slide'
+             				});
+             		    	 
+             				$('#tt').datagrid('reload',queryParams());// 重新加载数据
+             		    }   
+             		});  
+                 }
+             });
+    	}else{
+    		$.messager.show({
+                title:'消息提示',
+                msg:'正在使用中，不能进行操作！',
+                timeout:3000,
+                showType:'slide'
+            });
+    	}
+       
+    }
+});
 });
 
 

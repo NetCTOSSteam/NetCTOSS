@@ -31,4 +31,10 @@ public class MealDemandServiceImpl implements IMealDemandService {
 		return mealDemandDaoImpl.findByMealBeanId(id);
 	}
 
+	@Override
+	public List<String> findByfindByMealBeanName(String name) {
+		// TODO Auto-generated method stub
+		return mealDemandDaoImpl.findByfindByMealBeanName(name);
+	}
+
 }

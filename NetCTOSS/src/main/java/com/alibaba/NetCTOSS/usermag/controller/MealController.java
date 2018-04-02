@@ -1,5 +1,6 @@
 package com.alibaba.NetCTOSS.usermag.controller;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,13 +10,18 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
+
 
 import com.alibaba.NetCTOSS.beans.userAndBusBean.MealBean;
 import com.alibaba.NetCTOSS.usermag.service_demand.IMealDemandService;
 import com.alibaba.NetCTOSS.usermag.service_handle.IMealHandleService;
 import com.alibaba.fastjson.JSONObject;
+
 import com.github.pagehelper.PageInfo;
+
 
 @RequestMapping("/tar")
 @RestController
@@ -50,11 +56,12 @@ public class MealController {
           jsonMap.put("rows", list);//rows存放每页记录 ，这里的两个参数名是固定的，必须为 total和 rows  
          
          //转换
+          
+          JSONObject json = new JSONObject(jsonMap);
+         
+          String jsonString = json.toJSONString();
    
-         JSONObject js = new JSONObject(jsonMap);
-         
-         
-		 return js.toString();  
+		 return jsonString;  
 	} 
 	
 	@RequestMapping(value = "/adds", method = { RequestMethod.POST }, produces = { "application/json;charset=utf-8" })
@@ -97,6 +104,52 @@ public class MealController {
 		return false;
 			
 	}
+	@RequestMapping(value = "/name", method = { RequestMethod.GET }, produces = { "application/json" })
+	public String findByMealBeanName(String name) {
 	
+		  List<String> list=mealDemandServiceImpl.findByfindByMealBeanName(name);
+		 if(list.size()!=0) {
+				return "no";
+		 }
+		return null;
+		
+		
+		
+		
+	}	
 	
+	@RequestMapping(value="/update1",method= {RequestMethod.PUT},produces= {"application/json;charset=utf-8"})
+	public boolean updeteMealBean1(MealBean bean) {
+		System.out.println(bean);
+		try {
+	          bean.setMealStatus(true);
+	          bean.setMealStartTime(new Date());
+			mealHandleServiceImpl.updateMealBean(bean);	
+			System.out.println(bean);
+			return true;
+			
+		} catch (Exception e) {
+			// TODO: handle exception			
+			  System.out.println("有误");
+	}	
+		return false;
+			
+	}
+	@RequestMapping(value="/update2",method= {RequestMethod.PUT},produces= {"application/json;charset=utf-8"})
+	public boolean updeteMealBean2(MealBean bean) {
+		System.out.println(bean);
+		try {
+	          bean.setMealStatus(false);
+	          bean.setMealStartTime(new Date());
+			mealHandleServiceImpl.updateMealBean(bean);	
+			System.out.println(bean);
+			return true;
+			
+		} catch (Exception e) {
+			// TODO: handle exception			
+			  System.out.println("有误");
+	}	
+		return false;
+			
+	}	
 }

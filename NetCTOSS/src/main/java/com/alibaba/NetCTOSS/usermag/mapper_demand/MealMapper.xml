@@ -29,6 +29,9 @@
    select * from t_meal where mea_id=#{mealId};
  </select>
 
+<select id="findByfindByMealBeanName" resultMap="MealBeanMap">
+   select mea_name from t_meal where mea_name=#{mealName};
+ </select>
 
 
 </mapper>

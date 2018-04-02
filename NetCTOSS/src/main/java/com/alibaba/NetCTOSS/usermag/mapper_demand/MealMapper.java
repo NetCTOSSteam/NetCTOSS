@@ -20,4 +20,10 @@ public interface MealMapper {
 	 * @return MealBean
 	 */
 	public MealBean findByMealBeanId(@Param("mealId")int id);
+	/**
+	 * 根据名字查是否有相同的名字
+	 * @param name MealBeanName
+	 * @return
+	 */
+	public List<String> findByfindByMealBeanName(@Param("mealName")String name);
 }
