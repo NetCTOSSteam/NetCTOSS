@@ -9,6 +9,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.NetCTOSS.beans.admAndRoleBean.RoleBean;
+import com.alibaba.NetCTOSS.beans.billBean.AccountYearBillBean;
 import com.alibaba.NetCTOSS.beans.userAndBusBean.BusinessBean;
 import com.alibaba.NetCTOSS.beans.userAndBusBean.UserBean;
 import com.alibaba.NetCTOSS.usermag.dao_demand.IBusinessDemandDao;
@@ -70,5 +71,11 @@ public class UserDemandServiceImpl implements IUserDemandService {
 	public List<UserBean> findAllUserBean() {
 		// TODO Auto-generated method stub
 		return iUserDemandDao.findAllUserBean();
+	}
+
+	@Override
+	public List<AccountYearBillBean> findByAccountYearBillBeanByAccoundName(String accoundName) {
+		// TODO Auto-generated method stub
+		return iUserDemandDao.findByAccountYearBillBeanByAccoundName(accoundName);
 	}
 }

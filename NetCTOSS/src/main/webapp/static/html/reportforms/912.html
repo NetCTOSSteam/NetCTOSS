@@ -21,12 +21,11 @@
         textField: 'text',    
         url:'/NetCTOSS/user/findAll',    
         onSelect: function(rec){    
-            var url = 'get_data2.php?id='+rec.id;    
+            var url = '/NetCTOSS/user/findYearByAccountName?AccountName='+rec.loginName;    
             $('#year').combobox('reload', url);    
         }" />
           请选择年份:    
 	<input id="year" class="easyui-combobox" data-options="valueField:'id',textField:'text'" />  
-	
 	
     <a id="query" href="javascript:void(0)" class="easyui-linkbutton"
        data-options="iconCls:'icon-search'">查询</a>

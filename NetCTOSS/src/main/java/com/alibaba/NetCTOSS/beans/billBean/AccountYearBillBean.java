@@ -110,4 +110,10 @@ public class AccountYearBillBean implements Serializable {
 	   public void setTimeLong(int newTimeLong) {
 	      timeLong = newTimeLong;
 	   }
+
+	@Override
+	public String toString() {
+		return "AccountYearBillBean [id=" + id + ", year=" + year + ", account=" + account + ", name=" + name
+				+ ", busNum=" + busNum + ", timeLong=" + timeLong + "]";
+	}
 }

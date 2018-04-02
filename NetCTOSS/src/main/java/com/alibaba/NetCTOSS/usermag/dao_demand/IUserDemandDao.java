@@ -3,6 +3,7 @@ package com.alibaba.NetCTOSS.usermag.dao_demand;
 import java.util.List;
 
 import com.alibaba.NetCTOSS.beans.admAndRoleBean.RoleBean;
+import com.alibaba.NetCTOSS.beans.billBean.AccountYearBillBean;
 import com.alibaba.NetCTOSS.beans.userAndBusBean.BusinessBean;
 import com.alibaba.NetCTOSS.beans.userAndBusBean.UserBean;
 
@@ -49,4 +50,12 @@ public interface IUserDemandDao {
 	 * @return
 	 */
 	public RoleBean getRole(String userLoginName);
+	
+	
+	/**
+	 * 通过账务账号名查询年度账务
+	 * @param accoundName
+	 * @return
+	 */
+	public List<AccountYearBillBean> findByAccountYearBillBeanByAccoundName(String accoundName);
 }

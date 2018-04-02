@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Repository;
 
 import com.alibaba.NetCTOSS.beans.admAndRoleBean.RoleBean;
+import com.alibaba.NetCTOSS.beans.billBean.AccountYearBillBean;
 import com.alibaba.NetCTOSS.beans.userAndBusBean.UserBean;
 import com.alibaba.NetCTOSS.usermag.dao_demand.IUserDemandDao;
 import com.alibaba.NetCTOSS.usermag.mapper_demand.UserMapper;
@@ -45,5 +46,10 @@ public class UserDemandDaoImpl implements IUserDemandDao {
 		return userMapper.findAllUserBean();
 	}
 
+	@Override
+	public List<AccountYearBillBean> findByAccountYearBillBeanByAccoundName(String accoundName) {
+		// TODO Auto-generated method stub
+		return userMapper.findByAccountYearBillBeanByAccoundName(accoundName);
+	}
 
 }
