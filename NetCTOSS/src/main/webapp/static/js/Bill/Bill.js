@@ -7,7 +7,7 @@ $(function () {
     $('#tt').datagrid({
         onDblClickRow:function (rowIndex, rowData) {
            	var jso = {"account":rowData.account};
-        	//console.info(jso);
+        	
             if(flag){
                 $('#table_noe').hide();
                 $('#table_two').show();
