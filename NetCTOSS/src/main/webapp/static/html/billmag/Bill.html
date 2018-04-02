@@ -95,31 +95,44 @@
     <!-- 支付弹窗 -->
     <div id="win" class="easyui-dialog" title="付款" style="width:400px;height:300px;"
          data-options="iconCls:'icon-save',resizable:true,modal:true,closed:true">
-        <table style="margin: 0 auto;padding-top: 10px">
-            <tr style="">
-                <td>账务账号:</td>
-                <td><span id="z_acc">zs123123</span></td>
-            </tr>
-            <tr>
-                <td>真实姓名:</td>
-                <td><span id="z_name">张三</span></td>
-            </tr>
-            <tr>
-                <td>总消费:</td>
-                <td><span id="total_consumption">1500</span></td>
-            </tr>
-            <tr>
-                <td>支付方式:</td>
-                <td>
-                    <select id="payment_method" class="easyui-combobox" name="dept" style="width:80px;">
-                        <option value="card" selected>刷卡</option>
-                        <option value="zfb">支付宝</option>
-                        <option value="wx">微信</option>
-                        <option value="xj">现金</option>
-                    </select>
-                </td>
-            </tr>
-        </table>
+      	<form id="update_month" method="post">
+        	 <input type="hidden" name="_method" value="put" /> 
+        	 <input type="hidden" name="id" id="s_id" /> 
+        	 <input type="hidden" name="year" id="s_year" />
+			 <input type="hidden" name="month" id="s_month" />
+			 <input type="hidden" name="IDcard" id="s_IDcard" />
+			
+	        <table style="margin: 0 auto;padding-top: 10px">
+
+	            <tr>
+					<td>账务账号:</td>
+					<td><input class="easyui-validatebox" type="text" id="s_account"
+						name="account" data-options="required:false" /></td>
+				</tr>
+				 <tr>
+					<td>真实姓名:</td>
+					<td><input class="easyui-validatebox" type="text" id="s_name"
+						name="name" data-options="required:false" /></td>
+				</tr>
+	           <tr>
+					<td>总消费:</td>
+					<td><input class="easyui-validatebox" type="text" id="s_money"
+						name="money" data-options="required:false" /></td>
+				</tr>
+	            
+	            <tr>
+	                <td>支付方式:</td>
+	                <td>
+	                    <select id="s_type" class="easyui-combobox" name="type" style="width:80px;">
+	                        <option value="刷卡" selected>刷卡</option>
+	                        <option value="支付宝">支付宝</option>
+	                        <option value="微信">微信</option>
+	                        <option value="现金">现金</option>
+	                    </select>
+	                </td>
+	            </tr>
+	        </table>
+        </form>
         <div style="width: 205px;margin: 0 auto;padding-top: 15px">
             <a id="ok" href="Javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" style="width: 100px;height:32px">确定</a>
             <a id="not" href="Javascript:void(0)" class="easyui-linkbutton" iconCls="icon-back" style="width: 100px;height:32px">取消</a>
@@ -147,7 +160,7 @@
             </tr>
             <tr>
                 <td>费用（元）:</td>
-                <td><span id="money"></span></td>
+                <td><span id="money" ></span></td>
             </tr>
             <tr>
                <td>资费套餐:</td>

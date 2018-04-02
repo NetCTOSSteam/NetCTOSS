@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.NetCTOSS.beans.billBean.MonthAndAccountBean;
 import com.alibaba.NetCTOSS.billmag.service_demand.IMonthAccDemandService;
+import com.alibaba.NetCTOSS.billmag.service_handle.IMonthAccHandleService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
@@ -21,6 +22,8 @@ public class MonthAccController {
  
 	@Resource
 	private IMonthAccDemandService monthAccDemandServiceimpl;
+	@Resource
+	private IMonthAccHandleService monthAccHandleServiceImpl;
 	/**
 	 * 首页分页显示
 	 * @param mv
@@ -46,12 +49,23 @@ public class MonthAccController {
 
 	}
 	
-	@RequestMapping(value = "/year", method = { RequestMethod.GET }, produces = { "application/json" })
-	public List getYear() {
+
+	
+	@RequestMapping(value = "/check", method = { RequestMethod.PUT }, produces = { "application/json" })
+	public String updateMonthAndAccountBean(MonthAndAccountBean bean ) {
 		
 		
-		List<Integer> data = monthAccDemandServiceimpl.getYear();
-		return data;
+		try {
+			bean.setStatus(1);
+			monthAccHandleServiceImpl.updateMonthAndAccountBean(bean);
+			return "ok";
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+		return "false";
 	}
 	
 }

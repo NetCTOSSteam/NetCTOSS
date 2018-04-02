@@ -6,8 +6,6 @@ $(function () {
     //双击数据行
     $('#tt').datagrid({
         onDblClickRow:function (rowIndex, rowData) {
-        	//console.info(rowData.account);
-        	//var obj = eval('(' + rowData.account + ')');
            	var jso = {"account":rowData.account};
         	//console.info(jso);
             if(flag){
@@ -32,16 +30,25 @@ $(function () {
 			url:"/NetCTOSS/serviceAndBusiness/one",
 			data:data,
 			success :function(msg){
+				console.log("对象"+msg);
 				console.log(msg);
 			
 				$('#server_ip').html(msg.serverIP);
 				$('#time').html(msg.onlineTimr);
-				$('#startTime').html(msg.startTime);
-				$('#endTime').html(msg.endTime);
+			
+				
+				$('#startTime').html(changeDate(msg.startTime));
+				$('#endTime').html(changeDate(msg.endTime));
+//				
+//				$('#startTime').html(msg.startTime);
+//				$('#endTime').html(msg.endTime);
 				$('#money').html(msg.money);
 				$('#x_tariff').html(msg.tariff);
+			
 			}
 		});
+    	
+ 
 //    	$('#server').datagrid({
 //    		url:"/NetCTOSS/serviceAndBusiness/one",
 //    		method:"GET",
@@ -49,7 +56,28 @@ $(function () {
 //    	});
     }
     
-
+    function changeDate(da){
+    	  console.info("时间"+da);
+    	
+    	 var year = da.year+1900;
+			var month = da.month+1;
+			var day = da.date;
+			
+			var time = da.time;
+			console.info(time);
+			
+			var result = year+"-"+month+"-"+day;
+			return result;
+    	
+//		var time = da.time;
+//		var date = new Date(time);
+//		console.info(da);
+//		
+//		var formatDate = date.format("yyyy-MM-dd hh:mm:ss");
+//		
+//		console.info(formatDate);
+//		return formatDate;
+	}
     	
     //回退
     $('#back').click(function () {
@@ -87,6 +115,7 @@ $(function () {
             textField:'text'
         });
     };
+    
     //月账单加载
     function moth(data){
         $('#pay').show();
@@ -103,30 +132,48 @@ $(function () {
                 {field:'year',title:'年-月',width:12,align:'center'},
                 {field:'status',title:'支付状态',width:12,align:'center',	
                 	formatter: function(value,row,index){
-    				var ret = '';
-    				if (value == '1'){
-    					ret = '刷卡';
-    				} else if(value == '2'){
-    					ret = '支付宝';
-    				}
-    				else if(value == '3'){
-    					ret = '微信';
-    				}
-    				else if(value == '4'){
-    					ret = '现金';
-    				}
-    				return ret;
-    			}},
+        				var ret = '';
+        				if (value == '1'){
+        					ret = '已支付';
+        				} else if(value == '0'){
+        					ret = '未支付';
+        				}
+        					return ret;
+        			}},
                 {field:'type',title:'支付方式',width:12,align:'center'}
             ]],
             toolbar:'#tb'
         });
     };
+    
     //点击支付按钮
     $('#pay').click(function () {
         var row = $('#tt').datagrid('getSelected');
         if(row!=null){
-            $('#win').window('open');
+        	console.info(row.status);
+	        	if(row.status=="0"){
+	        		
+	        		$('#win').window('open');
+	        	     
+    				$('#s_id').attr('value',row.id);
+    				$('#s_name').attr('value',row.name);
+    				$('#s_year').attr('value',row.year);
+    				$('#s_month').attr('value',row.month);
+    				$('#s_IDcard').attr('value',row.IDcard);
+    				$('#s_account').attr('value',row.account);
+    				$('#s_name').attr('value',row.name);
+    				$('#s_money').attr('value',row.money);
+    				$('#s_type').combobox('select', row.type);
+    				$('#update_month').form('validate');
+        	}else{
+        		 $.messager.show({
+                     title:'消息提示',
+                     msg:"该账户已支付",
+                     timeout:5000,
+                     showType:'slide'
+                 });
+        	}
+        
         }else{
             $.messager.show({
                 title:'消息提示',
@@ -136,54 +183,42 @@ $(function () {
             });
         }
     });
+    
     //支付确认
     $('#ok').click(function () {
-
+    	console.info("ok");
+    	var data = "";
+		$('#update_month').form ('submit',{
+			   url:"/NetCTOSS/monthAcc/check",   
+			    onSubmit: function(){   
+			    	return true;
+			    },
+			    success:function(data){ 
+			    	console.info("数据");
+			    	console.info(data);
+			    	
+			    	if(data){
+			    		 $('#win').window('close');
+			    		
+			    	}
+			    	 $.messager.show({
+							title:'消息提示',
+							msg:"操作成功！！！",
+							timeout:5000,
+							showType:'slide'
+					});
+			    	 
+					$('#tt').datagrid('reload',moth(data));// 重新加载数据
+			    } 
+		});
+		
     });
+    
     //支付取消
     $('#not').click(function () {
         $('#win').window('close');
     });
-
-	/**
-	 * 修改
-	 */
-	$('#edit').click(function(){
-		var rows = $('#tt').datagrid('getSelections');
-		var row = $('#tt').datagrid('getSelected')//返回的第1行记录
-		if(row){//如果选中了数据，就进入if语句
-			var lenth = rows.length;
-			if(lenth == 1){
-				$('#update_users_dialog').dialog('open');//打开修改窗体
-				$('#u_id').attr('value',row.id);
-				$('#u_version').attr('value',row.version);
-				$('#u_password').attr('value',row.password);
-				$('#u_userName').attr('value',row.userName);
-				$('#u_loginName').attr('value',row.loginName);
-				$('#u_gender').combobox('select', row.gender);
-				var text = dateformatter(new Date(row.birthday));
-				$('#u_birthday').datebox('setValue',text);
-				$('#update_user').form('validate');
-			}else{
-				$.messager.show({
-					title:'消息提示',
-					msg:'每次只能修改一条数据！',
-					timeout:5000,
-					showType:'slide'
-				});
-			}
-		}else{
-			$.messager.show({
-				title:'消息提示',
-				msg:'请选择需要修改的数据！',
-				timeout:5000,
-				showType:'slide'
-			});
-		}
-	});
-
-    
-    
+ 
     /**
 	 * 月账务条件查询参数的封装
 	 */
@@ -252,12 +287,7 @@ $(function () {
                 {field:'tariff',title:'资费套餐',width:80,align:'center'},
             ]],
             toolbar:'#tb',
-        	onLoadSuccess:function(data){
-        		if(data.total>0)return;
-        		$('#dg').datagrid('appendRow',{
-        		    中间显示的列的字段名称: '没有相关记录'
-        		});
-        		}
+        
         });
      
 	});
@@ -289,7 +319,7 @@ $(function () {
             {field:'type',title:'支付方式',width:12,align:'center'}
         ]],
      
-        toolbar:'#tb'
+        toolbar:'#tb',
     });
     
  /*   $('#year').combobox({
@@ -306,8 +336,27 @@ $(function () {
         	} 
         	
         }
-    });*/
-    
-    
-	
+    });*/ 
 })
+
+
+Date.prototype.format = function(fmt) { 
+    var o = { 
+       "M+" : this.getMonth()+1,                 // 月份
+       "d+" : this.getDate(),                    // 日
+       "h+" : this.getHours(),                   // 小时
+       "m+" : this.getMinutes(),                 // 分
+       "s+" : this.getSeconds(),                 // 秒
+       "q+" : Math.floor((this.getMonth()+3)/3), // 季度
+       "S"  : this.getMilliseconds()             // 毫秒
+   }; 
+   if(/(y+)/.test(fmt)) {
+           fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length)); 
+   }
+    for(var k in o) {
+       if(new RegExp("("+ k +")").test(fmt)){
+            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));
+        }
+    }
+   return fmt; 
+}
