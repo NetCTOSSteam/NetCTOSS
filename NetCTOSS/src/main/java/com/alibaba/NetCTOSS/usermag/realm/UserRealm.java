@@ -65,7 +65,6 @@ public class UserRealm extends AuthorizingRealm {
 		String loginName = (String) customizedToken.getPrincipal();
 
 		UserBean user = userDemandServiceImpl.findByLoginName(loginName);
-		System.out.println(user);
 		if (user != null) {
 			AuthenticationInfo authcInfo = new SimpleAuthenticationInfo(user.getLoginName(), user.getPassword(),
 					getName());
