@@ -3,15 +3,31 @@ $(function () {
 
     //双击数据行
     $('#tt').datagrid({
-        onDblClickRow:function () {
+        onDblClickRow:function (row) {
+        	var json = {"busName":row.busName,"state":row.state,"serverIP":row.serverIP};
+        	$.ajax({
+            	url: "/NetCTOSS/busi/findone",
+            	type: "GET", 
+            	data:json,
+            	contentType:"application/json",
+            	async: false,
+            	success: function(row){
+            		$('#server').text(row.loginName);
+                    $('#zifei').text(row.mealBean.mealName);
+                   
+                    $('#service_ip').text(row.serverIP);
+                    $('#os').text(row.loginName);
+            }});
             $('#x_data').window('open');
         }
     });
+    
     //详细信息的返回按钮
     $('#x_back').click(function () {
         $('#x_data').window('close');
     });
 
+    
     //添加
     $('#not').click(function () {
         $('#add_win').window('close');
@@ -22,6 +38,8 @@ $(function () {
         $('#update_win').window('close');
     });
 
+    
+    
     /**
      * 工具按钮的功能
      */
@@ -29,7 +47,18 @@ $(function () {
     $('#openOrClose').click(function () {
         var row = $('#tt').datagrid('getSelected');
         if(row!=null){
-
+        	var json = {"busName":row.busName,"state":row.state,"serverIP":row.serverIP};
+        	
+        	$.ajax({
+            	url: "/NetCTOSS/busi/updatSata",
+            	type: "GET", 
+            	data:json,
+            	contentType:"application/json",
+            	async: false,
+            	success: function(){
+            		$('#tt').datagrid('reload',queryParams());
+            }});
+        	
         }else{
             $.messager.show({
                 title:'消息提示',
@@ -44,7 +73,16 @@ $(function () {
     $('#delete').click(function () {
         var row = $('#tt').datagrid('getSelected');
         if(row!=null){
-
+        	var json = {"busName":row.busName,"state":row.state,"serverIP":row.serverIP};
+        	$.ajax({
+            	url: "/NetCTOSS/busi/delete",
+            	type: "DELETE", 
+            	data:json,
+            	contentType:"application/json",
+            	async: false,
+            	success: function(){
+            		$('#tt').datagrid('reload',queryParams());
+            }});
         }else{
             $.messager.show({
                 title:'消息提示',
@@ -115,11 +153,11 @@ $(function () {
     $('#tt').datagrid({
         url:'',
         columns:[[
-            {field:'a',title:'业务账号',width:12,align:'center'},
-            {field:'b',title:'资费类型',width:12,align:'center'},
-            {field:'d',title:'状态',width:12,align:'center'},
-            {field:'c',title:'服务器IP',width:12,align:'center'},
-            {field:'e',title:'账务账号',width:12,align:'center'}
+            {field:'busName',title:'业务账号',width:12,align:'center'},
+            {field:'mealBean.mealName',title:'资费类型',width:12,align:'center'},
+            {field:'state',title:'状态',width:12,align:'center'},
+            {field:'serverIP',title:'服务器IP',width:12,align:'center'},
+            {field:'userBean.userName',title:'账务账号',width:12,align:'center'}
         ]],
         toolbar:'#tb'
     });

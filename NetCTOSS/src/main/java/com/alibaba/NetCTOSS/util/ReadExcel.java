@@ -16,7 +16,7 @@ public class ReadExcel  {
 
 	 public static void read() {
 		 try {
-			InputStream inputStream = new FileInputStream("E:/工具/第二周业务拓展统计表.xls");
+			InputStream inputStream = new FileInputStream("C:/Users/Administrator/Desktop/用户.xls");
 			
 			Workbook workbook = WorkbookFactory.create(inputStream);
 			Sheet sheet = workbook.getSheetAt(0);
@@ -30,7 +30,7 @@ public class ReadExcel  {
 					
 					//通过获取单元格值并应用任何数据格式（Date，0.00，1.23e9，$ 1.23等），获取单元格中显示的文本
 					String text = formatter.formatCellValue(cell);
-					
+					System.out.println(text);
 					switch (cell.getCellType()) {
 					                    case Cell.CELL_TYPE_STRING:// 字符串型
 					                        System.out.println(cell.getRichStringCellValue().getString());
