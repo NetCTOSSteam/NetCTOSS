@@ -111,6 +111,15 @@ display: none;
        href="javascript:void(0)" class="easyui-linkbutton"
        data-options="iconCls:'icon-remove',plain:true">删除</a>
 
+ <a id="kai" 
+       href="javascript:void(0)" class="easyui-linkbutton"
+       data-options="iconCls:'icon-reload',plain:true">开通资费
+    </a>
+    
+     <a id="zhan" 
+       href="javascript:void(0)" class="easyui-linkbutton"
+       data-options="iconCls:'icon-reload',plain:true">暂停资费
+    </a>
 </div>
 
 
@@ -135,26 +144,26 @@ display: none;
            
         </div>
         <div style="margin-bottom:20px"  >
-            <div>资费信息:</div>
-            <input id="mea_name" class="easyui-textbox" style="width:100%;height:32px">
+            <div>资费名称:</div>
+            <input id="mea_name" class="easyui-textbox" style="width:100%;height:32px" data-options="required:true,missingMessage:'请输入资费名字'"  >
         </div>
         <div style="margin-bottom:20px" id="ji">
             <div>基本费用:</div>
-            <input id="mea_basic_money" class="easyui-textbox" style="width:100%;height:32px">
+            <input id="mea_basic_money" class="easyui-numberbox" style="width:100%;height:32px" data-options="required:true,missingMessage:'请输入数字'">
         </div>
         
         <div style="margin-bottom:20px" id="dan">
             <div>单位费用:</div>
-            <input id="mea_money" class="easyui-textbox" style="width:100%;height:32px">
+            <input id="mea_money"   class="easyui-numberbox" style="width:100%;height:32px" data-options="required:true,missingMessage:'请输入数字'">
         </div>
         
         <div style="margin-bottom:20px" id="data">
             <div>基本时长:</div>
-            <input id="mea_time" class="easyui-textbox" style="width:100%;height:32px">
+            <input id="mea_time"  class="easyui-numberbox" style="width:100%;height:32px" data-options="required:true,missingMessage:'请输入数字'">
         </div>
         <div style="margin-bottom:20px">
             <div>资费说明:</div>
-            <input id="mea_describe" class="easyui-textbox" style="width:100%;height:32px">
+            <input id="mea_describe" class="easyui-textbox" style="width:100%;height:32px" data-options="required:true,missingMessage:'请输入资费说明'" >
         </div>
      </form>
      
@@ -190,28 +199,29 @@ display: none;
       </div>
     <div style="margin-bottom:20px">
        <div>资费名称:</div>
-        <input id="mealName1" name="mealName" class="easyui-validatebox" style="width:70%;height:32px;" data-options="required:true"  >
+        <input id="mealName1" name="mealName" class="easyui-validatebox" style="width:70%;height:32px;" data-options="required:true,missingMessage:'请输入资费名字'"  >
     </div>
  
     <div style="margin-bottom:20px">
         <div>资费说明:</div>
-        <input id="mealDescribe1"  name="mealDescribe" class="easyui-validatebox" style="width:70%;height:32px" data-options="required:true">
+        <input id="mealDescribe1"  name="mealDescribe" class="easyui-validatebox" style="width:70%;height:32px" data-options="required:true,missingMessage:'请输入资费说明'">
     </div>
    
     <div id="shi" style="margin-bottom:20px">
         <div>基本时长:</div>
-        <input id="mealTime1" name="mealTime" class="easyui-validatebox" style="width:70%;height:32px">
+        <input id="mealTime1" name="mealTime" class="easyui-numberbox" style="width:70%;height:32px" data-options="required:true,missingMessage:'请输入数字'">
     </div>
     
  <div id="yong" style="margin-bottom:20px">
         <div>基本费用:</div>
-        <input id="mealBasicMoney1" name="mealBasicMoney" class="easyui-validatebox" style="width:70%;height:32px">
+        <input id="mealBasicMoney1" name="mealBasicMoney" class="easyui-numberbox" style="width:70%;height:32px" data-options="required:true,missingMessage:'请输入数字'" >
   </div>
   
     <div id="fei"style="margin-bottom:20px">
         <div>单位费用:</div>
-        <input id="mealMoney1" name="mealMoney" class="easyui-validatebox" style="width:70%;height:32px">
+        <input id="mealMoney1" name="mealMoney" class="easyui-numberbox" style="width:70%;height:32px" data-options="required:true,missingMessage:'请输入数字'">
     </div>
+     <input id="mealStartTime" type="hidden" name="mealStartTime" class="easyui-validatebox" style="width:70%;height:32px">
 </form>
    
     <div>
@@ -223,7 +233,34 @@ display: none;
     </div>
 
 </div>
+<form id="update_user1" method="post" >
+		<input type="hidden" name="_method" value="put" /> 
+		<input	type="hidden" name="mealId" id="mealId2" />				
+		 <input type="hidden" id="mealStatus2" name="mealStatus"  style="width:100%;height:32px">		
+        <input type="hidden" id="cc2" name="mealType"  style="width:100%;height:32px">		
 
+         <input id="mealName2" name="mealName" 	type="hidden" class="easyui-validatebox" style="width:70%;height:32px;"   >
+        <input id="mealDescribe2"  name="mealDescribe" 	type="hidden"  class="easyui-validatebox" style="width:70%;height:32px" >
+       <input id="mealTime2" name="mealTime"  	type="hidden" class="easyui-validatebox" style="width:70%;height:32px">     
+        <input id="mealBasicMoney2" name="mealBasicMoney" 	type="hidden"  class="easyui-validatebox" style="width:70%;height:32px">
+       <input id="mealMoney2" name="mealMoney"  	type="hidden" class="easyui-validatebox" style="width:70%;height:32px">
+      <input id="mealStartTime1" type="hidden" name="mealStartTime" class="easyui-validatebox" style="width:70%;height:32px">
+ 
+	</form>
+	<form id="update_user2" method="post">
+		<input type="hidden" name="_method" value="put" /> 
+		<input	type="hidden" name="mealId" id="mealId3" />				
+		 <input type="hidden" id="mealStatus3" name="mealStatus"  style="width:100%;height:32px">
+		 <input type="hidden" id="cc3" name="mealType"  style="width:100%;height:32px">		
+		 
+         <input id="mealName3" name="mealName" 	type="hidden" class="easyui-validatebox" style="width:70%;height:32px;"   >
+        <input id="mealDescribe3"  name="mealDescribe" 	type="hidden"  class="easyui-validatebox" style="width:70%;height:32px" >
+       <input id="mealTime3" name="mealTime"  	type="hidden" class="easyui-validatebox" style="width:70%;height:32px">     
+        <input id="mealBasicMoney3" name="mealBasicMoney" 	type="hidden"  class="easyui-validatebox" style="width:70%;height:32px">
+       <input id="mealMoney3" name="mealMoney"  	type="hidden" class="easyui-validatebox" style="width:70%;height:32px">
+      <input id="mealStartTime3" type="hidden" name="mealStartTime" class="easyui-validatebox" style="width:70%;height:32px">
+ 
+	</form>
  <script>
  
  
