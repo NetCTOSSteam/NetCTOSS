@@ -5,18 +5,18 @@
 		
 		<resultMap type="com.alibaba.NetCTOSS.beans.userAndBusBean.UserBean" id="beanMap">
 			<id property="id" column="id" javaType="int"/>
-			<result property="userName" column="u_name" javaType="string"/>
-			<result property="tel" column="u_tel" javaType="string"/>
-			<result property="idCard" column="id_card" javaType="string"/>
+			<result property="userName" column="u_name" javaType="String"/>
+			<result property="tel" column="u_tel" javaType="String"/>
+			<result property="idCard" column="id_card" javaType="String"/>
 			
 			<result property="gender" column="u_gender" javaType="int"/>
 			<result property="address" column="u_address" javaType="String"/>
-			<result property="postcode" column="u_postcode" javaType="String"/>
+			<result property="postcode" column="u_postcode" javaType="int"/>
 			
 			<result property="qq" column="u_qq" javaType="String"/>
 			
-			<result property="password" column="pass_word" javaType="string"/>
-			<result property="loginName" column="login_name" javaType="string"/>
+			<result property="password" column="pass_word" javaType="String"/>
+			<result property="loginName" column="login_name" javaType="String"/>
 			
 			<result property="bo" column="u_bo" javaType="int"/>
 			

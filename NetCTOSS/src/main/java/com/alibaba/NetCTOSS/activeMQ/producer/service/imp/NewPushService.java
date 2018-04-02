@@ -38,13 +38,11 @@ public class NewPushService implements PushService {
 			
 			@Override
 			public void run() {
-				System.out.println('a');
 				// TODO Auto-generated method stub
 				jmsTemplate.send(destination,new MessageCreator() {  
 					
                     public Message createMessage(Session session) throws JMSException {  
                         String p = (String) info;  
-                        System.out.println('b');
                        return session.createTextMessage(JSON.toJSONString(p));  
                    }  
                });  
