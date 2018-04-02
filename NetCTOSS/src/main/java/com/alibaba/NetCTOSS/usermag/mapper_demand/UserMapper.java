@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.repository.query.Param;
 
 import com.alibaba.NetCTOSS.beans.admAndRoleBean.RoleBean;
+import com.alibaba.NetCTOSS.beans.billBean.AccountYearBillBean;
 import com.alibaba.NetCTOSS.beans.userAndBusBean.UserBean;
 
 public interface UserMapper {
@@ -42,4 +43,11 @@ public interface UserMapper {
 	 * @return
 	 */
 	public RoleBean getRole(@Param("userLoginName")String userLoginName);
+	
+	/**
+	 * 通过账务账号名查询年度账务
+	 * @param accoundName
+	 * @return
+	 */
+	public List<AccountYearBillBean> findByAccountYearBillBeanByAccoundName(@Param("accoundName")String accoundName);
 }

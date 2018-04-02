@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.alibaba.NetCTOSS.beans.admAndRoleBean.Messager;
+import com.alibaba.NetCTOSS.beans.billBean.AccountYearBillBean;
 import com.alibaba.NetCTOSS.beans.userAndBusBean.UserBean;
 import com.alibaba.NetCTOSS.usermag.realm.CustomizedToken;
 import com.alibaba.NetCTOSS.usermag.realm.LoginType;
@@ -232,6 +233,15 @@ public class UserController {
 	public List<UserBean> findAllUser() {
 
 		List<UserBean> list = iUserDemandService.findAllUserBean();
+
+		return list;
+	}
+	
+	
+	@RequestMapping(value = "/findYearByAccountName", method = { RequestMethod.GET }, produces = { "application/json" })
+	public List<AccountYearBillBean> findYearByAccountName(String AccountName) {
+
+		List<AccountYearBillBean> list = iUserDemandService.findByAccountYearBillBeanByAccoundName(AccountName);
 
 		return list;
 	}

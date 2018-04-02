@@ -336,12 +336,12 @@ $('#zhan').click(function(){
     if(lenth == 0){// 没有选择任何需要被删除的数据
         $.messager.show({
             title:'消息提示',
-            msg:'请选择需要开通的资费！',
+            msg:'请选择需要暂停的资费！',
             timeout:5000,
             showType:'slide'
         });
     }else{// 已经选择了
-    	if(!rows[0].mealStatus){
+    	
  		   $('#cc3').attr('value',rows[0].mealType);
     	      $('#mealId3').attr('value',rows[0].mealId);        	   
     	      $('#mealStatus3').attr('value',rows[0].mealStatus);
@@ -377,14 +377,7 @@ $('#zhan').click(function(){
              		});  
                  }
              });
-    	}else{
-    		$.messager.show({
-                title:'消息提示',
-                msg:'正在使用中，不能进行操作！',
-                timeout:3000,
-                showType:'slide'
-            });
-    	}
+    
        
     }
 });
