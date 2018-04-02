@@ -155,7 +155,7 @@ $(function () {
     	var yearAndMonth = attYearMonth.split("-");
     	
         var year = parseInt(yearAndMonth[0]);
-        var month = parseInt(yearAndMonth[0]);
+        var month = parseInt(yearAndMonth[1]);
         
         var data = {};
         if(year!=null && ''!=year){
