@@ -10,9 +10,10 @@ import com.alibaba.NetCTOSS.beans.admAndRoleBean.AdministratorBean;
  *
  */
 public interface IAdminHandleDao extends JpaRepository<AdministratorBean, Integer>{
+
+
 	
 	
-	
-	
+
 	
 }

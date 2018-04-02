@@ -44,5 +44,14 @@ public class RoleDemandServiceImpl implements IRoleDemandService {
 		// TODO Auto-generated method stub
 		return roleDemandDaoImpl.findRolesByCondition(param);
 	}
+
+	@Override
+	public RoleBean findRoleBeanById(int id) {
+		// TODO Auto-generated method stub
+		return roleDemandDaoImpl.findRoleBeanById(id);
+	}
+	
+	
+	
 	
 }

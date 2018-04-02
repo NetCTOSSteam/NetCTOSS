@@ -15,11 +15,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.NetCTOSS.admmag.service_demand.IAdminDemandService;
+import com.alibaba.NetCTOSS.admmag.service_demand.IRoleDemandService;
 import com.alibaba.NetCTOSS.admmag.service_handle.IAdminHandleService;
 import com.alibaba.NetCTOSS.beans.admAndRoleBean.AdministratorBean;
 import com.alibaba.NetCTOSS.beans.admAndRoleBean.Messager;
+import com.alibaba.NetCTOSS.beans.admAndRoleBean.RoleBean;
+import com.alibaba.NetCTOSS.beans.userAndBusBean.UserBean;
 import com.alibaba.NetCTOSS.usermag.realm.CustomizedToken;
 import com.alibaba.NetCTOSS.usermag.realm.LoginType;
+import com.alibaba.NetCTOSS.usermag.service_demand.IUserDemandService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
@@ -34,6 +38,12 @@ public class AdminController {
 	
 	@Resource
 	private IAdminDemandService adminDemandServiceImpl;
+	
+	@Resource
+	private IRoleDemandService roleDemandServiceImpl;
+	
+	@Resource
+	private IUserDemandService userDemandServiceImpl;
 	
 	
 	/**
@@ -83,8 +93,10 @@ public class AdminController {
 	 * @return
 	 */
 	@RequestMapping(value = "/add", method = { RequestMethod.POST }, produces = { "application/json" })
-	public boolean addAdministratorBean(AdministratorBean administratorBean) {
+	public boolean addAdministratorBean(AdministratorBean administratorBean,int roleID) {
 		try {
+			RoleBean bean = roleDemandServiceImpl.findRoleBeanById(roleID);
+			administratorBean.setRole(bean);
 			adminHandleServiceImpl.saveAdministratorBean(administratorBean);
 			return true;
 		} catch (Exception e) {
@@ -100,8 +112,10 @@ public class AdminController {
 	 * @return
 	 */
 	@RequestMapping(value = "/update", method = { RequestMethod.PUT }, produces = { "application/json" })
-	public boolean updateAdministratorBean(AdministratorBean administratorBean) {
+	public boolean updateAdministratorBean(AdministratorBean administratorBean,int roleID) {
 		try {
+			RoleBean bean = roleDemandServiceImpl.findRoleBeanById(roleID);
+			administratorBean.setRole(bean);
 			adminHandleServiceImpl.updateAdministratorBean(administratorBean);
 			return true;
 		} catch (Exception e) {
@@ -154,5 +168,38 @@ public class AdminController {
 		return map;
 	}
 	
+	
+	/**
+	 * 个人信息
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping(value = "/Information", method = { RequestMethod.GET }, produces = { "application/json" })
+	public Map<Object,Object> getInformation() {
+		Subject subject=SecurityUtils.getSubject();
+		Session session=subject.getSession();
+		Map<Object,Object> map = new HashMap<Object,Object>();
+		
+		AdministratorBean adm=null;
+		UserBean user=null;
+		if(session.getAttribute("user")==null) {
+			adm=(AdministratorBean) session.getAttribute("admin");
+			//得到管理员登录名
+			String adminLoginName = adm.getLoginName();
+			//通过管理员登录名查询管理员对象
+			AdministratorBean admin = adminDemandServiceImpl.findAdminByAdminLoginName(adminLoginName);
+			map.put("role", 0);//用来区分是管理员还是用户   0 代表管理员    1代表用户
+			map.put("admin", admin);
+		}else {
+			user=(UserBean) session.getAttribute("user");
+			//得到用户登录名
+			String loginName = user.getLoginName();
+			//通过管理员登录名查询管理员对象
+			UserBean newUser = userDemandServiceImpl.findByLoginName(loginName);
+			map.put("role", 1);
+			map.put("newUser", newUser);
+		}
+		return map;
+	}
 	
 }

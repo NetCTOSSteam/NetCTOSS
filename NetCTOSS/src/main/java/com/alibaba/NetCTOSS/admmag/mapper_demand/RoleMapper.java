@@ -30,4 +30,7 @@ public interface RoleMapper {
 	 * @return
 	 */
 	public List<RoleBean> findRolesByCondition(@Param("param")Map<String, String> param);
+
+	
+	public RoleBean findRoleBeanById(@Param("id") int id);
 }

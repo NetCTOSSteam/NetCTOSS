@@ -52,7 +52,7 @@ public class AdministratorBean implements Serializable {
 	private String email;//联系邮箱
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@Cascade(value={CascadeType.ALL})
+	@Cascade(value={CascadeType.SAVE_UPDATE})
 	@JoinColumn(name="adm_role_id")
 	private RoleBean role;//所属角色
 	
