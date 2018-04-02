@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.NetCTOSS.beans.billBean.MonthAndBusinessBean;
-import com.alibaba.NetCTOSS.beans.billBean.ServiceAndBusinessBean;
 import com.alibaba.NetCTOSS.billmag.service_demand.IMonthBusinessDemandService;
+import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
@@ -65,5 +65,18 @@ public class MonthBusinessController {
 			return map;
 
 	}
-
+	
+	/**
+	 * 查询所有资费类型的名字的方法
+	 * @return
+	 */
+	@RequestMapping(value = "/tariff", method = { RequestMethod.GET }, produces = { "application/json" })
+	public Map findByServerMothAndBusinessBeanAllTariff(@Param("tariff")String tariff ){	
+		
+		Map map = new HashMap<>();
+		List<MonthAndBusinessBean> data = monthBusinessDemandServiceImpl.findByServerMothAndBusinessBeanAllTariff();
+		
+		map.put("data", data);
+		return map;
+	}	
 }

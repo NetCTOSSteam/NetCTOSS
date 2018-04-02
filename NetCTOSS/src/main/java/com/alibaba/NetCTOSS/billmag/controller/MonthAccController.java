@@ -25,12 +25,13 @@ public class MonthAccController {
 	@Resource
 	private IMonthAccHandleService monthAccHandleServiceImpl;
 	/**
-	 * 首页分页显示
-	 * @param mv
-	 * @param page 第几页
-	 * @param pageSize  多少行
-	 * @return ModelAndView
+	 *  首页分页显示
+	 * @param page
+	 * @param rows
+	 * @param bean
+	 * @return
 	 */
+
 	@RequestMapping(value = "/all", method = { RequestMethod.GET }, produces = { "application/json" })
 	public Map findPage(int page, int rows, MonthAndAccountBean bean){	
 		Map<Object, Object> map = new HashMap<>();
@@ -50,7 +51,12 @@ public class MonthAccController {
 	}
 	
 
-	
+
+	/**
+	 * 修改支付状态的方法
+	 * @param bean
+	 * @return
+	 */
 	@RequestMapping(value = "/check", method = { RequestMethod.PUT }, produces = { "application/json" })
 	public String updateMonthAndAccountBean(MonthAndAccountBean bean ) {
 		

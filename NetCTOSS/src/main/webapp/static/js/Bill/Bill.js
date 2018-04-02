@@ -101,10 +101,11 @@ $(function () {
             ]],
             toolbar:'#tb'
         });
-        $('#tariff').combobox({
-            url:'',
-            valueField:'id',
-            textField:'text'
+        $('#s_tariff').combobox({
+        	 url:'/NetCTOSS/monthBusiness/tariff',
+         	method:"GET",
+             valueField:'tariff',
+             textField:'tariff',
         });
     };
     
@@ -121,7 +122,8 @@ $(function () {
                 {field:'IDcard',title:'身份证',width:12,align:'center'},
                 {field:'name',title:'用户姓名',idth:12,align:'center'},
                 {field:'money',title:'总费用',width:12,align:'center'},
-                {field:'year',title:'年-月',width:12,align:'center'},
+                {field:'year',title:'年',width:12,align:'center'},
+                {field:'month',title:'月',width:12,align:'center'},
                 {field:'status',title:'支付状态',width:12,align:'center',	
                 	formatter: function(value,row,index){
         				var ret = '';

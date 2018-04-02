@@ -84,4 +84,21 @@
 		acc_acc
 		from t_month_business where acc_acc = #{account}
 	</select>
+	
+		<select id="findByServerMothAndBusinessBeanTariff"  resultMap="beanMap">
+		select 
+		business_account,
+		business_year,
+		business_month,
+		business_all_money,
+		business_tariff,
+		business_server_information, 
+		business_nowtime,
+		acc_acc
+		from t_month_business where business_tariff = #{tariff}
+	</select>
+	
+	<select id="findByServerMothAndBusinessBeanAllTariff"  resultMap="beanMap">
+		SELECT DISTINCT( business_tariff)   FROM t_month_business 
+	</select>
 </mapper>
