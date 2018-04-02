@@ -20,6 +20,12 @@ public interface IUserDemandService {
 	public List<UserBean> findLikeByBean(UserBean bean);
 	
 	/**
+	 * 查询所有userbean
+	 * @return
+	 */
+	public List<UserBean> findAllUserBean();
+	
+	/**
 	 * 精确查询 
 	 * @param bean
 	 * @return

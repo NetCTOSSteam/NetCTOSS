@@ -14,15 +14,20 @@
 </head>
 <body class="easyui-layout" >
 <div id="tb">
-
-    账务账号: <input class="easyui-textbox" style="width:75px;height:22px" id="customName" /> &nbsp; &nbsp;
-    请输入年月: <select id="cc" class="easyui-combobox" name="dept" style="width:200px;">
-    <option value="aa">aitem1</option>
-    <option>bitem2</option>
-    <option>bitem3</option>
-    <option>ditem4</option>
-    <option>eitem5</option>
-</select>
+	<br/>
+	 账务账号: 
+	<input id="userAccount" class="easyui-combobox" data-options="    
+        valueField: 'id',    
+        textField: 'text',    
+        url:'/NetCTOSS/user/findAll',    
+        onSelect: function(rec){    
+            var url = 'get_data2.php?id='+rec.id;    
+            $('#year').combobox('reload', url);    
+        }" />
+          请选择年份:    
+	<input id="year" class="easyui-combobox" data-options="valueField:'id',textField:'text'" />  
+	
+	
     <a id="query" href="javascript:void(0)" class="easyui-linkbutton"
        data-options="iconCls:'icon-search'">查询</a>
 </div>
@@ -33,20 +38,9 @@
 <script>
 
     $(function(){
-        $("input",$("#customName").next("span")).blur(function(){
-            alert($("#customName").val());
-
-            $.ajax({
-                type: "GET",
-                url: "",
-                async: false,
-                data:$("#customName").val(),
-                success: function(data){
-
-                }
-            });
-        });
-    })
+		    	
+    	
+    });
 
     var myChart = echarts.init(document.getElementById('main'));
     // 显示标题，图例和空的坐标轴

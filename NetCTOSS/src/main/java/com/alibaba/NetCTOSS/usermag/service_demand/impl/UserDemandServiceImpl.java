@@ -65,4 +65,10 @@ public class UserDemandServiceImpl implements IUserDemandService {
 		// TODO Auto-generated method stub
 		return iUserDemandDao.getRole(userLoginName);
 	}
+
+	@Override
+	public List<UserBean> findAllUserBean() {
+		// TODO Auto-generated method stub
+		return iUserDemandDao.findAllUserBean();
+	}
 }

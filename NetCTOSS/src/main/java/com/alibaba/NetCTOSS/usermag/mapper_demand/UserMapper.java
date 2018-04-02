@@ -13,14 +13,20 @@ public interface UserMapper {
 	 * @param bean
 	 * @return
 	 */
-	public List<UserBean> findLikeByBean(UserBean bean);
+	public List<UserBean> findLikeByBean(@Param("bean")UserBean bean);
 	
 	/**
 	 * 精确查询 
 	 * @param bean
 	 * @return
 	 */
-	public UserBean findByBean(UserBean bean);
+	public UserBean findByBean(@Param("bean")UserBean bean);
+	
+	/**
+	 * 查询所有账务账号
+	 * @return
+	 */
+	public List<UserBean> findAllUserBean();
 	
 	/**
 	 * 通过用户名查找用户对象

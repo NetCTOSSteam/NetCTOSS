@@ -39,5 +39,11 @@ public class UserDemandDaoImpl implements IUserDemandDao {
 		return userMapper.getRole(userLoginName);
 	}
 
+	@Override
+	public List<UserBean> findAllUserBean() {
+		// TODO Auto-generated method stub
+		return userMapper.findAllUserBean();
+	}
+
 
 }
