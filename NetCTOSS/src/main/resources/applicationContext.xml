@@ -252,7 +252,9 @@
 	<aop:config>
 		<!-- com.alibaba.NetCTOSS.*mag.service*.impl.*ServiceImpl.*(..) -->
 		<aop:pointcut id="pointExpression"
-			expression="execution(* com.alibaba.NetCTOSS.*mag.service*.impl.*ServiceImpl.*(..))" />
+			expression="execution(* com.alibaba.NetCTOSS.*mag.service*.impl.*ServiceImpl.*(..))
+			and execution(* com.alibaba.NetCTOSS.admmag.service_demand.impl.AdminDemandServiceImpl.findAdminByAdminLoginName(..))
+			and execution(* com.alibaba.NetCTOSS.usermag.service_demand.impl.UserDemandServiceImpl.findByLoginName(..))" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="pointExpression" />
 	</aop:config>
 
