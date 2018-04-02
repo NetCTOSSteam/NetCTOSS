@@ -9,17 +9,13 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
-import com.alibaba.NetCTOSS.beans.admAndRoleBean.Messager;
 import com.alibaba.NetCTOSS.beans.userAndBusBean.MealBean;
 import com.alibaba.NetCTOSS.usermag.service_demand.IMealDemandService;
 import com.alibaba.NetCTOSS.usermag.service_handle.IMealHandleService;
-import com.github.pagehelper.PageHelper;
+import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
-import com.google.gson.Gson;
 
 @RequestMapping("/tar")
 @RestController
@@ -54,10 +50,11 @@ public class MealController {
           jsonMap.put("rows", list);//rows存放每页记录 ，这里的两个参数名是固定的，必须为 total和 rows  
          
          //转换
-         Gson gson = new Gson();  
-         String json = gson.toJson(jsonMap);  
    
-		 return json;  
+         JSONObject js = new JSONObject(jsonMap);
+         
+         
+		 return js.toString();  
 	} 
 	
 	@RequestMapping(value = "/adds", method = { RequestMethod.POST }, produces = { "application/json;charset=utf-8" })
