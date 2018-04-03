@@ -30,6 +30,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.alibaba.NetCTOSS.beans.admAndRoleBean.Messager;
 import com.alibaba.NetCTOSS.beans.billBean.AccountYearBillBean;
+import com.alibaba.NetCTOSS.beans.userAndBusBean.MealBean;
 import com.alibaba.NetCTOSS.beans.userAndBusBean.UserBean;
 import com.alibaba.NetCTOSS.usermag.realm.CustomizedToken;
 import com.alibaba.NetCTOSS.usermag.realm.LoginType;
@@ -112,6 +113,22 @@ public class UserController {
 		UserBean bean = iUserDemandService.findByBean(UserBean);
 		return bean;
 	}
+	@RequestMapping(value = "/allname", method = { RequestMethod.GET }, produces = { "application/json" })
+	public List<Map> findAllName() {
+		
+		List<Map> li  = new ArrayList<>();
+ 		
+		List<UserBean> list = iUserDemandService.findAllUserBean();
+		//转换
+		for (UserBean mealBean : list) {
+			Map map = new HashMap<>();
+			map.put("id", mealBean.getLoginName());
+			map.put("text", mealBean.getLoginName());
+			li.add(map);
+		}
+		
+		return  li;
+	}
 
 	@RequestMapping(value = "/updateone", method = { RequestMethod.PUT })
 	public void updaeOne(UserBean UserBean) {
@@ -147,7 +164,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/users", method = { RequestMethod.POST }, produces = { "application/json" })
-	public Map adds(@RequestParam("file01") CommonsMultipartFile file) {
+	public Map adds(@RequestParam("file") CommonsMultipartFile file) {
 		// 文件的原始名称
 		String originalFilename = file.getOriginalFilename();
 

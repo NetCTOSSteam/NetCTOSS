@@ -1,5 +1,6 @@
 package com.alibaba.NetCTOSS.usermag.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -152,4 +153,20 @@ public class MealController {
 		return false;
 			
 	}	
+	@RequestMapping(value = "/allname", method = { RequestMethod.GET }, produces = { "application/json" })
+	public List<Map> findName(){
+		
+		List<Map> li  = new ArrayList<>();
+ 		
+		List<MealBean> list=mealDemandServiceImpl.findAllMealBean();
+		//转换
+		for (MealBean mealBean : list) {
+			Map map = new HashMap<>();
+			map.put("id", mealBean.getMealName());
+			map.put("text", mealBean.getMealName());
+			li.add(map);
+		}
+		
+		return  li;
+	} 
 }

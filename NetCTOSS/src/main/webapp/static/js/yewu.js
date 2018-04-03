@@ -97,19 +97,26 @@ $(function () {
     $('#update').click(function () {
         var row = $('#tt').datagrid('getSelected');
         if(row!=null){
+        	 var json = {"busName":row.busName,"state":row.state,"serverIP":row.serverIP};
             $('#update_win').window('open');
             //资费数据
-            $('#update_zifei').combobox({
-                url:'',
-                valueField:'id',
-                textField:'text'
-            });
-            //服务器数据
-            $('#update_server_ip').combobox({
-                url:'',
-                valueField:'id',
-                textField:'text'
-            });
+            
+            $.ajax({
+            	url: "/NetCTOSS/busi/findone",
+            	type: "GET", 
+            	data:json,
+            	contentType:"application/json",
+            	async: false,
+            	success: function(row){
+            		 $("update_acc").text(row.userBean.userName);
+            		 $("update_osacc").text(row.busName);
+            		 $("hid").attr("value",row.id);
+                     $('#update_zifei').combobox({
+                         url:'/NetCTOSS/tar/allname',
+                         valueField:'id',
+                         textField:'text'
+                     });
+            }});
         }else{
             $.messager.show({
                 title:'消息提示',
@@ -120,31 +127,91 @@ $(function () {
         }
     });
 
+    //确定修改
+    $('#ok_1').click(function () {
+    	var json = {"id":$("#hid").val(),
+    			"update_zifei":$("#update_zifei").combobox("getData"),
+    			"update_pwd":$("#update_pwd").val()};
+    	if($("#update_pwd").val() == $("#update_pwd2").val()){
+        	 
+            $('#update_win').window('close');
+            //资费数据
+           
+            $.ajax({
+            	url: "/NetCTOSS/busi/updateone",
+            	type: "PUT", 
+            	data:json,
+            	contentType:"application/json",
+            	async: false,
+            	success: function(){
+            		
+            }});
+            
+        }else{
+            $.messager.show({
+                title:'消息提示',
+                msg:"两次输入的密码不同！！",
+                timeout:5000,
+                showType:'slide'
+            });
+        }
+    });
+    
+    
     //添加按钮 控制弹窗
     $('#add').click(function () {
-        var row = $('#tt').datagrid('getSelected');
-        if(row!=null){
             $('#add_win').window('open');
             //资费数据
-            $('#zi_fei').combobox({
-                url:'',
+            $('#update_zifei').combobox({
+                url:'/NetCTOSS/tar/allname',
                 valueField:'id',
                 textField:'text'
             });
-
-
-        }else{
-            $.messager.show({
-                title:'消息提示',
-                msg:"请选择需要支付的行",
-                timeout:5000,
-                showType:'slide'
+            //显示所有的 的 账务账户
+            $('#acc').combobox({
+            	url:'/NetCTOSS/user/allname',
+            	valueField:'id',
+            	textField:'text'
             });
-        }
-    });
+
+
 })
+//确定  添加
+$('#ok_1').click(function () {
+	var json = {
+			"acc":$("#acc").combobox("getData"),
+			"zi_fei":$("#zi_fei").combobox("getData"),
+			
+			"busName":$("#OS_id").val(),
+			"serverIP":$("#server_ip").val(),
+			"serverIP":$("#server_ip").val(),
+			"password":$("#pwd").val(),
+			};
+	if(($("#pwd").val()) == ($("#pwd2").val())){
+    	 
+        $('#update_win').window('close');
+        //资费数据
+        $.ajax({
+        	url: "/NetCTOSS/busi/updateone",
+        	type: "PUT", 
+        	data:json,
+        	contentType:"application/json",
+        	async: false,
+        	success: function(){
+        		
+        }});
+        
+    }else{
+        $.messager.show({
+            title:'消息提示',
+            msg:"两次输入的密码不同！！",
+            timeout:5000,
+            showType:'slide'
+        });
+    }
+});
 
-
+})
 
 /**
  * 初始化数据显示
@@ -162,3 +229,6 @@ $(function () {
         toolbar:'#tb'
     });
 })
+
+
+

@@ -115,11 +115,11 @@ $(function(){
                         }
                         $('#idCard').attr('value',row.idCard);
                         $('#password').attr('value',row.password);
-                        $('#tel').combobox('select', row.tel);
-                        $('#postcode').combobox('select', row.postcode);
-                        $('#address').combobox('select', row.address);
-                        $('#qq').combobox('select', row.qq);
-                        $('#id').combobox('select', row.id);
+                        $('#tel').attr('value', row.tel);
+                        $('#postcode').attr('value', row.postcode);
+                        $('#address').attr('value', row.address);
+                        $('#qq').attr('value', row.qq);
+                        $('#id').attr('value', row.id);
                 }});
             }else{
                 $.messager.show({
@@ -323,8 +323,6 @@ $(function () {
         }    
     });    
     // submit the form    
-    $('#adds_from').submit();  
-
 
 
 })

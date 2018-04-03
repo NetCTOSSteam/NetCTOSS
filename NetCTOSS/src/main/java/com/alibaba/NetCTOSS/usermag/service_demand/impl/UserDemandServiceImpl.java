@@ -28,7 +28,9 @@ public class UserDemandServiceImpl implements IUserDemandService {
 		// TODO Auto-generated method stub
 		List<UserBean> b = iUserDemandDao.findLikeByBean(bean);
 		for (UserBean userBean : b) {
-			userBean.setBusinessBeans(getSetBus(userBean.getId()));
+			if(userBean.getId() != null) {
+				userBean.setBusinessBeans(getSetBus(userBean.getId()));
+			}
 		}
 		return b;
 	}

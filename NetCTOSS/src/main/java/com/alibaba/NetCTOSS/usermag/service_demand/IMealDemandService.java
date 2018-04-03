@@ -33,7 +33,11 @@ public interface IMealDemandService {
 	 */
 	public List<String>  findByfindByMealBeanName(String name);
 	
-	
+	/**
+	 * 
+	 * @return mealBean 集合
+	 */
+	public List<MealBean> findAllMealBean();
 	
 	
 }

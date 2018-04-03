@@ -14,7 +14,7 @@ public interface UserMapper {
 	 * @param bean
 	 * @return
 	 */
-	public List<UserBean> findLikeByBean(@Param("bean")UserBean bean);
+	public List<UserBean> findLikeByBean(@Param("user") UserBean user);
 	
 	/**
 	 * 精确查询 
