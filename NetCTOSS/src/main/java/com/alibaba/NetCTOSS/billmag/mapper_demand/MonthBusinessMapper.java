@@ -19,7 +19,7 @@ public interface MonthBusinessMapper {
 	 * @param bean
 	 * @return
 	 */
-	public MonthAndBusinessBean findByMonthAndBusinessBean(MonthAndBusinessBean bean);
+	public MonthAndBusinessBean findByMonthAndBusinessBean(@Param("bean")MonthAndBusinessBean bean);
 	
 	
 	/**
@@ -35,7 +35,7 @@ public interface MonthBusinessMapper {
 	 * @param tariff 资费套餐的名字
 	 * @return 返回所有包含该名字的套餐集合
 	 */
-	public List<MonthAndBusinessBean> findByServerMothAndBusinessBeanTariff(String tariff);
+	public List<MonthAndBusinessBean> findByServerMothAndBusinessBeanTariff(@Param("tariff")String tariff);
 	
 	
 	/**

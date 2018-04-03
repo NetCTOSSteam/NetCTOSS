@@ -33,7 +33,7 @@ public interface MonthAccMapper {
 	 * @param maab
 	 * @return
 	 */
-	public MonthAndAccountBean findByMonthAndAccountBean(MonthAndAccountBean maab);
+	public MonthAndAccountBean findByMonthAndAccountBean(@Param("bean")MonthAndAccountBean bean);
 	
 	/**
 	 * 通过账务账单号和年份查询概念所有月份的账单信息

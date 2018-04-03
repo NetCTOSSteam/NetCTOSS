@@ -1,16 +1,10 @@
 package com.alibaba.NetCTOSS.activeMQ.consumer.listenter;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 
-import org.quartz.JobExecutionException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.NetCTOSS.beans.billBean.AccountDayBean;
@@ -20,13 +14,14 @@ import com.alibaba.NetCTOSS.beans.billBean.ServiceAndBusinessBean;
 import com.alibaba.NetCTOSS.beans.userAndBusBean.BusinessBean;
 import com.alibaba.NetCTOSS.beans.userAndBusBean.MealBean;
 import com.alibaba.NetCTOSS.beans.userAndBusBean.UserBean;
+import com.alibaba.NetCTOSS.billmag.dao_handle.IAccDayHandleDao;
+import com.alibaba.NetCTOSS.billmag.dao_handle.IMonthAccHandleDao;
+import com.alibaba.NetCTOSS.billmag.dao_handle.IMonthBusinessHandleDao;
 import com.alibaba.NetCTOSS.billmag.service_demand.IAccDayDemandService;
 import com.alibaba.NetCTOSS.billmag.service_demand.IMonthAccDemandService;
 import com.alibaba.NetCTOSS.billmag.service_demand.IMonthBusinessDemandService;
 import com.alibaba.NetCTOSS.billmag.service_demand.IServiceBusinessDemandService;
 import com.alibaba.NetCTOSS.billmag.service_handle.IAccDayHandleService;
-import com.alibaba.NetCTOSS.billmag.service_handle.IMonthAccHandleService;
-import com.alibaba.NetCTOSS.billmag.service_handle.IMonthBusinessHandleService;
 import com.alibaba.NetCTOSS.usermag.service_demand.IBusinessDemandService;
 import com.alibaba.NetCTOSS.usermag.service_demand.IUserDemandService;
 import com.alibaba.NetCTOSS.util.MyDateUtil;
@@ -52,7 +47,7 @@ public class BillToDay  {
 	private IServiceBusinessDemandService  iServiceBusinessDemandService;
 	
 	@Resource
-	private IAccDayHandleService IAccDayHandleService;
+	private IAccDayHandleDao IAccDayHandleDao;
 	@Resource
 	private IAccDayDemandService iAccDayDemandService;
 	
@@ -64,12 +59,12 @@ public class BillToDay  {
 	@Resource
 	private IMonthAccDemandService iMonthAccDemandService;
 	@Resource
-	private IMonthAccHandleService iMonthAccHandleService;
+	private IMonthAccHandleDao iMonthAccHandleDao;
 	
 	@Resource
 	private IMonthBusinessDemandService iMonthBusinessDemandService;
 	@Resource
-	private IMonthBusinessHandleService iMonthBusinessHandleService;
+	private IMonthBusinessHandleDao iMonthBusinessHandleDao;
 	
 	
 	public void execute()  {
@@ -114,7 +109,6 @@ public class BillToDay  {
 		BusinessBean bus = new BusinessBean();
 		
 		//根据得到的IP   查询得到对应的业务账户对象 
-		System.out.println(bean.getServerIP());
 		bus.setServerIP(bean.getServerIP());
 		bus = iBusinessDemandService.findByBean(bus);
 		
@@ -130,7 +124,7 @@ public class BillToDay  {
 		accountDayBean.setServer(bus.getServerIP());
 		accountDayBean.setTimeLong((int)bean.getOnlineTimr());
 		
-		IAccDayHandleService.saveAccountDayBean(accountDayBean);
+		IAccDayHandleDao.save(accountDayBean);
 		//保存当天的  日志
 		return accountDayBean;
 	}
@@ -195,7 +189,7 @@ public class BillToDay  {
 			break;
 		}
 		
-		iMonthAccHandleService.saveMonthAndAccountBean(maab);
+		iMonthAccHandleDao.save(maab);
 		return maab;
 	}
 	/**
@@ -230,9 +224,10 @@ public class BillToDay  {
 		
 		
 		//当前消费
-		double money1 = mabb.getMoney();
+		Double money1 = mabb.getMoney();
 		//当前的使用时间
-		long  time1 = mabb.getNowTime();
+		System.out.println(mabb);
+		Long  time1 = mabb.getNowTime();
 		
 		switch (mealBean.getMealType()) {
 		case 1:
@@ -261,7 +256,7 @@ public class BillToDay  {
 			System.err.println("异常！！！没有资费类型");
 			break;
 		}
-		iMonthBusinessHandleService.saveMonthAndBusinessBean(mabb);
+		iMonthBusinessHandleDao.save(mabb);
 		return mabb;
 		
 	}

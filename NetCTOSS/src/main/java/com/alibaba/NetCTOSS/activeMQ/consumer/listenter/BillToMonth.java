@@ -12,8 +12,8 @@ import org.springframework.stereotype.Service;
 
 import com.alibaba.NetCTOSS.beans.billBean.AccountDayBean;
 import com.alibaba.NetCTOSS.beans.billBean.AccountMonthBean;
+import com.alibaba.NetCTOSS.billmag.dao_handle.IAccMonthHandleDao;
 import com.alibaba.NetCTOSS.billmag.service_demand.IAccDayDemandService;
-import com.alibaba.NetCTOSS.billmag.service_handle.IAccMonthHandleService;
 
 /**
  * 每月定时任务 次月第一天 触发 并保存为  月账务表
@@ -35,7 +35,7 @@ public class BillToMonth  {
 	
 	//创建新 的 月志
 	@Resource
-	private IAccMonthHandleService iAccMonthHandleService;
+	private IAccMonthHandleDao iAccMonthHandleDao;
 
 	
 	public void execute()  {
@@ -83,7 +83,7 @@ public class BillToMonth  {
 				
 				
 				//加入消息队列  保存
-				iAccMonthHandleService.saveAccountMonthBean(amb);
+				iAccMonthHandleDao.save(amb);
 			}
 		}
 	}

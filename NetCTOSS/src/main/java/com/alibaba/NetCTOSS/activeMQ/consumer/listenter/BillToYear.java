@@ -8,18 +8,14 @@ import java.util.Set;
 
 import javax.annotation.Resource;
 
-import org.quartz.Job;
-import org.quartz.JobExecutionContext;
-import org.quartz.JobExecutionException;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.NetCTOSS.beans.billBean.AccountMonthBean;
 import com.alibaba.NetCTOSS.beans.billBean.AccountYearBillBean;
 import com.alibaba.NetCTOSS.beans.userAndBusBean.UserBean;
+import com.alibaba.NetCTOSS.billmag.dao_handle.IAccYearHandleDao;
 import com.alibaba.NetCTOSS.billmag.service_demand.IAccMonthDemandService;
-import com.alibaba.NetCTOSS.billmag.service_handle.IAccYearHandleService;
 import com.alibaba.NetCTOSS.usermag.service_demand.IUserDemandService;
-import com.alibaba.NetCTOSS.util.MyDateUtil;
 
 /**
  * 每年定时任务 每年第最后月的最后一天的23：59：59触发 并保存为  年账务表
@@ -38,7 +34,7 @@ public class BillToYear  {
 		
 		//创建新 的 月志
 		@Resource
-		private IAccYearHandleService iAccYearHandleService;
+		private IAccYearHandleDao iAccYearHandleDao;
 		@Resource
 		private IUserDemandService iUserDemandService;
 		
@@ -83,7 +79,7 @@ public class BillToYear  {
 		}
 		Set<String> set = map.keySet();
 		for (String string : set) {
-			iAccYearHandleService.saveAccountYearBean((AccountYearBillBean) map.get(string));
+			iAccYearHandleDao.save((AccountYearBillBean) map.get(string));
 		}
 	}
 
