@@ -23,10 +23,5 @@ public interface LoginExitMapper {
 	 */
 	public List<LoginExitBean> findLoginExitsByParams(@Param("params") Map params);
 	
-	/**
-	 * 保存登录日志
-	 * @param log
-	 * @return
-	 */
-	public void saveLoginExitBean(LoginExitBean log);
+	
 }

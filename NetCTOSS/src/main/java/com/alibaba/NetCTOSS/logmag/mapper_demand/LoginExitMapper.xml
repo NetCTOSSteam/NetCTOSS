@@ -15,9 +15,6 @@
 		<result property="quitTime" column="log_quittime" javaType="date" />
 	</resultMap>
 	  
-	<insert id="saveLoginExitBean">
-		insert into t_login_exit(log_name,log_loginname,log_logintime,log_ip,log_quittime) values (#{log.name},#{log.accNumber},#{log.loginTime},#{log.IP},#{log.quitTime}
-	</insert>
 	
 	<select id="findAll" resultMap="loginExitMap">
 		select * from t_login_exit
