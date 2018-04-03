@@ -20,7 +20,7 @@ public interface IMealHandleDao extends JpaRepository<MealBean, Long>,JpaSpecifi
 	/**
 	 *根据id删除资费信息
 	 */
-	
+	@Transactional
 	@Modifying
 	@Query(value="delete from MealBean as m where m.mealId = ?1")
 	public void deletedByMealBeanID(int id);

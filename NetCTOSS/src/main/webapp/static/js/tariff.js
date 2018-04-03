@@ -341,7 +341,7 @@ $('#zhan').click(function(){
             showType:'slide'
         });
     }else{// 已经选择了
-    	
+    	 if(rows[0].mealStatus){
  		   $('#cc3').attr('value',rows[0].mealType);
     	      $('#mealId3').attr('value',rows[0].mealId);        	   
     	      $('#mealStatus3').attr('value',rows[0].mealStatus);
@@ -377,7 +377,14 @@ $('#zhan').click(function(){
              		});  
                  }
              });
-    
+    	 }else{
+    		 $.messager.show({
+					title:'消息提示',
+					msg:'无法暂停，请重新选址',
+					timeout:5000,
+					showType:'slide'
+			});
+    	 }
        
     }
 });
