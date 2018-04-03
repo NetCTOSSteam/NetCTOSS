@@ -312,18 +312,23 @@ $(function () {
         }
     });
 
-    $('#adds_from').form('submit',{    
-        url:"/NetCTOSS/user/users",    
+    $('#adds_from').form({    
+        url:"/NetCTOSS/user/users",
         onSubmit: function(){    
             // do some check    
-            // return false to prevent submit;    
+            // return false to prevent submit;
+        	return true;
         },    
         success:function(data){    
-            alert(data["mag"]);
+           
         }    
     });    
     // submit the form    
-
-
+    $(function(){   
+        $('#sub').bind('click', function(){   
+        	 $('#adds_from').submit();
+        });   
+    });  
+   
 })
 

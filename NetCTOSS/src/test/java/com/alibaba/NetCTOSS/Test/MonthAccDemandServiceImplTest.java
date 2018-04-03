@@ -11,7 +11,10 @@ import com.alibaba.NetCTOSS.admmag.service_demand.IAdminDemandService;
 import com.alibaba.NetCTOSS.admmag.service_handle.IAdminHandleService;
 import com.alibaba.NetCTOSS.beans.admAndRoleBean.AdministratorBean;
 import com.alibaba.NetCTOSS.beans.billBean.MonthAndAccountBean;
+import com.alibaba.NetCTOSS.beans.userAndBusBean.UserBean;
 import com.alibaba.NetCTOSS.billmag.service_demand.IMonthAccDemandService;
+import com.alibaba.NetCTOSS.usermag.dao_demand.IUserDemandDao;
+import com.alibaba.NetCTOSS.usermag.mapper_demand.UserMapper;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations="classpath:applicationContext.xml")
@@ -25,6 +28,16 @@ public class MonthAccDemandServiceImplTest {
 	private IAdminDemandService adminDemandServiceImpl;
 	@Resource
 	private IAdminHandleService adminHandleServiceImpl;
+	
+	@Resource
+	private IUserDemandDao userDemandDaoImpl;
+	
+	@Test
+	public void testFindLikeByBean() {
+		UserBean user = new UserBean();
+		userDemandDaoImpl.findLikeByBean(user);
+	}
+	
 	
 	@Test
 	public void fin() {
@@ -41,14 +54,6 @@ public class MonthAccDemandServiceImplTest {
 		System.out.println(adminDemandServiceImpl.findAllAdministratorBeansByParam(administratorBean));;
 		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	@Test
 	public void testFindLikeMonthAndAccountBean() {

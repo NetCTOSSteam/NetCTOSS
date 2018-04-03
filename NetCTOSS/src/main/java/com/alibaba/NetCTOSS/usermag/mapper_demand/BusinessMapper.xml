@@ -107,20 +107,14 @@
 		</select>
 		
 		<select id="findByUserId"  resultMap="beanMap">
-			select id ,u_name,u_tel,id_card,u_gender ,
-			u_address,u_postcode,u_qq,pass_word,u_bo
-			 from t_account_day 
+			select *
+			 from t_business 
 			<where>
 				<if test="1 == 1">
-				and t1.bus_bo = 1
+				and bus_bo = 1
 				</if>
-				<if test="bean != null">
-				<if test="1 == 1">
-				and t1.bus_u_id like #{bean.id} 
-				</if>
-				<if test="bean.serverIP != null">
-				and t1.bus_ip = #{bean.serverIP}
-				</if>
+				<if test="id != 0">
+				and bus_u_id = #{id} 
 				</if>
 			</where>
 		</select>

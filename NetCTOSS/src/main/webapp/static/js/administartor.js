@@ -128,8 +128,6 @@ $(function() {
 
 	// add_ok 确定 关闭窗口 提交数据
 	$('#add_ok').click(function() {
-
-		console.info($('#role_combox').combobox('getValue'))
 		// 先验证 密码相不相同 然后 邮箱格式验证
 		// 密码验证
 		var add_admin_pwd = $('#add_admin_pwd').val();

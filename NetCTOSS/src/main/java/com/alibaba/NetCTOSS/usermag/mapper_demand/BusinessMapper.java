@@ -26,5 +26,5 @@ public interface BusinessMapper {
 	 * @param id
 	 * @return
 	 */
-	public List<BusinessBean> findByUserId(@Param("id")int id);
+	public List<BusinessBean> findByUserId(@Param("id") int id);
 }

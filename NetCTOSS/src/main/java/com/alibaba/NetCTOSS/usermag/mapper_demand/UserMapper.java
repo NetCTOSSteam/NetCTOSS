@@ -2,7 +2,7 @@ package com.alibaba.NetCTOSS.usermag.mapper_demand;
 
 import java.util.List;
 
-import org.springframework.data.repository.query.Param;
+import org.apache.ibatis.annotations.Param;
 
 import com.alibaba.NetCTOSS.beans.admAndRoleBean.RoleBean;
 import com.alibaba.NetCTOSS.beans.billBean.AccountYearBillBean;
