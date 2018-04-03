@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
-import org.apache.shiro.session.SessionListener;
 import org.apache.shiro.subject.Subject;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,7 +19,7 @@ import com.alibaba.NetCTOSS.beans.userAndBusBean.UserBean;
 import com.alibaba.NetCTOSS.logmag.service_handle.ILoginExitHandleService;
 import com.alibaba.NetCTOSS.usermag.service_demand.IUserDemandService;
 
-public class LogInterceptor implements HandlerInterceptor,SessionListener{
+public class LogInterceptor implements HandlerInterceptor{
 	
 	@Resource
 	private ILoginExitHandleService loginExitHandleServiceImpl;
@@ -82,19 +81,4 @@ public class LogInterceptor implements HandlerInterceptor,SessionListener{
 		
 	}
 
-	@Override
-	public void onExpiration(Session arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void onStart(Session arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void onStop(Session session) {
-	}
 }
