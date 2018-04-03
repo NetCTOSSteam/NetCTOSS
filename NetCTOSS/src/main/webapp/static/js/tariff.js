@@ -138,8 +138,7 @@ $(function(){
         	        if(row){//如果选中了数据，就进入if语句
         	            var lenth = rows.length;
         	            if(lenth == 1){
-        	                $('#update_users_dialog').dialog('open');//打开修改窗体
-        	          
+
         	                $('#mealId1').attr('value',row.mealId);
         					$('#mealBasicMoney1').attr('value',row.mealBasicMoney);
         					
@@ -149,6 +148,8 @@ $(function(){
         					$('#mealDescribe1').attr('value',row.mealDescribe);
         					$('#cc1').combobox('select', row.mealType);
         					$('#mealStartTime').attr('value',row.mealStartTime);
+        	                $('#update_users_dialog').dialog('open');//打开修改窗体
+        	          
         					
         	            }else{
         	                $.messager.show({

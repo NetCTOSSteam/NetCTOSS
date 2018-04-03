@@ -39,7 +39,7 @@ public class MealController {
 	 * @param pageSize  多少行
 	 * @return ModelAndView
 	 */
-	@RequestMapping(value = "/all", method = { RequestMethod.GET }, produces = { "application/json" })
+	@RequestMapping(value = "/all", method = { RequestMethod.GET }, produces = { "application/json;charset=utf-8" })
 	public String findPage(HttpServletRequest request
 		){
 		    String dang_qian_ye_ma = request.getParameter("page");//page 为easyui分页插件默认传到后台的参数，代表当前的页码，起始页为1  
