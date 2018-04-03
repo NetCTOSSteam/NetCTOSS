@@ -189,13 +189,7 @@ $(function () {
 
     //按年月查询
     $('#query').click(function () {
-        if(num<1){
-            accounting(queryData());
-        }else if(num==1){
-            business (queryData());
-        }else if(num>1){
-            serverData(queryData());
-        }
+        accounting(queryData());
     })
 });
 
