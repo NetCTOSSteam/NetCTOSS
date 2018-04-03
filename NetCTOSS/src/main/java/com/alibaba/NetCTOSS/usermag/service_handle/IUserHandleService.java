@@ -1,6 +1,5 @@
 package com.alibaba.NetCTOSS.usermag.service_handle;
 
-import com.alibaba.NetCTOSS.beans.userAndBusBean.BusinessBean;
 import com.alibaba.NetCTOSS.beans.userAndBusBean.UserBean;
 
 /**
