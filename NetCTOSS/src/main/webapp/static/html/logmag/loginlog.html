@@ -10,6 +10,7 @@
     <script type="text/javascript" src="../../jQuery-easyui/jquery.easyui.min.js"></script>
     <script type="text/javascript" src="../../jQuery-easyui/locale/easyui-lang-zh_CN.js"></script>
     <script type="text/javascript" src="../../js/loginjs.js"></script>
+    <script type="text/javascript" src="../../js/dateFormat.js"></script>
 </head>
 <body class="easyui-layout">
 
@@ -31,9 +32,27 @@
             <tr>
                 <th data-options="field:'name',width:100">登录人的名字</th>
                 <th data-options="field:'accNumber',width:100">登录人的账号</th>
-                <th data-options="field:'iP',width:100">登录的地址</th>
-                <th data-options="field:'loginTime',width:100">登录系统的时间</th>
-                <th data-options="field:'quitTime',width:100">退出系统的时间</th>
+                <th data-options="field:'ip',width:100">登录的地址</th>
+                <th data-options="field:'loginTime',width:100,
+	                formatter: function(value,row,index){
+								var text = ''; 
+								if(value != ''&&value !=null){
+									var date = new Date(value);
+									text = date.format('yyyy-MM-dd hh:mm:ss');
+									}else{
+										text = '正在使用中...'
+									}
+							return text;}">登录系统的时间</th>
+                <th data-options="field:'quitTime',width:100,
+                		formatter: function(value,row,index){
+							var text = ''; 
+							if(value != ''&&value !=null){
+								var date = new Date(value);
+								text = date.format('yyyy-MM-dd hh:mm:ss');
+								}else{
+										text = '正在使用中...'
+									}
+							return text;}">退出系统的时间</th>
             </tr>
             </thead>
         </table>

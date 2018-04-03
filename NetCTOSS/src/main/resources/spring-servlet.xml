@@ -33,14 +33,9 @@
 	<!-- 拦截器 -->
 	<mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="/admin/login"/>
+			<mvc:mapping path="/*/login"/>
 			<bean class="com.alibaba.NetCTOSS.Interceptor.LogInterceptor"></bean>
 		</mvc:interceptor>
-		<mvc:interceptor>
-			<mvc:mapping path="/user/login"/>
-			<bean class="com.alibaba.NetCTOSS.Interceptor.LogInterceptor"></bean>
-		</mvc:interceptor>
-	
 	</mvc:interceptors>
 	
 	<!-- 将hibernate的验证框架，纳入到spring容器中 -->
