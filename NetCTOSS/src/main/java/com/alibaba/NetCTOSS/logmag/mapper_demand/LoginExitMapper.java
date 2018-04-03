@@ -3,6 +3,8 @@ package com.alibaba.NetCTOSS.logmag.mapper_demand;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.alibaba.NetCTOSS.beans.logBean.LoginExitBean;
 
 public interface LoginExitMapper {
@@ -19,7 +21,7 @@ public interface LoginExitMapper {
 	 * @param params
 	 * @return
 	 */
-	public List<LoginExitBean> findLoginExitsByParams(Map params);
+	public List<LoginExitBean> findLoginExitsByParams(@Param("params") Map params);
 	
 	/**
 	 * 保存登录日志

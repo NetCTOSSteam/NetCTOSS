@@ -19,10 +19,10 @@
 
     <div data-options="region:'center'" >
         <div id="tt" style="padding:2px 5px;">
-            管理员账户: <input class="easyui-textbox" style="width:110px">
-            管理员名字: <input class="easyui-textbox" style="width:110px">
-            登录IP:<input class="easyui-textbox" style="width:110px">
-            <a id="btn_find" href="#" class="easyui-linkbutton" iconCls="icon-search">查询</a><br>
+            管理员账户: <input id="accNumber" class="easyui-textbox" style="width:110px">
+            管理员名字: <input id="name" class="easyui-textbox" style="width:110px">
+            登录IP:<input id="l_IP" class="easyui-textbox" style="width:110px">
+            <a id="query" href="#" class="easyui-linkbutton" iconCls="icon-search">查询</a><br>
         </div>
 
         <table id="tb" class="easyui-datagrid" style="width:100%;height:100%"
@@ -31,7 +31,7 @@
             <tr>
                 <th data-options="field:'name',width:100">登录人的名字</th>
                 <th data-options="field:'accNumber',width:100">登录人的账号</th>
-                <th data-options="field:'IP',width:100">登录的地址</th>
+                <th data-options="field:'iP',width:100">登录的地址</th>
                 <th data-options="field:'loginTime',width:100">登录系统的时间</th>
                 <th data-options="field:'quitTime',width:100">退出系统的时间</th>
             </tr>

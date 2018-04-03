@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.NetCTOSS.beans.logBean.DoLogBean;
@@ -39,4 +40,24 @@ public class DoLogController {
 		
 		return map;
 	}
+	
+	
+	@RequestMapping(value = "/find", method = { RequestMethod.GET }, produces = { "application/json;charset=utf-8" })
+	public Map<Object, Object> findAll(@RequestParam Map params,int page,int rows) {
+		Map<Object, Object> map = new HashMap<>();
+		
+		List<DoLogBean> doLog =  doLogDemandServiceImpl.findDoLogsByParams(params);
+		
+		PageHelper.startPage(page, rows);
+		
+		List<DoLogBean> doLogPage =  doLogDemandServiceImpl.findDoLogsByParams(params);
+		
+		PageInfo<DoLogBean> pages = new PageInfo<DoLogBean>(doLogPage);
+		
+		map.put("total", doLog.size());//得到总条数
+		map.put("rows", pages.getList());//当前是第几页
+		
+		return map;
+	}
 }
+
