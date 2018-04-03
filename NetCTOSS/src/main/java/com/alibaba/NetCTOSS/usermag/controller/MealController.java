@@ -95,12 +95,10 @@ public class MealController {
 		try {
 	
 			mealHandleServiceImpl.updateMealBean(bean);	
-			System.out.println(bean);
 			return true;
 			
 		} catch (Exception e) {
 			// TODO: handle exception			
-			  System.out.println("有误");
 	}	
 		return false;
 			
@@ -113,10 +111,6 @@ public class MealController {
 				return "no";
 		 }
 		return null;
-		
-		
-		
-		
 	}	
 	
 	@RequestMapping(value="/update1",method= {RequestMethod.PUT},produces= {"application/json;charset=utf-8"})
@@ -126,29 +120,24 @@ public class MealController {
 	          bean.setMealStatus(true);
 	          bean.setMealStartTime(new Date());
 			mealHandleServiceImpl.updateMealBean(bean);	
-			System.out.println(bean);
 			return true;
 			
 		} catch (Exception e) {
 			// TODO: handle exception			
-			  System.out.println("有误");
 	}	
 		return false;
 			
 	}
 	@RequestMapping(value="/update2",method= {RequestMethod.PUT},produces= {"application/json;charset=utf-8"})
 	public boolean updeteMealBean2(MealBean bean) {
-		System.out.println(bean);
 		try {
 	          bean.setMealStatus(false);
 	          bean.setMealStartTime(new Date());
 			mealHandleServiceImpl.updateMealBean(bean);	
-			System.out.println(bean);
 			return true;
 			
 		} catch (Exception e) {
 			// TODO: handle exception			
-			  System.out.println("有误");
 	}	
 		return false;
 			
