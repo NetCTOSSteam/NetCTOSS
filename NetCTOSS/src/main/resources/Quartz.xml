@@ -75,7 +75,7 @@
         <!-- 指定Tirgger绑定的Job -->
         <property name="jobDetail" ref="dayJob"/>
         <!-- 指定Cron 的表达式 ，每天晚上运行 59 59 23 ? * *-->
-        <property name="cronExpression" value="0/30 * * * * ?" />
+        <property name="cronExpression" value="0 0/1 * * * ?" />
     </bean>
     
     <bean id="cronTriggermonth" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">

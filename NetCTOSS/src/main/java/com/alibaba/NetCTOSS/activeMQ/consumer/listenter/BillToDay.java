@@ -90,7 +90,6 @@ public class BillToDay  {
 			List<ServiceAndBusinessBean> li = iServiceBusinessDemandService.findServiceBusByBean(bean);
 
 			
-			
 			for (ServiceAndBusinessBean serviceAndBusinessBean : li) {
 				AccountDayBean accountDayBean = saveAccDayBill(serviceAndBusinessBean,yea,mont,day);
 				
@@ -115,6 +114,7 @@ public class BillToDay  {
 		BusinessBean bus = new BusinessBean();
 		
 		//根据得到的IP   查询得到对应的业务账户对象 
+		System.out.println(bean.getServerIP());
 		bus.setServerIP(bean.getServerIP());
 		bus = iBusinessDemandService.findByBean(bus);
 		

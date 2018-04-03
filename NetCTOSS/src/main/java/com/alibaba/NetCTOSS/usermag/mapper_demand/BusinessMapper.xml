@@ -13,7 +13,7 @@
 			<result property="startTime" column="t1.bus_time" javaType="String"/>
 			<result property="bo" column="t1.bus_bo" javaType="String"/>
 			
-			<association property="UserBean" javaType="com.alibaba.NetCTOSS.beans.userAndBusBean.UserBean" >
+			<association property="userBean" javaType="com.alibaba.NetCTOSS.beans.userAndBusBean.UserBean" >
 
 			    <id property="id" column="u_id"></id>
 			    <result property="userName" column="u_name" ></result>
@@ -29,7 +29,7 @@
 			
 			</association>
 			
-			<association property="MealBean" javaType="com.alibaba.NetCTOSS.beans.userAndBusBean.MealBean" >
+			<association property="mealBean" javaType="com.alibaba.NetCTOSS.beans.userAndBusBean.MealBean" >
 
 			    <id property="mealId" column="mea_id" ></id>
 			    <result property="mealName" column="mea_name" ></result>
@@ -98,6 +98,9 @@
 				<if test="bean != null">
 					<if test="bean.id != null">
 					and t1.bus_id = #{bean.id} 
+					</if>
+					<if test="bean.serverIP != null">
+					and t1.bus_ip = #{bean.serverIP} 
 					</if>
 				</if>
 			</where>

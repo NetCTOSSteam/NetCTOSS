@@ -3,7 +3,7 @@
 
 	<mapper namespace="com.alibaba.NetCTOSS.billmag.mapper_demand.ServiceBusinessMapper">
 		
-		<resultMap type="com.alibaba.NetCTOSS.beans.billBean.AccountMonthBean" id="beanMap">
+		<resultMap type="com.alibaba.NetCTOSS.beans.billBean.ServiceAndBusinessBean" id="beanMap">
 			<id property="id" column="id" javaType="int"/>
 			<result property="year" column="acc_year" javaType="int"/>
 			
@@ -28,10 +28,10 @@
 			<result property="tariff" column="f_tariff" />
 		</resultMap>
 		
-		<select id="findServiceBusByBean"  resultMap="beanMap">
+		<select id="findServiceBusByBean"  resultMap="oneMap">
 			select id ,f_os_account,f_server_id,f_start_time,f_end_time ,f_online_time,f_tariff
 			 from t_server_account 
-			 where f_start_time &gt;= #{bean.startTime} 
+			 where f_start_time &lt;= #{bean.startTime} 
 			
 		</select>
 		<select id="findOneServiceBusByBean"  resultMap="oneMap">
