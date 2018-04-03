@@ -42,21 +42,47 @@
                iconCls="icon-save" pagination="true"
                data-options="fitColumns:true,method:'get',border:false,
                    singleSelect:true,fit:true,fitColumns:true">
-            <tbody>
-            <tr>
-                <td>账务账号</td>
-                <td>真实姓名</td>
-                <td>业务账号数量</td>
-                <td>使用时长（/小时）</td>
-                <td>aa</td>
-            </tr>
-            </tbody>
         </table>
     </div>
     <!-- 工具 -->
     <div id="tb">
         <a id="back" href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-back',plain:true">回退</a>
     </div>
+    
+     <!-- 详细信息弹窗 -->
+    <div id="x_data" class="easyui-dialog" title="详细信息" style="width:400px;height:300px;"
+         data-options="iconCls:'icon-save',resizable:true,modal:true,closed:true">
+        <table id='server'  style="margin: 0 auto;padding-top: 10px">
+       		 <tr>
+                <td>服务器IP:</td>
+                <td><span id="server_ip"></span></td>
+            </tr>
+            <tr>
+                <td>时长:</td>
+                <td><span id="time"></span></td>
+            </tr>
+            <tr>
+                <td>登陆时间:</td>
+                <td><span id="startTime"></span></td>
+            </tr>
+            <tr>
+                <td>登出时间:</td>
+                <td><span id="endTime" ></span></td>
+            </tr>
+            <tr>
+                <td>费用（元）:</td>
+                <td><span id="money" ></span></td>
+            </tr>
+            <tr>
+               <td>资费套餐:</td>
+               <td><span id="x_tariff"></span></td>
+            </tr>
+        </table>
+        <div style="width: 205px;margin: 0 auto;padding-top: 15px">
+            <a id="x_back" href="Javascript:void(0)" class="easyui-linkbutton" iconCls="icon-back" style="width: 100px;height:32px">返回</a>
+        </div>
+    </div>
+    
 </div>
 </body>
 </html>

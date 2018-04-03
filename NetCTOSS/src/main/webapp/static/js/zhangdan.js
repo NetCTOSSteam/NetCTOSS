@@ -45,57 +45,77 @@ $(function () {
         });
     }
 
-    /**
-     * 对应服务器的信息
-     */
-    function serverData(json) {
-        $('#tt').datagrid({
-            url:'',
-            queryParams:json,
-            columns:[[
-                {field:'OSAccount',title:'OS账号',width:80,align:'center'},
-                {field:'serverIP',title:'服务器IP',width:80,align:'center'},
-                {field:'startTime',title:'登陆时间',width:80,align:'center'},
-                {field:'endTime',title:'登出时间',width:80,align:'center'},
-                {field:'onlineTimr',title:'在线总时长',width:80,align:'center'},
-                {field:'money',title:'费用',width:80,align:'center'},
-                {field:'tariff',title:'资费',width:80,align:'center'}
-            ]],
-            toolbar:'#tb'
-        });
-    }
-
-
-
-    var num = 0;
-    //双击单行数据更改表格
+    
+    var flag = true;
     $('#tt').datagrid({
-        onDblClickRow: function(rowIndex, rowData){
-        	$('#query_div').hide();
-        	$('#accounting').show();
-        	$('#accounting_name').html(rowData.name);
-            if(num==0){
-            	var json = {account:rowData.account};
-                business (json);
-                num+=1;
-            }else if(num==1){
-                serverData();
-                num+=1;
-            }
-        }
-    });
+    	 onDblClickRow:function (rowIndex, rowData) {
+    		$('#query_div').hide();
+         	$('#accounting').show();
+         	$('#accounting_name').html(rowData.name);
+         	if(flag){
+         		flag = false;
+         		//获取行内参数传递到下面
+         		var json = {account:rowData.account};
+                business (json);//调用业务账单
+         	}else{
+         		var json = {businessAccount:rowData.businessAccount};
+            	server(json);
+            	 $('#x_data').window('open');
+         	}
+         }
+    })
+    
+    
     //回退
     $('#tb').click(function () {
-        if(num>1){
-            business ();
-            num=0;
+        if(flag){
+    	
         }else{
-            accounting();
-            $('#query_div').show();
-            $('#accounting').hide();
-            num=0;
+        	flag = true;
+        	 accounting();
+             $('#query_div').show();
+             $('#accounting').hide();
         }
     })
+    
+     //详细信息的返回按钮
+    $('#x_back').click(function () {
+        $('#x_data').window('close');
+    })
+    
+    
+    //服务器数据显示
+    function server(data){
+    	
+    	$.ajax({
+			type:"GET",
+			url:"/NetCTOSS/serviceAndBusiness/one",
+			data:data,
+			success :function(msg){
+//				console.log("对象"+msg);
+//				console.log(msg);
+			
+				$('#server_ip').html(msg.serverIP);
+				$('#time').html(msg.onlineTimr);
+				$('#startTime').html(changeDate(msg.startTime));
+				$('#endTime').html(changeDate(msg.endTime));
+				$('#money').html(msg.money);
+				$('#x_tariff').html(msg.tariff);
+			
+			}
+		});
+    	
+ 
+    }
+    
+    function changeDate(da){
+  	  console.info("时间"+da);
+  	  var date = new Date(da);
+        return date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
+         +' '+date.getHours()+':'+date.getMinutes()+':'+date.getSeconds();
+
+	}
+    
 
        $('#attYearMonth').datebox({
        //显示日趋选择对象后再触发弹出月份层的事件，初始化时没有生成月份层
