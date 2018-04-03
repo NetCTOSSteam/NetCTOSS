@@ -117,7 +117,7 @@
          		   year : year},
     	      success: function(result) {
     	    	  if(result==null||result==''){
-    	    		  $.messager.alert('我的消息','该年无数据！','info');
+    	    		  $.messager.alert('提示消息','该年无数据！','info');
     	    	  }
     	        var names=[];//定义两个数组
     	         var nums=[];
@@ -134,7 +134,7 @@
     	                },
     	            series: {
     	                // 根据名字对应到相应的系列
-    	                name: ['总费用'],
+    	                name: ['当月总费用'],
     	                data: nums
     	                } 
     	      });

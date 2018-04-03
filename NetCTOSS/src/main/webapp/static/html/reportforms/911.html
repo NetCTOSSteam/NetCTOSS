@@ -15,14 +15,24 @@
 <body class="easyui-layout" >
 <div id="tb">
 
-    账务账号: <input class="easyui-textbox" style="width:75px;height:22px" id="acc" />&nbsp; &nbsp;
-    请输入年月: <select id="cc" class="easyui-combobox" name="dept" style="width:200px;">
-    <option value="aa">aitem1</option>
-    <option>bitem2</option>
-    <option>bitem3</option>
-    <option>ditem4</option>
-    <option>eitem5</option>
-</select>
+   <br/>
+	 账务账号: 
+	<input id="userAccount" class="easyui-combobox" data-options="    
+        valueField: 'id',    
+        textField: 'loginName',
+        method : 'get' ,   
+        url:'/NetCTOSS/user/findAll',    
+        onSelect: function(rec){    
+            var url = '/NetCTOSS/user/findYearByAccountName?AccountName='+rec.loginName; 
+            method = 'get';
+            $('#year').combobox({
+            	 method : 'get' ,   
+       			 url:url
+            });    
+        }" />
+          请选择年份:    
+	<input id="year" class="easyui-combobox" data-options="valueField:'id',textField:'year'" />  
+	
 
     <a id="query" href="javascript:void(0)" class="easyui-linkbutton"
        data-options="iconCls:'icon-search'">查询</a>
@@ -32,61 +42,102 @@
 </div>
 <script>
 
-    var myChart = echarts.init(document.getElementById('main'));
-    // 显示标题，图例和空的坐标轴
-    myChart.setOption({
-        title: {
-            text: '业务图行报表'
-        },
-        tooltip: {},
-        legend: {
-            data:['销量']
-        },
-//        xAxis: {
-//            data: ["安迪","樊胜美","关关","曲筱筱","邱莹莹"]
-//        },
-        xAxis : [
-            {
-                type: 'category',
-                data : (function(){
-                    var arr=[];
-                    $.ajax({
-                        type : "post",
-                        async : false, //同步执行
-                        url : "gpadd.do?getNum",
-                        data : {},
-                        dataType : "json", //返回数据形式为json
-                        success : function(result) {
-                            if (result) {
-                                for(var i=0;i<result.length;i++){
-                                    console.log(result[i].userName);
-                                    arr.push(result[i].userName);
-                                }
-                            }
-
-                        },
-                        error : function(errorMsg) {
-                            alert("不好意思，图表请求数据失败啦!");
-                            myChart.hideLoading();
-                        }
-                    })
-                    return arr;
-                })
-            }
-        ],
-        yAxis: {},
-        series: [{
-            name: 'fensi',
-            type: 'line',
-            data: [40, 19, 15, 18, 9]
-        } ,
-            {
-                name:'联盟广告',
-                type:'line',
-                stack: '总量',
-                data:[220, 182, 191, 234, 290]
-            }]
-    });
+	$(function(){
+		$('#userAccount').combobox('select', '1'); //设置下拉框默认选中第一条数据
+		$('#year').combobox('select', '1');
+	});
+	
+	$('#query').click(function() {
+		
+		 var myChart = echarts.init(document.getElementById('main'));
+		 var account = $('#userAccount').combobox("getText");
+			
+		 var year = parseInt($('#year').combobox("getText"));
+  	  $.ajax({
+		  type: "GET",
+     	   url: "/NetCTOSS/monthBusiness/findByYearAndAcc",
+     	   data: {
+     		 account : account,
+     		   year : year},
+	      success: function(result) {
+	    	  if(result==null||result==''){
+	    		  $.messager.alert('提示消息','该年无数据！','info');
+	    	  }
+	    	  console.info(result)
+	        var months=[];//定义三个数组
+	        var nums=[];
+	        var account =[];//
+	        //排重
+	        Array.prototype.distinct = function(){
+	        	 var arr = this,
+	        	  result = [],
+	        	  i,
+	        	  j,
+	        	  len = arr.length;
+	        	 for(i = 0; i < len; i++){
+	        	  for(j = i + 1; j < len; j++){
+	        	   if(arr[i] === arr[j]){
+	        	    j = ++i;
+	        	   }
+	        	  }
+	        	  result.push(arr[i]);
+	        	 }
+	        	 return result;
+	        	}
+	        var monthData = [];
+	         $.each(result,function(key,values){ //此处我返回的是list<String,map<String,String>>循环map
+	        	 months.push(values.month+'月');
+	        	 account.push(values.businessAccount);
+    	           var obj = new Object();
+    	           var obj1 = [];
+    	           obj1.push(values.money);
+    	           obj.name = '业务账号：'+values.businessAccount;
+    	           obj.type='line';
+    	           obj.stack='总量';
+    	           obj.data = obj1;
+    	           nums.push(obj);
+	          });
+	         	console.info(months.distinct())
+	           console.info(nums)
+	           console.info(account)
+	 	    // 显示标题，图例和空的坐标轴
+	 	    myChart.setOption({
+	 	    		    title: {
+	 	    		        text: '对应账务账号业务账号情况'
+	 	    		    },
+	 	    		    tooltip: {
+	 	    		        trigger: 'axis'
+	 	    		    },
+	 	    		    legend: {
+	 	    		        data:account
+	 	    		    },
+	 	    		    grid: {
+	 	    		        left: '3%',
+	 	    		        right: '4%',
+	 	    		        bottom: '3%',
+	 	    		        containLabel: true
+	 	    		    },
+	 	    		    toolbox: {
+	 	    		        feature: {
+	 	    		            saveAsImage: {}
+	 	    		        }
+	 	    		    },
+	 	    		    xAxis: {
+	 	    		        type: 'category',
+	 	    		        boundaryGap: false,
+	 	    		        data: months.distinct()
+	 	    		    },
+	 	    		    yAxis: {
+	 	    		        type: 'value'
+	 	    		    },
+	 	    		    series: nums
+			 	    });
+			      },
+	      error: function(XMLHttpRequest, textStatus, errorThrown) {
+	        alert("查询失败");
+	      }
+	    });
+	});
 </script>
 </body>
 </html>

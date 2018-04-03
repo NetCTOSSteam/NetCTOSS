@@ -44,6 +44,12 @@ public class MonthBusinessDemandServiceImpl implements IMonthBusinessDemandServi
 		return iMonthBusinessDemandDao.findByServerMothAndBusinessBeanAllTariff();
 	}
 
+	@Override
+	public List<MonthAndBusinessBean> findAllMonthBussinessByAccAndYear(String account, int year) {
+		// TODO Auto-generated method stub
+		return iMonthBusinessDemandDao.findAllMonthBussinessByAccAndYear(account, year);
+	}
+
 	
 	
 }

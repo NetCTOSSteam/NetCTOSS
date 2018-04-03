@@ -101,4 +101,8 @@
 	<select id="findByServerMothAndBusinessBeanAllTariff"  resultMap="beanMap">
 		SELECT DISTINCT( business_tariff)   FROM t_month_business 
 	</select>
+	
+	<select id="findAllMonthBussinessByAccAndYear" resultMap="beanMap">
+		select * from t_month_business where acc_acc=#{account} and business_year=#{year}
+	</select>
 </mapper>

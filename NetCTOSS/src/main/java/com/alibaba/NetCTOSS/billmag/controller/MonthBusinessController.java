@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.NetCTOSS.beans.billBean.MonthAndBusinessBean;
 import com.alibaba.NetCTOSS.billmag.service_demand.IMonthBusinessDemandService;
-import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
@@ -87,4 +86,12 @@ public class MonthBusinessController {
 		
 		return li;
 	}	
+	
+	@RequestMapping(value = "/findByYearAndAcc", method = { RequestMethod.GET }, produces = { "application/json" })
+	public List<MonthAndBusinessBean> findByYearAndAcc(String account,int year){
+		
+		
+		return monthBusinessDemandServiceImpl.findAllMonthBussinessByAccAndYear(account, year);
+		
+	}
 }

@@ -46,4 +46,13 @@ public interface IMonthBusinessDemandDao {
 	 * @return 
 	 */
 	public List<MonthAndBusinessBean> findByServerMothAndBusinessBeanAllTariff();
+	
+	
+	/**
+	 * 通过年份和账务账号查询出该账号下面的所有业务账号的费用信息
+	 * @param account
+	 * @param year
+	 * @return
+	 */
+	public List<MonthAndBusinessBean> findAllMonthBussinessByAccAndYear(String account,int year);
 }
