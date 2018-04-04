@@ -84,22 +84,42 @@
 	        	 }
 	        	 return result;
 	        	}
-	        var monthData = [];
+	        var json = {};
+	        var jso = {};
+	        var jsons = {};
+	        var jsonacc = {};
+	        $.each(result,function(key,values){
+	        	//业务账户
+	        	 var bus = values.businessAccount; 
+	        	if(json[bus] != bus){
+	        		jsonacc[bus] = 0;
+	        	 }
+	        	jsonacc[bus] += 1;
+	        });
+	        
 	         $.each(result,function(key,values){ //此处我返回的是list<String,map<String,String>>循环map
 	        	 months.push(values.month+'月');
 	        	 account.push(values.businessAccount);
-    	           var obj = new Object();
-    	           var obj1 = [];
-    	           obj1.push(values.money);
-    	           obj.name = '业务账号：'+values.businessAccount;
-    	           obj.type='line';
-    	           obj.stack='总量';
-    	           obj.data = obj1;
-    	           nums.push(obj);
+	        	 //业务账户
+	        	 var bus = values.businessAccount; 
+	        	 if(jso[bus] != bus){
+	        		 jso[bus] = bus;
+	        		 json[bus] = new Array();
+	        		 jsons[bus] = new Object();
+	        	 }
+	        	 
+	        	 jsonacc[bus] -= 1;
+	        	 
+	        	 json[bus].push(values.money);
+	        	 
+	        	 jsons[bus].name = '业务账号：'+values.businessAccount;
+	        	 jsons[bus].type='line';
+	        	 jsons[bus].stack='总量';
+	        	 jsons[bus].data = json[bus];
+	        	 if(jsonacc[bus] == 0){
+	        		 nums.push(jsons[bus]);
+	        	 }
 	          });
-	         	console.info(months.distinct())
-	           console.info(nums)
-	           console.info(account)
 	 	    // 显示标题，图例和空的坐标轴
 	 	    myChart.setOption({
 	 	    		    title: {
@@ -109,7 +129,7 @@
 	 	    		        trigger: 'axis'
 	 	    		    },
 	 	    		    legend: {
-	 	    		        data:account
+	 	    		        data:account.distinct()
 	 	    		    },
 	 	    		    grid: {
 	 	    		        left: '3%',
