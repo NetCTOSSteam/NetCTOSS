@@ -1,30 +1,39 @@
 $(function(){
 
-	$('#tt').datagrid({
-        url:'/NetCTOSS/user/find',
-        columns:[[
-            {field:'userName',title:'姓名',width:12,align:'center'},
-            {field:'loginName',title:'账务帐号',width:12,align:'center'},
-            {field:'idCard',title:'身份证号码',width:12,align:'center'},
-            {field:'tel',title:'联系电话',width:12,align:'center'},
-            {field:'address',title:'通讯地址',width:12,align:'center'}
-        ]],
-        
-        toolbar:'#tb'
-    });
+	showData();
+	//数据展示
+	function showData(json){
+		$('#tt').datagrid({
+	        url:'/NetCTOSS/user/find',
+	        queryParams:json,
+	        columns:[[
+	            {field:'userName',title:'姓名',width:12,align:'center'},
+	            {field:'loginName',title:'账务帐号',width:12,align:'center'},
+	            {field:'idCard',title:'身份证号码',width:12,align:'center'},
+	            {field:'tel',title:'联系电话',width:12,align:'center'},
+	            {field:'address',title:'通讯地址',width:12,align:'center'}
+	        ]],
+	        toolbar:'#tb'
+	    });
+	};
 	
-    //条件查询功能
-    $('#query').click(function(){
-
-    	  var customName = $('#name').val();
-          var loginName = $('#acc').val();
-    	var data = {"userName":customName,"loginName":loginName};
-    	 $('#tt').datagrid({
-    	        url:'/NetCTOSS/user/find',
-    	        mothod:GET,
-    	        data:data
-    	    });
-    });
+	//查询数据
+	function queryData(){
+		var name = $('#name').val();
+		var acc = $('#acc').val();
+		
+		var json = {
+				userName:name,
+				loginName:acc
+		}
+		return json;
+	}
+	
+	//点击查询
+	$('#query').click(function(){
+		var json = queryData();
+		showData(json);
+	})
 
     $('#add').click(function(){
         $('#add_dialog').dialog('open');
@@ -212,7 +221,7 @@ $(function(){
         }else{// 已经选择了，需要被删除的数据
             $.messager.confirm('友情提示', '你确定需要删除这些数据么?', function(r){
                 if (r){
-                    var json = $.toJSON(row);
+                    var json = $.toJSON(rows);
                     $.ajax({
                         type: "DELETE",
                         url: url,
@@ -225,7 +234,7 @@ $(function(){
                                 timeout:5000,
                                 showType:'slide'
                             });
-                            $('#tt').datagrid('reload',queryParams());// 重新加载数据
+                            $('#tt').datagrid('reload');// 重新加载数据
                         }
                     });
                 }

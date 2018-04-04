@@ -91,9 +91,8 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/find", method = { RequestMethod.GET }, produces = { "application/json" })
-	public Map<Object, Object> likeFindAll(UserBean UserBean, Integer page, Integer rows) {
+	public Map<Object, Object> likeFindAll(UserBean UserBean, int page, int rows) {
 		Map<Object, Object> map = new HashMap<>();
-
 		List<UserBean> li = iUserDemandService.findLikeByBean(UserBean);
 
 		PageHelper.startPage(page, rows);

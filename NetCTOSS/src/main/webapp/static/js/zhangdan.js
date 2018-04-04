@@ -60,7 +60,7 @@ $(function () {
          	}else{
          		var json = {businessAccount:rowData.businessAccount};
             	server(json);
-            	 $('#x_data').window('open');
+            	$('#x_data').window('open');
          	}
          }
     })
@@ -92,11 +92,8 @@ $(function () {
 			url:"/NetCTOSS/serviceAndBusiness/one",
 			data:data,
 			success :function(msg){
-//				console.log("对象"+msg);
-//				console.log(msg);
-			
 				$('#server_ip').html(msg.serverIP);
-				$('#time').html(msg.onlineTimr);
+				$('#time').html((msg.onlineTimr/1000/60).toFixed(2) +'  小时');
 				$('#startTime').html(changeDate(msg.startTime));
 				$('#endTime').html(changeDate(msg.endTime));
 				$('#money').html(msg.money);
