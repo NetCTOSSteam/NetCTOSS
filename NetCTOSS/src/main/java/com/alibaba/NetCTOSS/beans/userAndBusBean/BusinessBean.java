@@ -179,7 +179,7 @@ public class BusinessBean implements Serializable {
 	}
 
 
-	public String isState() {
+	public String getState() {
 		return state;
 	}
 

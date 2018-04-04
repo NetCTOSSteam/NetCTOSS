@@ -213,22 +213,75 @@ $('#ok_1').click(function () {
 
 })
 
+
 /**
  * 初始化数据显示
  */
 $(function () {
     $('#tt').datagrid({
-        url:'',
+        url:'/NetCTOSS/busi/find',
         columns:[[
             {field:'busName',title:'业务账号',width:12,align:'center'},
-            {field:'mealBean.mealName',title:'资费类型',width:12,align:'center'},
+            {field:'mealBean.mealName',title:'资费名称',width:12,align:'center',
+            	formatter: function(value,row,index){
+            		if(row){
+            			return row.mealBean.mealName;
+            		}
+            	}},
             {field:'state',title:'状态',width:12,align:'center'},
             {field:'serverIP',title:'服务器IP',width:12,align:'center'},
-            {field:'userBean.userName',title:'账务账号',width:12,align:'center'}
+            {field:'userBean.userName',title:'账务账号',width:12,align:'center',
+            	formatter: function(value,row,index){
+            		if(row){
+            			return row.userBean.userName;
+            		}
+            	}}
         ]],
         toolbar:'#tb'
     });
+    
+    //查询参数的封装
+	function queryParams(){
+		
+		var busName = $('#busName').val();
+		var mealName = $('#mealName').val();
+		var state = $('#state').combobox('getValue'); 
+		
+		var data = {
+				busName:busName,
+				mealName:mealName,
+				state:state,
+				};
+		return data;
+	}
+	 //条件查询功能
+	$('#query').click(function(){
+		console.info(queryParams());
+//		$('#tt').datagrid('reload',queryParams());
+		$('#tt').datagrid({
+	        url:'/NetCTOSS/busi/find',
+	        queryParams:queryParams(),
+        	method:"GET",
+	        columns:[[
+	            {field:'busName',title:'业务账号',width:12,align:'center'},
+	            {field:'mealBean.mealName',title:'资费类型',width:12,align:'center',
+	            	formatter: function(value,row,index){
+	            		if(row){
+	            			return row.mealBean.mealName;
+	            		}
+	            	}},
+	            {field:'state',title:'状态',width:12,align:'center'},
+	            {field:'serverIP',title:'服务器IP',width:12,align:'center'},
+	            {field:'userBean.userName',title:'账务账号',width:12,align:'center',
+	            	formatter: function(value,row,index){
+	            		if(row){
+	            			return row.userBean.userName;
+	            		}
+	            	}}
+	        ]],
+	        toolbar:'#tb'
+	    });
+	});
 })
-
 
 
