@@ -133,21 +133,16 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/updateone", method = { RequestMethod.PUT })
-	public void updaeOne(UserBean UserBean) {
-		UserBean user = new UserBean();
-		user.setId(UserBean.getId());
-		user = iUserDemandService.findByBean(user);
-
-		user.setAddress(UserBean.getAddress());
-		user.setGender(user.getGender());
-		user.setIdCard(user.getIdCard());
-		user.setLoginName(user.getLoginName());
-		user.setPostcode(user.getPostcode());
-		user.setPassword(user.getPassword());
-		user.setQq(user.getQq());
-		user.setTel(user.getTel());
-
-		iUserHandleService.updateUserBean(user);
+	public boolean updaeOne(UserBean userBean) {
+		try {
+			iUserHandleService.updateUserBean(userBean);
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return false;
+		}
+		
 	}
 
 	@RequestMapping(value = "/deleteone", method = { RequestMethod.DELETE })

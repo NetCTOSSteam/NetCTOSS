@@ -1,7 +1,7 @@
 $(function(){
 
 	showData();
-	//数据展示
+	// 数据展示
 	function showData(json){
 		$('#tt').datagrid({
 	        url:'/NetCTOSS/user/find',
@@ -17,7 +17,7 @@ $(function(){
 	    });
 	};
 	
-	//查询数据
+	// 查询数据
 	function queryData(){
 		var name = $('#name').val();
 		var acc = $('#acc').val();
@@ -29,26 +29,23 @@ $(function(){
 		return json;
 	}
 	
-	//点击查询
+	// 点击查询
 	$('#query').click(function(){
 		var json = queryData();
 		showData(json);
 	})
 
+	// 添加
     $('#add').click(function(){
         $('#add_dialog').dialog('open');
     });
     
+	//添加获取数据
     function queryParamsToSave(){
         var customName = $('#u_name').val();
         var loginName = $('#login_name').val();
         var password = $('#pass_word').val();
-        var gender
-        if($('#u_gender').val() == "男"){
-        	 gender =1;
-        }else{
-        	 gender = 0;
-        }
+        var gender = $('#gender').combobox('getValue');
         var idcard = $('#id_card').val();
         var tel = $('#u_tel').val();
         var postcode = $('#u_postcode').val();
@@ -71,7 +68,7 @@ $(function(){
         return data;
     }
 
-    //新增
+    // 新增
     $('#save_users').click(function(){
        console.info(queryParamsToSave());
        $.post("/NetCTOSS/user/addone", queryParamsToSave(),
@@ -79,11 +76,30 @@ $(function(){
 		    	   var msg = eval('(' + data + ')');
 		    	   	if(msg){
 		    	   		showMessager('添加成功');
+		    	   		winClose();
 		    	   	}else{
 		    	   		showMessager('失败');
 		    	   	}
     		   });
     });
+    //添加确定后 关闭窗口 并且清空数据
+    function winClose(){
+    	 $('#add_dialog').dialog('close');
+    	 $('#tt').datagrid('reload');
+    	 addDataClean();
+    }
+    //清空ADD数据
+    function addDataClean(){
+    	validatebox :$("#u_name").val('');
+    	validatebox :$("#login_name").val('');
+    	validatebox :$("#pass_word").val('');
+    	validatebox :$("#id_card").val('');
+    	validatebox :$("#u_tel").val('');
+    	validatebox :$("#u_postcode").val('');
+    	validatebox :$("#u_address").val('');
+    	validatebox :$("#u_qq").val('');
+    }
+    
     /**
 	 * 消息提示
 	 */
@@ -97,107 +113,74 @@ $(function(){
 	}
 
 
-    //修改
+    // 修改
     $('#edit').click(function(){
-
-        var rows = $('#tt').datagrid('getSelections');
-        var row = $('#tt').datagrid('getSelected')//返回的第1行记录
-        if(row){//如果选中了数据，就进入if语句
-        	var json = $.toJSON(row);
-            var lenth = rows.length;
-            if(lenth == 1){
-                $('#update_dialog').dialog('open');//打开修改窗体
-                $.ajax({
-                	url: "/NetCTOSS/user/findone",
-                	type: "GET", 
-                	data:json,
-                	contentType:"application/json",
-                	async: false,
-                	success: function(row){
-                		$('#loginname').attr('value',row.loginName);
-                        $('#names').attr('value',row.userName);
-                        if(row.ggender==1){
-                        	$('#gender').attr('value',"男");
-                        }else{
-                        	$('#gender').attr('value',"女");
-                        }
-                        $('#idCard').attr('value',row.idCard);
-                        $('#password').attr('value',row.password);
-                        $('#tel').attr('value', row.tel);
-                        $('#postcode').attr('value', row.postcode);
-                        $('#address').attr('value', row.address);
-                        $('#qq').attr('value', row.qq);
-                        $('#id').attr('value', row.id);
-                }});
-            }else{
-                $.messager.show({
-                    title:'消息提示',
-                    msg:'每次只能修改一条数据！',
-                    timeout:5000,
-                    showType:'slide'
-                });
-            }
+        var rows = $('#tt').datagrid('getSelected')// 返回的第1行记录
+        if(rows){// 如果选中了数据，就进入if语句
+        	$('#update_dialog').dialog('open');
+        	showUpdateData(rows);
         }else{
-            $.messager.show({
-                title:'消息提示',
-                msg:'请选择需要修改的数据！',
-                timeout:3000,
-                showType:'slide'
-            });
+        	showMessager('请选择需要修改的数据！');
         }
     });
-    //得到修改对象
-    function queryParamsToUpdate(){
-        var customName = $('#names').val();
-        var loginName = $('#loginname').val();
-        var password = $('#pass_word').val();
-        var gender
-        if($('#u_gender').val() == "男"){
-        	 gender =1;
-        }else{
-        	 gender = 0;
-        }
-        var idcard = $('#idCard').val();
-        var tel = $('#tel').val();
-        var postcode = $('#postcode').val();
-        var address = $('#address').val();
-        var qq = $('#qq').val();
-        var id = $('#id').val();
-   
-        var data = {
-            "userName":customName,
-            "tel":tel,
-            "idCard":idcard,
-            "gender":gender,
-            "address":address,
-            "postcode":postcode,
-            "qq":qq,
-            "loginName":loginName,
-            "id":id
-        };
-        
-        return data;
+    
+    //修改显示原数据
+    function showUpdateData(rows){
+    	validatebox :$("#up_name").val(rows.userName);
+	    validatebox :$("#up_loginName").val(rows.loginName);
+	    
+	    validatebox :$("#up_idCard").val(rows.idCard);
+	    validatebox :$("#up_tel").val(rows.tel);
+	    validatebox :$("up_postcode").val(rows.postcode);
+	    validatebox :$("#up_address").val(rows.address);
+	    validatebox :$("#up_qq").val(rows.qq);
     }
-    //修改保存
+    
+    //修改数据的获取
+    function getUpdataData(rows){
+    	var name = $("#up_name").val(rows.userName);
+    	var loginName = $("#up_loginName").val();
+    	var gender = $('#up_gender').combobox('getValue');
+    	var idCard = $("#up_idCard").val(rows.idCard);
+    	var tel = $("#up_tel").val(rows.tel);
+    	var postcode = $("up_postcode").val(rows.postcode);
+    	var address = $("#up_address").val(rows.address);
+    	var qq = $("#up_qq").val(rows.qq);
+    	var json = {
+    			id:rows.id,
+    			userName:name,
+    			loginName:loginName,
+    			gender:gender,
+    			idCard:idCard,
+    			tel:up_tel,
+    			postcode:postcode,
+                address:address,
+                qq:qq
+    	}
+    	return json;
+    }
+   
+    // 修改保存
     $('#update_users').click(function(){
-    	
-        
         var url = "/NetCTOSS/user/updateone";
-        $('#update_custom').form('submit', {
-            url:url,
-            data:queryParamsToUpdate(),
-            onSubmit: function(){
-                // do some check
-                // return false to prevent submit;
-                return true;
-            },
-            success:function(data){
-                
-                $('#update_dialog').dialog('close');
-                
-                $('#tt').datagrid('reload',queryParams());// 重新加载数据
-            }
-        });
+        var row = $('#tt').datagrid('getSelected');
+        $.ajax({
+			   url: url,
+			   type:'PUT',
+			   data: getUpdataData(row),
+			   success: function(msg) {
+					var data = eval('(' + msg + ')');
+					if (data) {
+						showMessager('修改成功！'); // 提示
+						$('#update_win').window('close');// 关闭窗口
+						$('#tt').datagrid('reload'); // 刷新
+					} else {
+						showMessager('抱歉！系统繁忙！');// 提示
+						$('#update_win').window('close');// 关闭窗口
+						$('#tt').datagrid('reload'); // 刷新
+					}
+				}
+			 });
     });
 
 
@@ -272,8 +255,8 @@ $(function () {
 
     	 var url = "/NetCTOSS/user/findone";
         var rows = $('#tt').datagrid('getSelections');
-        var row = $('#tt').datagrid('getSelected')//返回的第1行记录
-        if(row){//如果选中了数据，就进入if语句
+        var row = $('#tt').datagrid('getSelected')// 返回的第1行记录
+        if(row){// 如果选中了数据，就进入if语句
             var lenth = rows.length;
             if(lenth == 1){
             	
@@ -323,7 +306,7 @@ $(function () {
     $('#adds_from').form({    
         url:"/NetCTOSS/user/users",
         onSubmit: function(){    
-            // do some check    
+            // do some check
             // return false to prevent submit;
         	return true;
         },    
@@ -331,7 +314,7 @@ $(function () {
            
         }    
     });    
-    // submit the form    
+    // submit the form
     $(function(){   
         $('#sub').bind('click', function(){   
         	 $('#adds_from').submit();

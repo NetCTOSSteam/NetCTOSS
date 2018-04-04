@@ -23,12 +23,12 @@ $(function() {
 			width : 12,
 			align : 'center'
 		}, {
-			field : 'type',
+			field : 'roleName',
 			title : '角色',
 			width : 12,
 			align : 'center',
 			formatter : function(value, row, index) {
-				return row.role.type;
+				return row.role.roleName;
 			}
 		} ] ],
 		toolbar : '#tb'
@@ -137,6 +137,7 @@ $(function() {
 				var data = eval('(' + msg + ')');
 				if (data) {
 					showMessager("添加成功！");// 提示
+					$('#tt').datagrid('reload'); // 刷新
 				} else {
 					showMessager("抱歉！系统繁忙！");// 提示
 				}

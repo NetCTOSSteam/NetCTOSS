@@ -69,20 +69,23 @@
          data-options="title:'新增客户',buttons:'#add_dialog_bb',modal:true,
 		collapsible:true,minimizable:true,maximizable:true,resizable:true,closable:true,closed:true">
             <table>
+           		 <tr>
+                    <td>真实姓名：</td>
+                    <td><input class="easyui-validatebox" type="text" id="u_name"
+                              data-options="required:false" /></td>
+                </tr>
                 <tr>
                     <td>账务帐号：</td>
                     <td><input class="easyui-validatebox" type="text" id="login_name"
                               data-options="required:false" /></td>
                 </tr>
                 <tr>
-                    <td>真实姓名：</td>
-                    <td><input class="easyui-validatebox" type="text" id="u_name"
-                              data-options="required:false" /></td>
-                </tr>
-                <tr>
                     <td>性别：</td>
-                    <td><input class="easyui-combobox"  id="u_gender"
-                               data-options="valueField:'id',textField:'text'" />
+                    <td>
+						<select id="gender" class="easyui-combobox" style="width:144px;">  
+						    <option value="1">男</option>  
+						    <option value="0">女</option>  
+						</select> 
                     </td>
                 </tr>
                 <tr>
@@ -133,59 +136,52 @@
          style="width: 600px; height: 400px"
          data-options="title:'修改客户',buttons:'#update_dialog_bb',modal:true,
             collapsible:true,minimizable:true,maximizable:true,resizable:true,closable:true,closed:true">
-
-        <form id="update_custom" method="post">
-
             <table>
-                <tr>
-                    <td>账务帐号：</td>
-                    <td><input class="easyui-validatebox" type="text" id="loginname"
-                               name="name" data-options="required:false" /></td>
+             	 <tr>
+                    <td>真实姓名：</td>
+                    <td><input class="easyui-validatebox" type="text" id="up_name"
+                               data-options="required:false" /></td>
                 </tr>
                 <tr>
-                    <td>真实姓名：</td>
-                    <td><input class="easyui-validatebox" type="text" id="names"
-                               name="name" data-options="required:false" /></td>
+                    <td>账务帐号：</td>
+                    <td><input class="easyui-validatebox" type="text" id="up_loginName"
+                               data-options="required:false" readonly="readonly"/></td>
                 </tr>
                 <tr>
                     <td>性别：</td>
-                    <td><input class="easyui-combobox" name="gender" id="gender"
-                               data-options="valueField:'id',textField:'text'" />
+                    <td>
+						<select id="up_gender" class="easyui-combobox" style="width:144px;">  
+						    <option value="1">男</option>  
+						    <option value="0">女</option>  
+						</select> 
                     </td>
                 </tr>
                 <tr>
                     <td>身份证号码：</td>
-                    <td><input class="easyui-validatebox" type="text" id="idCard"
-                               name="idCard" data-options="required:false" /></td>
-                </tr>
-                <tr>
-                    <td>密码：</td>
-                    <td><input class="easyui-validatebox" type="text" id="password"
-                               name="password" data-options="required:false" /></td>
+                    <td><input class="easyui-validatebox" type="text" id="up_idCard"
+                               data-options="required:false" /></td>
                 </tr>
                 <tr>
                     <td>联系电话：</td>
-                    <td><input class="easyui-validatebox" type="text" id="tel"
-                               name="tel" data-options="required:false" /></td>
+                    <td><input class="easyui-validatebox" type="text" id="up_tel"
+                               data-options="required:false" /></td>
                 </tr>
                 <tr>
                     <td>邮编：</td>
-                    <td><input class="easyui-validatebox" type="text" id="postcode"
-                               name="postcode" data-options="required:false" /></td>
+                    <td><input class="easyui-validatebox" type="text" id="up_postcode"
+                               data-options="required:false" /></td>
                 </tr>
                 <tr>
                     <td>通讯地址：</td>
-                    <td><input class="easyui-validatebox" type="text" id="address"
-                               name="address" data-options="required:false" /></td>
+                    <td><input class="easyui-validatebox" type="text" id="up_address"
+                               data-options="required:false" /></td>
                 </tr>
                 <tr>
                     <td>QQ号码：</td>
-                    <td><input class="easyui-validatebox" type="text" id="qq"
-                               name="qq" data-options="required:false" /></td>
-                               <input id="id" type="hidden" />
+                    <td><input class="easyui-validatebox" type="text" id="up_qq"
+                               data-options="required:false" /></td>
                 </tr>
             </table>
-        </form>
     </div>
     <div id="update_dialog_bb">
         <a id="update_users" href="javascript:void(0)"
