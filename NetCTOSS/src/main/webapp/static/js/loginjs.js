@@ -45,6 +45,7 @@ $(function() {
 	// 数据获取
 	function data() {
 		var name = $('#name').val();
+		console.info(name)
 		var accNumber = $('#accNumber').val();
 		var IP = $('#l_IP').val();
 		var json = {
