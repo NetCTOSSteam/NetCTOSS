@@ -65,7 +65,7 @@
 		</select>
 		
 		<select id="findByAccountYearBillBeanByAccoundName" 
-			resultMap="com.alibaba.NetCTOSS.billmag.mapper_demand.AccYearMapper.beanMap">
-			select * from t_account_year where acc_acc=#{accoundName} group by acc_year
+			resultMap="com.alibaba.NetCTOSS.billmag.mapper_demand.MonthBusinessMapper.beanMap">
+			select * from t_month_business where acc_acc=#{accoundName} group by business_year
 		</select>
 	</mapper>
