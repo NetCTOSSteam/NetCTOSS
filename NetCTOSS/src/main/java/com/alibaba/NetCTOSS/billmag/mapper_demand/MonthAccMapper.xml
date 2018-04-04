@@ -48,7 +48,7 @@
 	</sql>
 
 	<resultMap type="MonthAndAccountBean" id="beanMap">
-		<id property="id" column="id" javaType="int" />
+		<id property="id" column="id" javaType="Integer" />
 		<result property="account" column="account_acc" />
 		<result property="name" column="account_name" />
 		<result property="year" column="account_year" />
@@ -91,6 +91,7 @@
 	<!-- 精确查询 -->
 	<select id="findByMonthAndAccountBean" resultMap="beanMap">
 		select
+		id,
 		account_acc,
 		account_name,
 		account_year,

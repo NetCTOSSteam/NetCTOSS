@@ -88,8 +88,7 @@ public class BillToDay  {
 			for (ServiceAndBusinessBean serviceAndBusinessBean : li) {
 				AccountDayBean accountDayBean = saveAccDayBill(serviceAndBusinessBean,yea,mont,day);
 				
-				MonthAndBusinessBean monthAndBusinessBean = updateMonthBus(serviceAndBusinessBean,yea,mont,day);
-				double  money = monthAndBusinessBean.getMoney();
+				Double money = updateMonthBus(serviceAndBusinessBean,yea,mont,day);
 				MonthAndAccountBean monthAndAccountBean = updateMonthAcc(serviceAndBusinessBean,yea,mont,day,money);
 				
 			}
@@ -150,57 +149,35 @@ public class BillToDay  {
 		maab.setAccount(user.getLoginName());
 		maab.setMonth(m);
 		maab.setYear(y);
+		if(maab.getMoney() == null) {
+			maab.setMoney(money);
+		}else {
+			maab.setMoney(maab.getMoney()+money);
+		}
 		
 		if(iMonthAccDemandService.findByMonthAndAccountBean(maab) == null) {
 			maab.setIDcard(user.getIdCard());
 			maab.setName(user.getUserName());
 			maab.setStatus(1);
+			iMonthAccHandleDao.save(maab);
 		}else{
 			maab = iMonthAccDemandService.findByMonthAndAccountBean(maab);
+			System.out.println(maab.getId());
+			iMonthAccHandleDao.saveAndFlush(maab);
 		}
 		
-		
-		switch (mealBean.getMealType()) {
-		case 1:
-		System.out.println("暂时不清楚 123 对应那种类型 的资费");	
-	/*
-	 * 	包月 
-	 * 
-	 * 套餐 不设置 money
-	 * 
-	 * maab.setType(bus.getNextMealBean().getMealName());
-			
-		maab.setMoney(0);
-	 * 
-	 * 按时就直接 加
-	 */
-		
-		
-			break;
-		case 2:
-			
-			break;
-		case 3:
-			
-			break;
-
-		default:
-			System.err.println("异常！！！没有资费类型");
-			break;
-		}
-		
-		iMonthAccHandleDao.save(maab);
 		return maab;
 	}
 	/**
 	 * 修改当月 每一个业务账户的 账单
 	 */
-	private MonthAndBusinessBean updateMonthBus(ServiceAndBusinessBean bean,int y ,int m , int d) {
+	private Double updateMonthBus(ServiceAndBusinessBean bean,int y ,int m , int d) {
 		
 		UserBean user = new UserBean();
 		BusinessBean bus = new BusinessBean();
 		MealBean mealBean = new MealBean();
-		
+		//资费增加量
+		Double mon = null;
 		//根据得到的IP   查询得到对应的业务账户对象 
 		bus.setServerIP(bean.getServerIP());
 		bus = iBusinessDemandService.findByBean(bus);
@@ -214,50 +191,80 @@ public class BillToDay  {
 		mabb.setBusinessAccount(bean.getOSAccount());
 		mabb.setMonth(m);
 		mabb.setYear(y);
+		
 		if(iMonthBusinessDemandService.findByMonthAndBusinessBean(mabb) == null) {
 			
 			mabb.setAccount(user.getUserName());
+			mabb.setNowTime(0L);
+			mon = newdd(bean,mabb, mealBean);
+			iMonthBusinessHandleDao.save(mabb);
 		}else{
 			mabb = iMonthBusinessDemandService.findByMonthAndBusinessBean(mabb);
+			mon = newdd(bean,mabb, mealBean);
+			iMonthBusinessHandleDao.saveAndFlush(mabb);
 		}
-	
 		
+		return mon;
 		
-		//当前消费
-		Double money1 = mabb.getMoney();
-		//当前的使用时间
-		System.out.println(mabb);
-		Long  time1 = mabb.getNowTime();
-		
-		switch (mealBean.getMealType()) {
-		case 1:
-		System.out.println("暂时不清楚 123 对应那种类型 的资费");	
-	/*
-	 * 	包月 不设置 money1
-	 * 
-	 * 套餐 先得出对应 的业务账户 bus 共时间    
-	 * 
-	 * MonthBus 已用时间   相减 再得 进行乘除 加减
-	 * 
-	 *  设置资费类型
-	 * 按时就直接 进行乘除 加减
-	 */
-		
-		
-			break;
-		case 2:
-			
-			break;
-		case 3:
-			
-			break;
+	}
+	private Double newdd(ServiceAndBusinessBean bean,MonthAndBusinessBean mabb,MealBean mealBean) {
+				Double mon = null;
+				//当前消费
+				Double money1 = mabb.getMoney();
+				//当前的使用时间
+				long  time1 = bean.getOnlineTimr();
+				
+				switch (mealBean.getMealType()) {
+				//0代表包月
+				case 0:
+			/*
+			 * 	包月 不设置 money1
+			 * 
+			 * 套餐 先得出对应 的业务账户 bus 共时间    
+			 * 
+			 * MonthBus 已用时间   相减 再得 进行乘除 加减
+			 * 
+			 *  设置资费类型
+			 * 按时就直接 进行乘除 加减
+			 */
+				mabb.setMoney(mealBean.getMealBasicMoney());
+				mon = 0.0;
+					break;
+				//1代表包时  包时按照小时来计费的
+				case 1:
+					double dd1 =  ((double)time1)/3600000; 
+					
+					mabb.setMoney(money1+dd1*mealBean.getMealMoney());
+					mabb.setNowTime(mabb.getNowTime()+time1);
+					mon= dd1*mealBean.getMealMoney();
+					break;
+				//2代表是套餐计费 
+				case 2:
+					//当天用时
+					double dd =  ((double)time1)/3600000; 
+					
+					//之前总共用时 毫秒
+					Long ti = mabb.getNowTime();
+					//套餐时间 小时
+					int tim = mealBean.getMealTime();
+					double tt = 0;
+					
+					if((tt=(tim-ti))>0) {
+						mabb.setMoney(mealBean.getMealBasicMoney());
+						mabb.setNowTime(mabb.getNowTime()+time1);
+						mon = 0.0;
+					}else {
+						mabb.setMoney(mealBean.getMealBasicMoney()+tt/3600000*mealBean.getMealMoney());
+						mon = tt/3600000*mealBean.getMealMoney();
+					}
+					
+					
+					break;
 
-		default:
-			System.err.println("异常！！！没有资费类型");
-			break;
-		}
-		iMonthBusinessHandleDao.save(mabb);
-		return mabb;
-		
+				default:
+					System.err.println("异常！！！没有资费类型");
+					break;
+				}
+				return mon;
 	}
 }
