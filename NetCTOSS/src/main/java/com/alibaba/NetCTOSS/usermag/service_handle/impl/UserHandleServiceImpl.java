@@ -15,24 +15,24 @@ public class UserHandleServiceImpl implements IUserHandleService {
 	@Resource
 	private IUserHandleDao iUserHandleDao;
 	@Override
-	@MyLog(action="1",place="saveUserBean")
+	@MyLog(place="账务帐号",action="添加")
 	public void saveUserBean(UserBean bean) {
 		// TODO Auto-generated method stub
 		iUserHandleDao.save(bean);
 	}
 
 	@Override
-	@MyLog(action="3",place="updateUserBean")
+	@MyLog(place="账务帐号",action="修改")
 	public void updateUserBean(UserBean bean) {
 		// TODO Auto-generated method stub
 		iUserHandleDao.saveAndFlush(bean);
 	}
 
 	@Override
-	@MyLog(action="2",place="deleteUserBean")
+	@MyLog(place="账务帐号",action="删除")
 	public void deleteUserBean(UserBean bean) {
 		// TODO Auto-generated method stub
-		
+		iUserHandleDao.saveAndFlush(bean);
 	}
 
 }

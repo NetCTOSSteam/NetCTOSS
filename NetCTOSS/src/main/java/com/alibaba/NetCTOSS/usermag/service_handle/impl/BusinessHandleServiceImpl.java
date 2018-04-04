@@ -15,21 +15,21 @@ public class BusinessHandleServiceImpl implements IBusinessHandleService {
 	private IBusinessHandleDao iBusinessHandleDao;
 	
 	@Override
-	@MyLog(action="1",place="saveBusinessBean")
+	@MyLog(place="业务账号管理模块",action="添加")
 	public void saveBusinessBean(BusinessBean bean) {
 		// TODO Auto-generated method stub
 		iBusinessHandleDao.save(bean);
 	}
 
 	@Override
-	@MyLog(action="3",place="updateBusinessBean")
+	@MyLog(place="业务账号管理模块",action="修改")
 	public void updateBusinessBean(BusinessBean bean) {
 		// TODO Auto-generated method stub
 		iBusinessHandleDao.saveAndFlush(bean);
 	}
 
 	@Override
-	@MyLog(action="2",place="deleteBusinessBean")
+	@MyLog(place="业务账号管理模块",action="删除")
 	public void deleteBusinessBean(BusinessBean bean) {
 		// TODO Auto-generated method stub
 		iBusinessHandleDao.saveAndFlush(bean);

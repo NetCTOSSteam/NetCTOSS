@@ -14,14 +14,14 @@ public class MonthBusinessHandleServiceImpl implements IMonthBusinessHandleServi
 	@Resource
 	private IMonthBusinessHandleDao iMonthBusinessHandleDao;
 	@Override
-	@MyLog(action="1",place="saveMonthAndBusinessBean")
+	@MyLog(place="账单模块",action="添加月账单")
 	public void saveMonthAndBusinessBean(MonthAndBusinessBean bean) {
 		// TODO Auto-generated method stub
 		iMonthBusinessHandleDao.save(bean);
 	}
 
 	@Override
-	@MyLog(action="3",place="updateMonthAndBusinessBean")
+	@MyLog(place="账单模块",action="更新月账单")
 	public void updateMonthAndBusinessBean(MonthAndBusinessBean bean) {
 		// TODO Auto-generated method stub
 		iMonthBusinessHandleDao.saveAndFlush(bean);
