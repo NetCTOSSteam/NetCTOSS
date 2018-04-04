@@ -73,29 +73,28 @@ $(function(){
 
     //新增
     $('#save_users').click(function(){
-        console.info("进来了");
-        
-        var url = "/NetCTOSS/user/addone";
-        console.info(queryParamsToSave());
-        
-        $('#add_form').form('submit', {
-            type:"POST",
-            url:url,
-            data:queryParamsToSave(),
-            onSubmit: function(){
-                // do some check
-                // return false to prevent submit;
-                return true;
-            },
-            success:function(data){
-                
-            	$('#add_dialog').dialog('close');
-
-                //添加成功 更新数据
-                $('#tt').datagrid('reload',queryParams());
-            }
-        });
+       console.info(queryParamsToSave());
+       $.post("/NetCTOSS/user/addone", queryParamsToSave(),
+    		   function(data){
+		    	   var msg = eval('(' + data + ')');
+		    	   	if(msg){
+		    	   		showMessager('添加成功');
+		    	   	}else{
+		    	   		showMessager('失败');
+		    	   	}
+    		   });
     });
+    /**
+	 * 消息提示
+	 */
+	function showMessager(mag) {
+		$.messager.show({
+			title : '消息提示',
+			msg : mag,
+			timeout : 2000,
+			showType : 'slide'
+		});
+	}
 
 
     //修改

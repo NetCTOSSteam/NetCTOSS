@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import com.alibaba.NetCTOSS.admmag.service_handle.IRoleHandleService;
 import com.alibaba.NetCTOSS.beans.admAndRoleBean.Messager;
 import com.alibaba.NetCTOSS.beans.billBean.AccountYearBillBean;
 import com.alibaba.NetCTOSS.beans.userAndBusBean.MealBean;
@@ -50,6 +51,8 @@ public class UserController {
 	@Resource
 	private IUserHandleService iUserHandleService;
 
+	@Resource
+	private IRoleHandleService roleHandleServiceImpl;
 	/**
 	 * 用户账户登录
 	 * 
@@ -158,8 +161,17 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/addone", method = { RequestMethod.POST })
-	public void addOne(UserBean UserBean) {
-		iUserHandleService.saveUserBean(UserBean);
+	public boolean addOne(UserBean userBean) {
+		try {
+			System.out.println(roleHandleServiceImpl.findById(3));
+			userBean.setRole(roleHandleServiceImpl.findById(3));
+			iUserHandleService.saveUserBean(userBean);
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	@RequestMapping(value = "/users", method = { RequestMethod.POST }, produces = { "application/json" })

@@ -68,62 +68,58 @@
          style="width: 600px; height: 400px"
          data-options="title:'新增客户',buttons:'#add_dialog_bb',modal:true,
 		collapsible:true,minimizable:true,maximizable:true,resizable:true,closable:true,closed:true">
-        <form id="add_form" method="post">
             <table>
                 <tr>
                     <td>账务帐号：</td>
                     <td><input class="easyui-validatebox" type="text" id="login_name"
-                               name="loginName" data-options="required:false" /></td>
+                              data-options="required:false" /></td>
                 </tr>
                 <tr>
                     <td>真实姓名：</td>
                     <td><input class="easyui-validatebox" type="text" id="u_name"
-                               name="name" data-options="required:false" /></td>
+                              data-options="required:false" /></td>
                 </tr>
                 <tr>
                     <td>性别：</td>
-                    <td><input class="easyui-combobox" name="gender" id="u_gender"
+                    <td><input class="easyui-combobox"  id="u_gender"
                                data-options="valueField:'id',textField:'text'" />
                     </td>
                 </tr>
                 <tr>
                     <td>身份证号码：</td>
                     <td><input class="easyui-validatebox" type="text" id="id_card"
-                               name="idCard" data-options="required:false" /></td>
+                               data-options="required:false" /></td>
                 </tr>
                 <tr>
                     <td>密码：</td>
-                    <td><input class="easyui-validatebox" type="text" id="pass_word"
-                               name="password" data-options="required:false" /></td>
+                    <td><input class="easyui-validatebox" type="password" id="pass_word"
+                               data-options="required:false" /></td>
                 </tr>
                 <tr>
                     <td>联系电话：</td>
                     <td><input class="easyui-validatebox" type="text" id="u_tel"
-                               name="tel" data-options="required:false" /></td>
+                                data-options="required:false" /></td>
                 </tr>
                 <tr>
                     <td>邮编：</td>
                     <td><input class="easyui-validatebox" type="text" id="u_postcode"
-                               name="postcode" data-options="required:false" /></td>
+                            	 data-options="required:false" /></td>
                 </tr>
                 <tr>
                     <td>通讯地址：</td>
                     <td><input class="easyui-validatebox" type="text" id="u_address"
-                               name="address" data-options="required:false" /></td>
+                               data-options="required:false" /></td>
                 </tr>
                 <tr>
                     <td>QQ号码：</td>
                     <td><input class="easyui-validatebox" type="text" id="u_qq"
-                               name="qq" data-options="required:false" /></td>
+                               data-options="required:false" /></td>
                 </tr>
                 <tr>
                     <td>角色：</td>
                     <td>用户</td>
                 </tr>
-                
             </table>
-        </form>
-
         <div id="add_dialog_bb">
             <a id="save_users"  class="easyui-linkbutton"
                data-options="iconCls:'icon-ok',plain:true">添加</a>
