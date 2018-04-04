@@ -128,61 +128,51 @@ $(function(){
     //修改
     $('#edit').click(function(){
     	
-    	
         var rows = $('#tt').datagrid('getSelections');
-      
-        var row = $('#tt').datagrid('getSelected')
-        	
-        	if(!row.mealStatus){
-        		 //返回的第1行记录
-        	        if(row){//如果选中了数据，就进入if语句
-        	            var lenth = rows.length;
-        	            if(lenth == 1){
+        var row = $('#tt').datagrid('getSelected')        
+         if(rows.length==1){//如果选中了数据，就进入if语句
+	             
+	                if(!row.mealStatus){
+	                	
+	                		$('#update_users_dialog').dialog('open');//打开修改窗体
+	                		 $('#mealId1').attr('value',row.mealId);
+		                	    $('#mealBasicMoney1').numberbox('setValue', row.mealBasicMoney);	      						      			     
+		      			        $('#mealTime1').numberbox('setValue', row.mealTime);
+		      			        $('#mealMoney1').numberbox('setValue', row.mealMoney);
 
-        	                $('#mealId1').attr('value',row.mealId);
-        					$('#mealBasicMoney1').attr('value',row.mealBasicMoney);
-        					
-        					$('#mealTime1').attr('value',row.mealTime);
-        					$('#mealMoney1').attr('value',row.mealMoney);
-        					$('#mealName1').attr('value',row.mealName);        				
-        					$('#mealDescribe1').attr('value',row.mealDescribe);
-        					$('#cc1').combobox('select', row.mealType);
-        					$('#mealStartTime').attr('value',row.mealStartTime);
-        	                $('#update_users_dialog').dialog('open');//打开修改窗体
-        	          
-        					
-        	            }else{
-        	                $.messager.show({
-        	                    title:'消息提示',
-        	                    msg:'每次只能修改一条数据！',
-        	                    timeout:5000,
-        	                    showType:'slide'
-        	                });
-        	            }
-        	        }else{
-        	            $.messager.show({
-        	                title:'消息提示',
-        	                msg:'请选择需要修改的数据！',
-        	                timeout:3000,
-        	                showType:'slide'
-        	            });
-        	        }
-        	}else{
-        		$.messager.show({
-	                title:'消息提示',
-	                msg:'正在使用中，不能进行操作！',
-	                timeout:3000,
-	                showType:'slide'
-	            });
-        	}
-        
-       
-       
+		      					console.info(row.mealMoney)
+		      					$('#mealName1').attr('value',row.mealName); 
+		                	   
+		      					$('#mealDescribe1').attr('value',row.mealDescribe);
+		                	   
+		      					$('#cc1').combobox('select', row.mealType);
+		                	    
+		      					$('#mealStartTime').attr('value',row.mealStartTime);
+	                	    
+		             }else{
+					   		$.messager.show({
+					                title:'消息提示',
+					                msg:'正在使用中，不能进行操作！',
+					                timeout:3000,
+					                showType:'slide'
+			           });
+		             }
+	           
+	         }else{
+	        	 $.messager.show({
+		                title:'消息提示',
+		                msg:'请选择需要修改的数据！',
+		                timeout:3000,
+		                showType:'slide'
+		            }); 
+	         }
+        	
     });
 
 
     //修改保存
     $('#update_users').click(function(){
+    	
         var row = $('#tt').datagrid('getSelected')
         var url = "/NetCTOSS/tar/update";
         $('#update_user').form('submit', {   
@@ -209,10 +199,23 @@ $(function(){
 				$('#tt').datagrid('reload',queryParams());// 重新加载数据
 		    }   
 		});  
-     
+      
     });
 
 
+    function clear(){
+    	console.info("清空");
+    	 $('#mealId1').attr('value',"");
+    	 console.info($('#mealId1'));
+ 		$('#mealBasicMoney1').attr('value',"");
+ 		
+ 		$('#mealTime1').attr('value',"");
+ 		$('#mealMoney1').attr('value',"");
+ 		$('#mealName1').attr('value',"");        				
+ 		$('#mealDescribe1').attr('value',"");
+ 	
+ 		$('#mealStartTime').attr('value',"");
+    }
 
 
 
@@ -365,13 +368,27 @@ $('#zhan').click(function(){
              		        // return false to prevent submit; 
              		    	return true;
              		    },   
-             		    success:function(data){                 		    
-             		    	 $.messager.show({
+             		    success:function(data){ 
+             		    
+             		    	if(data){
+             		    		$.messager.show({
              						title:'消息提示',
              						msg:'暂停成功',
              						timeout:5000,
              						showType:'slide'
              				});
+             		    		
+             		    		}else{
+             		    			$.messager.show({
+                 						title:'消息提示',
+                 						msg:'还有业务使用无法暂停',
+                 						timeout:5000,
+                 						showType:'slide'
+                 				});
+             		    			
+             		    			$('#tt').datagrid('reload',queryParams());// 重新加载数据
+         				}
+             		    	 
              		    	 
              				$('#tt').datagrid('reload',queryParams());// 重新加载数据
              		    }   

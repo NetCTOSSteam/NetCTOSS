@@ -15,8 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-
+import com.alibaba.NetCTOSS.beans.userAndBusBean.BusinessBean;
 import com.alibaba.NetCTOSS.beans.userAndBusBean.MealBean;
+import com.alibaba.NetCTOSS.usermag.service_demand.IBusinessDemandService;
 import com.alibaba.NetCTOSS.usermag.service_demand.IMealDemandService;
 import com.alibaba.NetCTOSS.usermag.service_handle.IMealHandleService;
 import com.alibaba.fastjson.JSONObject;
@@ -32,6 +33,8 @@ public class MealController {
 	private IMealDemandService mealDemandServiceImpl;
 	@Resource
 	private IMealHandleService mealHandleServiceImpl;
+	@Resource
+	IBusinessDemandService businessDemandServiceImpl;
 	/**
 	 * 首页分页显示
 	 * @param mv
@@ -39,7 +42,7 @@ public class MealController {
 	 * @param pageSize  多少行
 	 * @return ModelAndView
 	 */
-	@RequestMapping(value = "/all", method = { RequestMethod.GET }, produces = { "application/json;charset=utf-8" })
+	@RequestMapping(value = "/all", method = { RequestMethod.GET }, produces = {  "application/json;charset=utf-8" })
 	public String findPage(HttpServletRequest request
 		){
 		    String dang_qian_ye_ma = request.getParameter("page");//page 为easyui分页插件默认传到后台的参数，代表当前的页码，起始页为1  
@@ -96,7 +99,7 @@ public class MealController {
 	
 			mealHandleServiceImpl.updateMealBean(bean);	
 			return true;
-			
+		 	
 		} catch (Exception e) {
 			// TODO: handle exception			
 	}	
@@ -130,27 +133,39 @@ public class MealController {
 	}
 	@RequestMapping(value="/update2",method= {RequestMethod.PUT},produces= {"application/json;charset=utf-8"})
 	public boolean updeteMealBean2(MealBean bean) {
-		try {
-	          bean.setMealStatus(false);
-	          bean.setMealStartTime(new Date());
-			mealHandleServiceImpl.updateMealBean(bean);	
-			return true;
+		
+		BusinessBean bus=new BusinessBean();
+	  List<BusinessBean> lsit=businessDemandServiceImpl.findLikeByBean(bus);
+	  
+	      for (BusinessBean businessBean : lsit) {
+	  
+		      if(businessBean.getNextMealBean().getMealId()==bean.getMealId()) {
+			return false;
 			
-		} catch (Exception e) {
-			// TODO: handle exception			
-	}	
+		}else {
+			
+		          bean.setMealStatus(false);
+		          bean.setMealStartTime(new Date());
+				mealHandleServiceImpl.updateMealBean(bean);	
+				return true;
+				
+			 
+		}
+	}
+			
 		return false;
 			
 	}	
-	@RequestMapping(value = "/allname", method = { RequestMethod.GET }, produces = { "application/json" })
+	@RequestMapping(value = "/allname", method = { RequestMethod.POST }, produces = { "application/json" })
 	public List<Map> findName(){
 		
 		List<Map> li  = new ArrayList<>();
  		
-		List<MealBean> list=mealDemandServiceImpl.findAllMealBean();
+		List<MealBean> list=mealDemandServiceImpl.findAllMealBean1();
+	
 		//转换
 		for (MealBean mealBean : list) {
-			Map map = new HashMap<>();
+		Map map = new HashMap<>();
 			map.put("id", mealBean.getMealName());
 			map.put("text", mealBean.getMealName());
 			li.add(map);
