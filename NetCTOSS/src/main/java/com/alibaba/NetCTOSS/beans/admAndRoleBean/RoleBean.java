@@ -19,6 +19,8 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.GenericGenerator;
 
+import com.alibaba.NetCTOSS.beans.userAndBusBean.UserBean;
+
 /**
  * 角色对象
  * 
@@ -50,7 +52,11 @@ public class RoleBean implements Serializable {
 
 	@OneToMany(fetch=FetchType.LAZY,mappedBy="role")
 	@Cascade(value = {CascadeType.ALL})
-	private Set<AdministratorBean> admins;//一个角色有多个用户
+	private Set<AdministratorBean> admins;//一个角色有多个管理员
+	
+	@OneToMany(fetch=FetchType.LAZY,mappedBy="role")
+	@Cascade(value = {CascadeType.ALL})
+	private Set<UserBean> users;//一个角色有多个用户
 	
 	@ManyToMany(fetch=FetchType.LAZY)
 	@Cascade(CascadeType.ALL)

@@ -8,12 +8,16 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.GenericGenerator;
+
+import com.alibaba.NetCTOSS.beans.admAndRoleBean.RoleBean;
 
 /**
  * 账务账户类
@@ -115,6 +119,10 @@ public class UserBean implements Serializable {
 	@Cascade(value= {CascadeType.ALL})
 	private Set<BusinessBean> BusinessBeans;
 	
+	@ManyToOne(fetch=FetchType.LAZY)
+	@Cascade(value={CascadeType.ALL})
+	@JoinColumn(name="user_role_id")
+	private RoleBean role;
 
 	public UserBean() {
 		// TODO Auto-generated constructor stub
@@ -218,12 +226,18 @@ public class UserBean implements Serializable {
 		BusinessBeans = businessBeans;
 	}
 
+	public RoleBean getRole() {
+		return role;
+	}
+
+	public void setRole(RoleBean role) {
+		this.role = role;
+	}
+
 	@Override
 	public String toString() {
 		return "UserBean [id=" + id + ", userName=" + userName + ", tel=" + tel + ", idCard=" + idCard + ", gender="
 				+ gender + ", address=" + address + ", postcode=" + postcode + ", qq=" + qq + ", loginName=" + loginName
-				+ ", password=" + password + ", bo=" + bo + ", BusinessBeans=" + BusinessBeans + "]";
+				+ ", password=" + password + ", bo=" + bo + ", BusinessBeans=" + BusinessBeans + ", role=" + role + "]";
 	}
-
-
 }
