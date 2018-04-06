@@ -35,12 +35,9 @@ public class MonthAccController {
 	@RequestMapping(value = "/all", method = { RequestMethod.GET }, produces = { "application/json" })
 	public Map findPage(int page, int rows, MonthAndAccountBean bean){	
 		Map<Object, Object> map = new HashMap<>();
-		System.out.println(bean);
 		 List<MonthAndAccountBean>  dataAll = monthAccDemandServiceimpl.findLikeMonthAndAccountBean(bean);
-		System.out.println(dataAll);
 		 PageHelper.startPage(page, rows);
 		  List<MonthAndAccountBean>  data = monthAccDemandServiceimpl.findLikeMonthAndAccountBean(bean);
-		System.out.println(data);
 		  PageInfo<MonthAndAccountBean> pageInfo =new PageInfo<MonthAndAccountBean>(data);
 		
 			map.put("total", dataAll.size());// 得到总条数
@@ -59,13 +56,10 @@ public class MonthAccController {
 	 */
 	@RequestMapping(value = "/check", method = { RequestMethod.PUT }, produces = { "application/json" })
 	public String updateMonthAndAccountBean(MonthAndAccountBean bean ) {
-		
-		
 		try {
 			bean.setStatus(1);
 			monthAccHandleServiceImpl.updateMonthAndAccountBean(bean);
 			return "ok";
-			
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -76,7 +70,6 @@ public class MonthAccController {
 	
 	@RequestMapping(value = "/findByYearAndAcc", method = { RequestMethod.GET }, produces = { "application/json" })
 	public List<MonthAndAccountBean> findByYearAndAccount(int year,String userAccount){
-		
 		return monthAccDemandServiceimpl.findByYearAndAccount(year, userAccount);
 	}
 }

@@ -19,9 +19,7 @@ public class ServiceAndBusinessController {
 		
 		@RequestMapping(value = "/one", method = { RequestMethod.GET }, produces = { "application/json" })
 		public ServiceAndBusinessBean findPage(@Param("businessAccount")String businessAccount ){	
-			
 			ServiceAndBusinessBean bean =  serviceBusinessDemandServiceImpl.findOneServiceBusByBean(businessAccount);
-			System.out.println(bean);
 			return bean;
 		}
 }
