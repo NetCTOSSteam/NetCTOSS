@@ -30,8 +30,8 @@
 			<div class="input">
 				<div class="log">
 					<div class="name">
-						<label>口 令：</label><input required type="text" class="text1"
-							id="inp1" placeholder="登录口令" name="loginName" tabindex="1">
+						<label>账 号：</label><input required type="text" class="text1"
+							id="inp1" placeholder="登录账号" name="loginName" tabindex="1">
 							<select id="sele">
 								<option selected="selected">管理员</option>
 								<option>用户</option>
@@ -39,7 +39,7 @@
 					</div>
 					<div class="pwd">
 						<label>密 码：</label><input required type="password" class="text"
-							id="inp2" placeholder="口令密码" name="password" tabindex="1">
+							id="inp2" placeholder="账号密码" name="password" tabindex="1">
 						<br/> <br />
 						<label>验 证 码：</label>
 						<input required type="text" class="text1" id="inp3" placeholder="验证码" name="code" tabindex="3">
